@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Self-led Introduction to IFS — VAHUE × Guthrie Sayen</title>
+<meta name="description" content="A bilingual six-week course architecture for a Self-led introduction to IFS for life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --paper:#E8E9E3;
+  --card:#F4F5EF;
+  --ink:#191C1A;
+  --ink-soft:#4F5651;
+  --ink-faint:#7C837D;
+  --gold:#8C6320;
+  --gold-bright:#B0862F;
+  --slate:#465A68;
+  --rule:rgba(25,28,26,.14);
+  --rule-soft:rgba(25,28,26,.08);
+  --measure:44rem;
+  --wide:64rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:17px;
+  line-height:1.62;
+  font-weight:400;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%}
+
+/* ---------- structure ---------- */
+.wrap{width:100%;max-width:var(--wide);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.col{max-width:var(--measure)}
+section{padding:clamp(52px,7vw,96px) 0;border-top:1px solid var(--rule-soft)}
+section:first-of-type{border-top:0}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{font-family:"Newsreader",Georgia,serif;font-weight:400;letter-spacing:0;margin:0}
+h1{font-size:4rem;line-height:1.05;letter-spacing:0}
+h2{font-size:2.25rem;line-height:1.15;margin-bottom:.55em}
+h3{font-size:1.28rem;line-height:1.3}
+h4{font-size:1.02rem;font-family:"Inter",sans-serif;font-weight:600;letter-spacing:0}
+p{margin:0 0 1.05em}
+p:last-child{margin-bottom:0}
+strong{font-weight:600}
+em{font-style:italic}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.72rem;letter-spacing:0;text-transform:uppercase;
+  color:var(--ink-faint);margin:0 0 1.4em;
+}
+.lede{font-size:1.28rem;line-height:1.55;color:var(--ink-soft)}
+.small{font-size:.95rem}
+.muted{color:var(--ink-soft)}
+
+@media (max-width:760px){
+  h1{font-size:2.5rem}
+  h2{font-size:1.75rem}
+  .lede{font-size:1.12rem}
+}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(44px,8vw,88px);padding-bottom:clamp(44px,6vw,72px)}
+.hero h1{margin-bottom:.5em}
+.hero h1 .accent{color:var(--gold);font-style:italic}
+.hero .lede{max-width:38rem}
+.formulation{
+  margin:clamp(32px,5vw,48px) 0 0;
+  padding:26px 0 0;
+  border-top:1px solid var(--rule);
+  max-width:40rem;
+}
+.formulation p{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:1.42rem;
+  line-height:1.4;
+}
+
+/* ---------- spine chain ---------- */
+.chain{list-style:none;margin:clamp(38px,6vw,56px) 0 0;padding:0;position:relative}
+.chain li{position:relative}
+.chain .dot{
+  display:block;width:9px;height:9px;border-radius:50%;
+  background:var(--gold);position:relative;z-index:2;
+}
+.chain .label{
+  display:block;font-family:"IBM Plex Mono",monospace;
+  font-size:.78rem;letter-spacing:0;color:var(--ink-soft);
+}
+@media (min-width:820px){
+  .chain{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+  .chain::before{
+    content:"";position:absolute;top:4px;height:1px;background:var(--rule);
+    left:calc(100% / 14);right:calc(100% / 14);
+  }
+  .chain li{padding-right:14px}
+  .chain .label{margin-top:14px}
+}
+@media (max-width:819px){
+  .chain{padding-left:22px}
+  .chain::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:var(--rule)}
+  .chain li{display:flex;align-items:center;gap:12px;padding:5px 0}
+  .chain .dot{position:absolute;left:-22px}
+  .chain .label{font-size:.85rem}
+}
+
+/* ---------- note / margin aside ---------- */
+.aside{
+  border-left:2px solid var(--gold);
+  padding:2px 0 2px 20px;
+  margin:2em 0;
+  color:var(--ink-soft);
+  font-size:.97rem;
+}
+.aside strong{color:var(--ink)}
+
+/* ---------- two-panel is / is not ---------- */
+.panels{display:grid;gap:clamp(18px,3vw,28px);margin-top:2em}
+@media (min-width:760px){.panels{grid-template-columns:1fr 1fr}}
+.panel{background:var(--card);border:1px solid var(--rule-soft);border-radius:3px;padding:clamp(22px,3vw,30px)}
+.panel h4{margin-bottom:1em;font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:0;text-transform:uppercase;font-weight:500}
+.panel--is h4{color:var(--gold)}
+.panel--isnot h4{color:var(--slate)}
+.panel ul{list-style:none;margin:0;padding:0}
+.panel li{position:relative;padding-left:20px;margin-bottom:.75em;font-size:.98rem;line-height:1.5}
+.panel li:last-child{margin-bottom:0}
+.panel--is li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--gold)}
+.panel--isnot li::before{content:"\00d7";position:absolute;left:0;top:.02em;color:var(--slate);font-size:.95em}
+
+/* ---------- promise ---------- */
+.promise{margin-top:2em}
+.offerline{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:1.45rem;line-height:1.35;
+}
+.offerline .mark{color:var(--gold);font-style:italic}
+.offer-grid{display:grid;gap:12px;margin-top:24px}
+@media (min-width:760px){.offer-grid{grid-template-columns:repeat(3,1fr)}}
+.offer-card{
+  background:var(--card);border:1px solid var(--rule-soft);border-radius:3px;
+  padding:18px 20px;min-height:128px;
+}
+.offer-card span{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--gold);
+  margin-bottom:12px;
+}
+.offer-card strong{
+  display:block;font-family:"Newsreader",Georgia,serif;font-size:1.12rem;line-height:1.28;
+  font-weight:400;margin-bottom:8px;
+}
+.offer-card p{font-size:.92rem;line-height:1.48;color:var(--ink-soft)}
+.notnote{
+  margin-top:24px;border-top:1px solid var(--rule);padding-top:16px;
+  color:var(--ink-faint);font-size:.9rem;line-height:1.45;
+}
+.notnote span{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:0;
+  text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;
+}
+.notnote p{margin:0}
+
+/* ---------- numbered spine statements ---------- */
+.steps{list-style:none;margin:2em 0 0;padding:0;counter-reset:s}
+.steps li{
+  counter-increment:s;position:relative;padding:16px 0 16px 54px;
+  border-bottom:1px solid var(--rule-soft);
+  font-family:"Newsreader",Georgia,serif;font-size:1.16rem;
+}
+.steps li:last-child{border-bottom:0}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:19px;
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--gold);
+  border:1px solid var(--rule);border-radius:50%;
+  width:26px;height:26px;display:grid;place-items:center;
+}
+
+/* ---------- table ---------- */
+.tablewrap{margin-top:2em}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+thead th{
+  text-align:left;font-family:"IBM Plex Mono",monospace;font-weight:500;
+  font-size:.68rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-faint);
+  padding:0 14px 10px 0;border-bottom:1px solid var(--rule);
+}
+tbody td{padding:16px 14px 16px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.45}
+tbody tr:last-child td{border-bottom:0}
+td.wk{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--gold);white-space:nowrap}
+td.focus{font-family:"Newsreader",Georgia,serif;font-size:1.08rem}
+td.q{font-style:italic;color:var(--ink-soft)}
+@media (max-width:760px){
+  table,thead,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tbody tr{border-bottom:1px solid var(--rule);padding:18px 0}
+  tbody tr:last-child{border-bottom:0}
+  tbody td{border:0;padding:0 0 8px}
+  tbody td:last-child{padding-bottom:0}
+  tbody td::before{
+    content:attr(data-label);display:block;
+    font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:0;
+    text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;
+  }
+  td.wk::before{display:none}
+}
+
+/* ---------- week accordion ---------- */
+.weeks{margin-top:2.4em;border-top:1px solid var(--rule)}
+details{border-bottom:1px solid var(--rule-soft)}
+summary{
+  list-style:none;cursor:pointer;padding:20px 34px 20px 0;position:relative;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;
+}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.sum-wk{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:0;color:var(--gold);min-width:64px}
+.sum-title{font-family:"Newsreader",Georgia,serif;font-size:1.22rem;line-height:1.2}
+.sum-q{font-style:italic;color:var(--ink-faint);font-size:.95rem;flex-basis:100%}
+@media (min-width:820px){.sum-q{flex-basis:auto;margin-left:auto;text-align:right;max-width:20rem}}
+summary::after{
+  content:"";position:absolute;right:6px;top:28px;
+  width:9px;height:9px;border-right:1px solid var(--ink-soft);border-bottom:1px solid var(--ink-soft);
+  transform:rotate(45deg);transition:transform .22s ease;
+}
+details[open] summary::after{transform:rotate(-135deg)}
+.detail{padding:0 0 30px;display:grid;gap:24px}
+@media (min-width:760px){.detail{grid-template-columns:1fr 1fr;gap:28px 40px}}
+.block h4{
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:0;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:.85em;
+}
+.block ul{list-style:none;margin:0;padding:0}
+.block li{position:relative;padding-left:16px;margin-bottom:.5em;font-size:.96rem;line-height:1.5}
+.block li::before{content:"";position:absolute;left:0;top:.66em;width:6px;height:1px;background:var(--rule)}
+.block li:last-child{margin-bottom:0}
+.output{
+  grid-column:1/-1;background:var(--card);border-radius:3px;padding:16px 20px;
+  font-size:.95rem;
+}
+.output span{
+  font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:0;
+  text-transform:uppercase;color:var(--gold);margin-right:10px;
+}
+
+/* ---------- boundaries ---------- */
+.swap{margin-top:2em;display:grid;gap:14px}
+@media (min-width:760px){.swap{grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}}
+.swap-box{padding:20px 22px;border-radius:3px;font-family:"Newsreader",Georgia,serif;font-size:1.1rem;line-height:1.35}
+.swap-old{background:transparent;border:1px dashed var(--rule);color:var(--ink-faint)}
+.swap-new{background:var(--card);border:1px solid var(--rule-soft)}
+.swap-arrow{font-family:"IBM Plex Mono",monospace;color:var(--gold);text-align:center;font-size:.9rem}
+.swap-box .tag{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:0;
+  text-transform:uppercase;margin-bottom:8px;color:var(--ink-faint);
+}
+.swap-new .tag{color:var(--gold)}
+
+/* ---------- questions ---------- */
+.questions{list-style:none;margin:2em 0 0;padding:0;counter-reset:q}
+.questions li{
+  counter-increment:q;position:relative;padding:18px 0 18px 46px;
+  border-bottom:1px solid var(--rule-soft);
+  font-family:"Newsreader",Georgia,serif;font-size:1.1rem;line-height:1.4;
+}
+.questions li:last-child{border-bottom:0}
+.questions li::before{
+  content:counter(q,decimal-leading-zero);position:absolute;left:0;top:23px;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--gold);
+}
+
+/* ---------- closing ---------- */
+.closing{background:var(--card);border-top:1px solid var(--rule)}
+.closing blockquote{
+  margin:2em 0 0;padding:0;border-left:2px solid var(--gold);padding-left:clamp(18px,3vw,28px);
+  font-family:"Newsreader",Georgia,serif;font-size:1.18rem;line-height:1.5;
+}
+.closing blockquote p{margin-bottom:1em}
+footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"IBM Plex Mono",monospace;letter-spacing:0}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  summary::after{transition:none}
+}
+
+
+.sitebar{position:sticky;top:0;z-index:50;background:rgba(232,233,227,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule-soft)}
+.sitebar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:12px;padding-bottom:12px}
+.sitebrand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-soft)}
+.lang-toggle{display:inline-flex;gap:4px;min-height:40px;padding:4px;border:1px solid var(--rule);border-radius:999px;background:var(--card)}
+.lang-toggle button{min-width:52px;border:0;border-radius:999px;background:transparent;color:var(--ink-soft);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:0;cursor:pointer}
+.lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.lang-toggle button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+[data-lang="en"] .lang-ru,[data-lang="ru"] .lang-en{display:none}
+[data-lang="en"] .lang-en,[data-lang="ru"] .lang-ru{display:block}
+.lang-pane > section:first-child{border-top:0}
+@media(max-width:520px){.sitebar .wrap{align-items:flex-start}.sitebrand{max-width:12rem;line-height:1.35}.lang-toggle button{min-width:46px}}
+
+</style>
+</head>
+<body data-lang="en">
+<header class="sitebar">
+  <div class="wrap">
+    <div class="sitebrand">VAHUE × Guthrie Sayen</div>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="lang-pane lang-en"><!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Working document · VAHUE × Guthrie Sayen · August 2026</p>
+    <div class="col">
+      <h1>This course is about <span class="accent">Self</span>.</h1>
+      <p class="lede">Our mission is to give people a living, safe, and understandable entrance into IFS through the experience of Self. Not through protocol. Not through learning to conduct sessions. Not through deep trauma work.</p>
+    </div>
+    <div class="formulation">
+      <p>A six-week Self-led introduction to IFS for life. People learn to access Self as awake awareness, speak the language of parts, practice the loving gaze of Self, and leave knowing how to continue safely.</p>
+    </div>
+    <ul class="chain">
+      <li><span class="dot"></span><span class="label">Accessing Self</span></li>
+      <li><span class="dot"></span><span class="label">Parts</span></li>
+      <li><span class="dot"></span><span class="label">Loving gaze</span></li>
+      <li><span class="dot"></span><span class="label">Protectors</span></li>
+      <li><span class="dot"></span><span class="label">Other people</span></li>
+      <li><span class="dot"></span><span class="label">Vulnerable parts</span></li>
+      <li><span class="dot"></span><span class="label">Life</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ OPENING PROPOSITION ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Opening proposition for Guthrie</p>
+      <h2>How we see this program</h2>
+      <p>We want to propose a six-week course as a standalone Self-led entrance into IFS for life. Not as protocol training, and not as practitioner preparation, but as a living introduction to the modality through the centrality of Self.</p>
+      <p>At the center is a person learning, perhaps for the first time, to recognize access to Self as a living state, speak the language of parts, and meet themselves, their parts, and other people with the loving gaze of Self. Structure, safety, and practice exist only to make that experience clear, gentle, and stable.</p>
+      <div class="aside">
+        <strong>Starting point for the conversation:</strong> we want to create a course where your weekly presence helps people touch the healing power of Self safely, without peer therapy and without forcing deep work.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IS / IS NOT ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Definition</p>
+      <h2>What this course is</h2>
+      <p>It is a Self-led course. It does not exist to teach people how to “do IFS.” It exists so a person can come into real contact with what IFS is from the inside.</p>
+    </div>
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>It is</h4>
+        <ul>
+          <li>A proper introduction to IFS as a modality</li>
+          <li>A first taste of access to Self as awake awareness</li>
+          <li>An understanding of why Self can heal parts</li>
+          <li>Learning to notice parts and speak parts language</li>
+          <li>Practice meeting oneself and others with access to Self</li>
+          <li>A clear sense of whether to go deeper — with a therapist, in community, or in training</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot">
+        <h4>It is not</h4>
+        <ul>
+          <li>A compressed practitioner training</li>
+          <li>A course in conducting IFS sessions</li>
+          <li>Deep trauma or exile work</li>
+          <li>A promise to heal trauma in six weeks</li>
+          <li>Peer therapy in pairs and triads</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMISE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">The promise we make to participants</p>
+      <h2>What people can count on</h2>
+      <div class="promise">
+        <p class="offerline"><span class="mark">In six weeks, a person gets to know IFS from the inside</span> — through the experience of Self, the language of parts, and the practice of loving presence.</p>
+        <div class="offer-grid">
+          <div class="offer-card">
+            <span>01</span>
+            <strong>Access Self</strong>
+            <p>Meet Self not only as an idea, but as awake awareness and a state of presence from which a person can be with themselves.</p>
+          </div>
+          <div class="offer-card">
+            <span>02</span>
+            <strong>Begin speaking parts language</strong>
+            <p>Notice inner voices, protections, and reactions without shame, fighting, or self-attack.</p>
+          </div>
+          <div class="offer-card">
+            <span>03</span>
+            <strong>Understand the next step</strong>
+            <p>Sense whether IFS resonates, and see where to go deeper: therapy, community, or training.</p>
+          </div>
+        </div>
+        <div class="notnote">
+          <span>What we are not promising</span>
+          <p>We are not promising trauma healing in six weeks, we are not teaching people to lead IFS sessions, and we are not positioning this course as practitioner preparation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPINE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">The spine</p>
+      <h2>Seven things a participant can say by the end</h2>
+      <p class="muted">The whole arc is written in the first person, because that is the only place it can be verified.</p>
+      <ol class="steps">
+        <li>I can access Self.</li>
+        <li>I can notice parts.</li>
+        <li>I can meet parts with access to Self.</li>
+        <li>I can understand protectors.</li>
+        <li>I can see parts in relationships.</li>
+        <li>I can respect vulnerable places without forcing depth.</li>
+        <li>I can continue this in life.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUTHRIE'S ROLE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Guthrie's role</p>
+      <h2>Transmission, not lecture</h2>
+      <p>Guthrie is not an “IFS lecturer” in this course. He is the person who can transmit what cannot be written into a syllabus:</p>
+    </div>
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>What only he can carry</h4>
+        <ul>
+          <li>How he understands Self</li>
+          <li>How he accesses Self</li>
+          <li>How Self feels, and how it looks from the outside</li>
+          <li>Why Self heals</li>
+          <li>Why parts should not be fixed by force</li>
+          <li>Why love, presence, and permission matter more than technique</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot" style="display:flex;align-items:center">
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:1.2rem;line-height:1.4;margin:0">
+          The weekly calls should not only cover topics. They should carry the thing itself:<br><br>
+          <em style="color:var(--gold)">this is how Self-led presence sounds, feels, and acts.</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIX WEEKS ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Proposed flow</p>
+      <h2>Six weeks</h2>
+      <p>This is not a final syllabus. It is a starting point for the conversation — the shape we believe in, offered so Guthrie can correct it.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Week</th><th>Focus</th><th>Main question</th><th>What people leave with</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="wk" data-label="Week">01</td>
+            <td class="focus" data-label="Focus">Accessing Self through awareness</td>
+            <td class="q" data-label="Main question">What is Self, and do I have any access to it?</td>
+            <td data-label="What people leave with">A personal description: “how access to Self feels in me”</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Week">02</td>
+            <td class="focus" data-label="Focus">Language of parts</td>
+            <td class="q" data-label="Main question">Who is here in me?</td>
+            <td data-label="What people leave with">Parts map, first version</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Week">03</td>
+            <td class="focus" data-label="Focus">The loving gaze of Self</td>
+            <td class="q" data-label="Main question">What happens when Self looks at a part with love?</td>
+            <td data-label="What people leave with">A Self-anchor and a loving gaze reflection</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Week">04</td>
+            <td class="focus" data-label="Focus">Protectors are trying to help</td>
+            <td class="q" data-label="Main question">What is my protection trying to protect?</td>
+            <td data-label="What people leave with">A letter to — and from — a protector</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Week">05</td>
+            <td class="focus" data-label="Focus">Self with others</td>
+            <td class="q" data-label="Main question">Can I see parts in relationship without making the other person wrong?</td>
+            <td data-label="What people leave with">One relational parts map</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Week">06</td>
+            <td class="focus" data-label="Focus">Vulnerable parts and the next path</td>
+            <td class="q" data-label="Main question">How do I respect vulnerable places without forcing depth?</td>
+            <td data-label="What people leave with">A personal decision about going deeper</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="weeks">
+      <details>
+        <summary>
+          <span class="sum-wk">Week 01</span>
+          <span class="sum-title">Accessing Self through awareness</span>
+          <span class="sum-q">What is Self, and do I have any access to it?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Meaning</h4>
+            <ul>
+              <li>Self is not a theory</li>
+              <li>Self is not a “good part”</li>
+              <li>Self can be known as awake awareness</li>
+              <li>Attention is focus; awareness is the field</li>
+              <li>Accessing awareness is the way participants can begin to experience Self</li>
+              <li>Self and parts are both introduced in the first class</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Guthrie live</h4>
+            <ul>
+              <li>Opening meditation: ground, core, field, focus</li>
+              <li>Model of Conscious Experience</li>
+              <li>Direct experience of accessing Self</li>
+              <li>Guthrie's own language for Self</li>
+              <li>Simple demo: noticing one part with access to Self</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Practice</h4>
+            <ul>
+              <li>A short daily Self practice</li>
+              <li>Noticing: “Do I have any access to Self right now?”</li>
+              <li>No pair work yet — gentle reflection only</li>
+            </ul>
+          </div>
+          <div class="output"><span>Output</span>A personal description: how access to Self feels in me.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Week 02</span>
+          <span class="sum-title">Language of parts</span>
+          <span class="sum-q">Who is here in me?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Meaning</h4>
+            <ul>
+              <li>Parts are not problems</li>
+              <li>Parts are people</li>
+              <li>A part can lead, protect, fear, want, avoid, push</li>
+              <li>Parts language reduces shame and self-attack</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Guthrie live</h4>
+            <ul>
+              <li>Parts language</li>
+              <li>Parts are people</li>
+              <li>The basic IFS map</li>
+              <li>Why we do not fight parts</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Practice</h4>
+            <ul>
+              <li>Drawing a parts map</li>
+              <li>Phrases: “a part of me…”</li>
+              <li>Listening to another person without fixing</li>
+            </ul>
+          </div>
+          <div class="output"><span>Output</span>Parts map, version 1.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Week 03</span>
+          <span class="sum-title">The loving gaze of Self</span>
+          <span class="sum-q">What happens when Self looks at a part with love?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Meaning</h4>
+            <ul>
+              <li>Healing does not begin with analysis</li>
+              <li>Self changes the relationship with a part</li>
+              <li>The loving gaze helps the system settle</li>
+              <li>People do not need to conquer themselves</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Guthrie live</h4>
+            <ul>
+              <li>The healing quality of Self</li>
+              <li>The 8 C's as qualities of living presence</li>
+              <li>Self-like parts</li>
+              <li>Demo: one ordinary everyday part met with compassion</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Practice</h4>
+            <ul>
+              <li>Loving gaze practice with a low-intensity everyday part</li>
+              <li>Dyad: one speaks, one listens from access to Self</li>
+              <li>No guiding, no interpreting, no deepening</li>
+            </ul>
+          </div>
+          <div class="output"><span>Output</span>A Self-anchor and a loving gaze reflection.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Week 04</span>
+          <span class="sum-title">Protectors are trying to help</span>
+          <span class="sum-q">What is my protection trying to protect?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Meaning</h4>
+            <ul>
+              <li>Protectors are not enemies</li>
+              <li>Managers and firefighters are trying to help</li>
+              <li>Force does not work</li>
+              <li>Gratitude is safer and more effective than pressure</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Guthrie live</h4>
+            <ul>
+              <li>Protectors</li>
+              <li>Managers and firefighters in ordinary life</li>
+              <li>Befriending</li>
+              <li>Why permission matters</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Practice</h4>
+            <ul>
+              <li>Choose one ordinary everyday protector</li>
+              <li>Thank it</li>
+              <li>Ask what it is afraid of</li>
+              <li>Stop before vulnerable material</li>
+            </ul>
+          </div>
+          <div class="output"><span>Output</span>A letter to a protector, and a letter back from it.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Week 05</span>
+          <span class="sum-title">Self with others</span>
+          <span class="sum-q">Can I see parts in relationship without making the other person wrong?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Meaning</h4>
+            <ul>
+              <li>Parts language changes conflict</li>
+              <li>Self can listen</li>
+              <li>I can say “a part of me…” instead of attacking</li>
+              <li>I can notice that the other person's reaction may also be a part</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Guthrie live</h4>
+            <ul>
+              <li>Self-led relating</li>
+              <li>Inner and relational polarizations</li>
+              <li>Examples from parenting, leadership, partnership</li>
+              <li>Demo: a conflict seen with access to Self</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Practice</h4>
+            <ul>
+              <li>Relational parts language</li>
+              <li>Mapping one conflict as parts</li>
+              <li>Listening without fixing or coaching</li>
+            </ul>
+          </div>
+          <div class="output"><span>Output</span>One relational parts map.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Week 06</span>
+          <span class="sum-title">Vulnerable parts and the next path</span>
+          <span class="sum-q">How do I respect vulnerable places without forcing depth?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Meaning</h4>
+            <ul>
+              <li>Exiles exist, but this course does not train exile work</li>
+              <li>Vulnerable parts need Self, time, respect, and safety</li>
+              <li>Therapy is an upgrade, not a failure</li>
+              <li>Community and continued practice help Self become stable</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Guthrie live</h4>
+            <ul>
+              <li>What vulnerable parts are</li>
+              <li>Witnessing versus doing deep work</li>
+              <li>Possible Guthrie-led demo with exile material, if he chooses</li>
+              <li>When to work with a therapist</li>
+              <li>Integration into life, and the next paths</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Practice</h4>
+            <ul>
+              <li>No peer exile work</li>
+              <li>No participant-to-participant exile guiding</li>
+              <li>Private reflection only</li>
+              <li>Parts map, version 2</li>
+              <li>A 30-day continuation plan</li>
+            </ul>
+          </div>
+          <div class="output"><span>Output</span>A personal decision about where to go deeper.</div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP PRACTICE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Group practice</p>
+      <h2>What happens between people</h2>
+      <p>The name of the thing changes what people do inside it. So we are changing the name.</p>
+    </div>
+
+    <div class="swap">
+      <div class="swap-box swap-old"><span class="tag">Stop saying</span>Group practice. Triads where people practice IFS.</div>
+      <div class="swap-arrow">→</div>
+      <div class="swap-box swap-new"><span class="tag">Say</span>Practice spaces for Self-led relating.</div>
+    </div>
+
+    <div class="col">
+      <p style="margin-top:2em">Groups are not practicing “leading sessions.” They practice accessing Self, speaking with access to Self, listening from access to Self, noticing a part, and relating to it with respect — without fixing the other person, without deepening, without interpreting.</p>
+    </div>
+
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>Allowed</h4>
+        <ul>
+          <li>Short presencing</li>
+          <li>“What part is here?”</li>
+          <li>“How do I feel toward this part?”</li>
+          <li>Speaking on behalf of a part</li>
+          <li>Speaking with access to Self</li>
+          <li>Listening from access to Self</li>
+          <li>Thanking a protector</li>
+          <li>Relational phrase practice</li>
+          <li>Integration circle</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot">
+        <h4>Not allowed</h4>
+        <ul>
+          <li>Peer therapy</li>
+          <li>Guiding another person</li>
+          <li>Exile work</li>
+          <li>Unburdening</li>
+          <li>Digging for memories</li>
+          <li>“Go deeper”</li>
+          <li>Advice dressed as IFS</li>
+          <li>Interpreting another person's system</li>
+          <li>Pressure to share vulnerability</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATERIALS ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Materials and operating model</p>
+      <h2>What we should build before launch</h2>
+      <p>The working model is simple: VAHUE creates the participant materials, Guthrie reviews and edits them, and the whole six-week arc is visible to him before the course begins.</p>
+    </div>
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>Participant materials</h4>
+        <ul>
+          <li>One lean handout per week</li>
+          <li>Four to six main points, not a library of readings</li>
+          <li>One weekly frame, one simple practice, one integration prompt</li>
+          <li>Enough theory to orient experience, not enough to train protocol</li>
+          <li>Clear boundary language for every practice</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot">
+        <h4>Guthrie involvement</h4>
+        <ul>
+          <li>Weekly live delivery</li>
+          <li>Reviewing and editing materials outside class</li>
+          <li>Two or three marketing / recording calls</li>
+          <li>Choosing live demo moments as they emerge</li>
+          <li>Helping define the next-step bridge after six weeks</li>
+        </ul>
+      </div>
+    </div>
+    <div class="aside">
+      <strong>Timing to confirm:</strong> all materials should be shown to Guthrie before class begins. A realistic launch window is mid-November 2026 or January 2027, depending on marketing needs.
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">What remains to confirm</p>
+      <h2>Questions for the next review with Guthrie</h2>
+      <p>After Guthrie's feedback, we are not asking whether the frame is right. We are confirming the exact delivery choices.</p>
+      <div class="aside">
+        <strong>Guthrie — if this is a Self-led introduction to IFS for life, what should people experience with you each week?</strong>
+      </div>
+      <ol class="questions">
+        <li>What exact Week 1 sequence do you want: meditation, Model of Conscious Experience, Self and parts?</li>
+        <li>Which simple moves help non-practitioners access Self most reliably?</li>
+        <li>Which live demos do you want to choose in advance, and which should emerge spontaneously?</li>
+        <li>Do you want Week 6 to include a Guthrie-led exile demo or only orientation?</li>
+        <li>How lean should each weekly handout be?</li>
+        <li>What should participants practice between calls: presence, accessing Self, and holding space?</li>
+        <li>What next-step bridge should we offer after six weeks?</li>
+        <li>Does this role split match what you expect from VAHUE and from yourself?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONE MINUTE ============ -->
+<section class="closing reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">The one-minute version</p>
+      <h2>If we had a minute with you</h2>
+      <blockquote>
+        <p>Guthrie, we want to build a six-week Self-led introduction to IFS for life, centered on the living experience of Self as you understand it.</p>
+        <p>The mission is to help people access Self as awake awareness, learn the language of parts, and practice the loving gaze of Self toward themselves and others. In your language, this is about bringing Self leadership to the world: shifting from a thought-based operating system to an awareness-based operating system.</p>
+        <p>We do not want participants practicing IFS sessions, working with exiles in pairs, or aiming for unburdening. Group practice should be about accessing Self, parts language, speaking on behalf of parts, listening without fixing, gratitude toward protectors, and relational awareness.</p>
+        <p>We would love you to help us shape the six weekly live calls around one question: <em>what should a non-practitioner experience in order to meet the healing power of Self safely?</em> Or, in the shortest form: <em>Self is love, and love is the way.</em></p>
+      </blockquote>
+    </div>
+    <footer>VAHUE × Guthrie Sayen · working document · 2 August 2026</footer>
+  </div>
+</section></div>
+  <div class="lang-pane lang-ru" lang="ru"><!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Рабочий документ · VAHUE × Guthrie Sayen · август 2026</p>
+    <div class="col">
+      <h1>Этот курс — про <span class="accent">Self</span>.</h1>
+      <p class="lede">Наша миссия — дать людям живой, безопасный и понятный вход в IFS через опыт Self. Не через протокол. Не через обучение ведению сессий. Не через глубокую работу с травмой.</p>
+    </div>
+    <div class="formulation">
+      <p>Шестинедельное Self-led введение в IFS для жизни. Люди учатся получать доступ к Self как awake awareness, говорить на языке частей, практиковать любящий взгляд Self и понимать, как безопасно продолжать.</p>
+    </div>
+    <ul class="chain">
+      <li><span class="dot"></span><span class="label">Доступ к Self</span></li>
+      <li><span class="dot"></span><span class="label">Части</span></li>
+      <li><span class="dot"></span><span class="label">Любящий взгляд</span></li>
+      <li><span class="dot"></span><span class="label">Защитники</span></li>
+      <li><span class="dot"></span><span class="label">Другие люди</span></li>
+      <li><span class="dot"></span><span class="label">Уязвимые части</span></li>
+      <li><span class="dot"></span><span class="label">Жизнь</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ OPENING PROPOSITION ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Подача для Guthrie</p>
+      <h2>Как мы видим эту программу</h2>
+      <p>Мы хотим предложить тебе шестинедельный курс как самостоятельный Self-led вход в IFS для жизни. Не как обучение протоколу и не как подготовку практиков, а как живое знакомство с модальностью через центральность Self.</p>
+      <p>В центре курса — человек, который впервые учится узнавать доступ к Self как живое состояние, говорить на языке частей и встречать себя, свои части и других людей любящим взглядом Self. Структура, безопасность и практики нужны только для того, чтобы этот опыт был ясным, мягким и устойчивым.</p>
+      <div class="aside">
+        <strong>Стартовый тезис для разговора:</strong> мы хотим создать курс, где твоё еженедельное присутствие помогает людям прикоснуться к целительной силе Self безопасно, без терапии равных и без форсирования глубокой работы.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IS / IS NOT ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Определение</p>
+      <h2>Что это за курс</h2>
+      <p>Это Self-led курс. Он существует не для того, чтобы научить людей «делать IFS». Он нужен для того, чтобы человек вошёл в живой контакт с тем, что такое IFS изнутри.</p>
+    </div>
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>Это</h4>
+        <ul>
+          <li>Хорошее знакомство с IFS как модальностью</li>
+          <li>Первый опыт доступа к Self как awake awareness</li>
+          <li>Понимание, почему Self может исцелять части</li>
+          <li>Умение замечать части и говорить на языке частей</li>
+          <li>Практика встречи с собой и другими из доступа к Self</li>
+          <li>Понимание, хочется ли идти глубже — с терапевтом, в сообщество или в обучение</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot">
+        <h4>Это не</h4>
+        <ul>
+          <li>Сжатое обучение практиков</li>
+          <li>Курс по ведению IFS-сессий</li>
+          <li>Глубокая работа с травмой или изгнанниками</li>
+          <li>Обещание исцелить травму за шесть недель</li>
+          <li>Терапия равных в парах и тройках</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMISE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Обещание участникам</p>
+      <h2>На что люди могут рассчитывать</h2>
+      <div class="promise">
+        <p class="offerline"><span class="mark">За шесть недель человек узнаёт IFS изнутри</span> — через опыт Self, язык частей и практику любящего присутствия.</p>
+        <div class="offer-grid">
+          <div class="offer-card">
+            <span>01</span>
+            <strong>Получить доступ к Self</strong>
+            <p>Узнать Self не только как идею, а как awake awareness и состояние присутствия, из которого можно быть рядом с собой.</p>
+          </div>
+          <div class="offer-card">
+            <span>02</span>
+            <strong>Начать говорить на языке частей</strong>
+            <p>Замечать внутренние голоса, защиты и реакции без стыда, борьбы и самоатаки.</p>
+          </div>
+          <div class="offer-card">
+            <span>03</span>
+            <strong>Понять следующий шаг</strong>
+            <p>Почувствовать, откликается ли IFS, и увидеть, куда идти глубже: терапия, сообщество или обучение.</p>
+          </div>
+        </div>
+        <div class="notnote">
+          <span>Чего мы не обещаем</span>
+          <p>Мы не обещаем исцеление травмы за шесть недель, не обучаем ведению IFS-сессий и не позиционируем курс как подготовку практиков.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPINE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Ось курса</p>
+      <h2>Семь вещей, которые участник сможет сказать в конце</h2>
+      <p class="muted">Вся дуга сформулирована от первого лица, потому что только там этот опыт можно проверить.</p>
+      <ol class="steps">
+        <li>Я могу получить доступ к Self.</li>
+        <li>Я могу замечать части.</li>
+        <li>Я могу встречать части из доступа к Self.</li>
+        <li>Я могу понимать защитников.</li>
+        <li>Я могу видеть части в отношениях.</li>
+        <li>Я могу уважать уязвимые места, не форсируя глубину.</li>
+        <li>Я могу продолжать это в жизни.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUTHRIE'S ROLE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Роль Guthrie</p>
+      <h2>Передача состояния, а не лекция</h2>
+      <p>В этом курсе Guthrie — не просто «лектор по IFS». Он тот человек, который может передать то, что невозможно записать в программу:</p>
+    </div>
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>Что может принести только он</h4>
+        <ul>
+          <li>Как он понимает Self</li>
+          <li>Как он получает доступ к Self</li>
+          <li>Как Self ощущается и как оно выглядит со стороны</li>
+          <li>Почему Self исцеляет</li>
+          <li>Почему части не нужно чинить силой</li>
+          <li>Почему любовь, присутствие и разрешение важнее техники</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot" style="display:flex;align-items:center">
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:1.2rem;line-height:1.4;margin:0">
+          Еженедельные звонки должны быть не только про темы. Они должны нести сам опыт:<br><br>
+          <em style="color:var(--gold)">вот как звучит, ощущается и действует Self-led присутствие.</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIX WEEKS ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Предлагаемая дуга</p>
+      <h2>Шесть недель</h2>
+      <p>Это не финальная программа. Это отправная точка для разговора — форма, в которую мы верим и которую предлагаем Guthrie поправить.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Неделя</th><th>Фокус</th><th>Главный вопрос</th><th>С чем человек выходит</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="wk" data-label="Неделя">01</td>
+            <td class="focus" data-label="Фокус">Доступ к Self через awareness</td>
+            <td class="q" data-label="Главный вопрос">Что такое Self, и есть ли у меня к нему доступ?</td>
+            <td data-label="С чем человек выходит">Личное описание: «как доступ к Self ощущается во мне»</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Неделя">02</td>
+            <td class="focus" data-label="Фокус">Язык частей</td>
+            <td class="q" data-label="Главный вопрос">Кто сейчас есть во мне?</td>
+            <td data-label="С чем человек выходит">Карта частей, первая версия</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Неделя">03</td>
+            <td class="focus" data-label="Фокус">Любящий взгляд Self</td>
+            <td class="q" data-label="Главный вопрос">Что происходит, когда Self смотрит на часть с любовью?</td>
+            <td data-label="С чем человек выходит">Self-якорь и заметка про любящий взгляд</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Неделя">04</td>
+            <td class="focus" data-label="Фокус">Защитники пытаются помочь</td>
+            <td class="q" data-label="Главный вопрос">Что моя защита пытается защитить?</td>
+            <td data-label="С чем человек выходит">Письмо защитнику — и письмо от него</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Неделя">05</td>
+            <td class="focus" data-label="Фокус">Self рядом с другими</td>
+            <td class="q" data-label="Главный вопрос">Могу ли я видеть части в отношениях, не делая другого неправым?</td>
+            <td data-label="С чем человек выходит">Одна карта частей в отношениях</td>
+          </tr>
+          <tr>
+            <td class="wk" data-label="Неделя">06</td>
+            <td class="focus" data-label="Фокус">Уязвимые части и следующий путь</td>
+            <td class="q" data-label="Главный вопрос">Как уважать уязвимые места, не форсируя глубину?</td>
+            <td data-label="С чем человек выходит">Личное решение о том, куда идти глубже</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="weeks">
+      <details>
+        <summary>
+          <span class="sum-wk">Неделя 01</span>
+          <span class="sum-title">Доступ к Self через awareness</span>
+          <span class="sum-q">Что такое Self, и есть ли у меня к нему доступ?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Смысл</h4>
+            <ul>
+              <li>Self — не теория</li>
+              <li>Self — не «хорошая часть»</li>
+              <li>Self можно узнавать как awake awareness</li>
+              <li>Attention — это focus; awareness — это field</li>
+              <li>Доступ к awareness помогает участникам начать переживать Self</li>
+              <li>Self и части вводятся уже на первой встрече</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Звонок с Guthrie</h4>
+            <ul>
+              <li>Открывающая медитация: ground, core, field, focus</li>
+              <li>Model of Conscious Experience</li>
+              <li>Прямой опыт доступа к Self</li>
+              <li>Собственный язык Guthrie для описания Self</li>
+              <li>Простая демонстрация: заметить одну часть с доступом к Self</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Практика</h4>
+            <ul>
+              <li>Короткая ежедневная Self-практика</li>
+              <li>Наблюдение: «есть ли у меня сейчас доступ к Self?»</li>
+              <li>Пока без работы в парах — только мягкая рефлексия</li>
+            </ul>
+          </div>
+          <div class="output"><span>Результат</span>Личное описание: как доступ к Self ощущается во мне.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Неделя 02</span>
+          <span class="sum-title">Язык частей</span>
+          <span class="sum-q">Кто сейчас есть во мне?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Смысл</h4>
+            <ul>
+              <li>Части — не проблемы</li>
+              <li>Части — это живые внутренние фигуры</li>
+              <li>Часть может вести, защищать, бояться, хотеть, избегать, давить</li>
+              <li>Язык частей снижает стыд и самоатаку</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Звонок с Guthrie</h4>
+            <ul>
+              <li>Язык частей</li>
+              <li>Части — это живые внутренние фигуры</li>
+              <li>Базовая карта IFS</li>
+              <li>Почему мы не боремся с частями</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Практика</h4>
+            <ul>
+              <li>Нарисовать карту частей</li>
+              <li>Фразы: «часть меня…»</li>
+              <li>Слушать другого человека, не исправляя его</li>
+            </ul>
+          </div>
+          <div class="output"><span>Результат</span>Карта частей, версия 1.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Неделя 03</span>
+          <span class="sum-title">Любящий взгляд Self</span>
+          <span class="sum-q">Что происходит, когда Self смотрит на часть с любовью?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Смысл</h4>
+            <ul>
+              <li>Исцеление начинается не с анализа</li>
+              <li>Self меняет отношения с частью</li>
+              <li>Любящий взгляд помогает системе успокоиться</li>
+              <li>Человеку не нужно побеждать себя</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Звонок с Guthrie</h4>
+            <ul>
+              <li>Целительное качество Self</li>
+              <li>8C как качества живого присутствия</li>
+              <li>Self-like части</li>
+              <li>Демонстрация: одна обычная повседневная часть, встреченная с состраданием</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Практика</h4>
+            <ul>
+              <li>Практика любящего взгляда с низкоинтенсивной повседневной частью</li>
+              <li>Диада: один говорит, другой слушает из доступа к Self</li>
+              <li>Без ведения, без интерпретации, без углубления</li>
+            </ul>
+          </div>
+          <div class="output"><span>Результат</span>Self-якорь и заметка про любящий взгляд.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Неделя 04</span>
+          <span class="sum-title">Защитники пытаются помочь</span>
+          <span class="sum-q">Что моя защита пытается защитить?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Смысл</h4>
+            <ul>
+              <li>Защитники — не враги</li>
+              <li>Менеджеры и пожарные пытаются помочь</li>
+              <li>Сила не работает</li>
+              <li>Благодарность безопаснее и эффективнее давления</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Звонок с Guthrie</h4>
+            <ul>
+              <li>Защитники</li>
+              <li>Менеджеры и пожарные в обычной жизни</li>
+              <li>Выстраивание дружеского контакта</li>
+              <li>Почему разрешение важно</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Практика</h4>
+            <ul>
+              <li>Выбрать одного обычного повседневного защитника</li>
+              <li>Поблагодарить его</li>
+              <li>Спросить, чего он боится</li>
+              <li>Остановиться до уязвимого материала</li>
+            </ul>
+          </div>
+          <div class="output"><span>Результат</span>Письмо защитнику и письмо от него.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Неделя 05</span>
+          <span class="sum-title">Self рядом с другими</span>
+          <span class="sum-q">Могу ли я видеть части в отношениях, не делая другого неправым?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Смысл</h4>
+            <ul>
+              <li>Язык частей меняет конфликт</li>
+              <li>Self умеет слушать</li>
+              <li>Я могу сказать «часть меня…» вместо атаки</li>
+              <li>Я могу заметить, что реакция другого человека тоже может быть частью</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Звонок с Guthrie</h4>
+            <ul>
+              <li>Контакт из доступа к Self</li>
+              <li>Внутренние и relational polarizations</li>
+              <li>Примеры из родительства, лидерства, партнёрства</li>
+              <li>Демонстрация: конфликт, увиденный с доступом к Self</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Практика</h4>
+            <ul>
+              <li>Язык частей в отношениях</li>
+              <li>Разложить один конфликт как карту частей</li>
+              <li>Слушать без исправления и коучинга</li>
+            </ul>
+          </div>
+          <div class="output"><span>Результат</span>Одна карта частей в отношениях.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="sum-wk">Неделя 06</span>
+          <span class="sum-title">Уязвимые части и следующий путь</span>
+          <span class="sum-q">Как уважать уязвимые места, не форсируя глубину?</span>
+        </summary>
+        <div class="detail">
+          <div class="block">
+            <h4>Смысл</h4>
+            <ul>
+              <li>Изгнанники существуют, но этот курс не обучает работе с изгнанниками</li>
+              <li>Уязвимым частям нужны Self, время, уважение и безопасность</li>
+              <li>Терапия — это следующий уровень, а не провал</li>
+              <li>Сообщество и продолжение практики помогают Self становиться устойчивее</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Звонок с Guthrie</h4>
+            <ul>
+              <li>Что такое уязвимые части</li>
+              <li>Свидетельствование вместо глубокой работы</li>
+              <li>Возможная демонстрация Guthrie с материалом изгнанника, если он выберет это</li>
+              <li>Когда идти работать с терапевтом</li>
+              <li>Интеграция в жизнь и следующие пути</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>Практика</h4>
+            <ul>
+              <li>Без работы с изгнанниками в формате равных</li>
+              <li>Без ведения другого человека к изгнаннику</li>
+              <li>Только личная рефлексия</li>
+              <li>Карта частей, версия 2</li>
+              <li>План продолжения на 30 дней</li>
+            </ul>
+          </div>
+          <div class="output"><span>Результат</span>Личное решение о том, куда идти глубже.</div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP PRACTICE ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Групповая практика</p>
+      <h2>Что происходит между людьми</h2>
+      <p>Название меняет то, как люди действуют внутри формата. Поэтому мы меняем название.</p>
+    </div>
+
+    <div class="swap">
+      <div class="swap-box swap-old"><span class="tag">Не называть</span>Групповая практика. Тройки, где люди практикуют IFS.</div>
+      <div class="swap-arrow">→</div>
+      <div class="swap-box swap-new"><span class="tag">Называть</span>Пространства практики Self-led контакта.</div>
+    </div>
+
+    <div class="col">
+      <p style="margin-top:2em">Группы не практикуют «ведение сессий». Они практикуют доступ к Self, речь с доступом к Self, слушание из доступа к Self, замечание части и уважительный контакт с ней — без исправления другого человека, без углубления, без интерпретации.</p>
+    </div>
+
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>Можно</h4>
+        <ul>
+          <li>Короткий presencing</li>
+          <li>«Какая часть сейчас здесь?»</li>
+          <li>«Как я отношусь к этой части?»</li>
+          <li>Говорить от имени части</li>
+          <li>Говорить с доступом к Self</li>
+          <li>Слушать из доступа к Self</li>
+          <li>Благодарить защитника</li>
+          <li>Практика фраз для отношений</li>
+          <li>Круг интеграции</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot">
+        <h4>Нельзя</h4>
+        <ul>
+          <li>Терапия равных</li>
+          <li>Вести другого человека</li>
+          <li>Работа с изгнанниками</li>
+          <li>Unburdening</li>
+          <li>Копаться в воспоминаниях</li>
+          <li>«Иди глубже»</li>
+          <li>Советы, замаскированные под IFS</li>
+          <li>Интерпретировать систему другого человека</li>
+          <li>Давление делиться уязвимостью</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATERIALS ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Материалы и рабочая модель</p>
+      <h2>Что нужно собрать до запуска</h2>
+      <p>Рабочая модель простая: VAHUE создаёт материалы для участников, Guthrie смотрит и редактирует их, а вся шестинедельная дуга видна ему до начала курса.</p>
+    </div>
+    <div class="panels">
+      <div class="panel panel--is">
+        <h4>Материалы для участников</h4>
+        <ul>
+          <li>Один лёгкий handout на неделю</li>
+          <li>Четыре-шесть главных пунктов, а не библиотека чтения</li>
+          <li>Одна рамка недели, одна простая практика, один вопрос для интеграции</li>
+          <li>Теории ровно столько, чтобы поддержать опыт, а не обучать протоколу</li>
+          <li>Ясная граница практики на каждой неделе</li>
+        </ul>
+      </div>
+      <div class="panel panel--isnot">
+        <h4>Участие Guthrie</h4>
+        <ul>
+          <li>Еженедельные live-звонки</li>
+          <li>Просмотр и редактирование материалов вне класса</li>
+          <li>Два-три маркетинговых / recording звонка</li>
+          <li>Выбор демонстраций по мере того, как они естественно возникают</li>
+          <li>Помощь в определении мостика к следующему шагу после шести недель</li>
+        </ul>
+      </div>
+    </div>
+    <div class="aside">
+      <strong>Сроки для подтверждения:</strong> все материалы нужно показать Guthrie до начала курса. Реалистичное окно запуска — середина ноября 2026 или январь 2027, в зависимости от маркетинга.
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Что осталось подтвердить</p>
+      <h2>Вопросы для следующего ревью с Guthrie</h2>
+      <p>После обратной связи Guthrie мы уже не спрашиваем, верна ли рамка. Мы уточняем конкретные решения по проведению.</p>
+      <div class="aside">
+        <strong>Guthrie — если это Self-led введение в IFS для жизни, какой опыт люди должны получать с тобой каждую неделю?</strong>
+      </div>
+      <ol class="questions">
+        <li>Какую точную последовательность первой недели ты хочешь: медитация, Model of Conscious Experience, Self и части?</li>
+        <li>Какие простые ходы надёжнее всего помогают непрактикам получить доступ к Self?</li>
+        <li>Какие live-демонстрации стоит выбрать заранее, а какие должны возникать спонтанно?</li>
+        <li>Хочешь ли ты на шестой неделе Guthrie-led demo с изгнанником или только ориентацию?</li>
+        <li>Насколько лёгким должен быть каждый weekly handout?</li>
+        <li>Что участники практикуют между звонками: presence, доступ к Self и holding space?</li>
+        <li>Какой мостик к следующему шагу мы предлагаем после шести недель?</li>
+        <li>Совпадает ли такой role split с твоими ожиданиями от VAHUE и от себя?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONE MINUTE ============ -->
+<section class="closing reveal">
+  <div class="wrap">
+    <div class="col">
+      <p class="eyebrow">Версия на одну минуту</p>
+      <h2>Если бы у нас была одна минута с тобой</h2>
+      <blockquote>
+        <p>Guthrie, мы хотим собрать шестинедельное Self-led введение в IFS для жизни, построенное вокруг живого опыта Self так, как ты его понимаешь.</p>
+        <p>Миссия — помочь людям получить доступ к Self как awake awareness, освоить язык частей и практиковать любящий взгляд Self к себе и другим. В твоих словах, это про то, чтобы bringing Self leadership to the world: переходить от thought-based operating system к awareness-based operating system.</p>
+        <p>Мы не хотим, чтобы участники практиковали IFS-сессии, работали с изгнанниками в парах или стремились к unburdening. Групповая практика должна быть про доступ к Self, язык частей, речь от имени частей, слушание без исправления, благодарность защитникам и осознанность в отношениях.</p>
+        <p>Нам бы хотелось, чтобы ты помог сформировать шесть еженедельных live-звонков вокруг одного вопроса: <em>какой опыт должен получить человек, который не является практиком, чтобы безопасно встретиться с целительной силой Self?</em> Самая короткая формула: <em>Self is love, and love is the way.</em></p>
+      </blockquote>
+    </div>
+    <footer>VAHUE × Guthrie Sayen · рабочий документ · 2 августа 2026</footer>
+  </div>
+</section></div>
+</main>
+<script>
+(function(){
+  var titles = {
+    en: 'A Self-led Introduction to IFS — VAHUE × Guthrie Sayen',
+    ru: 'Self-led введение в IFS — VAHUE × Guthrie Sayen'
+  };
+  function setLang(lang){
+    document.body.setAttribute('data-lang', lang);
+    document.documentElement.lang = lang;
+    document.title = titles[lang] || titles.en;
+    document.querySelectorAll('[data-set-lang]').forEach(function(button){
+      button.setAttribute('aria-pressed', button.getAttribute('data-set-lang') === lang ? 'true' : 'false');
+    });
+  }
+  document.querySelectorAll('[data-set-lang]').forEach(function(button){
+    button.addEventListener('click', function(){ setLang(button.getAttribute('data-set-lang')); });
+  });
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
