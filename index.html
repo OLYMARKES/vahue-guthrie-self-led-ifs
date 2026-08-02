@@ -124,6 +124,36 @@ em{font-style:italic}
 }
 .aside strong{color:var(--ink)}
 
+.guthrie-frame{
+  display:grid;gap:18px;margin:2.1em 0 1.8em;
+  grid-template-columns:1fr;
+}
+@media (min-width:820px){.guthrie-frame{grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);align-items:stretch}}
+.guthrie-frame blockquote{
+  margin:0;background:var(--card);border:1px solid var(--rule-soft);border-radius:3px;
+  padding:clamp(22px,3vw,30px);
+}
+.guthrie-frame blockquote p{
+  margin:0;font-family:"Newsreader",Georgia,serif;font-size:clamp(1.35rem,2.4vw,2rem);
+  line-height:1.22;color:var(--ink);
+}
+.guthrie-frame cite{
+  display:block;margin-top:18px;font-style:normal;font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-faint);
+}
+.course-goal{
+  background:var(--paper-soft);border:1px solid var(--rule);border-radius:3px;
+  padding:clamp(22px,3vw,30px);
+}
+.course-goal span{
+  display:block;margin-bottom:14px;font-family:"IBM Plex Mono",monospace;font-size:.68rem;
+  letter-spacing:0;text-transform:uppercase;color:var(--gold);
+}
+.course-goal ul{list-style:none;margin:0;padding:0}
+.course-goal li{position:relative;padding-left:20px;margin-bottom:.8em;line-height:1.48;color:var(--ink-soft)}
+.course-goal li:last-child{margin-bottom:0}
+.course-goal li::before{content:"";position:absolute;left:0;top:.68em;width:8px;height:1px;background:var(--gold)}
+
 /* ---------- two-panel is / is not ---------- */
 .panels{display:grid;gap:clamp(18px,3vw,28px);margin-top:2em}
 @media (min-width:760px){.panels{grid-template-columns:1fr 1fr}}
@@ -366,6 +396,21 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
       <h2>Operating system 1.0 → operating system 2.0</h2>
       <p>Guthrie added the language that now gives the course its public story: we are helping people move from operating system 1.0 to operating system 2.0.</p>
       <p>Operating system 1.0 is the familiar thought-based, parts-led way of interacting with the world: focused, sequential, task-driven, often tense. Operating system 2.0 is awareness-based and Self-led: panoramic, inclusive, relaxed, and able to hold many signals at once without losing clarity.</p>
+      <div class="guthrie-frame">
+        <blockquote>
+          <p>“We're helping people move from operating system 1.0 to operating system 2.0.”</p>
+          <cite>Guthrie Sayen · July 29 alignment call</cite>
+        </blockquote>
+        <div class="course-goal">
+          <span>Course goal</span>
+          <ul>
+            <li>Give people a direct taste of access to Self as awareness.</li>
+            <li>Help them return to this access more frequently and stay with it longer.</li>
+            <li>Teach parts language as a way to recover access to Self in ordinary life.</li>
+          </ul>
+        </div>
+      </div>
+      <p>So the aim is not only to explain a model. The aim is to give participants enough lived contact with OS 2.0 that they can recognize it, trust it, and begin using it in daily moments: when a part is activated, when attention becomes too narrow, when a relationship becomes charged, or when life feels like a list of tasks to push through.</p>
       <div class="aside">
         <strong>Landing thesis:</strong> we are not only teaching IFS concepts. We are inviting people to bring a capacity that is already present in the background into the foreground of everyday life.
       </div>
@@ -981,6 +1026,21 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
       <h2>Operating system 1.0 → operating system 2.0</h2>
       <p>Guthrie дал язык, который теперь становится публичной историей курса: мы помогаем людям перейти от operating system 1.0 к operating system 2.0.</p>
       <p>Operating system 1.0 — это привычный thought-based, parts-led способ взаимодействовать с миром: фокус, последовательность, задачи, напряжение. Operating system 2.0 — это awareness-based и Self-led способ быть: панорамный, включающий, расслабленный и способный удерживать много сигналов одновременно без потери ясности.</p>
+      <div class="guthrie-frame">
+        <blockquote>
+          <p>“We're helping people move from operating system 1.0 to operating system 2.0.”</p>
+          <cite>Guthrie Sayen · звонок 29 июля</cite>
+        </blockquote>
+        <div class="course-goal">
+          <span>Цель курса</span>
+          <ul>
+            <li>Дать людям прямой опыт доступа к Self как awareness.</li>
+            <li>Помочь им возвращаться к этому доступу чаще и оставаться с ним дольше.</li>
+            <li>Показать язык частей как способ снова находить доступ к Self в обычной жизни.</li>
+          </ul>
+        </div>
+      </div>
+      <p>То есть цель не только объяснить модель. Цель — дать участникам достаточно живого контакта с OS 2.0, чтобы они могли узнавать его, доверять ему и начинать использовать в повседневных моментах: когда активируется часть, когда внимание становится слишком узким, когда отношения заряжены или когда жизнь превращается в список задач, через который надо продавиться.</p>
       <div class="aside">
         <strong>Тезис для лендинга:</strong> мы не просто объясняем концепции IFS. Мы приглашаем людей вывести способность, которая уже есть в background, в foreground повседневной жизни.
       </div>
