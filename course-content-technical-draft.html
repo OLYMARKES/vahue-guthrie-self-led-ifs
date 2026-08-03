@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Centrality of Self — A Six-Week Introduction to IFS · VAHUE × Guthrie Sayen</title>
+<style>
+:root{
+  --bg:#f6f7fb;
+  --panel:#ffffff;
+  --ink:#171a22;
+  --ink-2:#4d5565;
+  --ink-3:#747d8f;
+  --ink-4:#9aa3b4;
+  --line:#e3e7ef;
+  --line-2:#cfd6e2;
+  --accent:#3564d4;
+  --accent-2:#21805d;
+  --accent-soft:#eef4ff;
+  --warn:#bd3f38;
+  --warn-soft:#fff1f0;
+  --ok-soft:#edf8f2;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --radius:4px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:15.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+
+/* ---------- language switching ---------- */
+body[data-lang="en"] .l-ru{display:none !important}
+body[data-lang="ru"] .l-en{display:none !important}
+body[data-quotes="off"] .quote{display:none !important}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(246,247,251,.94);backdrop-filter:saturate(1.35) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{
+  max-width:1400px;margin:0 auto;padding:11px 22px;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand b{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.1px;white-space:nowrap}
+.brand span{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.tb-spacer{flex:1}
+.controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+.seg button{
+  appearance:none;border:0;background:transparent;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-3);padding:6px 11px;
+}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.seg button:hover:not([aria-pressed="true"]){background:var(--accent-soft);color:var(--ink)}
+
+.btn{
+  appearance:none;cursor:pointer;background:var(--panel);border:1px solid var(--line-2);
+  border-radius:var(--radius);padding:6px 12px;color:var(--ink-2);
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
+.btn:hover{background:var(--accent-soft);color:var(--ink);border-color:var(--line-2)}
+.btn[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* ---------- shell ---------- */
+.shell{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:0}
+nav.side{
+  position:sticky;top:57px;align-self:start;height:calc(100vh - 57px);overflow-y:auto;
+  padding:26px 16px 60px 22px;border-right:1px solid var(--line);
+}
+nav.side .navlabel{
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-4);margin:0 0 10px 8px;
+}
+nav.side a{
+  display:flex;gap:9px;align-items:baseline;
+  text-decoration:none;color:var(--ink-2);font-size:13.5px;line-height:1.35;
+  padding:6px 9px;border-radius:var(--radius);border-left:2px solid transparent;
+}
+nav.side a em{font-family:var(--mono);font-size:10.5px;font-style:normal;color:var(--ink-4);min-width:19px}
+nav.side a:hover{background:var(--accent-soft);color:var(--ink)}
+nav.side a.active{background:var(--accent-soft);color:var(--ink);border-left-color:var(--accent);font-weight:500}
+nav.side a.active em{color:var(--accent)}
+.side-foot{margin-top:22px;padding:12px 9px 0;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-4);line-height:1.5}
+
+main{padding:34px 46px 130px;min-width:0}
+
+/* ---------- typography ---------- */
+section{margin:0 0 66px;scroll-margin-top:80px}
+.sec-head{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--line-2);padding-bottom:9px;margin-bottom:22px}
+.sec-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--accent);padding-top:4px}
+h1{font-family:var(--serif);font-size:37px;line-height:1.14;font-weight:600;margin:0 0 12px;letter-spacing:-.4px;max-width:19ch}
+h2{font-family:var(--serif);font-size:24px;line-height:1.2;font-weight:600;margin:0;letter-spacing:-.2px}
+h3{font-size:14px;font-weight:650;margin:26px 0 9px;letter-spacing:.01em}
+h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin:0 0 7px}
+p{margin:0 0 13px;max-width:74ch;color:var(--ink-2)}
+p.lede{font-family:var(--serif);font-size:19.5px;line-height:1.52;color:var(--ink);max-width:62ch}
+strong{color:var(--ink);font-weight:620}
+em.term{font-style:normal;border-bottom:1px dotted var(--line-2);cursor:help}
+ul,ol{margin:0 0 14px;padding-left:19px;max-width:74ch;color:var(--ink-2)}
+li{margin-bottom:5px}
+li::marker{color:var(--ink-4)}
+a.inline{color:var(--accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:.5px}
+
+/* ---------- tags / meta ---------- */
+.tag{
+  display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 7px;border:1px solid var(--line-2);border-radius:3px;color:var(--ink-3);background:var(--panel);
+}
+.tag.on{border-color:var(--accent-2);color:var(--accent-2);background:var(--ok-soft)}
+.tag.q{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.tag.no{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+
+/* ---------- panels (single level, no nesting) ---------- */
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:0 0 16px}
+.panel.tight{padding:15px 18px}
+.panel.flag{border-left:2px solid var(--accent)}
+.panel.warn{border-left:2px solid var(--warn);background:var(--warn-soft)}
+.panel h4{margin-bottom:9px}
+.panel p:last-child,.panel ul:last-child,.panel ol:last-child{margin-bottom:0}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:1px solid var(--line-2);padding-bottom:26px;margin-bottom:30px}
+.mast .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.statusline{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;margin:0 0 16px}
+.facts div{padding:13px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts div:nth-child(4n){border-right:0}
+.facts div:nth-last-child(-n+4){border-bottom:0}
+.facts dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:5px}
+.facts dd{margin:0;font-size:13.5px;line-height:1.4;color:var(--ink)}
+
+/* ---------- OS table ---------- */
+.os{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+.os > div{padding:20px 22px}
+.os > div:first-child{border-right:1px solid var(--line-2);background:#f9fbff}
+.os .os-h{display:flex;align-items:baseline;gap:9px;margin-bottom:12px}
+.os .os-h b{font-family:var(--serif);font-size:18px;font-weight:600}
+.os .os-h span{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4)}
+.os ul{margin:0;padding-left:17px;font-size:14px}
+.os-note{border:1px solid var(--line);border-top:0;background:var(--accent-soft);padding:13px 22px;font-size:13.5px;color:var(--ink-2);border-radius:0 0 var(--radius) var(--radius)}
+.os-wrap .os{border-radius:var(--radius) var(--radius) 0 0}
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);font-size:13.5px;margin:0 0 16px}
+caption{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);padding-bottom:8px}
+th{
+  text-align:left;font-family:var(--mono);font-size:9.8px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;padding:10px 14px;border-bottom:1px solid var(--line-2);vertical-align:bottom;
+}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);line-height:1.5}
+tr:last-child td{border-bottom:0}
+td b{color:var(--ink)}
+td.num{font-family:var(--mono);font-size:11px;color:var(--ink-4);white-space:nowrap}
+
+/* ---------- quotes ---------- */
+.quote{border-left:2px solid var(--accent);padding:2px 0 2px 18px;margin:18px 0;max-width:70ch}
+.quote p{font-family:var(--serif);font-size:16.5px;line-height:1.55;color:var(--ink);margin:0 0 8px}
+.quote .src{font-family:var(--mono);font-size:9.8px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-4);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.quote .src .lock{color:var(--accent)}
+
+/* ---------- weeks ---------- */
+.weekbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 20px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+.weekbar .lbl{font-family:var(--mono);font-size:9.8px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-right:2px}
+.chip{
+  appearance:none;cursor:pointer;background:transparent;border:1px solid var(--line-2);border-radius:20px;
+  padding:4px 11px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-3);
+}
+.chip:hover{background:var(--accent-soft);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.bar-div{width:1px;height:18px;background:var(--line-2);margin:0 4px}
+
+article.week{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);margin:0 0 18px;overflow:hidden}
+.week-head{padding:18px 22px 16px;border-bottom:1px solid var(--line);background:#f9fbff}
+.week-head .wk-top{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.week-head .wk-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.week-head h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:0;letter-spacing:-.15px;color:var(--ink)}
+.week-head .cq{margin:9px 0 0;font-size:14.5px;color:var(--ink-2);max-width:70ch}
+.week-head .cq b{font-family:var(--mono);font-size:9.8px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);display:block;margin-bottom:3px}
+
+.wrow{display:grid;grid-template-columns:172px minmax(0,1fr);border-top:1px solid var(--line)}
+.wrow:first-of-type{border-top:0}
+.wrow > .k{
+  padding:15px 16px 15px 22px;font-family:var(--mono);font-size:9.8px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);background:#fbfcff;border-right:1px solid var(--line);
+}
+.wrow > .v{padding:15px 22px 15px 18px;font-size:13.8px;color:var(--ink-2)}
+.wrow > .v ul{margin:0;padding-left:17px;font-size:13.8px}
+.wrow > .v p{margin:0 0 8px;font-size:13.8px}
+.wrow > .v p:last-child{margin-bottom:0}
+.wrow > .v .quote{margin:0}
+.wrow > .v .quote p{font-size:15.5px}
+.wrow.boundary > .v{background:var(--warn-soft)}
+.wrow.boundary > .k{color:var(--warn)}
+body[data-quotes="off"] .wrow.rowquote{display:none}
+.wrow.hidden-row{display:none}
+
+/* ---------- lists ---------- */
+.numlist{counter-reset:n;list-style:none;padding:0;margin:0;max-width:none}
+.numlist > li{
+  counter-increment:n;position:relative;padding:15px 0 15px 46px;border-bottom:1px solid var(--line);margin:0;
+}
+.numlist > li:last-child{border-bottom:0}
+.numlist > li::before{
+  content:counter(n,decimal-leading-zero);position:absolute;left:0;top:16px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--accent);
+}
+.numlist > li b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:4px;font-weight:600}
+.numlist > li p{margin:0;font-size:13.8px}
+.numlist > li .ask{margin-top:7px;font-size:13.3px;color:var(--ink);border-left:2px solid var(--line-2);padding-left:11px}
+.numlist > li .ask b{display:inline;font-family:var(--mono);font-size:9.8px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);font-weight:500;margin:0}
+
+.plist{list-style:none;padding:0;margin:0;max-width:none}
+.plist > li{padding:14px 0;border-bottom:1px solid var(--line);margin:0}
+.plist > li:last-child{border-bottom:0}
+.plist > li b{color:var(--ink);font-weight:620}
+.plist > li span.p-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4);margin-left:8px}
+
+.checks{list-style:none;padding:0;margin:0}
+.checks li{padding:6px 0 6px 22px;position:relative;border:0;font-size:13.8px}
+.checks li::before{position:absolute;left:0;top:6px;font-family:var(--mono);font-size:12px}
+.checks.yes li::before{content:"+";color:var(--accent-2)}
+.checks.no li::before{content:"–";color:var(--warn)}
+
+/* ---------- glossary drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(23,26,34,.28);opacity:0;pointer-events:none;transition:opacity .22s;z-index:90}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;height:100%;width:min(430px,92vw);background:var(--panel);
+  border-left:1px solid var(--line-2);z-index:100;transform:translateX(101%);transition:transform .26s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;box-shadow:-14px 0 44px rgba(23,26,34,.08);
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.drawer-head b{font-family:var(--serif);font-size:17px}
+.drawer-body{overflow-y:auto;padding:6px 20px 40px}
+.drawer .gitem{padding:13px 0;border-bottom:1px solid var(--line)}
+.drawer .gitem:last-child{border-bottom:0}
+.drawer .gitem b{display:block;font-size:14px;color:var(--ink);margin-bottom:3px}
+.drawer .gitem span{font-size:13.2px;color:var(--ink-2);line-height:1.5}
+.drawer .gitem .ru-hint{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--ink-4);margin-top:4px}
+.xbtn{appearance:none;border:1px solid var(--line-2);background:transparent;border-radius:var(--radius);cursor:pointer;font-family:var(--mono);font-size:11px;padding:5px 9px;color:var(--ink-3)}
+.xbtn:hover{background:var(--accent-soft);color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line-2);padding-top:20px;margin-top:20px;font-size:12.5px;color:var(--ink-4);max-width:74ch}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  nav.side{
+    position:sticky;top:56px;height:auto;border-right:0;border-bottom:1px solid var(--line);
+    padding:9px 14px;display:flex;gap:5px;overflow-x:auto;white-space:nowrap;background:rgba(246,247,251,.95);backdrop-filter:blur(8px);z-index:50;
+  }
+  nav.side .navlabel,.side-foot{display:none}
+  nav.side a{border-left:0;border-bottom:2px solid transparent;padding:5px 9px;font-size:12.5px}
+  nav.side a.active{border-left:0;border-bottom-color:var(--accent)}
+  main{padding:26px 20px 100px}
+  html{scroll-padding-top:112px}
+  section{scroll-margin-top:112px}
+  .grid2,.grid3,.grid4,.os,.facts{grid-template-columns:1fr}
+  .os > div:first-child{border-right:0;border-bottom:1px solid var(--line-2)}
+  .facts div{border-right:0}
+  .facts div:nth-last-child(-n+4){border-bottom:1px solid var(--line)}
+  .facts div:last-child{border-bottom:0}
+  .wrow{grid-template-columns:1fr}
+  .wrow > .k{border-right:0;border-bottom:1px solid var(--line);padding:10px 18px}
+  .wrow > .v{padding:14px 18px}
+  h1{font-size:29px}
+  h2{font-size:21px}
+  p.lede{font-size:17.5px}
+  table{display:block;overflow-x:auto}
+}
+@media (max-width:560px){
+  .topbar-in{padding:9px 14px;gap:10px}
+  .brand span{display:none}
+  main{padding:22px 15px 90px}
+}
+@media print{
+  .topbar,nav.side,.weekbar,.scrim,.drawer{display:none}
+  main{padding:0}
+  body{background:#fff}
+  .panel,article.week,table{break-inside:avoid}
+}
+</style>
+</head>
+<body data-lang="en" data-quotes="on">
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <b><span class="l-en">The Centrality of Self</span><span class="l-ru">Центральность Self</span></b>
+      <span class="l-en">VAHUE × Guthrie Sayen · course architecture v0.3</span>
+      <span class="l-ru">VAHUE × Guthrie Sayen · архитектура курса v0.3</span>
+    </div>
+    <div class="tb-spacer"></div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ru" aria-pressed="false">RU</button>
+      </div>
+      <button type="button" class="btn" id="quoteToggle" aria-pressed="true">
+        <span class="l-en">Quotes on</span><span class="l-ru">Цитаты вкл.</span>
+      </button>
+      <button type="button" class="btn" id="glossaryBtn">
+        <span class="l-en">Glossary</span><span class="l-ru">Глоссарий</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+
+<nav class="side" aria-label="Sections">
+  <div class="navlabel l-en">Contents</div>
+  <div class="navlabel l-ru">Содержание</div>
+  <a href="#frame" class="active"><em>00</em><span class="l-en">The offer</span><span class="l-ru">Предложение</span></a>
+  <a href="#why"><em>01</em><span class="l-en">Why this course exists</span><span class="l-ru">Зачем этот курс</span></a>
+  <a href="#promise"><em>02</em><span class="l-en">What participants can expect</span><span class="l-ru">Что получает участник</span></a>
+  <a href="#principles"><em>03</em><span class="l-en">Course principles</span><span class="l-ru">Принципы курса</span></a>
+  <a href="#weeks"><em>04</em><span class="l-en">The six-week journey</span><span class="l-ru">Путь шести недель</span></a>
+  <a href="#practice"><em>05</em><span class="l-en">Practice architecture</span><span class="l-ru">Архитектура практики</span></a>
+  <a href="#materials"><em>06</em><span class="l-en">Materials map</span><span class="l-ru">Карта материалов</span></a>
+  <a href="#roles"><em>07</em><span class="l-en">Roles: Guthrie & VAHUE</span><span class="l-ru">Роли: Guthrie и VAHUE</span></a>
+  <a href="#boundaries"><em>08</em><span class="l-en">Boundaries</span><span class="l-ru">Границы</span></a>
+  <a href="#open"><em>09</em><span class="l-en">Open decisions</span><span class="l-ru">Открытые решения</span></a>
+  <a href="#next"><em>10</em><span class="l-en">Next work package</span><span class="l-ru">Следующий пакет работ</span></a>
+  <div class="side-foot">
+    <span class="l-en">Working document. Direction approved 29 July 2026. Quotes are internal anchors pending approval for public use.</span>
+    <span class="l-ru">Рабочий документ. Направление принято 29 июля 2026. Цитаты — внутренние опоры, публичное использование требует согласования.</span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ 00 FRAME ============ -->
+<section id="frame">
+  <div class="mast">
+    <div class="kicker">
+      <span class="l-en">Working course architecture · for review with Guthrie</span>
+      <span class="l-ru">Рабочая архитектура курса · на ревью Guthrie</span>
+    </div>
+    <h1>
+      <span class="l-en">The Centrality of Self: A Six-Week Introduction to IFS</span>
+      <span class="l-ru">Центральность Self: шестинедельное введение в IFS</span>
+    </h1>
+    <p class="lede">
+      <span class="l-en">A living introduction to Self, awareness and the language of parts — for life, not for practice as a therapist. Six weeks of direct experience with Guthrie Sayen, held in a community that keeps practising afterwards.</span>
+      <span class="l-ru">Живое введение в Self, осознавание и язык частей — для жизни, а не для практики в роли терапевта. Шесть недель прямого опыта с Guthrie Sayen в сообществе, которое продолжает практиковать и после курса.</span>
+    </p>
+    <div class="statusline">
+      <span class="tag on"><span class="l-en">Direction approved · 29 Jul 2026</span><span class="l-ru">Направление принято · 29 июл 2026</span></span>
+      <span class="tag"><span class="l-en">Stage: content development</span><span class="l-ru">Этап: разработка содержания</span></span>
+      <span class="tag q"><span class="l-en">6 open decisions for Guthrie</span><span class="l-ru">6 открытых решений для Guthrie</span></span>
+      <span class="tag"><span class="l-en">Doc v0.3 · 3 Aug 2026</span><span class="l-ru">Док. v0.3 · 3 авг 2026</span></span>
+    </div>
+  </div>
+
+  <div class="panel flag">
+    <h4><span class="l-en">What this document is</span><span class="l-ru">Что это за документ</span></h4>
+    <p>
+      <span class="l-en">This is the working architecture of the course — the layer between the approved direction and the actual participant materials. It exists so that Guthrie can read the whole shape in one place, correct the language, and decide the live-call sequence. It is not a landing page and not a pitch. The landing page is a separate deliverable that grows out of §01 and §02.</span>
+      <span class="l-ru">Это рабочая архитектура курса — слой между принятым направлением и реальными материалами для участников. Он нужен, чтобы Guthrie мог увидеть всю форму целиком, поправить язык и определить последовательность живых встреч. Это не лендинг и не питч. Лендинг — отдельный результат, который вырастает из §01 и §02.</span>
+    </p>
+    <p style="margin-bottom:0">
+      <span class="l-en"><strong>The open question is no longer “is this the right frame?”</strong> It is “how exactly do we deliver this frame with Guthrie’s presence and language?”</span>
+      <span class="l-ru"><strong>Открытый вопрос больше не «верная ли это рамка?»</strong> Открытый вопрос — «как именно мы передаём эту рамку через присутствие и язык Guthrie?»</span>
+    </p>
+  </div>
+
+  <dl class="facts">
+    <div>
+      <dt><span class="l-en">Format</span><span class="l-ru">Формат</span></dt>
+      <dd><span class="l-en">6 weeks · weekly live call with Guthrie + VAHUE-held practice space + solo practice</span><span class="l-ru">6 недель · еженедельная живая встреча с Guthrie + практическое пространство VAHUE + самостоятельная практика</span></dd>
+    </div>
+    <div>
+      <dt><span class="l-en">Audience</span><span class="l-ru">Аудитория</span></dt>
+      <dd><span class="l-en">Adults new to IFS or lightly familiar. Leaders, founders, parents, partners, helping professionals — not future practitioners.</span><span class="l-ru">Взрослые, для которых IFS новое или знакомое по касательной. Лидеры, фаундеры, родители, партнёры, помогающие специалисты — не будущие практики.</span></dd>
+    </div>
+    <div>
+      <dt><span class="l-en">Languages</span><span class="l-ru">Языки</span></dt>
+      <dd><span class="l-en">Live calls in English; participant materials bilingual EN / RU</span><span class="l-ru">Живые встречи на английском; материалы для участников двуязычные EN / RU</span></dd>
+    </div>
+    <div>
+      <dt><span class="l-en">Launch window</span><span class="l-ru">Окно запуска</span></dt>
+      <dd><span class="l-en">Mid-November 2026 or January 2027 — to confirm (§09.4)</span><span class="l-ru">Середина ноября 2026 или январь 2027 — уточняется (§09.4)</span></dd>
+    </div>
+    <div>
+      <dt><span class="l-en">Central story</span><span class="l-ru">Центральная история</span></dt>
+      <dd><span class="l-en">Operating system 1.0 → 2.0, as transcend-and-include</span><span class="l-ru">Операционная система 1.0 → 2.0, по принципу transcend-and-include</span></dd>
+    </div>
+    <div>
+      <dt><span class="l-en">Guthrie’s role</span><span class="l-ru">Роль Guthrie</span></dt>
+      <dd><span class="l-en">Live transmission + material review + 2–3 marketing calls (§07)</span><span class="l-ru">Живая передача + ревью материалов + 2–3 маркетинговых звонка (§07)</span></dd>
+    </div>
+    <div>
+      <dt><span class="l-en">VAHUE’s role</span><span class="l-ru">Роль VAHUE</span></dt>
+      <dd><span class="l-en">Creates all materials, holds practice spaces and community (§07)</span><span class="l-ru">Создаёт все материалы, держит практические пространства и сообщество (§07)</span></dd>
+    </div>
+    <div>
+      <dt><span class="l-en">Materials readiness</span><span class="l-ru">Готовность материалов</span></dt>
+      <dd><span class="l-en">Full six-week draft before launch; edits closed before class 01</span><span class="l-ru">Полный черновик шести недель до запуска; правки закрыты до встречи 01</span></dd>
+    </div>
+  </dl>
+
+  <h3><span class="l-en">The shift at the centre of the course</span><span class="l-ru">Сдвиг, вокруг которого построен курс</span></h3>
+  <div class="os-wrap">
+    <div class="os">
+      <div>
+        <div class="os-h">
+          <b><span class="l-en">Operating system 1.0</span><span class="l-ru">Операционная система 1.0</span></b>
+          <span class="l-en">thought-based</span><span class="l-ru">на основе мышления</span>
+        </div>
+        <ul>
+          <li><span class="l-en">Thought-based, parts-led</span><span class="l-ru">Основана на мышлении, ведут части</span></li>
+          <li><span class="l-en">Attention-heavy: focus on one thing at a time</span><span class="l-ru">Перегружена вниманием: фокус на одном за раз</span></li>
+          <li><span class="l-en">Sequential processing</span><span class="l-ru">Последовательная обработка</span></li>
+          <li><span class="l-en">Effortful — level up by thinking harder</span><span class="l-ru">Через усилие — «прокачаться», думая интенсивнее</span></li>
+          <li><span class="l-en">Genuinely useful, and it has a ceiling</span><span class="l-ru">По-настоящему полезна — и у неё есть потолок</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="os-h">
+          <b><span class="l-en">Operating system 2.0</span><span class="l-ru">Операционная система 2.0</span></b>
+          <span class="l-en">awareness-based</span><span class="l-ru">на основе осознавания</span>
+        </div>
+        <ul>
+          <li><span class="l-en">Awareness-based, Self-led</span><span class="l-ru">Основана на осознавании, ведёт Self</span></li>
+          <li><span class="l-en">Field-aware: the whole situation is held</span><span class="l-ru">Осознавание поля: ситуация удерживается целиком</span></li>
+          <li><span class="l-en">Panoramic, inclusive, parallel</span><span class="l-ru">Панорамная, включающая, параллельная</span></li>
+          <li><span class="l-en">Relaxed — by doing less, more happens</span><span class="l-ru">Расслабленная — делая меньше, успеваешь больше</span></li>
+          <li><span class="l-en">Holds many signals, inside and outside, at once</span><span class="l-ru">Держит много сигналов сразу — внутри и снаружи</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="os-note">
+      <span class="l-en"><strong>Transcend and include.</strong> We are not rejecting OS 1.0. Focus and sequential thinking stay — they are how most work gets done. We add the field, and let the field decide when focus is needed. The course trains the move between them.</span>
+      <span class="l-ru"><strong>Transcend and include.</strong> Мы не отбрасываем ОС 1.0. Фокус и последовательное мышление остаются — на них держится большая часть работы. Мы добавляем поле и позволяем полю решать, когда нужен фокус. Курс тренирует переход между ними.</span>
+    </div>
+  </div>
+
+  <div class="quote">
+    <p><span class="l-en">“Everyone thinks they can level up by taking the skills they’re already using — largely thinking skills — and becoming more efficient. But there’s a ceiling you reach with your everyday mind. When you shift into awareness, into access to Self, things change. You enter the flow of your life. By doing less, we become more efficient.”</span>
+    <span class="l-ru">«Все думают, что могут выйти на новый уровень, взяв навыки, которыми уже пользуются, — в основном навыки мышления — и став эффективнее. Но у обыденного ума есть потолок. Когда вы переходите в осознавание, в доступ к Self, всё меняется. Вы входите в поток своей жизни. Делая меньше, мы становимся эффективнее».</span></p>
+    <div class="src">
+      <span>Guthrie Sayen</span>
+      <span class="lock"><span class="l-en">Internal working anchor — pending approval for public use</span><span class="l-ru">Внутренняя рабочая опора — публичное использование требует согласования</span></span>
+    </div>
+  </div>
+
+  <h3><span class="l-en">What needs deciding next</span><span class="l-ru">Что нужно решить дальше</span></h3>
+  <table>
+    <tr><td class="num">01</td><td><b><span class="l-en">Live-call sequence</span><span class="l-ru">Последовательность живых встреч</span></b><br><span class="l-en">Does Guthrie accept the week order in §04, or reorder it?</span><span class="l-ru">Принимает ли Guthrie порядок недель из §04 или меняет его?</span></td><td><a class="inline" href="#open">§09.1</a></td></tr>
+    <tr><td class="num">02</td><td><b><span class="l-en">Demos</span><span class="l-ru">Демонстрации</span></b><br><span class="l-en">Which weeks carry a live demo, and with whom?</span><span class="l-ru">В каких неделях живая демонстрация и с кем?</span></td><td><a class="inline" href="#open">§09.2</a></td></tr>
+    <tr><td class="num">03</td><td><b><span class="l-en">Scope of Week 6</span><span class="l-ru">Объём недели 6</span></b><br><span class="l-en">Orientation only, or orientation plus an exile demo led by Guthrie?</span><span class="l-ru">Только ориентация или ориентация плюс демонстрация работы с exile, которую ведёт Guthrie?</span></td><td><a class="inline" href="#open">§09.3</a></td></tr>
+    <tr><td class="num">04</td><td><b><span class="l-en">Launch window and review rhythm</span><span class="l-ru">Окно запуска и ритм ревью</span></b><br><span class="l-en">November 2026 or January 2027; how material review is paced.</span><span class="l-ru">Ноябрь 2026 или январь 2027; как распределено ревью материалов.</span></td><td><a class="inline" href="#open">§09.4–5</a></td></tr>
+    <tr><td class="num">05</td><td><b><span class="l-en">Public quotes</span><span class="l-ru">Публичные цитаты</span></b><br><span class="l-en">Which quotes are approved for the landing page and materials.</span><span class="l-ru">Какие цитаты согласованы для лендинга и материалов.</span></td><td><a class="inline" href="#open">§09.6</a></td></tr>
+  </table>
+</section>
+
+<!-- ============ 01 WHY ============ -->
+<section id="why">
+  <div class="sec-head"><span class="sec-num">01</span><h2><span class="l-en">Why this course exists</span><span class="l-ru">Зачем этот курс существует</span></h2></div>
+
+  <p class="lede">
+    <span class="l-en">We are not teaching a set of IFS concepts. We are helping people bring a capacity that is already present — but running quietly in the background — into the foreground of ordinary daily life.</span>
+    <span class="l-ru">Мы не преподаём набор IFS-концепций. Мы помогаем человеку вынести способность, которая уже есть — но работает тихо, в фоне, — на передний план обычной повседневной жизни.</span>
+  </p>
+
+  <div class="quote">
+    <p><span class="l-en">“What we’re doing is bringing something that’s already present, but in the background, into the foreground.”</span>
+    <span class="l-ru">«То, что мы делаем, — это выносим на передний план то, что уже есть, но находится в фоне».</span></p>
+    <div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h4><span class="l-en">The life people arrive with</span><span class="l-ru">Жизнь, с которой люди приходят</span></h4>
+      <p><span class="l-en">Most people arrive tired from inner pressure. Not broken — often capable, kind, effective, responsible for a lot. And still, much of the day is run by protectors: control, hurry, perfectionism, over-responsibility, pleasing, irritation, avoidance, numbness.</span>
+      <span class="l-ru">Большинство приходит уставшими от внутреннего давления. Не сломанными — часто способными, добрыми, эффективными, отвечающими за многое. И при этом бо́льшую часть дня ими управляют защитники: контроль, спешка, перфекционизм, сверхответственность, желание угодить, раздражение, избегание, оцепенение.</span></p>
+      <p style="margin-bottom:0"><span class="l-en">They also live in what Guthrie calls an awareness deficit: phones, devices, permanent hyperfocus. The field has narrowed to a beam.</span>
+      <span class="l-ru">Ещё они живут в том, что Guthrie называет дефицитом осознавания: телефоны, устройства, постоянный гиперфокус. Поле сузилось до луча.</span></p>
+    </div>
+    <div class="panel">
+      <h4><span class="l-en">The move the course makes</span><span class="l-ru">Ход, который делает курс</span></h4>
+      <p><span class="l-en">The course does not argue with any of that and does not promise to remove it. It starts from a different gesture: none of this is the enemy. These are parts of a system that once started helping.</span>
+      <span class="l-ru">Курс не спорит с этим и не обещает это убрать. Он начинается с другого жеста: всё это не враг. Это части системы, которые когда-то начали помогать.</span></p>
+      <p style="margin-bottom:0"><span class="l-en">Healing does not begin when a person defeats their defences. It begins when they stop being at war with themselves. From there we build three things: <strong>access to Self as awake awareness</strong>, <strong>language for parts</strong>, and <strong>the loving gaze of Self</strong> turned first inward, then outward.</span>
+      <span class="l-ru">Исцеление начинается не тогда, когда человек побеждает свои защиты. Оно начинается, когда он перестаёт воевать с собой. Отсюда мы строим три вещи: <strong>доступ к Self как к бодрствующему осознаванию</strong>, <strong>язык для частей</strong> и <strong>любящий взгляд Self</strong> — сначала внутрь, потом наружу.</span></p>
+    </div>
+  </div>
+
+  <h3><span class="l-en">Attention and awareness: the practical doorway</span><span class="l-ru">Внимание и осознавание: практическая дверь</span></h3>
+  <p>
+    <span class="l-en">Access to Self is not reached by deciding to have it. It is reached through a door participants can actually find in the first week. That door is the difference between attention and awareness — a difference anyone can test in direct experience within a minute.</span>
+    <span class="l-ru">К доступу к Self нельзя прийти, просто решив его иметь. К нему приходят через дверь, которую участники реально находят на первой неделе. Эта дверь — различие между вниманием и осознаванием, которое любой может проверить в прямом опыте за минуту.</span>
+  </p>
+  <table>
+    <thead><tr>
+      <th><span class="l-en">Attention</span><span class="l-ru">Внимание</span></th>
+      <th><span class="l-en">Awareness</span><span class="l-ru">Осознавание</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="l-en">Focus — one, two, maybe three things, excluding the rest</span><span class="l-ru">Фокус — одно, два, максимум три, остальное исключено</span></td><td><span class="l-en">Field — panoramic and inclusive</span><span class="l-ru">Поле — панорамное и включающее</span></td></tr>
+      <tr><td><span class="l-en">Processes sequentially</span><span class="l-ru">Обрабатывает последовательно</span></td><td><span class="l-en">Processes in parallel</span><span class="l-ru">Обрабатывает параллельно</span></td></tr>
+      <tr><td><span class="l-en">Selective; contracts under stress</span><span class="l-ru">Избирательное; под стрессом сжимается</span></td><td><span class="l-en">Inclusive; can stay open under stress once trained</span><span class="l-ru">Включающее; при тренировке остаётся открытым под стрессом</span></td></tr>
+      <tr><td><span class="l-en">Gets things done, one at a time</span><span class="l-ru">Доводит дела до конца, по одному</span></td><td><span class="l-en">Senses what needs doing first</span><span class="l-ru">Чувствует, что нужно сделать первым</span></td></tr>
+      <tr><td><span class="l-en">Where OS 1.0 lives</span><span class="l-ru">Где живёт ОС 1.0</span></td><td><span class="l-en">Where access to Self opens</span><span class="l-ru">Где открывается доступ к Self</span></td></tr>
+    </tbody>
+  </table>
+  <p>
+    <span class="l-en"><strong>Self is awake awareness.</strong> Which is why accessing awareness is a practical, repeatable way to recover access to Self — not a metaphor, and not a mood.</span>
+    <span class="l-ru"><strong>Self — это бодрствующее осознавание.</strong> Поэтому доступ к осознаванию — практический и повторяемый способ вернуть доступ к Self, а не метафора и не настроение.</span>
+  </p>
+
+  <div class="panel flag">
+    <h4><span class="l-en">Access is a continuum, not a switch</span><span class="l-ru">Доступ — это континуум, а не выключатель</span></h4>
+    <p style="margin-bottom:0"><span class="l-en">Throughout the course we never ask “am I in Self?” — that question has only two answers and both of them are unhelpful. We ask: <strong>Do I have any access to Self right now? How much access is available?</strong> Even a sliver counts, and a sliver is enough to begin. The work of six weeks is to increase the frequency of access, and then the duration.</span>
+    <span class="l-ru">На протяжении всего курса мы никогда не спрашиваем «я сейчас в Self?» — у этого вопроса всего два ответа, и оба бесполезны. Мы спрашиваем: <strong>есть ли у меня сейчас хоть какой-то доступ к Self? Насколько он доступен?</strong> Даже щель считается, и щели достаточно, чтобы начать. Работа шести недель — увеличить частоту доступа, а затем его длительность.</span></p>
+  </div>
+
+  <div class="quote">
+    <p><span class="l-en">“Increasing the frequency of access, and then increasing the duration. Because ultimately you want access to be persistent.”</span>
+    <span class="l-ru">«Увеличивать частоту доступа, а затем увеличивать длительность. Потому что в конечном счёте вы хотите, чтобы доступ стал постоянным».</span></p>
+    <div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div>
+  </div>
+</section>
+
+<!-- ============ 02 PROMISE ============ -->
+<section id="promise">
+  <div class="sec-head"><span class="sec-num">02</span><h2><span class="l-en">What participants can expect</span><span class="l-ru">Что участник может ожидать</span></h2></div>
+
+  <p>
+    <span class="l-en">Written as outcomes a person can recognise in themselves — not as claims about transformation. Each of these is trained somewhere in the six weeks and is testable in ordinary life.</span>
+    <span class="l-ru">Сформулировано как результаты, которые человек может узнать в себе, — а не как обещания трансформации. Каждый из них где-то тренируется в течение шести недель и проверяем в обычной жизни.</span>
+  </p>
+
+  <ul class="plist">
+    <li>
+      <b><span class="l-en">A felt experience of access to Self — not a concept</span><span class="l-ru">Пережитый опыт доступа к Self — не концепция</span></b>
+      <span class="p-tag">W1</span>
+      <p style="margin:4px 0 0;font-size:13.8px"><span class="l-en">You will find, in your own body, the difference between the narrow beam of attention and the open field of awareness — and you will notice that something calm and clear is available there.</span>
+      <span class="l-ru">Вы обнаружите в собственном теле разницу между узким лучом внимания и открытым полем осознавания — и заметите, что там доступно нечто спокойное и ясное.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Practical language for what happens inside you</span><span class="l-ru">Практический язык для того, что происходит внутри</span></b>
+      <span class="p-tag">W2</span>
+      <p style="margin:4px 0 0;font-size:13.8px"><span class="l-en">“A part of me is anxious” instead of “I am anxious.” One small sentence that creates real distance and lowers shame — usable in a meeting, a marriage, a difficult evening.</span>
+      <span class="l-ru">«Часть меня тревожится» вместо «я тревожусь». Одна короткая фраза, которая создаёт реальную дистанцию и снижает стыд, — применима на встрече, в браке, в трудный вечер.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Recognition of your everyday cast of protectors</span><span class="l-ru">Узнавание своего повседневного состава защитников</span></b>
+      <span class="p-tag">W3</span>
+      <p style="margin:4px 0 0;font-size:13.8px"><span class="l-en">The critic, the perfectionist, the people pleaser, the distractor, the rebel — seen concretely in your money, your conflicts, your overload, your parenting, your work.</span>
+      <span class="l-ru">Критик, перфекционист, угождающая часть, отвлекающаяся часть, бунтарь — увиденные конкретно: в деньгах, конфликтах, перегрузе, родительстве, работе.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">A different relationship to your own defences</span><span class="l-ru">Другие отношения со своими защитами</span></b>
+      <span class="p-tag">W3 · W4</span>
+      <p style="margin:4px 0 0;font-size:13.8px"><span class="l-en">Less war. More gratitude and curiosity. The working discovery that protectors respond to being seen and thanked, and do not respond to pressure.</span>
+      <span class="l-ru">Меньше войны. Больше благодарности и любопытства. Рабочее открытие: защитники откликаются на то, что их видят и благодарят, и не откликаются на давление.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Respect for what is more vulnerable inside you</span><span class="l-ru">Уважение к тому, что внутри более уязвимо</span></b>
+      <span class="p-tag">W5</span>
+      <p style="margin:4px 0 0;font-size:13.8px"><span class="l-en">The capacity to notice when something younger and more tender appears — and to meet it with presence rather than pressure, or to know when it belongs with a therapist.</span>
+      <span class="l-ru">Способность заметить, когда появляется что-то более юное и нежное, — и встретить это присутствием, а не давлением, или понять, что это работа с терапевтом.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Field awareness in relationship</span><span class="l-ru">Осознавание поля в отношениях</span></b>
+      <span class="p-tag">W6</span>
+      <p style="margin:4px 0 0;font-size:13.8px"><span class="l-en">A way of being with other people where you can track what is happening in you and in them at the same time, without collapsing into reaction.</span>
+      <span class="l-ru">Способ быть с другими людьми, при котором вы отслеживаете происходящее в себе и в другом одновременно, не сваливаясь в реакцию.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">A practice you can keep, and people to keep it with</span><span class="l-ru">Практика, которую можно продолжать, и люди, с которыми её продолжать</span></b>
+      <span class="p-tag">W6 →</span>
+      <p style="margin:4px 0 0;font-size:13.8px"><span class="l-en">A small daily repertoire — presencing, ground/core/field/focus, the parts doorway — and a community that continues after the six weeks end.</span>
+      <span class="l-ru">Небольшой ежедневный репертуар — presencing, ground/core/field/focus, дверь через части — и сообщество, которое продолжается после шести недель.</span></p>
+    </li>
+  </ul>
+
+  <div class="panel warn">
+    <h4><span class="l-en">And, plainly: what this course does not promise</span><span class="l-ru">И честно: чего этот курс не обещает</span></h4>
+    <ul class="checks no" style="margin-bottom:0">
+      <li><span class="l-en">It does not promise to fix you, or to remove anxiety, procrastination or self-criticism in six weeks.</span><span class="l-ru">Он не обещает вас починить или убрать тревогу, прокрастинацию, самокритику за шесть недель.</span></li>
+      <li><span class="l-en">It does not qualify you to practise IFS, to lead sessions, or to guide anyone else’s system.</span><span class="l-ru">Он не даёт квалификацию практиковать IFS, вести сессии или сопровождать чужую систему.</span></li>
+      <li><span class="l-en">It is not trauma treatment and it is not a substitute for therapy.</span><span class="l-ru">Это не лечение травмы и не замена терапии.</span></li>
+      <li><span class="l-en">It does not promise unburdening, or “reaching the root” of anything on a schedule.</span><span class="l-ru">Он не обещает unburdening или «дойти до корня» чего-либо по расписанию.</span></li>
+      <li><span class="l-en">It does not give you a new identity. It gives you access to what is already yours.</span><span class="l-ru">Он не даёт новую идентичность. Он даёт доступ к тому, что уже ваше.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 03 PRINCIPLES ============ -->
+<section id="principles">
+  <div class="sec-head"><span class="sec-num">03</span><h2><span class="l-en">Course principles</span><span class="l-ru">Принципы курса</span></h2></div>
+  <p><span class="l-en">These seven principles govern every design decision below: what goes into a handout, how a live call is shaped, what a practice space is allowed to do.</span>
+  <span class="l-ru">Эти семь принципов управляют каждым решением ниже: что попадает в раздаточный материал, как устроена живая встреча, что разрешено в практическом пространстве.</span></p>
+
+  <ol class="numlist">
+    <li>
+      <b><span class="l-en">Experience first</span><span class="l-ru">Сначала опыт</span></b>
+      <p><span class="l-en">Every idea in this course is met in direct experience before it is explained. A participant should feel the field before hearing the word “field”. Theory arrives afterwards, to give the experience a place to live.</span>
+      <span class="l-ru">Каждая идея курса сначала встречается в прямом опыте и только потом объясняется. Участник должен почувствовать поле раньше, чем услышит слово «поле». Теория приходит потом — чтобы дать опыту место, где жить.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Minimal theory, maximum language</span><span class="l-ru">Минимум теории, максимум языка</span></b>
+      <p><span class="l-en">Rudiments of Self, rudiments of parts, the lightest touch of systems thinking. Enough to reduce shame and orient practice — no practitioner-level maps, no protocol detail, no large reading library.</span>
+      <span class="l-ru">Азы Self, азы частей, самое лёгкое касание системного мышления. Достаточно, чтобы снизить стыд и сориентировать практику, — без карт уровня практика, без деталей протокола, без большой библиотеки чтения.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Access is a continuum</span><span class="l-ru">Доступ — это континуум</span></b>
+      <p><span class="l-en">Never “in Self” or “not in Self”. Always: how much access to Self is available right now? This keeps the practice honest and removes a whole category of self-judgement.</span>
+      <span class="l-ru">Никогда «в Self» или «не в Self». Всегда: сколько доступа к Self сейчас есть? Это делает практику честной и убирает целый класс самоосуждения.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">The loving gaze goes inward first</span><span class="l-ru">Любящий взгляд сначала внутрь</span></b>
+      <p><span class="l-en">We begin by turning the loving gaze inside. When a person accepts what is there without judgment, compassion toward other people follows on its own — it does not need to be taught separately.</span>
+      <span class="l-ru">Мы начинаем с того, что обращаем любящий взгляд внутрь. Когда человек принимает то, что там есть, без осуждения, сострадание к другим приходит само — этому не нужно учить отдельно.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Permission before depth</span><span class="l-ru">Разрешение прежде глубины</span></b>
+      <p><span class="l-en">Nothing is done to a participant’s system without permission — including by the participant themselves. Protectors are met in good-faith negotiation, never in manipulation.</span>
+      <span class="l-ru">С системой участника ничего не делается без разрешения — в том числе самим участником. С защитниками ведут добросовестные переговоры, а не манипуляцию.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">Slow is fast</span><span class="l-ru">Медленно — значит быстро</span></b>
+      <p><span class="l-en">Depth does not come from effort or from hurry. It comes from trust. Any pressure to “go deeper” in this course is a design error, not a sign of ambition.</span>
+      <span class="l-ru">Глубина не приходит от усилия или спешки. Она приходит от доверия. Любое давление «идти глубже» в этом курсе — ошибка дизайна, а не признак амбиции.</span></p>
+    </li>
+    <li>
+      <b><span class="l-en">A practice of life needs community</span><span class="l-ru">Практике жизни нужно сообщество</span></b>
+      <p><span class="l-en">Six weeks can open the door; only ongoing practice with other people keeps it open. Community is built into the design from Week 1, not sold at the end.</span>
+      <span class="l-ru">Шесть недель могут открыть дверь; открытой её держит только продолжающаяся практика с другими людьми. Сообщество встроено в дизайн с первой недели, а не продаётся в конце.</span></p>
+    </li>
+  </ol>
+
+  <div class="quote">
+    <p><span class="l-en">“Forces don’t work. What works is love.”</span><span class="l-ru">«Сила не работает. Работает любовь».</span></p>
+    <div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div>
+  </div>
+</section>
+
+<!-- ============ 04 WEEKS ============ -->
+<section id="weeks">
+  <div class="sec-head"><span class="sec-num">04</span><h2><span class="l-en">The six-week journey</span><span class="l-ru">Путь шести недель</span></h2></div>
+  <p>
+    <span class="l-en">Each week carries one theme, one core question, one live transmission from Guthrie, one small theory block, one practice, one thing to do between calls, one handout, and one clear boundary. Nothing more. The week order below is VAHUE’s proposal and is <a class="inline" href="#open">open for Guthrie to reorder</a>.</span>
+    <span class="l-ru">Каждая неделя несёт одну тему, один ключевой вопрос, одну живую передачу от Guthrie, один небольшой теоретический блок, одну практику, одно дело между встречами, один раздаточный материал и одну ясную границу. Ничего больше. Порядок недель ниже — предложение VAHUE, и Guthrie <a class="inline" href="#open">может его изменить</a>.</span>
+  </p>
+
+  <div class="weekbar">
+    <span class="lbl"><span class="l-en">Week</span><span class="l-ru">Неделя</span></span>
+    <button type="button" class="chip wkchip" data-week="all" aria-pressed="true"><span class="l-en">All</span><span class="l-ru">Все</span></button>
+    <button type="button" class="chip wkchip" data-week="1" aria-pressed="false">01</button>
+    <button type="button" class="chip wkchip" data-week="2" aria-pressed="false">02</button>
+    <button type="button" class="chip wkchip" data-week="3" aria-pressed="false">03</button>
+    <button type="button" class="chip wkchip" data-week="4" aria-pressed="false">04</button>
+    <button type="button" class="chip wkchip" data-week="5" aria-pressed="false">05</button>
+    <button type="button" class="chip wkchip" data-week="6" aria-pressed="false">06</button>
+    <span class="bar-div"></span>
+    <span class="lbl"><span class="l-en">Layer</span><span class="l-ru">Слой</span></span>
+    <button type="button" class="chip rowchip" data-row="live" aria-pressed="true"><span class="l-en">Live call</span><span class="l-ru">Живая встреча</span></button>
+    <button type="button" class="chip rowchip" data-row="theory" aria-pressed="true"><span class="l-en">Theory</span><span class="l-ru">Теория</span></button>
+    <button type="button" class="chip rowchip" data-row="practice" aria-pressed="true"><span class="l-en">Practice</span><span class="l-ru">Практика</span></button>
+    <button type="button" class="chip rowchip" data-row="between" aria-pressed="true"><span class="l-en">Between calls</span><span class="l-ru">Между встречами</span></button>
+    <button type="button" class="chip rowchip" data-row="material" aria-pressed="true"><span class="l-en">Material</span><span class="l-ru">Материалы</span></button>
+    <button type="button" class="chip rowchip" data-row="bound" aria-pressed="true"><span class="l-en">Boundary</span><span class="l-ru">Граница</span></button>
+  </div>
+
+  <!-- WEEK 1 -->
+  <article class="week" data-week="1">
+    <div class="week-head">
+      <div class="wk-top">
+        <span class="wk-n"><span class="l-en">Week 01</span><span class="l-ru">Неделя 01</span></span>
+        <h3><span class="l-en">Two ways of knowing: attention, awareness, and access to Self</span><span class="l-ru">Два способа знать: внимание, осознавание и доступ к Self</span></h3>
+      </div>
+      <p class="cq">
+        <b><span class="l-en">Core question</span><span class="l-ru">Ключевой вопрос</span></b>
+        <span class="l-en">Is there something in me that is wider and quieter than my thinking — and can I find it on purpose?</span>
+        <span class="l-ru">Есть ли во мне что-то более широкое и тихое, чем моё мышление, — и могу ли я найти это намеренно?</span>
+      </p>
+    </div>
+    <div class="wrow" data-row="live"><div class="k"><span class="l-en">Guthrie live</span><span class="l-ru">Guthrie live</span></div><div class="v">
+      <p><span class="l-en">Opens with the ground / core / field / focus meditation, then teaches the attention–awareness distinction directly from experience — peripheral vision, the fingers exercise — and names Self and parts for the first time. Transmission, not lecture: participants should leave having <em>felt</em> the field open, not having understood a diagram.</span>
+      <span class="l-ru">Начинается с медитации ground / core / field / focus, затем различие внимания и осознавания объясняется прямо из опыта — периферическое зрение, упражнение с пальцами — и впервые называются Self и части. Передача, а не лекция: участники должны уйти, <em>почувствовав</em>, как открывается поле, а не поняв схему.</span></p>
+    </div></div>
+    <div class="wrow" data-row="theory"><div class="k"><span class="l-en">Theory block</span><span class="l-ru">Теоретический блок</span></div><div class="v">
+      <p><strong><span class="l-en">Model of Conscious Experience</span><span class="l-ru">Модель сознательного опыта</span></strong></p>
+      <ul>
+        <li><span class="l-en"><b>Attention = focus.</b> Selective, sequential, one thing at a time.</span><span class="l-ru"><b>Внимание = фокус.</b> Избирательное, последовательное, по одному за раз.</span></li>
+        <li><span class="l-en"><b>Awareness = field.</b> Panoramic, inclusive, parallel.</span><span class="l-ru"><b>Осознавание = поле.</b> Панорамное, включающее, параллельное.</span></li>
+        <li><span class="l-en"><b>Self is awake awareness.</b> Accessing awareness is how participants can actually experience access to Self.</span><span class="l-ru"><b>Self — это бодрствующее осознавание.</b> Доступ к осознаванию — то, как участник реально переживает доступ к Self.</span></li>
+        <li><span class="l-en"><b>The four building blocks of Presence: ground, core, field, focus.</b> Get grounded, feel the core, open into the field — and only then focus.</span><span class="l-ru"><b>Четыре кирпича Присутствия: ground, core, field, focus.</b> Заземлиться, почувствовать core, открыться в поле — и только затем фокусироваться.</span></li>
+        <li><span class="l-en"><b>Parts, named for the first time</b> — as a language of attention, not a diagnosis.</span><span class="l-ru"><b>Части, названные впервые</b>, — как язык внимания, а не диагноз.</span></li>
+        <li><span class="l-en"><b>Awareness deficit</b> — why modern attention has narrowed, without turning this into a neuroscience lecture.</span><span class="l-ru"><b>Дефицит осознавания</b> — почему современное внимание сузилось, но без превращения в лекцию по нейронауке.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="practice"><div class="k"><span class="l-en">Practice in session</span><span class="l-ru">Практика на встрече</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Ground, core, field, focus meditation (becomes the recurring opening of every week)</span><span class="l-ru">Медитация ground, core, field, focus (становится постоянным открытием каждой недели)</span></li>
+        <li><span class="l-en">Peripheral vision / fingers exercise — attention relaxing into field awareness</span><span class="l-ru">Периферическое зрение / упражнение с пальцами — внимание расслабляется в осознавание поля</span></li>
+        <li><span class="l-en">Full bowl of soup — how hyperfocus creates tension, and how the field allows relaxed, effective action</span><span class="l-ru">Полная тарелка супа — как гиперфокус создаёт напряжение и как поле позволяет расслабленное, точное действие</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="between"><div class="k"><span class="l-en">Between calls</span><span class="l-ru">Между встречами</span></div><div class="v">
+      <p><span class="l-en">Walking practice, five to ten minutes a day: open seeing, then open hearing, then feeling the body — then all three at once. Plus one line in a notebook each evening: <em>when today did the field open, and when did it close?</em></span>
+      <span class="l-ru">Практика ходьбы, 5–10 минут в день: открытое зрение, затем открытый слух, затем ощущение тела — потом всё три одновременно. И одна строка в блокноте каждый вечер: <em>когда сегодня поле открывалось, а когда закрывалось?</em></span></p>
+    </div></div>
+    <div class="wrow" data-row="material"><div class="k"><span class="l-en">Participant material</span><span class="l-ru">Материал участника</span></div><div class="v">
+      <p><span class="l-en">Handout 01 — <b>“Attention and awareness”</b> (5±1 points): the two modes; Self as awake awareness; ground / core / field / focus; the language of parts in one paragraph; this week’s boundary; one integration prompt. Plus the pre-course intro guide, read before Week 1.</span>
+      <span class="l-ru">Раздаточный материал 01 — <b>«Внимание и осознавание»</b> (5±1 пунктов): два режима; Self как бодрствующее осознавание; ground / core / field / focus; язык частей в один абзац; граница этой недели; один интеграционный вопрос. Плюс вводный гайд, читается до первой недели.</span></p>
+    </div></div>
+    <div class="wrow rowquote" data-row="quote"><div class="k"><span class="l-en">Quote anchor</span><span class="l-ru">Цитата-опора</span></div><div class="v">
+      <div class="quote"><p><span class="l-en">“The key meditation for me is finding ground — getting really grounded. You need to be grounded, be able to feel your core, and then open into the field. Then you are ready to focus. I call it: ground, core, field, focus.”</span><span class="l-ru">«Ключевая медитация для меня — найти опору, по-настоящему заземлиться. Нужно быть заземлённым, суметь почувствовать свой core, а затем открыться в поле. И тогда вы готовы фокусироваться. Я называю это: ground, core, field, focus».</span></p><div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div></div>
+    </div></div>
+    <div class="wrow boundary" data-row="bound"><div class="k"><span class="l-en">Boundary</span><span class="l-ru">Граница</span></div><div class="v">
+      <p><span class="l-en">No parts work in pairs this week. Participants observe their own experience and describe it. If a strong part shows up, we name it and return to ground — we do not open it.</span>
+      <span class="l-ru">На этой неделе никакой работы с частями в парах. Участники наблюдают собственный опыт и описывают его. Если появляется сильная часть, мы называем её и возвращаемся к ground — мы её не разворачиваем.</span></p>
+    </div></div>
+  </article>
+
+  <!-- WEEK 2 -->
+  <article class="week" data-week="2">
+    <div class="week-head">
+      <div class="wk-top">
+        <span class="wk-n"><span class="l-en">Week 02</span><span class="l-ru">Неделя 02</span></span>
+        <h3><span class="l-en">The language of parts: “a part of me…”</span><span class="l-ru">Язык частей: «часть меня…»</span></h3>
+      </div>
+      <p class="cq">
+        <b><span class="l-en">Core question</span><span class="l-ru">Ключевой вопрос</span></b>
+        <span class="l-en">What changes when I stop saying “I am anxious” and start saying “a part of me is anxious”?</span>
+        <span class="l-ru">Что меняется, когда я перестаю говорить «я тревожусь» и начинаю говорить «часть меня тревожится»?</span>
+      </p>
+    </div>
+    <div class="wrow" data-row="live"><div class="k"><span class="l-en">Guthrie live</span><span class="l-ru">Guthrie live</span></div><div class="v">
+      <p><span class="l-en">Teaches noticing a part as the first step back toward Self, and demonstrates the simple move live: “a part of me is…” → feeling the small distance that opens → <em>am I willing to be with this part?</em> → <em>am I willing to offer it compassion?</em> → letting the field widen around it. The 8 Cs are introduced as doorways to Self, not as a checklist.</span>
+      <span class="l-ru">Учит замечанию части как первому шагу обратно к Self и показывает простой ход вживую: «часть меня…» → ощущение маленькой дистанции, которая открывается → <em>готов ли я быть с этой частью?</em> → <em>готов ли я предложить ей сострадание?</em> → позволить полю расшириться вокруг неё. 8 Cs вводятся как двери к Self, а не как чек-лист.</span></p>
+    </div></div>
+    <div class="wrow" data-row="theory"><div class="k"><span class="l-en">Theory block</span><span class="l-ru">Теоретический блок</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Rudiments of parts: the mind is naturally multiple; this is not pathology.</span><span class="l-ru">Азы частей: ум по природе множественен; это не патология.</span></li>
+        <li><span class="l-en"><b>All parts are good — even though some parts have bad roles.</b></span><span class="l-ru"><b>Все части хорошие — даже если у некоторых плохие роли.</b></span></li>
+        <li><span class="l-en">Self as the conductor, parts as the players.</span><span class="l-ru">Self как дирижёр, части как музыканты.</span></li>
+        <li><span class="l-en">Unblending in one sentence: naming creates distance, distance creates access.</span><span class="l-ru">Разделение в одном предложении: называние создаёт дистанцию, дистанция создаёт доступ.</span></li>
+        <li><span class="l-en">The 8 Cs as doorways — curiosity and compassion are usually the easiest to find.</span><span class="l-ru">8 Cs как двери — любопытство и сострадание обычно найти легче всего.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="practice"><div class="k"><span class="l-en">Practice in session</span><span class="l-ru">Практика на встрече</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">The parts doorway, solo, with an ordinary everyday part — never a heavy one.</span><span class="l-ru">Дверь через части, самостоятельно, с обычной повседневной частью — никогда с тяжёлой.</span></li>
+        <li><span class="l-en">“How do I feel <em>toward</em> this part?” — the single question that reveals how much access is available.</span><span class="l-ru">«Что я чувствую <em>по отношению</em> к этой части?» — единственный вопрос, который показывает, сколько доступа сейчас есть.</span></li>
+        <li><span class="l-en">In practice space: speaking <b>on behalf of</b> a part to a partner who only listens from access to Self. No response, no advice, no guiding.</span><span class="l-ru">В практическом пространстве: говорить <b>от имени</b> части партнёру, который только слушает из доступа к Self. Без ответа, без советов, без ведения.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="between"><div class="k"><span class="l-en">Between calls</span><span class="l-ru">Между встречами</span></div><div class="v">
+      <p><span class="l-en">Three times a day, catch one moment and rename it: “a part of me is rushing / irritated / afraid of being late.” Note what happens in the body in the second after you say it.</span>
+      <span class="l-ru">Три раза в день ловить один момент и переименовывать его: «часть меня спешит / раздражена / боится опоздать». Отмечать, что происходит в теле в секунду после того, как вы это сказали.</span></p>
+    </div></div>
+    <div class="wrow" data-row="material"><div class="k"><span class="l-en">Participant material</span><span class="l-ru">Материал участника</span></div><div class="v">
+      <p><span class="l-en">Handout 02 — <b>“A part of me”</b>: the parts sentence and why it works; how to feel <em>toward</em> instead of <em>from</em>; the 8 Cs as doorways; approved phrasing (“I notice a part that…”, “a part of me says…”) versus phrasing that encourages blending; this week’s boundary; one integration prompt.</span>
+      <span class="l-ru">Раздаточный материал 02 — <b>«Часть меня»</b>: фраза частей и почему она работает; как чувствовать <em>по отношению к</em>, а не <em>из</em>; 8 Cs как двери; рекомендованные формулировки («я замечаю часть, которая…», «часть меня говорит…») против формулировок, поощряющих слияние; граница недели; один интеграционный вопрос.</span></p>
+    </div></div>
+    <div class="wrow rowquote" data-row="quote"><div class="k"><span class="l-en">Quote anchor</span><span class="l-ru">Цитата-опора</span></div><div class="v">
+      <div class="quote"><p><span class="l-en">“Parts are really cool, because by noticing a part we’re taking the first step to recovering access to Self.” … “When someone makes a very simple move — ‘I can feel a part of me is anxious’ — they can feel the contraction. But just by saying ‘a part of me is nervous’, we’ve created a little distance.”</span><span class="l-ru">«Части — это здорово, потому что, замечая часть, мы делаем первый шаг к восстановлению доступа к Self». … «Когда человек делает совсем простой ход — „я чувствую, что часть меня тревожится“, — он чувствует сжатие. Но уже тем, что мы сказали „часть меня нервничает“, мы создали небольшую дистанцию».</span></p><div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div></div>
+    </div></div>
+    <div class="wrow boundary" data-row="bound"><div class="k"><span class="l-en">Boundary</span><span class="l-ru">Граница</span></div><div class="v">
+      <p><span class="l-en">Participants work only with ordinary everyday parts and low-intensity protectors. Speaking <b>on behalf of</b> a part, never <b>as</b> a part. Listeners listen — they do not interpret, reassure, or guide.</span>
+      <span class="l-ru">Участники работают только с обычными повседневными частями и защитниками низкой интенсивности. Говорить <b>от имени</b> части, никогда <b>как</b> часть. Слушающие слушают — не интерпретируют, не успокаивают, не ведут.</span></p>
+    </div></div>
+  </article>
+
+  <!-- WEEK 3 -->
+  <article class="week" data-week="3">
+    <div class="week-head">
+      <div class="wk-top">
+        <span class="wk-n"><span class="l-en">Week 03</span><span class="l-ru">Неделя 03</span></span>
+        <h3><span class="l-en">The everyday cast: protectors in real life</span><span class="l-ru">Повседневный состав: защитники в реальной жизни</span></h3>
+      </div>
+      <p class="cq">
+        <b><span class="l-en">Core question</span><span class="l-ru">Ключевой вопрос</span></b>
+        <span class="l-en">Which parts are actually running my days — and what are they trying to protect?</span>
+        <span class="l-ru">Какие части на самом деле управляют моими днями — и что они пытаются защитить?</span>
+      </p>
+    </div>
+    <div class="wrow" data-row="live"><div class="k"><span class="l-en">Guthrie live</span><span class="l-ru">Guthrie live</span></div><div class="v">
+      <p><span class="l-en">Brings the everyday cast alive — the critic, the perfectionist, the people pleaser, the distractor, the rebel — and shows how a protector changes when it is finally seen. Possible live demo with an ordinary everyday protector (to confirm, §09.2).</span>
+      <span class="l-ru">Оживляет повседневный состав — критик, перфекционист, угождающая часть, отвлекающаяся часть, бунтарь — и показывает, как меняется защитник, когда его наконец видят. Возможна живая демонстрация с обычным повседневным защитником (уточняется, §09.2).</span></p>
+    </div></div>
+    <div class="wrow" data-row="theory"><div class="k"><span class="l-en">Theory block</span><span class="l-ru">Теоретический блок</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Two protector strategies in everyday language: the ones that <b>organise</b> (control, achieve, comply, hold everything) and the ones that <b>anaesthetise</b> (distract, scroll, binge, shut down, disappear).</span><span class="l-ru">Две стратегии защитников на обычном языке: те, что <b>организуют</b> (контроль, достижения, соответствие, «тащить всё на себе»), и те, что <b>обезболивают</b> (отвлечение, скроллинг, переедание, отключение, желание исчезнуть).</span></li>
+        <li><span class="l-en">Everyday polarizations: the overworker versus the collapser, the pleaser versus the rebel — and why both sides are protecting the same thing.</span><span class="l-ru">Повседневные поляризации: тот, кто перерабатывает, против того, кто обрушивается; угождающий против бунтаря — и почему обе стороны защищают одно и то же.</span></li>
+        <li><span class="l-en">The lightest touch of systems thinking: a system, not a collection of symptoms.</span><span class="l-ru">Самое лёгкое касание системного мышления: система, а не набор симптомов.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="practice"><div class="k"><span class="l-en">Practice in session</span><span class="l-ru">Практика на встрече</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Mapping your own cast: three protectors you can recognise in the last seven days, with the situation each one shows up in.</span><span class="l-ru">Карта собственного состава: три защитника, которых вы узнаёте в последние семь дней, и ситуация, в которой появляется каждый.</span></li>
+        <li><span class="l-en">“How do I feel toward this one?” — practised on a protector rather than a feeling.</span><span class="l-ru">«Что я чувствую по отношению к нему?» — отрабатывается на защитнике, а не на чувстве.</span></li>
+        <li><span class="l-en">Practice space: integration circle — each person names one protector and one thing it may be protecting. No cross-talk.</span><span class="l-ru">Практическое пространство: круг интеграции — каждый называет одного защитника и одно, что тот может защищать. Без взаимных комментариев.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="between"><div class="k"><span class="l-en">Between calls</span><span class="l-ru">Между встречами</span></div><div class="v">
+      <p><span class="l-en">A short daily journal of the cast: which part took the wheel today, in what situation, and what it was protecting. Areas to watch: money, conflict, overload, parenting, the fear of disappointing someone.</span>
+      <span class="l-ru">Короткий ежедневный дневник состава: какая часть сегодня взяла руль, в какой ситуации и что она защищала. За чем наблюдать: деньги, конфликты, перегруз, родительство, страх кого-то разочаровать.</span></p>
+    </div></div>
+    <div class="wrow" data-row="material"><div class="k"><span class="l-en">Participant material</span><span class="l-ru">Материал участника</span></div><div class="v">
+      <p><span class="l-en">Handout 03 — <b>“Who is running my day”</b>: the five everyday players; organising versus anaesthetising strategies; a one-page reflection sheet for personal patterns; the boundary; one integration prompt.</span>
+      <span class="l-ru">Раздаточный материал 03 — <b>«Кто управляет моим днём»</b>: пять повседневных игроков; стратегии организации против стратегий обезболивания; страница рефлексии по личным паттернам; граница; один интеграционный вопрос.</span></p>
+    </div></div>
+    <div class="wrow rowquote" data-row="quote"><div class="k"><span class="l-en">Quote anchor</span><span class="l-ru">Цитата-опора</span></div><div class="v">
+      <div class="quote"><p><span class="l-en">“All parts are good — even though some parts have bad roles.”</span><span class="l-ru">«Все части хорошие — даже если у некоторых плохие роли».</span></p><div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div></div>
+    </div></div>
+    <div class="wrow boundary" data-row="bound"><div class="k"><span class="l-en">Boundary</span><span class="l-ru">Граница</span></div><div class="v">
+      <p><span class="l-en">Recognising your own system only. No interpreting another participant’s parts, no “I think your critic is really…”. No advice dressed as IFS.</span>
+      <span class="l-ru">Только узнавание собственной системы. Никакой интерпретации частей другого участника, никаких «мне кажется, твой критик на самом деле…». Никаких советов, переодетых в IFS.</span></p>
+    </div></div>
+  </article>
+
+  <!-- WEEK 4 -->
+  <article class="week" data-week="4">
+    <div class="week-head">
+      <div class="wk-top">
+        <span class="wk-n"><span class="l-en">Week 04</span><span class="l-ru">Неделя 04</span></span>
+        <h3><span class="l-en">Permission, pacing, gratitude: protectors are trying to help</span><span class="l-ru">Разрешение, темп, благодарность: защитники пытаются помочь</span></h3>
+      </div>
+      <p class="cq">
+        <b><span class="l-en">Core question</span><span class="l-ru">Ключевой вопрос</span></b>
+        <span class="l-en">What becomes possible when I stop trying to push past my own defences?</span>
+        <span class="l-ru">Что становится возможным, когда я перестаю пытаться продавить собственные защиты?</span>
+      </p>
+    </div>
+    <div class="wrow" data-row="live"><div class="k"><span class="l-en">Guthrie live</span><span class="l-ru">Guthrie live</span></div><div class="v">
+      <p><span class="l-en">The heart week for Guthrie’s language: forces don’t work, what works is love; slow is fast; we will do nothing without your permission; this is a good faith negotiation, not a manipulation. Ideally a demo showing gratitude toward a protector and how the system softens when a protector is honoured rather than pressured.</span>
+      <span class="l-ru">Сердцевинная неделя для языка Guthrie: сила не работает, работает любовь; медленно — значит быстро; мы ничего не сделаем без вашего разрешения; это добросовестные переговоры, а не манипуляция. В идеале — демонстрация благодарности защитнику и того, как система смягчается, когда защитника чтят, а не давят на него.</span></p>
+    </div></div>
+    <div class="wrow" data-row="theory"><div class="k"><span class="l-en">Theory block</span><span class="l-ru">Теоретический блок</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Protectors want to be seen and celebrated; connection to Self is what changes them.</span><span class="l-ru">Защитники хотят быть увиденными и признанными; меняет их связь с Self.</span></li>
+        <li><span class="l-en">Permission and pacing as the actual mechanism of depth — not as a safety disclaimer.</span><span class="l-ru">Разрешение и темп как реальный механизм глубины, а не как дисклеймер о безопасности.</span></li>
+        <li><span class="l-en">Distinguishing access to Self from an activated part: what each one feels like in the body, and what to do with either.</span><span class="l-ru">Различение доступа к Self и активированной части: как каждое ощущается в теле и что делать с тем и с другим.</span></li>
+        <li><span class="l-en">The gentle sequence of meeting a protector — presented as self-inquiry, not as a technique to use on other people.</span><span class="l-ru">Мягкая последовательность встречи с защитником — подаётся как самоисследование, а не как техника для применения к другим.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="practice"><div class="k"><span class="l-en">Practice in session</span><span class="l-ru">Практика на встрече</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Thanking a protector, solo and out loud: naming what it has been carrying and for how long.</span><span class="l-ru">Благодарность защитнику, самостоятельно и вслух: назвать, что он нёс и как долго.</span></li>
+        <li><span class="l-en">Asking permission inwardly before going any further — and practising accepting “no”.</span><span class="l-ru">Внутренне спросить разрешение, прежде чем идти дальше, — и потренироваться принимать «нет».</span></li>
+        <li><span class="l-en">Practice space: witnessed gratitude. One person speaks their thanks aloud; the group listens from access to Self and says nothing.</span><span class="l-ru">Практическое пространство: засвидетельствованная благодарность. Один говорит своё «спасибо» вслух; группа слушает из доступа к Self и ничего не отвечает.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="between"><div class="k"><span class="l-en">Between calls</span><span class="l-ru">Между встречами</span></div><div class="v">
+      <p><span class="l-en">One experiment per day: find a moment where you would normally push yourself, and instead ask permission and slow down by ten percent. Note what happened — including when it did not work.</span>
+      <span class="l-ru">Один эксперимент в день: найти момент, где вы обычно себя продавливаете, и вместо этого спросить разрешение и замедлиться на десять процентов. Записать, что произошло, — в том числе когда не сработало.</span></p>
+    </div></div>
+    <div class="wrow" data-row="material"><div class="k"><span class="l-en">Participant material</span><span class="l-ru">Материал участника</span></div><div class="v">
+      <p><span class="l-en">Handout 04 — <b>“Permission and pacing”</b>: why protectors do not respond to pressure; the language of gratitude; a short self-check for access to Self versus activation; the boundary; one integration prompt.</span>
+      <span class="l-ru">Раздаточный материал 04 — <b>«Разрешение и темп»</b>: почему защитники не откликаются на давление; язык благодарности; короткая самопроверка «доступ к Self или активация»; граница; один интеграционный вопрос.</span></p>
+    </div></div>
+    <div class="wrow rowquote" data-row="quote"><div class="k"><span class="l-en">Quote anchor</span><span class="l-ru">Цитата-опора</span></div><div class="v">
+      <div class="quote"><p><span class="l-en">“We will do nothing without your permission.” … “One of my sayings is, slow is fast.”</span><span class="l-ru">«Мы ничего не сделаем без вашего разрешения». … «Одна из моих поговорок: медленно — значит быстро».</span></p><div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div></div>
+    </div></div>
+    <div class="wrow boundary" data-row="bound"><div class="k"><span class="l-en">Boundary</span><span class="l-ru">Граница</span></div><div class="v">
+      <p><span class="l-en">Gratitude is offered to one’s own protectors only. No participant negotiates with another participant’s protector, and no one is asked to demonstrate their inner work for the group.</span>
+      <span class="l-ru">Благодарность обращена только к собственным защитникам. Ни один участник не ведёт переговоры с защитником другого, и никого не просят демонстрировать свою внутреннюю работу группе.</span></p>
+    </div></div>
+  </article>
+
+  <!-- WEEK 5 -->
+  <article class="week" data-week="5">
+    <div class="week-head">
+      <div class="wk-top">
+        <span class="wk-n"><span class="l-en">Week 05</span><span class="l-ru">Неделя 05</span></span>
+        <h3><span class="l-en">When something younger appears: witnessing without forcing depth</span><span class="l-ru">Когда появляется что-то более юное: witnessing без принуждения к глубине</span></h3>
+      </div>
+      <p class="cq">
+        <b><span class="l-en">Core question</span><span class="l-ru">Ключевой вопрос</span></b>
+        <span class="l-en">How do I meet the most vulnerable thing in me without doing it more violence?</span>
+        <span class="l-ru">Как встретить самое уязвимое в себе, не причиняя этому ещё больше насилия?</span>
+      </p>
+    </div>
+    <div class="wrow" data-row="live"><div class="k"><span class="l-en">Guthrie live</span><span class="l-ru">Guthrie live</span></div><div class="v">
+      <p><span class="l-en">Guthrie carries this week almost entirely through presence: what it looks like when a protector steps aside a little and something younger becomes visible, and why <b>witnessing is already holy work</b>. Participants watch and feel — they do not replicate. This is where his depth is transmitted, not taught.</span>
+      <span class="l-ru">Эту неделю Guthrie несёт почти целиком через присутствие: как это выглядит, когда защитник немного отступает и становится видно что-то более юное, и почему <b>witnessing уже сам по себе — священная работа</b>. Участники смотрят и чувствуют — они не воспроизводят. Здесь его глубина передаётся, а не преподаётся.</span></p>
+    </div></div>
+    <div class="wrow" data-row="theory"><div class="k"><span class="l-en">Theory block</span><span class="l-ru">Теоретический блок</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Behind a protector there is often something young, sensitive and alone. Naming this is orientation, not an invitation to go there.</span><span class="l-ru">За защитником часто живёт нечто юное, чувствительное и одинокое. Назвать это — ориентация, а не приглашение туда идти.</span></li>
+        <li><span class="l-en">Why the first phase of healing is getting to know protectors on their terms — and why this course stays there.</span><span class="l-ru">Почему первая фаза исцеления — знакомство с защитниками на их условиях и почему курс остаётся именно здесь.</span></li>
+        <li><span class="l-en">Witnessing, respect, and the honest limit: when this belongs with a therapist, and how to find one.</span><span class="l-ru">Witnessing, уважение и честный предел: когда это работа с терапевтом и как его найти.</span></li>
+        <li><span class="l-en">If something vulnerable opens spontaneously: relate to it as you would to a child in distress. Warmth, ground, no excavation.</span><span class="l-ru">Если уязвимое открылось спонтанно: отнеситесь к нему как к ребёнку в беде. Тепло, опора, никаких раскопок.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="practice"><div class="k"><span class="l-en">Practice in session</span><span class="l-ru">Практика на встрече</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Ground, core, field, focus — held longer this week, as the container.</span><span class="l-ru">Ground, core, field, focus — на этой неделе дольше, как контейнер.</span></li>
+        <li><span class="l-en">Practising the pause: noticing tenderness and choosing not to open it, on purpose.</span><span class="l-ru">Практика паузы: заметить нежность и осознанно решить её не разворачивать.</span></li>
+        <li><span class="l-en">Self-care map: what steadies you afterwards; who you can call; what you do if something stays open after a session.</span><span class="l-ru">Карта самоподдержки: что вас возвращает в равновесие; кому вы можете позвонить; что делать, если что-то осталось открытым после встречи.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="between"><div class="k"><span class="l-en">Between calls</span><span class="l-ru">Между встречами</span></div><div class="v">
+      <p><span class="l-en">Lighter than other weeks by design. Ground / core / field / focus daily, and one written reflection: <em>what in me needs more gentleness than I have been giving it?</em> No inner archaeology.</span>
+      <span class="l-ru">Намеренно легче остальных недель. Ground / core / field / focus ежедневно и одна письменная рефлексия: <em>что во мне нуждается в большей мягкости, чем я ему давал?</em> Никакой внутренней археологии.</span></p>
+    </div></div>
+    <div class="wrow" data-row="material"><div class="k"><span class="l-en">Participant material</span><span class="l-ru">Материал участника</span></div><div class="v">
+      <p><span class="l-en">Handout 05 — <b>“Witnessing, carefully”</b>: what vulnerable parts are, in plain language; what this course does and does not do with them; what to do if something opens between sessions; how to choose a therapist; the boundary; one integration prompt. Written with more care than any other handout.</span>
+      <span class="l-ru">Раздаточный материал 05 — <b>«Witnessing, бережно»</b>: что такое уязвимые части простым языком; что курс с ними делает и чего не делает; что делать, если что-то открылось между встречами; как выбрать терапевта; граница; один интеграционный вопрос. Написан бережнее любого другого материала.</span></p>
+    </div></div>
+    <div class="wrow rowquote" data-row="quote"><div class="k"><span class="l-en">Quote anchor</span><span class="l-ru">Цитата-опора</span></div><div class="v">
+      <div class="quote"><p><span class="l-en">“You don’t go anywhere in someone’s system without permission. It’s like we’re entering a foreign country — and the laws are different there than in our system.”</span><span class="l-ru">«Вы никуда не идёте в системе другого человека без разрешения. Это как въезд в другую страну — там другие законы, чем в нашей системе».</span></p><div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div></div>
+    </div></div>
+    <div class="wrow boundary" data-row="bound"><div class="k"><span class="l-en">Boundary</span><span class="l-ru">Граница</span></div><div class="v">
+      <p><span class="l-en">The firmest boundary in the course. No exile work in pairs or groups, no unburdening, no digging for memories, no pressure to go deeper, no participant guiding another. Participants learn witnessing, respect, and when to continue with a therapist.</span>
+      <span class="l-ru">Самая жёсткая граница курса. Никакой работы с exiles в парах или группах, никакого unburdening, никаких раскопок воспоминаний, никакого давления «идти глубже», никто не ведёт другого. Участники учатся witnessing, уважению и пониманию, когда продолжать с терапевтом.</span></p>
+    </div></div>
+  </article>
+
+  <!-- WEEK 6 -->
+  <article class="week" data-week="6">
+    <div class="week-head">
+      <div class="wk-top">
+        <span class="wk-n"><span class="l-en">Week 06</span><span class="l-ru">Неделя 06</span></span>
+        <h3><span class="l-en">Back into life: field awareness with other people</span><span class="l-ru">Обратно в жизнь: осознавание поля с другими людьми</span></h3>
+      </div>
+      <p class="cq">
+        <b><span class="l-en">Core question</span><span class="l-ru">Ключевой вопрос</span></b>
+        <span class="l-en">How does this become the way I live, rather than something I did for six weeks?</span>
+        <span class="l-ru">Как это становится тем, как я живу, а не тем, что я делал шесть недель?</span>
+      </p>
+    </div>
+    <div class="wrow" data-row="live"><div class="k"><span class="l-en">Guthrie live</span><span class="l-ru">Guthrie live</span></div><div class="v">
+      <p><span class="l-en">Field awareness in relationship: tracking what is happening inside you and inside the other person at the same time. How an internal polarization, once handled, can be handled externally — in a marriage, a team, a family. Closes with sangha and continuation. <b>Open decision:</b> whether Guthrie also gives a brief orientation or demo around exile material here (§09.3).</span>
+      <span class="l-ru">Осознавание поля в отношениях: отслеживать одновременно то, что происходит внутри вас и внутри другого. Как внутренняя поляризация, однажды пройденная, может быть пройдена и снаружи — в браке, в команде, в семье. Завершение — sangha и продолжение. <b>Открытое решение:</b> даёт ли Guthrie здесь короткую ориентацию или демонстрацию по материалу exiles (§09.3).</span></p>
+    </div></div>
+    <div class="wrow" data-row="theory"><div class="k"><span class="l-en">Theory block</span><span class="l-ru">Теоретический блок</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Field awareness as a relational skill: presence that includes the other person instead of aiming at them.</span><span class="l-ru">Осознавание поля как навык отношений: присутствие, которое включает другого, а не целится в него.</span></li>
+        <li><span class="l-en">From internal to external: two conflicting parts inside; two conflicting people outside; the same move works.</span><span class="l-ru">От внутреннего к внешнему: две конфликтующие части внутри; два конфликтующих человека снаружи; работает тот же ход.</span></li>
+        <li><span class="l-en">Self-led leadership and parenting: doing less, getting bigger results, being willing to be visible.</span><span class="l-ru">Self-led лидерство и родительство: делать меньше, получать больше, быть готовым быть видимым.</span></li>
+        <li><span class="l-en">Why practice needs community — and what continuing looks like after this course.</span><span class="l-ru">Почему практике нужно сообщество — и как выглядит продолжение после этого курса.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="practice"><div class="k"><span class="l-en">Practice in session</span><span class="l-ru">Практика на встрече</span></div><div class="v">
+      <ul>
+        <li><span class="l-en">Field-aware listening in pairs: staying in the field while another person speaks, tracking yourself and them at once.</span><span class="l-ru">Слушание из поля в парах: оставаться в поле, пока говорит другой, отслеживая одновременно себя и его.</span></li>
+        <li><span class="l-en">One relationship, revisited: naming the parts that usually appear there — on behalf of, never as.</span><span class="l-ru">Одни отношения, к которым мы возвращаемся: назвать части, которые обычно там появляются, — от имени, никогда как.</span></li>
+        <li><span class="l-en">Closing integration circle: “my life with more Self” — one sentence each.</span><span class="l-ru">Завершающий круг интеграции: «моя жизнь с бо́льшим Self» — по одному предложению от каждого.</span></li>
+      </ul>
+    </div></div>
+    <div class="wrow" data-row="between"><div class="k"><span class="l-en">After the course</span><span class="l-ru">После курса</span></div><div class="v">
+      <p><span class="l-en">A minimum viable daily practice the participant chooses themselves — usually three to seven minutes. Plus an open invitation into the ongoing practice community: presented as the natural continuation of a practice of life, not as an upsell.</span>
+      <span class="l-ru">Минимальная жизнеспособная ежедневная практика, которую участник выбирает сам, — обычно 3–7 минут. Плюс открытое приглашение в продолжающееся практическое сообщество: подаётся как естественное продолжение практики жизни, а не как допродажа.</span></p>
+    </div></div>
+    <div class="wrow" data-row="material"><div class="k"><span class="l-en">Participant material</span><span class="l-ru">Материал участника</span></div><div class="v">
+      <p><span class="l-en">Handout 06 — <b>“A practice of life”</b>: field awareness in relationship; the internal-to-external move; how to design your own minimum daily practice; what continues and where; the boundary; a final reflection on “my life with more Self”. Plus the integration guide covering all six weeks.</span>
+      <span class="l-ru">Раздаточный материал 06 — <b>«Практика жизни»</b>: осознавание поля в отношениях; переход от внутреннего к внешнему; как собрать свою минимальную ежедневную практику; что продолжается и где; граница; финальная рефлексия «моя жизнь с бо́льшим Self». Плюс интеграционный гайд по всем шести неделям.</span></p>
+    </div></div>
+    <div class="wrow rowquote" data-row="quote"><div class="k"><span class="l-en">Quote anchor</span><span class="l-ru">Цитата-опора</span></div><div class="v">
+      <div class="quote"><p><span class="l-en">“Field awareness is the perfect way to be in relationship with other people.” … “It becomes a practice of life. And a practice of life needs communal support.”</span><span class="l-ru">«Осознавание поля — идеальный способ быть в отношениях с другими людьми». … «Это становится практикой жизни. А практике жизни нужна поддержка сообщества».</span></p><div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor</span><span class="l-ru">Внутренняя рабочая опора</span></span></div></div>
+    </div></div>
+    <div class="wrow boundary" data-row="bound"><div class="k"><span class="l-en">Boundary</span><span class="l-ru">Граница</span></div><div class="v">
+      <p><span class="l-en">Relational practice is Self-led relating, not couples work and not peer therapy. Participants leave with a way of being, not with a role. Nobody graduates as a practitioner.</span>
+      <span class="l-ru">Практика отношений — это Self-led присутствие, а не работа с парами и не peer therapy. Участники уходят со способом быть, а не с ролью. Никто не выпускается практиком.</span></p>
+    </div></div>
+  </article>
+</section>
+
+<!-- ============ 05 PRACTICE ARCHITECTURE ============ -->
+<section id="practice">
+  <div class="sec-head"><span class="sec-num">05</span><h2><span class="l-en">Practice architecture</span><span class="l-ru">Архитектура практики</span></h2></div>
+  <p>
+    <span class="l-en">Three containers, each with a different job. The distinction matters: it is what keeps the course safe without making it timid.</span>
+    <span class="l-ru">Три контейнера, у каждого своя задача. Это различение важно: именно оно делает курс безопасным, не делая его робким.</span>
+  </p>
+
+  <div class="grid3">
+    <div class="panel">
+      <h4><span class="l-en">01 · Live with Guthrie</span><span class="l-ru">01 · Живая встреча с Guthrie</span></h4>
+      <p><span class="l-en"><strong>Job: transmission.</strong> Guthrie opens with meditation, teaches briefly, demonstrates, and holds warm connection. Participants come away having felt something, not having taken notes.</span>
+      <span class="l-ru"><strong>Задача: передача.</strong> Guthrie открывает медитацией, коротко учит, показывает, держит тёплую связь. Участники уходят, что-то почувствовав, а не законспектировав.</span></p>
+      <ul style="margin-bottom:0">
+        <li><span class="l-en">Opening meditation (ground / core / field / focus)</span><span class="l-ru">Открывающая медитация (ground / core / field / focus)</span></li>
+        <li><span class="l-en">Short teaching in his own language</span><span class="l-ru">Короткое учение его собственным языком</span></li>
+        <li><span class="l-en">Demo where agreed</span><span class="l-ru">Демонстрация там, где согласовано</span></li>
+        <li><span class="l-en">Q&amp;A, held from access to Self</span><span class="l-ru">Вопросы и ответы, из доступа к Self</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4><span class="l-en">02 · VAHUE practice spaces</span><span class="l-ru">02 · Практические пространства VAHUE</span></h4>
+      <p><span class="l-en"><strong>Job: Self-led relating.</strong> Small groups, held by VAHUE facilitators, where the week’s language is practised with other people — never as a session, always as relating.</span>
+      <span class="l-ru"><strong>Задача: Self-led присутствие в контакте.</strong> Малые группы, которые держат фасилитаторы VAHUE, где язык недели практикуется с другими людьми — никогда как сессия, всегда как контакт.</span></p>
+      <ul style="margin-bottom:0">
+        <li><span class="l-en">Short presencing to open</span><span class="l-ru">Короткий presencing на открытии</span></li>
+        <li><span class="l-en">Speaking on behalf of a part</span><span class="l-ru">Речь от имени части</span></li>
+        <li><span class="l-en">Listening from access to Self</span><span class="l-ru">Слушание из доступа к Self</span></li>
+        <li><span class="l-en">Integration circle to close</span><span class="l-ru">Круг интеграции на закрытии</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4><span class="l-en">03 · Alone, between calls</span><span class="l-ru">03 · Самостоятельно, между встречами</span></h4>
+      <p><span class="l-en"><strong>Job: frequency and duration.</strong> Small, daily, portable. This is where access to Self actually becomes more available — not in the live call.</span>
+      <span class="l-ru"><strong>Задача: частота и длительность.</strong> Маленькое, ежедневное, переносимое. Именно здесь доступ к Self реально становится доступнее — а не на живой встрече.</span></p>
+      <ul style="margin-bottom:0">
+        <li><span class="l-en">Daily ground / core / field / focus</span><span class="l-ru">Ежедневно ground / core / field / focus</span></li>
+        <li><span class="l-en">Walking practice</span><span class="l-ru">Практика ходьбы</span></li>
+        <li><span class="l-en">The parts sentence, three times a day</span><span class="l-ru">Фраза частей, три раза в день</span></li>
+        <li><span class="l-en">One-line evening reflection</span><span class="l-ru">Однострочная вечерняя рефлексия</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3><span class="l-en">Practice inventory</span><span class="l-ru">Инвентарь практик</span></h3>
+  <table>
+    <thead><tr>
+      <th><span class="l-en">Practice</span><span class="l-ru">Практика</span></th>
+      <th><span class="l-en">Trains</span><span class="l-ru">Тренирует</span></th>
+      <th><span class="l-en">Where</span><span class="l-ru">Где</span></th>
+      <th><span class="l-en">Introduced</span><span class="l-ru">Вводится</span></th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><b><span class="l-en">Ground, core, field, focus</span><span class="l-ru">Ground, core, field, focus</span></b></td>
+        <td><span class="l-en">The four building blocks of Presence; the course’s home base</span><span class="l-ru">Четыре кирпича Присутствия; домашняя база курса</span></td>
+        <td><span class="l-en">Live · solo · opens every space</span><span class="l-ru">Live · соло · открывает каждое пространство</span></td>
+        <td class="num">W1</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Peripheral vision / fingers</span><span class="l-ru">Периферическое зрение / пальцы</span></b></td>
+        <td><span class="l-en">Attention relaxing into field awareness, in under a minute</span><span class="l-ru">Внимание расслабляется в осознавание поля, меньше чем за минуту</span></td>
+        <td><span class="l-en">Live · solo</span><span class="l-ru">Live · соло</span></td>
+        <td class="num">W1</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Walking practice</span><span class="l-ru">Практика ходьбы</span></b></td>
+        <td><span class="l-en">Open seeing → open hearing → body → all three at once</span><span class="l-ru">Открытое зрение → открытый слух → тело → всё три сразу</span></td>
+        <td><span class="l-en">Solo, daily</span><span class="l-ru">Соло, ежедневно</span></td>
+        <td class="num">W1</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Full bowl of soup</span><span class="l-ru">Полная тарелка супа</span></b></td>
+        <td><span class="l-en">Hyperfocus creates tension; the field allows relaxed effective action</span><span class="l-ru">Гиперфокус создаёт напряжение; поле позволяет расслабленное точное действие</span></td>
+        <td><span class="l-en">Live · in daily life</span><span class="l-ru">Live · в повседневности</span></td>
+        <td class="num">W1</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">The parts doorway</span><span class="l-ru">Дверь через части</span></b></td>
+        <td><span class="l-en">“A part of me is…” → distance → willingness to be with it → compassion → wider field</span><span class="l-ru">«Часть меня…» → дистанция → готовность быть с ней → сострадание → более широкое поле</span></td>
+        <td><span class="l-en">Live · practice space · solo</span><span class="l-ru">Live · практическое пространство · соло</span></td>
+        <td class="num">W2</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">“How do I feel toward this part?”</span><span class="l-ru">«Что я чувствую по отношению к этой части?»</span></b></td>
+        <td><span class="l-en">Measures how much access to Self is available, without judgement</span><span class="l-ru">Измеряет, сколько доступа к Self сейчас есть, без осуждения</span></td>
+        <td><span class="l-en">Everywhere, all six weeks</span><span class="l-ru">Везде, все шесть недель</span></td>
+        <td class="num">W2</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Speaking on behalf of a part</span><span class="l-ru">Речь от имени части</span></b></td>
+        <td><span class="l-en">Relational parts language without blending</span><span class="l-ru">Реляционный язык частей без слияния</span></td>
+        <td><span class="l-en">Practice space</span><span class="l-ru">Практическое пространство</span></td>
+        <td class="num">W2</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Thanking a protector</span><span class="l-ru">Благодарность защитнику</span></b></td>
+        <td><span class="l-en">Gratitude instead of pressure; protectors soften when honoured</span><span class="l-ru">Благодарность вместо давления; защитники смягчаются, когда их чтят</span></td>
+        <td><span class="l-en">Live · solo · witnessed in group</span><span class="l-ru">Live · соло · засвидетельствовано в группе</span></td>
+        <td class="num">W4</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Integration circle</span><span class="l-ru">Круг интеграции</span></b></td>
+        <td><span class="l-en">Being seen without being fixed; community as container</span><span class="l-ru">Быть увиденным без починки; сообщество как контейнер</span></td>
+        <td><span class="l-en">Practice space, weekly</span><span class="l-ru">Практическое пространство, еженедельно</span></td>
+        <td class="num">W3 →</td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Field-aware listening</span><span class="l-ru">Слушание из поля</span></b></td>
+        <td><span class="l-en">Tracking self and other simultaneously, without collapsing</span><span class="l-ru">Одновременное отслеживание себя и другого без сваливания</span></td>
+        <td><span class="l-en">Practice space · life</span><span class="l-ru">Практическое пространство · жизнь</span></td>
+        <td class="num">W6</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="panel flag">
+    <h4><span class="l-en">Why these practices are safe for non-practitioners</span><span class="l-ru">Почему эти практики безопасны для не-практиков</span></h4>
+    <p style="margin-bottom:0"><span class="l-en">Every practice above trains Self-access and field awareness. None of them requires one participant to guide another’s system, and none of them opens exile material by design. Depth in this course comes from Guthrie’s presence in the live room, not from participants attempting depth on each other.</span>
+    <span class="l-ru">Каждая практика выше тренирует доступ к Self и осознавание поля. Ни одна не требует, чтобы участник вёл систему другого, и ни одна по замыслу не открывает материал exiles. Глубина в этом курсе приходит из присутствия Guthrie в живой комнате, а не из попыток участников достигать глубины друг на друге.</span></p>
+  </div>
+</section>
+
+<!-- ============ 06 MATERIALS ============ -->
+<section id="materials">
+  <div class="sec-head"><span class="sec-num">06</span><h2><span class="l-en">Materials map</span><span class="l-ru">Карта материалов</span></h2></div>
+  <p>
+    <span class="l-en">Lean by policy. One participant-facing handout per week unless there is a clear reason for more. Each handout carries <b>5±1 points</b>: one weekly frame, the key language, one simple practice, the boundary for that week, one integration prompt.</span>
+    <span class="l-ru">Компактно по принципу. Один раздаточный материал на неделю, если нет ясной причины для большего. Каждый несёт <b>5±1 пунктов</b>: рамка недели, ключевой язык, одна простая практика, граница этой недели, один интеграционный вопрос.</span>
+  </p>
+
+  <table>
+    <thead><tr>
+      <th><span class="l-en">Artifact</span><span class="l-ru">Артефакт</span></th>
+      <th><span class="l-en">What it does</span><span class="l-ru">Что делает</span></th>
+      <th><span class="l-en">Owner</span><span class="l-ru">Ответственный</span></th>
+      <th><span class="l-en">Status</span><span class="l-ru">Статус</span></th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><b><span class="l-en">Pre-course intro guide</span><span class="l-ru">Вводный гайд до курса</span></b></td>
+        <td><span class="l-en">Read before Week 1. Sets OS 1.0 → 2.0, the language rules, what the course is and is not, how to prepare. Short — 8–12 pages.</span><span class="l-ru">Читается до первой недели. Задаёт ОС 1.0 → 2.0, правила языка, чем курс является и чем нет, как подготовиться. Коротко — 8–12 страниц.</span></td>
+        <td><span class="l-en">VAHUE writes · Guthrie edits</span><span class="l-ru">VAHUE пишет · Guthrie правит</span></td>
+        <td><span class="tag q"><span class="l-en">Next</span><span class="l-ru">Следующее</span></span></td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Six weekly handouts</span><span class="l-ru">Шесть еженедельных материалов</span></b></td>
+        <td><span class="l-en">5±1 points each, per §04. The only required reading during the course.</span><span class="l-ru">По 5±1 пунктов каждый, согласно §04. Единственное обязательное чтение во время курса.</span></td>
+        <td><span class="l-en">VAHUE writes · Guthrie edits</span><span class="l-ru">VAHUE пишет · Guthrie правит</span></td>
+        <td><span class="tag"><span class="l-en">Skeleton ready</span><span class="l-ru">Скелет готов</span></span></td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Practice cards / audio</span><span class="l-ru">Карточки практик / аудио</span></b></td>
+        <td><span class="l-en">One card per practice from §05, plus a recorded ground / core / field / focus meditation participants can use daily.</span><span class="l-ru">Карточка на каждую практику из §05, плюс запись медитации ground / core / field / focus для ежедневного использования.</span></td>
+        <td><span class="l-en">VAHUE · voice t.b.c.</span><span class="l-ru">VAHUE · голос уточняется</span></td>
+        <td><span class="tag q"><span class="l-en">Decision needed</span><span class="l-ru">Нужно решение</span></span></td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Reflection prompts</span><span class="l-ru">Вопросы для рефлексии</span></b></td>
+        <td><span class="l-en">One per week, inside the handout. Journaling that connects parts language to real life: money, conflict, overload, the inner critic, discomfort in daily situations.</span><span class="l-ru">По одному в неделю, внутри материала. Дневник, связывающий язык частей с реальной жизнью: деньги, конфликты, перегруз, внутренний критик, дискомфорт в повседневных ситуациях.</span></td>
+        <td><span class="l-en">VAHUE</span><span class="l-ru">VAHUE</span></td>
+        <td><span class="tag"><span class="l-en">Drafting</span><span class="l-ru">В черновике</span></span></td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Quote bank</span><span class="l-ru">Банк цитат</span></b></td>
+        <td><span class="l-en">Three layers of use: public story, course content, internal method rules. Praise quotes excluded. Nothing goes public without Guthrie’s approval.</span><span class="l-ru">Три слоя использования: публичная история, содержание курса, внутренние правила метода. Цитаты-похвалы исключены. Ничего не публикуется без согласования с Guthrie.</span></td>
+        <td><span class="l-en">VAHUE · Guthrie approves</span><span class="l-ru">VAHUE · утверждает Guthrie</span></td>
+        <td><span class="tag q"><span class="l-en">Approval needed</span><span class="l-ru">Нужно согласование</span></span></td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Facilitator notes</span><span class="l-ru">Заметки фасилитатора</span></b></td>
+        <td><span class="l-en">Internal only. How to hold a practice space, how to redirect when someone starts guiding, what to do if something vulnerable opens.</span><span class="l-ru">Только внутреннее. Как держать практическое пространство, как перенаправить, когда кто-то начинает вести, что делать, если открылось уязвимое.</span></td>
+        <td><span class="l-en">VAHUE</span><span class="l-ru">VAHUE</span></td>
+        <td><span class="tag"><span class="l-en">Drafting</span><span class="l-ru">В черновике</span></span></td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Landing page</span><span class="l-ru">Лендинг</span></b></td>
+        <td><span class="l-en">Separate deliverable. Introduces OS 1.0 → 2.0 <em>before</em> the weekly structure, so people arrive already oriented to the main experience.</span><span class="l-ru">Отдельный результат. Вводит ОС 1.0 → 2.0 <em>до</em> структуры недель, чтобы люди приходили уже сориентированными на главный опыт.</span></td>
+        <td><span class="l-en">VAHUE · Guthrie reviews</span><span class="l-ru">VAHUE · Guthrie смотрит</span></td>
+        <td><span class="tag q"><span class="l-en">After §09 answers</span><span class="l-ru">После ответов по §09</span></span></td>
+      </tr>
+      <tr>
+        <td><b><span class="l-en">Integration guide</span><span class="l-ru">Интеграционный гайд</span></b></td>
+        <td><span class="l-en">Given in Week 6. Pulls all six weeks together and helps the participant design a practice they will actually keep.</span><span class="l-ru">Выдаётся на шестой неделе. Собирает шесть недель вместе и помогает участнику собрать практику, которую он реально сохранит.</span></td>
+        <td><span class="l-en">VAHUE</span><span class="l-ru">VAHUE</span></td>
+        <td><span class="tag"><span class="l-en">Skeleton ready</span><span class="l-ru">Скелет готов</span></span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="panel">
+    <h4><span class="l-en">The rule behind the leanness</span><span class="l-ru">Правило, стоящее за компактностью</span></h4>
+    <p style="margin-bottom:0"><span class="l-en">Participants should not receive a lot of information. They should receive something they can return to. Materials exist to help a person re-enter access to Self and remember a way of being with themselves — not to help them complete a course. If a document does not do that, it does not ship.</span>
+    <span class="l-ru">Участники не должны получать много информации. Они должны получать то, к чему можно возвращаться. Материалы существуют, чтобы помочь человеку заново войти в доступ к Self и вспомнить способ быть с собой, — а не чтобы помочь пройти курс. Если документ этого не делает, он не выходит.</span></p>
+  </div>
+</section>
+
+<!-- ============ 07 ROLES ============ -->
+<section id="roles">
+  <div class="sec-head"><span class="sec-num">07</span><h2><span class="l-en">Roles: Guthrie and VAHUE</span><span class="l-ru">Роли: Guthrie и VAHUE</span></h2></div>
+  <p>
+    <span class="l-en">Working assumption, to confirm. The intent is that Guthrie’s time goes almost entirely into what only he can do: being present in the room and correcting the language.</span>
+    <span class="l-ru">Рабочее допущение, требует подтверждения. Замысел в том, чтобы время Guthrie уходило почти целиком на то, что может только он: присутствие в комнате и корректировка языка.</span>
+  </p>
+
+  <div class="grid2">
+    <div class="panel">
+      <h4><span class="l-en">Guthrie</span><span class="l-ru">Guthrie</span></h4>
+      <ul class="checks yes" style="margin-bottom:0">
+        <li><span class="l-en">Delivers the six weekly live calls</span><span class="l-ru">Ведёт шесть еженедельных живых встреч</span></li>
+        <li><span class="l-en">Carries the felt sense of Self-led presence — transmission, not lecture</span><span class="l-ru">Несёт felt sense Self-led присутствия — передача, а не лекция</span></li>
+        <li><span class="l-en">Leads meditations and any demos</span><span class="l-ru">Ведёт медитации и любые демонстрации</span></li>
+        <li><span class="l-en">Reviews and edits materials outside class, in writing</span><span class="l-ru">Смотрит и правит материалы вне встреч, письменно</span></li>
+        <li><span class="l-en">Approves the language and the quotes used publicly</span><span class="l-ru">Утверждает язык и цитаты для публичного использования</span></li>
+        <li><span class="l-en">Joins two or three marketing / recording calls</span><span class="l-ru">Участвует в двух-трёх маркетинговых / записывающих звонках</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4><span class="l-en">VAHUE</span><span class="l-ru">VAHUE</span></h4>
+      <ul class="checks yes" style="margin-bottom:0">
+        <li><span class="l-en">Writes all participant materials and the intro guide</span><span class="l-ru">Пишет все материалы участников и вводный гайд</span></li>
+        <li><span class="l-en">Builds the six-week structure and practice design</span><span class="l-ru">Строит структуру шести недель и дизайн практик</span></li>
+        <li><span class="l-en">Holds the practice spaces and trains the facilitators</span><span class="l-ru">Держит практические пространства и готовит фасилитаторов</span></li>
+        <li><span class="l-en">Translates and adapts everything into Russian</span><span class="l-ru">Переводит и адаптирует всё на русский</span></li>
+        <li><span class="l-en">Builds the landing page, marketing and enrolment</span><span class="l-ru">Строит лендинг, маркетинг и набор</span></li>
+        <li><span class="l-en">Holds the community during and after the course</span><span class="l-ru">Держит сообщество во время и после курса</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel flag">
+    <h4><span class="l-en">Shared, and non-negotiable</span><span class="l-ru">Общее и не обсуждаемое</span></h4>
+    <p style="margin-bottom:0"><span class="l-en">The boundaries in §08 are held by both sides, in every space, without exception. If a facilitator is unsure whether something is inside the boundary, the answer is that it is not, and the practice returns to ground.</span>
+    <span class="l-ru">Границы из §08 держат обе стороны, в каждом пространстве, без исключений. Если фасилитатор не уверен, находится ли что-то внутри границы, ответ — нет, и практика возвращается к ground.</span></p>
+  </div>
+</section>
+
+<!-- ============ 08 BOUNDARIES ============ -->
+<section id="boundaries">
+  <div class="sec-head"><span class="sec-num">08</span><h2><span class="l-en">Boundaries</span><span class="l-ru">Границы</span></h2></div>
+  <p>
+    <span class="l-en">Practice spaces are for Self-led relating, not for practising IFS sessions. This table is the operational form of that sentence, and it goes into facilitator notes verbatim.</span>
+    <span class="l-ru">Практические пространства — для Self-led присутствия в контакте, а не для отработки IFS-сессий. Эта таблица — операционная форма того же предложения, и она входит в заметки фасилитатора дословно.</span>
+  </p>
+
+  <table>
+    <thead><tr>
+      <th style="width:50%"><span class="l-en">Allowed</span><span class="l-ru">Разрешено</span></th>
+      <th><span class="l-en">Not part of this course</span><span class="l-ru">Не является частью этого курса</span></th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><ul class="checks yes" style="margin:0">
+          <li><span class="l-en">Short presencing</span><span class="l-ru">Короткий presencing</span></li>
+          <li><span class="l-en">Accessing Self; asking how much access is available</span><span class="l-ru">Доступ к Self; вопрос, сколько доступа сейчас есть</span></li>
+          <li><span class="l-en">Noticing a part</span><span class="l-ru">Замечание части</span></li>
+          <li><span class="l-en">Asking “How do I feel toward this part?”</span><span class="l-ru">Вопрос «что я чувствую по отношению к этой части?»</span></li>
+          <li><span class="l-en">Speaking on behalf of a part</span><span class="l-ru">Речь от имени части</span></li>
+          <li><span class="l-en">Listening from access to Self</span><span class="l-ru">Слушание из доступа к Self</span></li>
+          <li><span class="l-en">Thanking a protector</span><span class="l-ru">Благодарность защитнику</span></li>
+          <li><span class="l-en">Relational parts-language practice</span><span class="l-ru">Реляционная практика языка частей</span></li>
+          <li><span class="l-en">Integration circles</span><span class="l-ru">Круги интеграции</span></li>
+        </ul></td>
+        <td><ul class="checks no" style="margin:0">
+          <li><span class="l-en">Peer therapy</span><span class="l-ru">Peer therapy</span></li>
+          <li><span class="l-en">Guiding another person through an IFS process</span><span class="l-ru">Ведение другого человека через IFS-процесс</span></li>
+          <li><span class="l-en">Exile work in pairs or groups</span><span class="l-ru">Работа с exiles в парах или группах</span></li>
+          <li><span class="l-en">Unburdening</span><span class="l-ru">Unburdening</span></li>
+          <li><span class="l-en">Digging for memories</span><span class="l-ru">Раскопки воспоминаний</span></li>
+          <li><span class="l-en">Pressure to “go deeper”</span><span class="l-ru">Давление «идти глубже»</span></li>
+          <li><span class="l-en">Interpreting another person’s system</span><span class="l-ru">Интерпретация системы другого человека</span></li>
+          <li><span class="l-en">Advice dressed as IFS</span><span class="l-ru">Советы, переодетые в IFS</span></li>
+          <li><span class="l-en">Speaking <em>as</em> a part in a way that encourages blending</span><span class="l-ru">Речь <em>как</em> часть в форме, поощряющей слияние</span></li>
+        </ul></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid2">
+    <div class="panel warn">
+      <h4><span class="l-en">If an exile appears spontaneously</span><span class="l-ru">Если exile появился спонтанно</span></h4>
+      <ul style="margin-bottom:0">
+        <li><span class="l-en">Relate to it as you would to a child in distress: warmth, respect, no questions to extract more.</span><span class="l-ru">Отнеситесь как к ребёнку в беде: тепло, уважение, без вопросов, вытягивающих больше.</span></li>
+        <li><span class="l-en">Return to ground and core. Widen the field. Slow down.</span><span class="l-ru">Вернитесь к ground и core. Расширьте поле. Замедлитесь.</span></li>
+        <li><span class="l-en">The facilitator does not open the material and does not interpret it.</span><span class="l-ru">Фасилитатор не разворачивает материал и не интерпретирует его.</span></li>
+        <li><span class="l-en">Follow-up is offered afterwards, one to one, including the option of continuing with a therapist.</span><span class="l-ru">Дальнейший контакт предлагается после, один на один, включая вариант продолжить с терапевтом.</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4><span class="l-en">Language rules that hold the boundary</span><span class="l-ru">Языковые правила, которые держат границу</span></h4>
+      <ul style="margin-bottom:0">
+        <li><span class="l-en"><b>Not</b> “Self-centered” in English. Use <b>Self-led</b>, <b>the centrality of Self</b>, <b>access to Self</b>.</span><span class="l-ru">В английском <b>не</b> «Self-centered». Используем <b>Self-led</b>, <b>centrality of Self</b>, <b>access to Self</b>.</span></li>
+        <li><span class="l-en"><b>Not</b> “in Self”. Ask how much access to Self is available.</span><span class="l-ru"><b>Не</b> «в Self». Спрашиваем, сколько доступа к Self сейчас есть.</span></li>
+        <li><span class="l-en"><b>Not</b> “soft part” or “mild part”. Use <b>ordinary everyday part</b>, <b>low-intensity part</b>, <b>a part that is present but not overwhelming</b>.</span><span class="l-ru"><b>Не</b> «мягкая часть» или «лёгкая часть». Используем <b>обычная повседневная часть</b>, <b>часть низкой интенсивности</b>, <b>часть, которая присутствует, но не захлёстывает</b>.</span></li>
+        <li><span class="l-en">Speak <b>on behalf of</b> a part: “a part of me says…”, “I notice a part that wants…”.</span><span class="l-ru">Говорим <b>от имени</b> части: «часть меня говорит…», «я замечаю часть, которая хочет…».</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 OPEN DECISIONS ============ -->
+<section id="open">
+  <div class="sec-head"><span class="sec-num">09</span><h2><span class="l-en">Open decisions for Guthrie</span><span class="l-ru">Открытые решения для Guthrie</span></h2></div>
+  <p>
+    <span class="l-en">Six decisions. Everything else in this document can proceed without them; these six block specific pieces of work. Written for a written reply — Guthrie has said feedback in writing is easier than by voice.</span>
+    <span class="l-ru">Шесть решений. Всё остальное в документе может двигаться без них; эти шесть блокируют конкретные куски работы. Написано под письменный ответ — Guthrie говорил, что письменная обратная связь ему удобнее голосовой.</span>
+  </p>
+
+  <ol class="numlist">
+    <li>
+      <b><span class="l-en">Live-call sequence</span><span class="l-ru">Последовательность живых встреч</span></b>
+      <p><span class="l-en">§04 proposes: attention/awareness → parts language → everyday protectors → permission and gratitude → witnessing → life and relationship. An earlier draft placed the gentle sequence of meeting a protector in Week 2 and everyday protectors in Week 3.</span>
+      <span class="l-ru">§04 предлагает: внимание/осознавание → язык частей → повседневные защитники → разрешение и благодарность → witnessing → жизнь и отношения. В более раннем черновике мягкая последовательность встречи с защитником стояла на второй неделе, а повседневные защитники — на третьей.</span></p>
+      <div class="ask"><b><span class="l-en">Question</span><span class="l-ru">Вопрос</span></b> — <span class="l-en">Does this order work for you, or would you teach it differently? Which week do you most want to shape yourself?</span><span class="l-ru">Работает ли для вас этот порядок или вы бы учили иначе? Какую неделю вы больше всего хотите собрать сами?</span></div>
+    </li>
+    <li>
+      <b><span class="l-en">Demos: how many, and where</span><span class="l-ru">Демонстрации: сколько и где</span></b>
+      <p><span class="l-en">Our assumption is a demo in Weeks 3, 4 and 5, with volunteers from the group, always with ordinary everyday material. Demos are the main way your depth reaches people who will never practise IFS.</span>
+      <span class="l-ru">Наше допущение: демонстрации на неделях 3, 4 и 5, с волонтёрами из группы, всегда на обычном повседневном материале. Демонстрации — главный способ, которым ваша глубина доходит до людей, которые никогда не будут практиковать IFS.</span></p>
+      <div class="ask"><b><span class="l-en">Question</span><span class="l-ru">Вопрос</span></b> — <span class="l-en">How many demos do you want, in which weeks, and what do you need from us to make them safe (screening, consent, recording, aftercare)?</span><span class="l-ru">Сколько демонстраций вы хотите, на каких неделях и что вам нужно от нас, чтобы сделать их безопасными (отбор, согласие, запись, поддержка после)?</span></div>
+    </li>
+    <li>
+      <b><span class="l-en">Scope of Week 6 and exile orientation</span><span class="l-ru">Объём недели 6 и ориентация по exiles</span></b>
+      <p><span class="l-en">Participant exile work is out of scope throughout. The open question is whether Week 6 includes your live orientation, or a demo, around exile material — with no peer exile work, no protocol, no unburdening, and participants learning witnessing and when to continue with a therapist.</span>
+      <span class="l-ru">Работа участников с exiles вне объёма курса на всём его протяжении. Открытый вопрос — включает ли шестая неделя вашу живую ориентацию или демонстрацию по материалу exiles, без работы с exiles в парах, без протокола, без unburdening; участники учатся witnessing и пониманию, когда продолжать с терапевтом.</span></p>
+      <div class="ask"><b><span class="l-en">Question</span><span class="l-ru">Вопрос</span></b> — <span class="l-en">Orientation only, orientation plus demo, or neither? And should it sit in Week 5 or Week 6?</span><span class="l-ru">Только ориентация, ориентация плюс демонстрация или ни то, ни другое? И где это — на пятой или шестой неделе?</span></div>
+    </li>
+    <li>
+      <b><span class="l-en">Launch window</span><span class="l-ru">Окно запуска</span></b>
+      <p><span class="l-en">Mid-November 2026 or January 2027. November gives less preparation time but a warmer marketing season; January gives full readiness and a natural start-of-year entry.</span>
+      <span class="l-ru">Середина ноября 2026 или январь 2027. Ноябрь даёт меньше времени на подготовку, но более тёплый маркетинговый сезон; январь даёт полную готовность и естественный вход в начале года.</span></p>
+      <div class="ask"><b><span class="l-en">Question</span><span class="l-ru">Вопрос</span></b> — <span class="l-en">Which window works with your calendar, and what is your deadline for having all six weeks of materials in hand?</span><span class="l-ru">Какое окно подходит вашему календарю и какой ваш дедлайн, чтобы все материалы шести недель были у вас на руках?</span></div>
+    </li>
+    <li>
+      <b><span class="l-en">Materials review rhythm</span><span class="l-ru">Ритм ревью материалов</span></b>
+      <p><span class="l-en">You have said you want to see all materials for the whole program before the class begins. Our plan: full six-week draft before launch, your edits closed before class 01, with only light refinements continuing afterwards.</span>
+      <span class="l-ru">Вы говорили, что хотите увидеть все материалы всей программы до начала курса. Наш план: полный черновик шести недель до запуска, ваши правки закрыты до встречи 01, дальше — только лёгкие уточнения.</span></p>
+      <div class="ask"><b><span class="l-en">Question</span><span class="l-ru">Вопрос</span></b> — <span class="l-en">Do you want everything at once, or week by week as we finish it? And how much time do you need per batch?</span><span class="l-ru">Вы хотите получить всё сразу или по неделям, по мере готовности? Сколько времени вам нужно на каждую партию?</span></div>
+    </li>
+    <li>
+      <b><span class="l-en">Quotes approved for public use</span><span class="l-ru">Цитаты, согласованные для публичного использования</span></b>
+      <p><span class="l-en">Every quote in this document is currently an internal working anchor drawn from your previous course and our calls. Nothing goes on the landing page or into participant materials until you approve it — and you may want to rewrite some of them rather than approve the spoken version.</span>
+      <span class="l-ru">Каждая цитата в этом документе — сейчас внутренняя рабочая опора, взятая из вашего прошлого курса и наших звонков. Ничего не попадает на лендинг или в материалы участников, пока вы это не одобрите, — и часть из них вы, возможно, захотите переписать, а не утверждать устную версию.</span></p>
+      <div class="ask"><b><span class="l-en">Question</span><span class="l-ru">Вопрос</span></b> — <span class="l-en">Which quotes can be public as they are, which need rewriting, and which should stay internal only?</span><span class="l-ru">Какие цитаты можно публиковать как есть, какие нужно переписать, а какие оставить только внутренними?</span></div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ 10 NEXT ============ -->
+<section id="next">
+  <div class="sec-head"><span class="sec-num">10</span><h2><span class="l-en">Next work package</span><span class="l-ru">Следующий пакет работ</span></h2></div>
+  <p>
+    <span class="l-en">Turning this skeleton into real materials. Sequenced so that the work which does not depend on §09 starts immediately, and the work that does waits for Guthrie’s written reply.</span>
+    <span class="l-ru">Превращение этого скелета в реальные материалы. Выстроено так, чтобы работа, не зависящая от §09, началась сразу, а зависящая — дождалась письменного ответа Guthrie.</span>
+  </p>
+
+  <table>
+    <thead><tr>
+      <th style="width:32px"></th>
+      <th><span class="l-en">Work package</span><span class="l-ru">Пакет работ</span></th>
+      <th><span class="l-en">Contents</span><span class="l-ru">Содержание</span></th>
+      <th><span class="l-en">Depends on</span><span class="l-ru">Зависит от</span></th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="num">01</td>
+        <td><b><span class="l-en">Week 1 in full</span><span class="l-ru">Полная первая неделя</span></b></td>
+        <td><span class="l-en">Live call script, Model of Conscious Experience explained in participant language, ground / core / field / focus meditation text, handout 01, the three exercises written out, between-call practice, EN and RU.</span><span class="l-ru">Сценарий живой встречи, Модель сознательного опыта на языке участника, текст медитации ground / core / field / focus, материал 01, три упражнения полностью, практика между встречами, EN и RU.</span></td>
+        <td><span class="tag on"><span class="l-en">Start now</span><span class="l-ru">Старт сейчас</span></span></td>
+      </tr>
+      <tr>
+        <td class="num">02</td>
+        <td><b><span class="l-en">Pre-course participant guide</span><span class="l-ru">Вводный гайд участника</span></b></td>
+        <td><span class="l-en">OS 1.0 → 2.0 as a story, the language rules in friendly form, what the course is and is not, how to prepare, what to expect week by week.</span><span class="l-ru">ОС 1.0 → 2.0 как история, языковые правила в дружелюбной форме, чем курс является и чем нет, как подготовиться, чего ждать по неделям.</span></td>
+        <td><span class="tag on"><span class="l-en">Start now</span><span class="l-ru">Старт сейчас</span></span></td>
+      </tr>
+      <tr>
+        <td class="num">03</td>
+        <td><b><span class="l-en">Quote selection for approval</span><span class="l-ru">Отбор цитат на согласование</span></b></td>
+        <td><span class="l-en">A short list — around fifteen — sorted into public story, course content and internal method rules, sent to Guthrie as a single approval sheet.</span><span class="l-ru">Короткий список — около пятнадцати, — разложенный на публичную историю, содержание курса и внутренние правила метода, отправляется Guthrie одним листом на согласование.</span></td>
+        <td><span class="tag on"><span class="l-en">Start now</span><span class="l-ru">Старт сейчас</span></span></td>
+      </tr>
+      <tr>
+        <td class="num">04</td>
+        <td><b><span class="l-en">Weeks 2–6 handouts</span><span class="l-ru">Материалы недель 2–6</span></b></td>
+        <td><span class="l-en">Five handouts at 5±1 points each, built directly from §04, EN and RU, ready for Guthrie’s edit pass in one batch.</span><span class="l-ru">Пять материалов по 5±1 пунктов, собранных прямо из §04, EN и RU, готовых к правке Guthrie одной партией.</span></td>
+        <td><span class="tag q">§09.1</span></td>
+      </tr>
+      <tr>
+        <td class="num">05</td>
+        <td><b><span class="l-en">Landing page</span><span class="l-ru">Лендинг</span></b></td>
+        <td><span class="l-en">Built on §01–§02: recognise the attention-heavy life → there may be another way to function → this is not a promise to fix you → a living introduction to Self, awareness and parts → Guthrie transmits it through presence.</span><span class="l-ru">Строится на §01–§02: узнать жизнь, перегруженную вниманием → возможно, есть другой способ функционировать → это не обещание вас починить → живое введение в Self, осознавание и части → Guthrie передаёт это через присутствие.</span></td>
+        <td><span class="tag q">§09.4 · §09.6</span></td>
+      </tr>
+      <tr>
+        <td class="num">06</td>
+        <td><b><span class="l-en">Practice space design and facilitator training</span><span class="l-ru">Дизайн практических пространств и подготовка фасилитаторов</span></b></td>
+        <td><span class="l-en">Session-by-session scripts for the VAHUE-held spaces, facilitator notes, the redirect language for when someone starts guiding, aftercare protocol.</span><span class="l-ru">Сценарии по встречам для пространств VAHUE, заметки фасилитатора, язык перенаправления, когда кто-то начинает вести, протокол поддержки после.</span></td>
+        <td><span class="tag on"><span class="l-en">Start now</span><span class="l-ru">Старт сейчас</span></span></td>
+      </tr>
+      <tr>
+        <td class="num">07</td>
+        <td><b><span class="l-en">Delivery plan and dates</span><span class="l-ru">План проведения и даты</span></b></td>
+        <td><span class="l-en">Calendar, call times across time zones, enrolment window, recording and translation setup, marketing call scheduling with Guthrie.</span><span class="l-ru">Календарь, время встреч по часовым поясам, окно набора, настройка записи и перевода, планирование маркетинговых звонков с Guthrie.</span></td>
+        <td><span class="tag q">§09.4</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="quote">
+    <p><span class="l-en">“One of my principal messages is: love yourself and you can love the whole world. When we love ourselves, we accept ourselves, we connect to what’s happening inside and we accept what is there without judgment. And that opens us to be more compassionate to other people. But we begin by bringing the loving gaze inside.”</span>
+    <span class="l-ru">«Одно из моих главных посланий: полюби себя — и сможешь полюбить весь мир. Когда мы любим себя, мы себя принимаем, соединяемся с тем, что происходит внутри, и принимаем то, что там есть, без осуждения. И это открывает нас к большему состраданию к другим людям. Но начинаем мы с того, что обращаем любящий взгляд внутрь».</span></p>
+    <div class="src"><span>Guthrie Sayen</span><span class="lock"><span class="l-en">Internal working anchor — pending approval for public use</span><span class="l-ru">Внутренняя рабочая опора — публичное использование требует согласования</span></span></div>
+  </div>
+
+  <footer>
+    <span class="l-en">VAHUE × Guthrie Sayen · The Centrality of Self: A Six-Week Introduction to IFS · working course architecture v0.3 · 3 August 2026. Direction approved on the alignment call of 29 July 2026. All direct quotes are internal working anchors and require Guthrie’s explicit approval before any public use.</span>
+    <span class="l-ru">VAHUE × Guthrie Sayen · Центральность Self: шестинедельное введение в IFS · рабочая архитектура курса v0.3 · 3 августа 2026. Направление принято на созвоне 29 июля 2026. Все прямые цитаты — внутренние рабочие опоры и требуют явного согласования Guthrie перед любым публичным использованием.</span>
+  </footer>
+</section>
+
+</main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Glossary">
+  <div class="drawer-head">
+    <b><span class="l-en">Working glossary</span><span class="l-ru">Рабочий глоссарий</span></b>
+    <button type="button" class="xbtn" id="drawerClose">✕ <span class="l-en">Close</span><span class="l-ru">Закрыть</span></button>
+  </div>
+  <div class="drawer-body">
+    <div class="gitem"><b>Self</b><span class="l-en">Awake awareness. The calm, clear, compassionate centre that is not a part. Not something to build — something to access.</span><span class="l-ru">Бодрствующее осознавание. Спокойный, ясный, сострадательный центр, который не является частью. Его не строят — к нему получают доступ.</span></div>
+    <div class="gitem"><b><span class="l-en">Access to Self</span><span class="l-ru">Доступ к Self</span></b><span class="l-en">A continuum, never a switch. Ask “how much access is available right now?” — never “am I in Self?”</span><span class="l-ru">Континуум, а не выключатель. Спрашиваем «сколько доступа сейчас есть?» — никогда «я в Self?».</span><span class="ru-hint l-en">Do not write “in Self”.</span><span class="ru-hint l-ru">Не пишем «в Self».</span></div>
+    <div class="gitem"><b>Self-led</b><span class="l-en">The approved English naming for this course. Never “Self-centered”, which reads as egocentric in English. Also: the centrality of Self.</span><span class="l-ru">Согласованное английское наименование курса. Никогда «Self-centered» — в английском это читается как эгоцентричный. Также: centrality of Self.</span></div>
+    <div class="gitem"><b><span class="l-en">Attention</span><span class="l-ru">Внимание</span></b><span class="l-en">Focus. Selective, sequential, one to three things at a time, excluding the rest.</span><span class="l-ru">Фокус. Избирательное, последовательное, от одного до трёх объектов за раз, остальное исключено.</span></div>
+    <div class="gitem"><b><span class="l-en">Awareness</span><span class="l-ru">Осознавание</span></b><span class="l-en">Field. Panoramic, inclusive, parallel. The practical doorway into access to Self.</span><span class="l-ru">Поле. Панорамное, включающее, параллельное. Практическая дверь в доступ к Self.</span></div>
+    <div class="gitem"><b>Ground · core · field · focus</b><span class="l-en">The four building blocks of Presence, and the recurring opening meditation. Get grounded, feel the core, open into the field, then focus.</span><span class="l-ru">Четыре кирпича Присутствия и повторяющаяся открывающая медитация. Заземлиться, почувствовать core, открыться в поле, затем сфокусироваться.</span></div>
+    <div class="gitem"><b><span class="l-en">Part</span><span class="l-ru">Часть</span></b><span class="l-en">A sub-personality with its own view, feeling and agenda. All parts are good, even when some have bad roles.</span><span class="l-ru">Субличность со своим взглядом, чувством и повесткой. Все части хорошие, даже когда у некоторых плохие роли.</span></div>
+    <div class="gitem"><b><span class="l-en">Ordinary everyday part</span><span class="l-ru">Обычная повседневная часть</span></b><span class="l-en">The approved term for low-intensity material suitable for participant practice. Do not write “soft part” or “mild part”.</span><span class="l-ru">Согласованный термин для материала низкой интенсивности, подходящего для практики участников. Не пишем «мягкая часть» или «лёгкая часть».</span></div>
+    <div class="gitem"><b><span class="l-en">Protector</span><span class="l-ru">Защитник</span></b><span class="l-en">A part that keeps the system safe. Two strategies: organising (manager) and anaesthetising (firefighter). Protectors want to be seen and celebrated.</span><span class="l-ru">Часть, которая держит систему в безопасности. Две стратегии: организующая (manager) и обезболивающая (firefighter). Защитники хотят быть увиденными и признанными.</span></div>
+    <div class="gitem"><b>Exile</b><span class="l-en">A young, sensitive, hurt part. Out of scope for participant practice in this course. Orientation and witnessing only.</span><span class="l-ru">Юная, чувствительная, раненая часть. Вне объёма практики участников этого курса. Только ориентация и witnessing.</span></div>
+    <div class="gitem"><b><span class="l-en">Blending / unblending</span><span class="l-ru">Слияние / разделение</span></b><span class="l-en">Blending: a part takes over and speaks as “I”. Unblending: naming it — “a part of me is…” — which creates a little distance and restores access.</span><span class="l-ru">Слияние: часть берёт верх и говорит как «я». Разделение: назвать её — «часть меня…», — что создаёт небольшую дистанцию и возвращает доступ.</span></div>
+    <div class="gitem"><b><span class="l-en">Speaking on behalf of a part</span><span class="l-ru">Речь от имени части</span></b><span class="l-en">“A part of me says…”, “I notice a part that wants…”. The safe form. Speaking <em>as</em> a part encourages blending.</span><span class="l-ru">«Часть меня говорит…», «я замечаю часть, которая хочет…». Безопасная форма. Речь <em>как</em> часть поощряет слияние.</span></div>
+    <div class="gitem"><b>8 Cs</b><span class="l-en">Qualities of Self — calm, clarity, curiosity, compassion, confidence, courage, creativity, connectedness. Presented as doorways, not a checklist.</span><span class="l-ru">Качества Self — спокойствие, ясность, любопытство, сострадание, уверенность, смелость, творчество, связанность. Подаются как двери, а не как чек-лист.</span></div>
+    <div class="gitem"><b>Witnessing</b><span class="l-en">Being present to what is there without fixing, interpreting or excavating. In this course, witnessing is already the work.</span><span class="l-ru">Присутствие с тем, что есть, без починки, интерпретации и раскопок. В этом курсе witnessing и есть работа.</span></div>
+    <div class="gitem"><b><span class="l-en">Operating system 1.0 / 2.0</span><span class="l-ru">Операционная система 1.0 / 2.0</span></b><span class="l-en">Thought-based, attention-heavy, sequential (1.0) → awareness-based, Self-led, field-aware, panoramic (2.0). Transcend and include, never reject.</span><span class="l-ru">На основе мышления, перегруженная вниманием, последовательная (1.0) → на основе осознавания, Self-led, с осознаванием поля, панорамная (2.0). Transcend and include, никогда не отбрасывание.</span></div>
+    <div class="gitem"><b>Sangha</b><span class="l-en">Community. Transformation of this kind needs ongoing communal support — which is why the practice community continues after Week 6.</span><span class="l-ru">Сообщество. Такой трансформации нужна продолжающаяся поддержка сообщества — поэтому практическое сообщество продолжается после шестой недели.</span></div>
+  </div>
+</aside>
+
+<script>
+(function(){
+  var body = document.body;
+
+  /* ---- language ---- */
+  document.querySelectorAll('[data-lang-btn]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var lang = b.getAttribute('data-lang-btn');
+      body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-lang-btn]').forEach(function(x){
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+      });
+    });
+  });
+
+  /* ---- quotes ---- */
+  var qBtn = document.getElementById('quoteToggle');
+  qBtn.addEventListener('click', function(){
+    var on = body.getAttribute('data-quotes') === 'on';
+    body.setAttribute('data-quotes', on ? 'off' : 'on');
+    qBtn.setAttribute('aria-pressed', on ? 'false' : 'true');
+    qBtn.innerHTML = on
+      ? '<span class="l-en">Quotes off</span><span class="l-ru">Цитаты выкл.</span>'
+      : '<span class="l-en">Quotes on</span><span class="l-ru">Цитаты вкл.</span>';
+  });
+
+  /* ---- glossary drawer ---- */
+  var drawer = document.getElementById('drawer');
+  var scrim  = document.getElementById('scrim');
+  function openDrawer(v){
+    drawer.classList.toggle('open', v);
+    scrim.classList.toggle('open', v);
+    drawer.setAttribute('aria-hidden', v ? 'false' : 'true');
+  }
+  document.getElementById('glossaryBtn').addEventListener('click', function(){ openDrawer(!drawer.classList.contains('open')); });
+  document.getElementById('drawerClose').addEventListener('click', function(){ openDrawer(false); });
+  scrim.addEventListener('click', function(){ openDrawer(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') openDrawer(false); });
+
+  /* ---- week filter ---- */
+  var weeks = Array.prototype.slice.call(document.querySelectorAll('article.week'));
+  document.querySelectorAll('.wkchip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var w = chip.getAttribute('data-week');
+      document.querySelectorAll('.wkchip').forEach(function(c){
+        c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+      });
+      weeks.forEach(function(a){
+        a.style.display = (w === 'all' || a.getAttribute('data-week') === w) ? '' : 'none';
+      });
+    });
+  });
+
+  /* ---- row/layer filter ---- */
+  document.querySelectorAll('.rowchip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var key = chip.getAttribute('data-row');
+      var on  = chip.getAttribute('aria-pressed') === 'true';
+      chip.setAttribute('aria-pressed', on ? 'false' : 'true');
+      document.querySelectorAll('.wrow[data-row="' + key + '"]').forEach(function(r){
+        r.classList.toggle('hidden-row', on);
+      });
+    });
+  });
+
+  /* ---- scroll spy ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.side a'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+
+  if ('IntersectionObserver' in window) {
+    var visible = {};
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
+      var best = null, bestVal = 0;
+      Object.keys(visible).forEach(function(id){
+        if (visible[id] > bestVal){ bestVal = visible[id]; best = id; }
+      });
+      if (best){
+        links.forEach(function(a){ a.classList.remove('active'); });
+        if (map[best]) map[best].classList.add('active');
+      }
+    }, { rootMargin: '-90px 0px -55% 0px', threshold: [0, .12, .35, .65, 1] });
+    document.querySelectorAll('main section').forEach(function(s){ obs.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
