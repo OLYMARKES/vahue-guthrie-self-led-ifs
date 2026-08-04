@@ -89,6 +89,40 @@ button{font:inherit}
   white-space:nowrap;
   text-overflow:ellipsis;
 }
+.topbar-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+}
+.review-toggle{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:33px;
+  padding:4px 10px 4px 8px;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  background:rgba(247,246,239,.72);
+  color:var(--ink-soft);
+  cursor:pointer;
+  user-select:none;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.7rem;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+.review-toggle input{
+  width:15px;
+  height:15px;
+  margin:0;
+  accent-color:var(--rust);
+}
+body.review-on .review-toggle{
+  color:var(--ink);
+  background:var(--surface-strong);
+  border-color:rgba(157,78,50,.38);
+}
 .lang-switch{
   display:flex;
   align-items:center;
@@ -116,6 +150,259 @@ button{font:inherit}
   background:var(--surface-strong);
   box-shadow:0 1px 0 rgba(23,27,24,.05);
 }
+
+/* ---------- review layer ---------- */
+.review-target{position:relative}
+body.review-on .review-target{
+  outline:1px solid rgba(157,78,50,.09);
+  outline-offset:4px;
+}
+body.review-on .review-target:hover{
+  outline-color:rgba(157,78,50,.34);
+}
+.review-action{
+  position:absolute;
+  top:8px;
+  right:8px;
+  z-index:8;
+  display:none;
+  align-items:center;
+  gap:6px;
+  min-height:32px;
+  padding:7px 10px;
+  border:1px solid rgba(157,78,50,.24);
+  border-radius:4px;
+  background:rgba(251,250,245,.94);
+  color:var(--rust);
+  box-shadow:0 8px 22px rgba(23,27,24,.07);
+  cursor:pointer;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.66rem;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+body.review-on .review-action{display:inline-flex}
+.review-target.has-review{
+  outline:1px solid rgba(157,78,50,.34);
+  outline-offset:4px;
+}
+.review-target.has-review .review-action{
+  background:var(--rust);
+  border-color:var(--rust);
+  color:#fffaf3;
+}
+.review-note{
+  margin-top:16px;
+  border:1px solid rgba(157,78,50,.22);
+  border-left:3px solid var(--rust);
+  border-radius:4px;
+  background:#fff8f4;
+  padding:14px 16px;
+}
+.review-note b,
+.review-note span{
+  display:block;
+  margin-bottom:7px;
+  color:var(--rust);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.66rem;
+  font-weight:500;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+.review-note p{
+  margin:0 0 10px;
+  color:#7c2e21;
+  font-size:.95rem;
+  line-height:1.48;
+  white-space:pre-wrap;
+}
+.review-note small{
+  display:block;
+  color:#6b5b54;
+  font-size:.86rem;
+  line-height:1.42;
+  white-space:pre-wrap;
+}
+.review-workspace{
+  display:none;
+  padding:clamp(36px,6vw,70px) 0;
+  background:var(--paper-warm);
+  border-top:1px solid rgba(157,78,50,.2);
+}
+body.review-on .review-workspace{display:block}
+.review-workspace h2{max-width:22ch}
+.review-board{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(22px,4vw,44px);
+  align-items:start;
+  margin-top:28px;
+}
+.review-field{
+  display:grid;
+  gap:10px;
+}
+.review-field label{
+  color:var(--rust);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.68rem;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+.review-field textarea{
+  width:100%;
+  min-height:210px;
+  resize:vertical;
+  border:1px solid rgba(157,78,50,.22);
+  border-radius:4px;
+  background:var(--surface-strong);
+  color:var(--ink);
+  padding:15px 16px;
+  font:inherit;
+  line-height:1.5;
+}
+.review-field textarea:focus,
+.review-modal textarea:focus{
+  outline:2px solid rgba(157,78,50,.28);
+  outline-offset:2px;
+}
+.review-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:14px;
+}
+.review-button{
+  min-height:38px;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  background:var(--surface-strong);
+  color:var(--ink);
+  padding:9px 13px;
+  cursor:pointer;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.68rem;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+.review-button.primary{
+  border-color:var(--rust);
+  background:var(--rust);
+  color:#fffaf3;
+}
+.review-button.danger{
+  color:var(--rust);
+  border-color:rgba(157,78,50,.34);
+}
+.review-list{
+  border:1px solid rgba(157,78,50,.18);
+  border-radius:4px;
+  background:rgba(247,246,239,.6);
+  overflow:hidden;
+}
+.review-list-item{
+  padding:15px 16px;
+  border-top:1px solid rgba(157,78,50,.13);
+}
+.review-list-item:first-child{border-top:0}
+.review-list-item b{
+  display:block;
+  margin-bottom:5px;
+  color:var(--ink);
+  font-size:.96rem;
+}
+.review-list-item p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.9rem;
+}
+.review-list-empty{
+  padding:20px;
+  color:var(--ink-faint);
+  font-size:.95rem;
+}
+.review-modal{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(23,27,24,.32);
+}
+.review-modal.is-open{display:flex}
+.review-dialog{
+  width:min(760px,100%);
+  max-height:min(86vh,820px);
+  overflow:auto;
+  border:1px solid rgba(157,78,50,.24);
+  border-radius:5px;
+  background:var(--surface-strong);
+  box-shadow:0 28px 80px rgba(23,27,24,.24);
+  padding:clamp(22px,4vw,34px);
+}
+.review-dialog-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+  margin-bottom:18px;
+}
+.review-dialog-head h3{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(1.8rem,4vw,2.5rem);
+  font-weight:400;
+  line-height:1.06;
+}
+.review-close{
+  width:36px;
+  height:36px;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  background:transparent;
+  color:var(--ink-soft);
+  cursor:pointer;
+}
+.review-excerpt{
+  margin:0 0 18px;
+  padding:12px 14px;
+  border-left:2px solid var(--gold);
+  color:var(--ink-soft);
+  background:var(--paper);
+  font-size:.94rem;
+  line-height:1.45;
+}
+.review-modal textarea{
+  width:100%;
+  min-height:120px;
+  resize:vertical;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  background:#fffefa;
+  color:var(--ink);
+  padding:13px 14px;
+  font:inherit;
+  line-height:1.48;
+}
+.review-modal .review-field + .review-field{margin-top:15px}
+.review-toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:80;
+  max-width:min(360px,calc(100vw - 36px));
+  display:none;
+  border:1px solid rgba(82,98,61,.24);
+  border-radius:4px;
+  background:var(--surface-strong);
+  color:var(--moss);
+  box-shadow:0 18px 42px rgba(23,27,24,.15);
+  padding:13px 15px;
+  font-size:.92rem;
+}
+.review-toast.is-visible{display:block}
 
 .wrap{
   width:100%;
@@ -696,11 +983,18 @@ p:last-child{margin-bottom:0}
     grid-template-columns:1fr;
   }
   .arrow-box{padding:2px 0}
+  .review-board{
+    grid-template-columns:1fr;
+  }
 }
 @media (max-width:680px){
   body{font-size:16px}
-  .topbar-inner{padding:10px 16px}
-  .brand span:last-child{max-width:42vw}
+  .topbar-inner{padding:10px 12px;gap:8px}
+  .brand{gap:8px}
+  .brand span:last-child{max-width:31vw}
+  .topbar-controls{gap:6px}
+  .review-toggle{padding:4px 7px;font-size:.66rem}
+  .lang-switch button{padding:7px 8px}
   .two-column,
   .week-modules,
   .material-map,
@@ -721,6 +1015,15 @@ p:last-child{margin-bottom:0}
   .footer-inner{
     flex-direction:column;
   }
+  .review-action{
+    position:static;
+    margin:0 0 12px;
+    box-shadow:none;
+  }
+  .review-dialog{
+    max-height:92vh;
+    padding:20px;
+  }
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -736,9 +1039,15 @@ p:last-child{margin-bottom:0}
 <header class="topbar" aria-label="Document controls">
   <div class="topbar-inner">
     <div class="brand"><span class="brand-mark"></span><span>VAHUE x Guthrie Sayen · course foundation</span></div>
-    <div class="lang-switch" role="group" aria-label="Language">
-      <button type="button" data-set-lang="en" class="is-active" aria-pressed="true">EN</button>
-      <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+    <div class="topbar-controls">
+      <label class="review-toggle">
+        <input type="checkbox" id="reviewModeToggle">
+        <span>Review</span>
+      </label>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" class="is-active" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+      </div>
     </div>
   </div>
 </header>
@@ -1931,12 +2240,73 @@ p:last-child{margin-bottom:0}
   </div>
 </main>
 
+<section class="review-workspace" id="review-workspace" aria-label="Guthrie review workspace">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div>
+        <p class="section-kicker">Guthrie review layer</p>
+        <h2>Comments, suggested edits, and next notes.</h2>
+      </div>
+      <div class="measure">
+        <p class="lede">Block notes are saved in this browser until exported. Suggested edits appear under the relevant block in red, so the original course text stays readable while Guthrie's changes remain visible.</p>
+      </div>
+    </div>
+    <div class="review-board">
+      <div>
+        <div class="review-field">
+          <label for="globalReviewComment">General comment for the whole document</label>
+          <textarea id="globalReviewComment" placeholder="Add an overall note, missing topic, sequence change, or anything that should guide the next revision."></textarea>
+        </div>
+        <div class="review-actions">
+          <button type="button" class="review-button primary" id="copyReviewMarkdown">Copy review packet</button>
+          <button type="button" class="review-button" id="downloadReviewMarkdown">Download Markdown</button>
+          <button type="button" class="review-button" id="downloadReviewJson">Download JSON</button>
+          <button type="button" class="review-button danger" id="clearReviewNotes">Clear local notes</button>
+        </div>
+        <p class="fine" style="margin-top:14px">Static Pages cannot save these notes to our server automatically. Export or copy the packet and send it back by email.</p>
+      </div>
+      <div>
+        <h3>Block notes</h3>
+        <div class="review-list" id="reviewList" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="wrap footer-inner">
     <span>VAHUE x Guthrie Sayen</span>
     <span>Course foundation · working version</span>
   </div>
 </footer>
+
+<div class="review-modal" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+  <div class="review-dialog">
+    <div class="review-dialog-head">
+      <div>
+        <p class="section-kicker">Block review</p>
+        <h3 id="reviewModalTitle">Comment on this block</h3>
+      </div>
+      <button type="button" class="review-close" id="closeReviewModal" aria-label="Close review dialog">×</button>
+    </div>
+    <p class="review-excerpt" id="reviewExcerpt"></p>
+    <div class="review-field">
+      <label for="blockReviewComment">Comment</label>
+      <textarea id="blockReviewComment" placeholder="What should we know about this block?"></textarea>
+    </div>
+    <div class="review-field">
+      <label for="blockReviewSuggestion">Suggested edit / replacement text</label>
+      <textarea id="blockReviewSuggestion" placeholder="Write the exact wording or direction Guthrie would prefer. This will appear in red under the block."></textarea>
+    </div>
+    <div class="review-actions">
+      <button type="button" class="review-button primary" id="saveBlockReview">Save note</button>
+      <button type="button" class="review-button danger" id="deleteBlockReview">Delete note</button>
+      <button type="button" class="review-button" id="cancelBlockReview">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="review-toast" id="reviewToast" role="status" aria-live="polite"></div>
 
 <script>
 const root = document.body;
@@ -1975,6 +2345,313 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, {threshold:.08});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+/* ---------- Guthrie review mode ---------- */
+const reviewStorageKey = "guthrie-course-foundation-review-v2";
+const reviewModeKey = "guthrie-course-foundation-review-mode";
+const reviewModeToggle = document.getElementById("reviewModeToggle");
+const reviewModal = document.getElementById("reviewModal");
+const reviewModalTitle = document.getElementById("reviewModalTitle");
+const reviewExcerpt = document.getElementById("reviewExcerpt");
+const blockReviewComment = document.getElementById("blockReviewComment");
+const blockReviewSuggestion = document.getElementById("blockReviewSuggestion");
+const globalReviewComment = document.getElementById("globalReviewComment");
+const reviewList = document.getElementById("reviewList");
+const reviewToast = document.getElementById("reviewToast");
+let currentReviewId = null;
+
+function readReviewState(){
+  try{
+    return JSON.parse(localStorage.getItem(reviewStorageKey)) || {globalComment:"", notes:{}};
+  }catch(error){
+    return {globalComment:"", notes:{}};
+  }
+}
+
+let reviewState = readReviewState();
+
+function writeReviewState(){
+  try{ localStorage.setItem(reviewStorageKey, JSON.stringify(reviewState)); }catch(error){}
+}
+
+function cleanText(text){
+  return (text || "").replace(/\s+/g, " ").trim();
+}
+
+function escapeHtml(text){
+  return (text || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function slug(text){
+  return cleanText(text).toLowerCase().replace(/[^a-z0-9а-яё]+/gi, "-").replace(/^-|-$/g, "").slice(0, 42) || "block";
+}
+
+function titleForTarget(target){
+  const titleNode = target.matches(".doc-status > div") ? target.querySelector("b") : target.querySelector("h1,h2,h3,h4,.section-kicker,b,strong");
+  return cleanText(titleNode ? titleNode.textContent : target.textContent).slice(0, 90) || "Untitled block";
+}
+
+function excerptForTarget(target){
+  const clone = target.cloneNode(true);
+  clone.querySelectorAll(".review-action,.review-note").forEach(node => node.remove());
+  return cleanText(clone.textContent).slice(0, 260);
+}
+
+function getReviewTargets(){
+  return Array.from(document.querySelectorAll([
+    ".lang-page .hero-card",
+    ".lang-page .doc-status > div",
+    ".lang-page .chapter-head",
+    ".lang-page .quote-panel",
+    ".lang-page .quote-solo",
+    ".lang-page .principle",
+    ".lang-page .os-card",
+    ".lang-page .journey-step",
+    ".lang-page .material",
+    ".lang-page .week-card",
+    ".lang-page .module",
+    ".lang-page .boundary",
+    ".lang-page .practice-side",
+    ".lang-page .next-card"
+  ].join(",")));
+}
+
+function prepareReviewTargets(){
+  getReviewTargets().forEach((target, index) => {
+    if(target.dataset.reviewId) return;
+    const lang = target.closest(".lang-page")?.dataset.lang || "global";
+    const title = titleForTarget(target);
+    target.dataset.reviewId = `${lang}-${String(index + 1).padStart(3,"0")}-${slug(title)}`;
+    target.dataset.reviewTitle = title;
+    target.dataset.reviewLang = lang;
+    target.classList.add("review-target");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "review-action";
+    button.textContent = "Comment / edit";
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openBlockReview(target.dataset.reviewId);
+    });
+    target.appendChild(button);
+  });
+}
+
+function findTargetById(id){
+  return document.querySelector(`[data-review-id="${CSS.escape(id)}"]`);
+}
+
+function hasReviewContent(note){
+  return Boolean(cleanText(note?.comment) || cleanText(note?.suggestion));
+}
+
+function updateReviewMarkers(){
+  getReviewTargets().forEach(target => {
+    const id = target.dataset.reviewId;
+    const note = reviewState.notes[id];
+    target.classList.toggle("has-review", hasReviewContent(note));
+    target.querySelectorAll(":scope > .review-note").forEach(node => node.remove());
+    if(!hasReviewContent(note)) return;
+    const noteNode = document.createElement("div");
+    noteNode.className = "review-note";
+    const suggestion = cleanText(note.suggestion);
+    const comment = cleanText(note.comment);
+    noteNode.innerHTML = `
+      ${suggestion ? `<span>Guthrie suggested edit</span><p>${escapeHtml(suggestion)}</p>` : ""}
+      ${comment ? `<b>Comment</b><small>${escapeHtml(comment)}</small>` : ""}
+    `;
+    target.appendChild(noteNode);
+  });
+  renderReviewList();
+}
+
+function renderReviewList(){
+  const notes = Object.entries(reviewState.notes).filter(([, note]) => hasReviewContent(note));
+  if(!notes.length){
+    reviewList.innerHTML = `<div class="review-list-empty">No block notes yet. Turn on Review mode and use “Comment / edit” on any block.</div>`;
+    return;
+  }
+  reviewList.innerHTML = notes.map(([id, note]) => `
+    <div class="review-list-item">
+      <b>${escapeHtml(note.title || id)}</b>
+      <p>${escapeHtml((note.comment || note.suggestion || "").slice(0, 180))}${(note.comment || note.suggestion || "").length > 180 ? "..." : ""}</p>
+    </div>
+  `).join("");
+}
+
+function setReviewMode(on){
+  root.classList.toggle("review-on", on);
+  reviewModeToggle.checked = on;
+  try{ localStorage.setItem(reviewModeKey, on ? "1" : "0"); }catch(error){}
+}
+
+function openBlockReview(id){
+  const target = findTargetById(id);
+  if(!target) return;
+  currentReviewId = id;
+  const note = reviewState.notes[id] || {};
+  const title = target.dataset.reviewTitle || titleForTarget(target);
+  reviewModalTitle.textContent = title;
+  reviewExcerpt.textContent = excerptForTarget(target);
+  blockReviewComment.value = note.comment || "";
+  blockReviewSuggestion.value = note.suggestion || "";
+  reviewModal.classList.add("is-open");
+  root.classList.add("lock-scroll");
+  setTimeout(() => blockReviewComment.focus(), 30);
+}
+
+function closeBlockReview(){
+  reviewModal.classList.remove("is-open");
+  root.classList.remove("lock-scroll");
+  currentReviewId = null;
+}
+
+function saveBlockReview(){
+  if(!currentReviewId) return;
+  const target = findTargetById(currentReviewId);
+  const note = {
+    id: currentReviewId,
+    lang: target?.dataset.reviewLang || "",
+    title: target?.dataset.reviewTitle || currentReviewId,
+    excerpt: target ? excerptForTarget(target) : "",
+    comment: blockReviewComment.value.trim(),
+    suggestion: blockReviewSuggestion.value.trim(),
+    updatedAt: new Date().toISOString()
+  };
+  if(hasReviewContent(note)){
+    reviewState.notes[currentReviewId] = note;
+  }else{
+    delete reviewState.notes[currentReviewId];
+  }
+  writeReviewState();
+  updateReviewMarkers();
+  closeBlockReview();
+  showReviewToast("Saved locally. Export the review packet when ready.");
+}
+
+function deleteBlockReview(){
+  if(!currentReviewId) return;
+  delete reviewState.notes[currentReviewId];
+  writeReviewState();
+  updateReviewMarkers();
+  closeBlockReview();
+  showReviewToast("Block note removed.");
+}
+
+function buildReviewMarkdown(){
+  const notes = Object.values(reviewState.notes).filter(hasReviewContent);
+  const lines = [
+    "# Guthrie review notes",
+    "",
+    `Document: A Self-led IFS Course Foundation`,
+    `Exported: ${new Date().toLocaleString()}`,
+    "",
+    "## General comment",
+    "",
+    reviewState.globalComment?.trim() || "_No general comment._",
+    "",
+    "## Block comments and suggested edits",
+    ""
+  ];
+  if(!notes.length){
+    lines.push("_No block notes._");
+  }else{
+    notes.forEach((note, index) => {
+      lines.push(`### ${index + 1}. ${note.title || note.id}`);
+      lines.push("");
+      lines.push(`Language: ${note.lang || "unknown"}`);
+      lines.push("");
+      lines.push("Original block excerpt:");
+      lines.push("");
+      lines.push(`> ${cleanText(note.excerpt || "").replaceAll("\n", " ")}`);
+      lines.push("");
+      if(note.comment){
+        lines.push("Comment:");
+        lines.push("");
+        lines.push(note.comment.trim());
+        lines.push("");
+      }
+      if(note.suggestion){
+        lines.push("Suggested edit:");
+        lines.push("");
+        lines.push(note.suggestion.trim());
+        lines.push("");
+      }
+    });
+  }
+  return lines.join("\n");
+}
+
+function downloadText(filename, text, type){
+  const blob = new Blob([text], {type});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function copyReviewMarkdown(){
+  const text = buildReviewMarkdown();
+  try{
+    await navigator.clipboard.writeText(text);
+    showReviewToast("Review packet copied.");
+  }catch(error){
+    downloadText("guthrie-review-notes.md", text, "text/markdown;charset=utf-8");
+    showReviewToast("Clipboard was unavailable, so Markdown was downloaded.");
+  }
+}
+
+function showReviewToast(message){
+  reviewToast.textContent = message;
+  reviewToast.classList.add("is-visible");
+  clearTimeout(showReviewToast.timer);
+  showReviewToast.timer = setTimeout(() => reviewToast.classList.remove("is-visible"), 2800);
+}
+
+prepareReviewTargets();
+globalReviewComment.value = reviewState.globalComment || "";
+globalReviewComment.addEventListener("input", () => {
+  reviewState.globalComment = globalReviewComment.value;
+  writeReviewState();
+});
+reviewModeToggle.addEventListener("change", () => setReviewMode(reviewModeToggle.checked));
+document.getElementById("closeReviewModal").addEventListener("click", closeBlockReview);
+document.getElementById("cancelBlockReview").addEventListener("click", closeBlockReview);
+document.getElementById("saveBlockReview").addEventListener("click", saveBlockReview);
+document.getElementById("deleteBlockReview").addEventListener("click", deleteBlockReview);
+document.getElementById("copyReviewMarkdown").addEventListener("click", copyReviewMarkdown);
+document.getElementById("downloadReviewMarkdown").addEventListener("click", () => {
+  downloadText("guthrie-review-notes.md", buildReviewMarkdown(), "text/markdown;charset=utf-8");
+});
+document.getElementById("downloadReviewJson").addEventListener("click", () => {
+  downloadText("guthrie-review-notes.json", JSON.stringify(reviewState, null, 2), "application/json;charset=utf-8");
+});
+document.getElementById("clearReviewNotes").addEventListener("click", () => {
+  if(!confirm("Clear all locally saved review notes in this browser?")) return;
+  reviewState = {globalComment:"", notes:{}};
+  globalReviewComment.value = "";
+  writeReviewState();
+  updateReviewMarkers();
+  showReviewToast("All local review notes cleared.");
+});
+reviewModal.addEventListener("click", (event) => {
+  if(event.target === reviewModal) closeBlockReview();
+});
+document.addEventListener("keydown", (event) => {
+  if(event.key === "Escape" && reviewModal.classList.contains("is-open")) closeBlockReview();
+});
+updateReviewMarkers();
+setReviewMode((() => {
+  try{return localStorage.getItem(reviewModeKey) === "1";}catch(error){return false;}
+})());
 </script>
 </body>
 </html>
