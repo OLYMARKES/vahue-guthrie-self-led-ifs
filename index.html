@@ -338,6 +338,10 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
 .sitebar{position:sticky;top:0;z-index:50;background:rgba(232,233,227,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule-soft)}
 .sitebar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:12px;padding-bottom:12px}
 .sitebrand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-soft)}
+.site-controls{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.review-toggle{display:flex;align-items:center;gap:8px;min-height:40px;padding:4px 12px 4px 9px;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink-soft);cursor:pointer;user-select:none;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;text-transform:uppercase}
+.review-toggle input{width:15px;height:15px;margin:0;accent-color:var(--gold)}
+body.review-on .review-toggle{color:var(--ink);border-color:rgba(140,99,32,.48);background:#fffaf0}
 .lang-toggle{display:inline-flex;gap:4px;min-height:40px;padding:4px;border:1px solid var(--rule);border-radius:999px;background:var(--card)}
 .lang-toggle button{min-width:52px;border:0;border-radius:999px;background:transparent;color:var(--ink-soft);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:0;cursor:pointer}
 .lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
@@ -345,7 +349,55 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
 [data-lang="en"] .lang-ru,[data-lang="ru"] .lang-en{display:none}
 [data-lang="en"] .lang-en,[data-lang="ru"] .lang-ru{display:block}
 .lang-pane > section:first-child{border-top:0}
-@media(max-width:520px){.sitebar .wrap{align-items:flex-start}.sitebrand{max-width:12rem;line-height:1.35}.lang-toggle button{min-width:46px}}
+
+/* ---------- Guthrie review layer ---------- */
+.review-target{position:relative}
+body.review-on .review-target{outline:1px solid rgba(140,99,32,.12);outline-offset:5px}
+body.review-on .review-target:hover{outline-color:rgba(140,99,32,.42)}
+.review-action{position:relative;z-index:2;display:none;align-items:center;justify-content:center;width:100%;min-height:40px;margin-top:14px;padding:9px 12px;border:1px dashed rgba(140,99,32,.46);border-radius:3px;background:rgba(255,250,240,.5);color:var(--gold);cursor:pointer;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;text-transform:uppercase}
+body.review-on .review-action{display:inline-flex}
+.review-action.has-review,.review-target.has-review .review-action{border-style:solid;border-color:var(--gold);background:var(--gold);color:#fffaf0}
+.review-target-inline + .review-action{max-width:28rem}
+.section-review-wrap{display:none;margin-top:clamp(32px,5vw,56px)}
+body.review-on .section-review-wrap,.section-review-wrap.has-section-review{display:block}
+.section-add-target{width:100%}
+body.review-on .section-add-target,.section-add-target.has-review{outline:0}
+.section-add-target .review-action{min-height:84px;margin-top:0;font-size:.75rem;background:rgba(255,250,240,.28)}
+.section-add-target.has-review .review-action{min-height:46px}
+.review-note{margin-top:14px;padding:15px 17px;border:1px solid rgba(140,99,32,.28);border-left:3px solid var(--gold);border-radius:3px;background:#fffaf0}
+.review-note b,.review-note span{display:block;margin-bottom:7px;color:var(--gold);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.65rem;font-weight:500;text-transform:uppercase}
+.review-note p{margin:0 0 9px;color:#6d4815;font-size:.95rem;line-height:1.48;white-space:pre-wrap}
+.review-note small{display:block;color:var(--ink-soft);font-size:.87rem;line-height:1.45;white-space:pre-wrap}
+.review-workspace{display:none;padding:clamp(48px,7vw,84px) 0;border-top:1px solid rgba(140,99,32,.28);background:#ece8dc}
+body.review-on .review-workspace{display:block}
+.review-workspace-head{display:grid;gap:18px;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:end}
+.review-workspace-head h2{max-width:18ch;margin:0}
+.review-board{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(24px,4vw,44px);align-items:start;margin-top:30px}
+.review-field{display:grid;gap:9px}
+.review-field label{color:var(--gold);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.67rem;text-transform:uppercase}
+.review-field textarea,.review-modal textarea{width:100%;min-height:150px;resize:vertical;border:1px solid rgba(140,99,32,.26);border-radius:3px;background:#fffef8;color:var(--ink);padding:14px 15px;font:inherit;line-height:1.5}
+.review-field textarea:focus,.review-modal textarea:focus{outline:2px solid rgba(140,99,32,.3);outline-offset:2px}
+.review-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}
+.review-button{min-height:38px;padding:9px 13px;border:1px solid var(--rule);border-radius:3px;background:var(--card);color:var(--ink);cursor:pointer;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.67rem;text-transform:uppercase}
+.review-button.primary{border-color:var(--gold);background:var(--gold);color:#fffaf0}
+.review-button.danger{color:#7d3f2f;border-color:rgba(125,63,47,.35)}
+.review-save-status{display:grid;grid-template-columns:10px minmax(0,1fr);gap:3px 10px;align-items:center;margin-top:17px;padding:13px 14px;border:1px solid rgba(70,90,104,.2);border-radius:3px;background:rgba(244,245,239,.74)}
+.review-save-status .status-dot{grid-row:1 / span 2;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.review-save-status.is-synced .status-dot{background:#52623d}
+.review-save-status strong{font-size:.9rem}.review-save-status small{color:var(--ink-faint);font-size:.78rem;line-height:1.4}
+.review-list{border:1px solid rgba(140,99,32,.18);border-radius:3px;background:rgba(244,245,239,.64);overflow:hidden}
+.review-list-item{padding:15px 16px;border-top:1px solid rgba(140,99,32,.14)}.review-list-item:first-child{border-top:0}
+.review-list-item b{display:block;margin-bottom:5px;font-size:.95rem}.review-list-item p{margin:0;color:var(--ink-soft);font-size:.88rem}.review-list-empty{padding:20px;color:var(--ink-faint);font-size:.92rem}
+.review-modal{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(25,28,26,.38)}
+.review-modal.is-open{display:flex}.review-dialog{width:min(720px,100%);max-height:88vh;overflow:auto;padding:clamp(22px,4vw,34px);border:1px solid rgba(140,99,32,.28);border-radius:4px;background:var(--card);box-shadow:0 28px 80px rgba(25,28,26,.24)}
+.review-dialog-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:17px}.review-dialog-head h3{font-size:clamp(1.7rem,4vw,2.35rem)}
+.review-close{width:36px;height:36px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:var(--ink-soft);cursor:pointer;font-size:1.2rem}
+.review-excerpt{margin:0 0 17px;padding:12px 14px;border-left:2px solid var(--gold);background:var(--paper);color:var(--ink-soft);font-size:.92rem;line-height:1.45}
+.review-modal .review-field + .review-field{margin-top:14px}.review-draft-status{min-height:1.4em;margin:11px 0 0;color:#52623d;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.65rem;text-transform:uppercase}
+.review-toast{position:fixed;right:18px;bottom:18px;z-index:80;display:none;max-width:min(360px,calc(100vw - 36px));padding:13px 15px;border:1px solid rgba(82,98,61,.25);border-radius:3px;background:var(--card);color:#52623d;box-shadow:0 18px 42px rgba(25,28,26,.16);font-size:.9rem}.review-toast.is-visible{display:block}
+body.lock-scroll{overflow:hidden}
+@media(max-width:760px){.review-workspace-head,.review-board{grid-template-columns:1fr}.review-workspace-head{align-items:start}.site-controls{gap:6px}.review-toggle{padding-right:9px}.review-toggle span{display:none}}
+@media(max-width:520px){.sitebar .wrap{align-items:center}.sitebrand{max-width:10rem;line-height:1.35}.lang-toggle button{min-width:42px}.review-dialog{padding:20px}}
 
 </style>
 </head>
@@ -353,9 +405,15 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
 <header class="sitebar">
   <div class="wrap">
     <div class="sitebrand">VAHUE × Guthrie Sayen</div>
-    <div class="lang-toggle" role="group" aria-label="Language">
-      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
-      <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+    <div class="site-controls">
+      <label class="review-toggle">
+        <input type="checkbox" id="reviewModeToggle">
+        <span>Review</span>
+      </label>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+      </div>
     </div>
   </div>
 </header>
@@ -1655,6 +1713,72 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
 
 </div>
 </main>
+
+<section class="review-workspace" id="review-workspace" aria-label="Guthrie review workspace">
+  <div class="wrap">
+    <div class="review-workspace-head">
+      <div>
+        <p class="eyebrow">Guthrie review layer</p>
+        <h2>Comments, edits, and missing ideas.</h2>
+      </div>
+      <p class="lede">Use the review controls below each meaningful block. Drafts stay on this device while you type; submitted notes are also sent to the shared review archive and remain in version history.</p>
+    </div>
+    <div class="review-board">
+      <div>
+        <div class="review-field">
+          <label for="globalReviewComment">General comment for the whole introduction</label>
+          <textarea id="globalReviewComment" placeholder="Add an overall note, missing idea, sequence change, or anything that should guide the next revision."></textarea>
+        </div>
+        <div class="review-actions">
+          <button type="button" class="review-button primary" id="saveGlobalReview">Save general comment</button>
+          <button type="button" class="review-button" id="copyReviewMarkdown">Copy review packet</button>
+          <button type="button" class="review-button" id="downloadReviewMarkdown">Download Markdown</button>
+          <button type="button" class="review-button" id="downloadReviewJson">Download JSON</button>
+          <button type="button" class="review-button danger" id="clearReviewNotes">Clear local notes</button>
+        </div>
+        <div class="review-save-status" id="reviewSaveStatus" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <strong id="reviewSaveStatusTitle">Saved on this device</strong>
+          <small id="reviewSaveStatusDetail">Checking the shared archive.</small>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:14px">Notes already added</h3>
+        <div class="review-list" id="reviewList" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="review-modal" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+  <div class="review-dialog">
+    <div class="review-dialog-head">
+      <div>
+        <p class="eyebrow" id="reviewModalKicker">Block review</p>
+        <h3 id="reviewModalTitle">Comment on this block</h3>
+      </div>
+      <button type="button" class="review-close" id="closeReviewModal" aria-label="Close review dialog">×</button>
+    </div>
+    <p class="review-excerpt" id="reviewExcerpt"></p>
+    <div class="review-field">
+      <label for="blockReviewComment" id="blockReviewCommentLabel">Comment</label>
+      <textarea id="blockReviewComment" placeholder="What should we know about this block?"></textarea>
+    </div>
+    <div class="review-field">
+      <label for="blockReviewSuggestion" id="blockReviewSuggestionLabel">Suggested edit / replacement text</label>
+      <textarea id="blockReviewSuggestion" placeholder="Write the exact wording or direction you would prefer."></textarea>
+    </div>
+    <div class="review-actions">
+      <button type="button" class="review-button primary" id="saveBlockReview">Save note</button>
+      <button type="button" class="review-button danger" id="deleteBlockReview">Delete note</button>
+      <button type="button" class="review-button" id="cancelBlockReview">Cancel</button>
+    </div>
+    <p class="review-draft-status" id="reviewDraftStatus">Drafts are saved on this device as you type.</p>
+  </div>
+</div>
+
+<div class="review-toast" id="reviewToast" role="status" aria-live="polite"></div>
+
 <script>
 (function(){
   var titles = {
@@ -1684,6 +1808,424 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
   els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script>
+(function(){
+  var root = document.body;
+  var reviewStorageKey = "guthrie-course-intro-review-v2";
+  var reviewModeKey = "guthrie-course-intro-review-mode";
+  var reviewDocumentId = "guthrie-course-intro-260804";
+  var reviewFormAction = "https://docs.google.com/forms/d/e/1FAIpQLScfkG1bdk0D-OOnZjFGC_VtyJDiIRk7a41FOo3jlegPu_faHw/formResponse";
+  var reviewFormEventField = "entry.1292771604";
+  var reviewFormPayloadField = "entry.863961216";
+  var reviewAccessKey = new URLSearchParams(location.hash.slice(1)).get("reviewKey") || "";
+  var reviewModeToggle = document.getElementById("reviewModeToggle");
+  var reviewModal = document.getElementById("reviewModal");
+  var reviewModalKicker = document.getElementById("reviewModalKicker");
+  var reviewModalTitle = document.getElementById("reviewModalTitle");
+  var reviewExcerpt = document.getElementById("reviewExcerpt");
+  var blockReviewComment = document.getElementById("blockReviewComment");
+  var blockReviewSuggestion = document.getElementById("blockReviewSuggestion");
+  var blockReviewCommentLabel = document.getElementById("blockReviewCommentLabel");
+  var blockReviewSuggestionLabel = document.getElementById("blockReviewSuggestionLabel");
+  var globalReviewComment = document.getElementById("globalReviewComment");
+  var reviewList = document.getElementById("reviewList");
+  var reviewToast = document.getElementById("reviewToast");
+  var reviewDraftStatus = document.getElementById("reviewDraftStatus");
+  var reviewSaveStatus = document.getElementById("reviewSaveStatus");
+  var reviewSaveStatusTitle = document.getElementById("reviewSaveStatusTitle");
+  var reviewSaveStatusDetail = document.getElementById("reviewSaveStatusDetail");
+  var currentReviewId = null;
+
+  function emptyReviewState(){
+    return {globalComment:"",notes:{},drafts:{},history:[],outbox:[],localSavedAt:"",syncedAt:""};
+  }
+
+  function normalizeReviewState(value){
+    var base = emptyReviewState();
+    if(!value || typeof value !== "object") return base;
+    return Object.assign({}, base, value, {
+      notes:value.notes && typeof value.notes === "object" ? value.notes : {},
+      drafts:value.drafts && typeof value.drafts === "object" ? value.drafts : {},
+      history:Array.isArray(value.history) ? value.history : [],
+      outbox:Array.isArray(value.outbox) ? value.outbox : []
+    });
+  }
+
+  function readReviewState(){
+    try{return normalizeReviewState(JSON.parse(localStorage.getItem(reviewStorageKey)));}
+    catch(error){return emptyReviewState();}
+  }
+
+  var reviewState = readReviewState();
+
+  function writeReviewState(){
+    reviewState.localSavedAt = new Date().toISOString();
+    try{localStorage.setItem(reviewStorageKey, JSON.stringify(reviewState));}catch(error){}
+    renderReviewSaveStatus();
+  }
+
+  function makeEventId(){
+    if(globalThis.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return Date.now() + "-" + Math.random().toString(16).slice(2);
+  }
+
+  function queueReviewEvent(kind, payload){
+    var event = Object.assign({
+      eventId:makeEventId(),
+      documentId:reviewDocumentId,
+      reviewer:"Guthrie",
+      kind:kind,
+      createdAt:new Date().toISOString(),
+      pageUrl:location.href.split("#")[0]
+    }, payload || {});
+    reviewState.history.unshift(event);
+    reviewState.history = reviewState.history.slice(0,500);
+    reviewState.outbox.push(event);
+    reviewState.outbox = reviewState.outbox.slice(-500);
+  }
+
+  function renderReviewSaveStatus(){
+    var draftCount = Object.keys(reviewState.drafts || {}).length;
+    var pendingCount = (reviewState.outbox || []).length;
+    var synced = Boolean(reviewFormAction) && pendingCount === 0;
+    reviewSaveStatus.classList.toggle("is-synced", synced);
+    if(synced){
+      reviewSaveStatusTitle.textContent = "Saved and synced";
+      reviewSaveStatusDetail.textContent = reviewState.syncedAt ? "Shared archive updated " + new Date(reviewState.syncedAt).toLocaleString() + "." : "Shared archive is ready.";
+    }else{
+      reviewSaveStatusTitle.textContent = "Saved on this device";
+      reviewSaveStatusDetail.textContent = pendingCount + " submitted " + (pendingCount === 1 ? "change is" : "changes are") + " waiting to sync" + (draftCount ? "; " + draftCount + " open draft" + (draftCount === 1 ? "" : "s") + "." : ".");
+    }
+  }
+
+  async function flushReviewOutbox(){
+    if(!reviewFormAction || !reviewState.outbox.length || !navigator.onLine) return;
+    var batch = reviewState.outbox.slice();
+    for(var i = 0; i < batch.length; i += 1){
+      var event = batch[i];
+      try{
+        var note = event.note || event.previousNote || {};
+        var payload = [
+          "Document: " + event.documentId,
+          "Reviewer: " + event.reviewer,
+          "Action: " + event.kind,
+          "Block: " + (note.title || event.targetId || "General comment"),
+          "Original text: " + (note.excerpt || ""),
+          "Comment: " + (note.comment || event.globalComment || ""),
+          "Suggested text: " + (note.suggestion || ""),
+          "Saved at: " + event.createdAt,
+          "Page: " + event.pageUrl,
+          "Review key: " + (reviewAccessKey || "direct-page-access"),
+          "",
+          "JSON: " + JSON.stringify(event)
+        ].join("\n");
+        var fields = new URLSearchParams();
+        fields.set(reviewFormEventField, event.eventId);
+        fields.set(reviewFormPayloadField, payload);
+        await fetch(reviewFormAction, {
+          method:"POST",
+          mode:"no-cors",
+          keepalive:true,
+          headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+          body:fields.toString()
+        });
+        reviewState.outbox = reviewState.outbox.filter(function(item){return item.eventId !== event.eventId;});
+        reviewState.syncedAt = new Date().toISOString();
+        writeReviewState();
+      }catch(error){
+        renderReviewSaveStatus();
+        break;
+      }
+    }
+  }
+
+  function cleanText(text){return (text || "").replace(/\s+/g," ").trim();}
+  function escapeHtml(text){
+    return (text || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+  function slug(text){
+    return cleanText(text).toLowerCase().replace(/[^a-z0-9а-яё]+/gi,"-").replace(/^-|-$/g,"").slice(0,42) || "block";
+  }
+  function titleForTarget(target){
+    if(target.dataset.reviewLabel) return target.dataset.reviewLabel;
+    var titleNode = target.querySelector("h1,h2,h3,h4,.eyebrow,b,strong");
+    return cleanText(titleNode ? titleNode.textContent : target.textContent).slice(0,90) || "Untitled block";
+  }
+  function excerptForTarget(target){
+    if(target.dataset.reviewExcerpt) return target.dataset.reviewExcerpt;
+    var clone = target.cloneNode(true);
+    clone.querySelectorAll(".review-action,.review-note").forEach(function(node){node.remove();});
+    return cleanText(clone.textContent).slice(0,320);
+  }
+  function getReviewTargets(){
+    return Array.from(document.querySelectorAll([
+      ".lang-pane .hero .col",
+      ".lang-pane .hero .formulation",
+      ".lang-pane .hero .chain",
+      ".lang-pane section:not(.hero) .col > h2",
+      ".lang-pane .quote-anchor",
+      ".lang-pane .guthrie-frame",
+      ".lang-pane .aside",
+      ".lang-pane .panels",
+      ".lang-pane .promise",
+      ".lang-pane .steps",
+      ".lang-pane .tablewrap",
+      ".lang-pane .weeks",
+      ".lang-pane .swap",
+      ".lang-pane .questions",
+      ".lang-pane .closing blockquote",
+      ".lang-pane .section-add-target"
+    ].join(",")));
+  }
+  function isInlineReviewTarget(target){
+    return ["H1","H2","H3","H4","P","SPAN","B","LI"].indexOf(target.tagName) !== -1;
+  }
+  function findTargetById(id){return document.querySelector('[data-review-id="' + id + '"]');}
+  function reviewControlFor(id){return document.querySelector('[data-review-control-for="' + id + '"]');}
+  function hasReviewContent(note){return Boolean(cleanText(note && note.comment) || cleanText(note && note.suggestion));}
+
+  function prepareSectionReviewSlots(){
+    document.querySelectorAll(".lang-pane > section").forEach(function(section, index){
+      var pane = section.closest(".lang-pane");
+      var lang = pane && pane.classList.contains("lang-ru") ? "ru" : "en";
+      var heading = section.querySelector("h1,h2");
+      var sectionTitle = cleanText(heading && heading.textContent) || "Section " + (index + 1);
+      var wrap = document.createElement("div");
+      wrap.className = "section-review-wrap";
+      var target = document.createElement("div");
+      target.className = "section-add-target";
+      target.dataset.reviewLabel = sectionTitle + " — new text / general comment";
+      target.dataset.reviewExcerpt = "Add a passage after this section, or leave a general comment on the section as a whole.";
+      target.dataset.reviewKind = "section-addition";
+      target.dataset.reviewLang = lang;
+      wrap.appendChild(target);
+      var sectionInner = section.querySelector(":scope > .wrap");
+      (sectionInner || section).appendChild(wrap);
+    });
+  }
+
+  function prepareReviewTargets(){
+    getReviewTargets().forEach(function(target, index){
+      if(target.dataset.reviewId) return;
+      var pane = target.closest(".lang-pane");
+      var lang = pane && pane.classList.contains("lang-ru") ? "ru" : "en";
+      var title = titleForTarget(target);
+      target.dataset.reviewId = lang + "-" + String(index + 1).padStart(3,"0") + "-" + slug(title);
+      target.dataset.reviewTitle = title;
+      target.dataset.reviewLang = lang;
+      target.classList.add("review-target");
+      if(isInlineReviewTarget(target)) target.classList.add("review-target-inline");
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "review-action";
+      button.dataset.reviewControlFor = target.dataset.reviewId;
+      if(target.dataset.reviewKind === "section-addition"){
+        button.textContent = "+ Add new text / general comment";
+      }else{
+        button.textContent = "+ Add comment / edit";
+      }
+      button.addEventListener("click", function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        openBlockReview(target.dataset.reviewId);
+      });
+      if(isInlineReviewTarget(target)) target.insertAdjacentElement("afterend",button);
+      else target.appendChild(button);
+    });
+  }
+
+  function renderReviewList(){
+    var notes = Object.entries(reviewState.notes).filter(function(entry){return hasReviewContent(entry[1]);});
+    if(!notes.length){
+      reviewList.innerHTML = '<div class="review-list-empty">No notes yet. Use “+ Add comment / edit” under a block, or add a general note at the end of a section.</div>';
+      return;
+    }
+    reviewList.innerHTML = notes.map(function(entry){
+      var id = entry[0], note = entry[1], body = note.comment || note.suggestion || "";
+      return '<div class="review-list-item"><b>' + escapeHtml(note.title || id) + '</b><p>' + escapeHtml(body.slice(0,180)) + (body.length > 180 ? "…" : "") + '</p></div>';
+    }).join("");
+  }
+
+  function updateReviewMarkers(){
+    getReviewTargets().forEach(function(target){
+      var id = target.dataset.reviewId;
+      var note = reviewState.notes[id];
+      target.classList.toggle("has-review",hasReviewContent(note));
+      if(target.dataset.reviewKind === "section-addition"){
+        var sectionWrap = target.closest(".section-review-wrap");
+        if(sectionWrap) sectionWrap.classList.toggle("has-section-review",hasReviewContent(note));
+      }
+      var action = reviewControlFor(id);
+      if(action) action.classList.toggle("has-review",hasReviewContent(note));
+      document.querySelectorAll('[data-review-note-for="' + id + '"]').forEach(function(node){node.remove();});
+      if(!hasReviewContent(note)) return;
+      var noteNode = document.createElement("div");
+      noteNode.className = "review-note";
+      noteNode.dataset.reviewNoteFor = id;
+      noteNode.innerHTML = (note.suggestion ? '<span>Guthrie suggested edit</span><p>' + escapeHtml(note.suggestion) + '</p>' : "") + (note.comment ? '<b>Comment</b><small>' + escapeHtml(note.comment) + '</small>' : "");
+      if(isInlineReviewTarget(target)){
+        var control = reviewControlFor(id);
+        (control || target).insertAdjacentElement("afterend",noteNode);
+      }else target.appendChild(noteNode);
+    });
+    renderReviewList();
+  }
+
+  function setReviewMode(on){
+    root.classList.toggle("review-on",on);
+    reviewModeToggle.checked = on;
+    try{localStorage.setItem(reviewModeKey,on ? "1" : "0");}catch(error){}
+  }
+
+  function openBlockReview(id){
+    var target = findTargetById(id);
+    if(!target) return;
+    currentReviewId = id;
+    var note = reviewState.notes[id] || {};
+    var draft = reviewState.drafts[id];
+    var isSectionAddition = target.dataset.reviewKind === "section-addition";
+    reviewModalKicker.textContent = isSectionAddition ? "Section note" : "Block review";
+    reviewModalTitle.textContent = target.dataset.reviewTitle || titleForTarget(target);
+    reviewExcerpt.textContent = excerptForTarget(target);
+    blockReviewCommentLabel.textContent = isSectionAddition ? "General comment on this section" : "Comment";
+    blockReviewSuggestionLabel.textContent = isSectionAddition ? "New text to add" : "Suggested edit / replacement text";
+    blockReviewComment.placeholder = isSectionAddition ? "What should we rethink, expand, or remember about this section?" : "What should we know about this block?";
+    blockReviewSuggestion.placeholder = isSectionAddition ? "Write the new paragraph, example, practice, or direction to add here." : "Write the exact wording or direction you would prefer.";
+    blockReviewComment.value = draft ? draft.comment || "" : note.comment || "";
+    blockReviewSuggestion.value = draft ? draft.suggestion || "" : note.suggestion || "";
+    reviewDraftStatus.textContent = draft ? "Recovered local draft · saved as you type" : "Drafts are saved on this device as you type.";
+    reviewModal.classList.add("is-open");
+    root.classList.add("lock-scroll");
+    setTimeout(function(){blockReviewComment.focus();},30);
+  }
+
+  function closeBlockReview(){
+    reviewModal.classList.remove("is-open");
+    root.classList.remove("lock-scroll");
+    currentReviewId = null;
+  }
+
+  function saveBlockReview(){
+    if(!currentReviewId) return;
+    var target = findTargetById(currentReviewId);
+    var note = {
+      id:currentReviewId,
+      lang:target ? target.dataset.reviewLang : "",
+      title:target ? target.dataset.reviewTitle : currentReviewId,
+      excerpt:target ? excerptForTarget(target) : "",
+      comment:blockReviewComment.value.trim(),
+      suggestion:blockReviewSuggestion.value.trim(),
+      updatedAt:new Date().toISOString()
+    };
+    if(hasReviewContent(note)) reviewState.notes[currentReviewId] = note;
+    else delete reviewState.notes[currentReviewId];
+    delete reviewState.drafts[currentReviewId];
+    queueReviewEvent("block-note-submitted",{targetId:currentReviewId,note:note});
+    writeReviewState();
+    updateReviewMarkers();
+    closeBlockReview();
+    void flushReviewOutbox();
+    showReviewToast("Saved locally and sent to the shared review archive.");
+  }
+
+  function deleteBlockReview(){
+    if(!currentReviewId) return;
+    var removedNote = reviewState.notes[currentReviewId] || null;
+    delete reviewState.notes[currentReviewId];
+    delete reviewState.drafts[currentReviewId];
+    queueReviewEvent("block-note-deleted",{targetId:currentReviewId,previousNote:removedNote});
+    writeReviewState();
+    updateReviewMarkers();
+    closeBlockReview();
+    void flushReviewOutbox();
+    showReviewToast("Note removed; its earlier version remains in submission history.");
+  }
+
+  function buildReviewMarkdown(){
+    var notes = Object.values(reviewState.notes).filter(hasReviewContent);
+    var lines = ["# Guthrie review notes","","Document: A Self-led Introduction to IFS","Exported: " + new Date().toLocaleString(),"","## General comment","",reviewState.globalComment.trim() || "_No general comment._","","## Block comments and suggested edits",""];
+    if(!notes.length) lines.push("_No block notes._");
+    notes.forEach(function(note,index){
+      lines.push("### " + (index + 1) + ". " + (note.title || note.id),"","Language: " + (note.lang || "unknown"),"","Original block excerpt:","","> " + cleanText(note.excerpt || ""),"");
+      if(note.comment) lines.push("Comment:","",note.comment.trim(),"");
+      if(note.suggestion) lines.push("Suggested edit:","",note.suggestion.trim(),"");
+    });
+    lines.push("## Submission history","");
+    if(!reviewState.history.length) lines.push("_No submitted changes yet._");
+    reviewState.history.forEach(function(event,index){
+      lines.push("### " + (index + 1) + ". " + event.kind,"","Submitted: " + (event.createdAt || "unknown"),"");
+      if(event.note && event.note.title) lines.push("Block: " + event.note.title,"");
+      if(event.note && event.note.comment) lines.push("Comment:","",event.note.comment,"");
+      if(event.note && event.note.suggestion) lines.push("Suggested text:","",event.note.suggestion,"");
+      if(event.globalComment) lines.push(event.globalComment,"");
+    });
+    return lines.join("\n");
+  }
+
+  function downloadText(filename,text,type){
+    var blob = new Blob([text],{type:type});
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement("a");
+    link.href = url; link.download = filename; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+  }
+
+  async function copyReviewMarkdown(){
+    var text = buildReviewMarkdown();
+    try{await navigator.clipboard.writeText(text);showReviewToast("Review packet copied.");}
+    catch(error){downloadText("guthrie-intro-review-notes.md",text,"text/markdown;charset=utf-8");showReviewToast("Markdown review packet downloaded.");}
+  }
+
+  function showReviewToast(message){
+    reviewToast.textContent = message;
+    reviewToast.classList.add("is-visible");
+    clearTimeout(showReviewToast.timer);
+    showReviewToast.timer = setTimeout(function(){reviewToast.classList.remove("is-visible");},2800);
+  }
+
+  prepareSectionReviewSlots();
+  prepareReviewTargets();
+  globalReviewComment.value = reviewState.globalComment || "";
+  globalReviewComment.addEventListener("input",function(){reviewState.globalComment = globalReviewComment.value;writeReviewState();});
+  function saveCurrentDraft(){
+    if(!currentReviewId) return;
+    var comment = blockReviewComment.value, suggestion = blockReviewSuggestion.value;
+    if(comment || suggestion) reviewState.drafts[currentReviewId] = {comment:comment,suggestion:suggestion,updatedAt:new Date().toISOString()};
+    else delete reviewState.drafts[currentReviewId];
+    writeReviewState();
+    reviewDraftStatus.textContent = "Draft saved on this device";
+  }
+  blockReviewComment.addEventListener("input",saveCurrentDraft);
+  blockReviewSuggestion.addEventListener("input",saveCurrentDraft);
+  reviewModeToggle.addEventListener("change",function(){setReviewMode(reviewModeToggle.checked);});
+  document.getElementById("closeReviewModal").addEventListener("click",closeBlockReview);
+  document.getElementById("cancelBlockReview").addEventListener("click",closeBlockReview);
+  document.getElementById("saveBlockReview").addEventListener("click",saveBlockReview);
+  document.getElementById("deleteBlockReview").addEventListener("click",deleteBlockReview);
+  document.getElementById("saveGlobalReview").addEventListener("click",function(){
+    reviewState.globalComment = globalReviewComment.value.trim();
+    queueReviewEvent("general-comment-submitted",{globalComment:reviewState.globalComment});
+    writeReviewState(); void flushReviewOutbox(); showReviewToast("General comment sent to the shared review archive.");
+  });
+  document.getElementById("copyReviewMarkdown").addEventListener("click",copyReviewMarkdown);
+  document.getElementById("downloadReviewMarkdown").addEventListener("click",function(){downloadText("guthrie-intro-review-notes.md",buildReviewMarkdown(),"text/markdown;charset=utf-8");});
+  document.getElementById("downloadReviewJson").addEventListener("click",function(){downloadText("guthrie-intro-review-notes.json",JSON.stringify(reviewState,null,2),"application/json;charset=utf-8");});
+  document.getElementById("clearReviewNotes").addEventListener("click",function(){
+    if(!confirm("Download a JSON backup, then clear all locally saved drafts and notes in this browser?")) return;
+    var stamp = new Date().toISOString().slice(0,19).replace(/:/g,"-");
+    downloadText("guthrie-intro-review-backup-" + stamp + ".json",JSON.stringify(reviewState,null,2),"application/json;charset=utf-8");
+    reviewState = emptyReviewState(); globalReviewComment.value = ""; writeReviewState(); updateReviewMarkers(); showReviewToast("Backup downloaded. Local notes cleared.");
+  });
+  reviewModal.addEventListener("click",function(event){if(event.target === reviewModal) closeBlockReview();});
+  document.addEventListener("keydown",function(event){if(event.key === "Escape" && reviewModal.classList.contains("is-open")) closeBlockReview();});
+  window.addEventListener("online",flushReviewOutbox);
+  updateReviewMarkers();
+  renderReviewSaveStatus();
+  void flushReviewOutbox();
+  var rememberedReviewMode = false;
+  try{rememberedReviewMode = localStorage.getItem(reviewModeKey) === "1";}catch(error){}
+  setReviewMode(Boolean(reviewAccessKey) || rememberedReviewMode);
 })();
 </script>
 </body>
