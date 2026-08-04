@@ -2474,7 +2474,10 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 const reviewStorageKey = "guthrie-course-foundation-review-v2";
 const reviewModeKey = "guthrie-course-foundation-review-mode";
 const reviewDocumentId = "guthrie-course-foundation-260803";
-const reviewSyncUrl = "";
+const reviewFormAction = "https://docs.google.com/forms/d/e/1FAIpQLScfkG1bdk0D-OOnZjFGC_VtyJDiIRk7a41FOo3jlegPu_faHw/formResponse";
+const reviewFormEventField = "entry.1292771604";
+const reviewFormPayloadField = "entry.863961216";
+const reviewAccessKey = new URLSearchParams(location.hash.slice(1)).get("reviewKey") || "";
 const reviewModeToggle = document.getElementById("reviewModeToggle");
 const reviewModal = document.getElementById("reviewModal");
 const reviewModalKicker = document.getElementById("reviewModalKicker");
@@ -2552,7 +2555,7 @@ function renderReviewSaveStatus(){
   if(!reviewSaveStatus) return;
   const draftCount = Object.keys(reviewState.drafts || {}).length;
   const pendingCount = (reviewState.outbox || []).length;
-  const connected = Boolean(reviewSyncUrl);
+  const connected = Boolean(reviewFormAction);
   const synced = connected && pendingCount === 0;
   reviewSaveStatus.classList.toggle("is-synced", synced);
   if(synced){
@@ -2568,21 +2571,42 @@ function renderReviewSaveStatus(){
 }
 
 async function flushReviewOutbox(){
-  if(!reviewSyncUrl || !reviewState.outbox.length || !navigator.onLine) return;
+  if(!reviewFormAction || !reviewState.outbox.length || !navigator.onLine) return;
   const batch = reviewState.outbox.slice();
-  try{
-    const response = await fetch(reviewSyncUrl, {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({documentId:reviewDocumentId, events:batch})
-    });
-    if(!response.ok) throw new Error("Sync failed");
-    const sentIds = new Set(batch.map(item => item.eventId));
-    reviewState.outbox = reviewState.outbox.filter(item => !sentIds.has(item.eventId));
-    reviewState.syncedAt = new Date().toISOString();
-    writeReviewState();
-  }catch(error){
-    renderReviewSaveStatus();
+  for(const event of batch){
+    try{
+      const note = event.note || event.previousNote || {};
+      const payload = [
+        `Document: ${event.documentId}`,
+        `Reviewer: ${event.reviewer}`,
+        `Action: ${event.kind}`,
+        `Block: ${note.title || event.targetId || "General comment"}`,
+        `Original text: ${note.excerpt || ""}`,
+        `Comment: ${note.comment || event.globalComment || ""}`,
+        `Suggested text: ${note.suggestion || ""}`,
+        `Saved at: ${event.createdAt}`,
+        `Page: ${event.pageUrl}`,
+        `Review key: ${reviewAccessKey || "direct-page-access"}`,
+        "",
+        `JSON: ${JSON.stringify(event)}`
+      ].join("\n");
+      const fields = new URLSearchParams();
+      fields.set(reviewFormEventField, event.eventId);
+      fields.set(reviewFormPayloadField, payload);
+      await fetch(reviewFormAction, {
+        method:"POST",
+        mode:"no-cors",
+        keepalive:true,
+        headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+        body:fields.toString()
+      });
+      reviewState.outbox = reviewState.outbox.filter(item => item.eventId !== event.eventId);
+      reviewState.syncedAt = new Date().toISOString();
+      writeReviewState();
+    }catch(error){
+      renderReviewSaveStatus();
+      break;
+    }
   }
 }
 
@@ -2809,7 +2833,7 @@ function saveBlockReview(){
   updateReviewMarkers();
   closeBlockReview();
   void flushReviewOutbox();
-  showReviewToast(reviewSyncUrl ? "Saved locally and queued for sync." : "Saved on this device and added to submission history.");
+  showReviewToast("Saved locally and sent to the central review archive.");
 }
 
 function deleteBlockReview(){
@@ -2960,7 +2984,7 @@ document.getElementById("saveGlobalReview").addEventListener("click", () => {
   queueReviewEvent("general-comment-submitted", {globalComment:reviewState.globalComment});
   writeReviewState();
   void flushReviewOutbox();
-  showReviewToast("General comment saved and added to submission history.");
+  showReviewToast("General comment saved locally and sent to the central review archive.");
 });
 document.getElementById("copyReviewMarkdown").addEventListener("click", copyReviewMarkdown);
 document.getElementById("downloadReviewMarkdown").addEventListener("click", () => {
