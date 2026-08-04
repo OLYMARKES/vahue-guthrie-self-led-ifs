@@ -338,6 +338,44 @@ body.review-on .review-workspace{display:block}
   color:var(--rust);
   border-color:rgba(157,78,50,.34);
 }
+.review-save-status{
+  display:grid;
+  grid-template-columns:10px minmax(0,1fr);
+  gap:3px 10px;
+  align-items:center;
+  margin-top:18px;
+  padding:13px 14px;
+  border:1px solid rgba(82,98,61,.2);
+  border-radius:4px;
+  background:rgba(247,246,239,.72);
+}
+.review-save-status .status-dot{
+  grid-row:1 / span 2;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+}
+.review-save-status.is-synced .status-dot{background:var(--moss)}
+.review-save-status strong{
+  color:var(--ink);
+  font-size:.9rem;
+  font-weight:600;
+}
+.review-save-status small{
+  color:var(--ink-faint);
+  font-size:.78rem;
+  line-height:1.4;
+}
+.review-draft-status{
+  min-height:1.4em;
+  margin:12px 0 0;
+  color:var(--moss);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.67rem;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
 .review-list{
   border:1px solid rgba(157,78,50,.18);
   border-radius:4px;
@@ -2327,7 +2365,7 @@ p:last-child{margin-bottom:0}
         <h2>Comments, suggested edits, and next notes.</h2>
       </div>
       <div class="measure">
-        <p class="lede">Block notes are saved in this browser until exported. Suggested edits appear under the relevant block in red, so the original course text stays readable while Guthrie's changes remain visible.</p>
+        <p class="lede">Every draft is saved on this device as it is typed. Every submitted note also enters a version history, so later edits do not erase what Guthrie wrote before. Suggested edits remain visible under the relevant block in red.</p>
       </div>
     </div>
     <div class="review-board">
@@ -2337,12 +2375,18 @@ p:last-child{margin-bottom:0}
           <textarea id="globalReviewComment" placeholder="Add an overall note, missing topic, sequence change, or anything that should guide the next revision."></textarea>
         </div>
         <div class="review-actions">
+          <button type="button" class="review-button primary" id="saveGlobalReview">Save general comment</button>
           <button type="button" class="review-button primary" id="copyReviewMarkdown">Copy review packet</button>
           <button type="button" class="review-button" id="downloadReviewMarkdown">Download Markdown</button>
           <button type="button" class="review-button" id="downloadReviewJson">Download JSON</button>
           <button type="button" class="review-button danger" id="clearReviewNotes">Clear local notes</button>
         </div>
-        <p class="fine" style="margin-top:14px">Static Pages cannot save these notes to our server automatically. Export or copy the packet and send it back by email.</p>
+        <div class="review-save-status" id="reviewSaveStatus" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <strong id="reviewSaveStatusTitle">Saved on this device</strong>
+          <small id="reviewSaveStatusDetail">Central archive is not connected yet.</small>
+        </div>
+        <p class="fine" style="margin-top:14px">The page keeps local drafts and a submission history. Until the central archive is connected, export remains the second-device backup.</p>
       </div>
       <div>
         <h3>Block notes</h3>
@@ -2382,6 +2426,7 @@ p:last-child{margin-bottom:0}
       <button type="button" class="review-button danger" id="deleteBlockReview">Delete note</button>
       <button type="button" class="review-button" id="cancelBlockReview">Cancel</button>
     </div>
+    <p class="review-draft-status" id="reviewDraftStatus">Drafts are saved on this device as you type.</p>
   </div>
 </div>
 
@@ -2428,6 +2473,8 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 /* ---------- Guthrie review mode ---------- */
 const reviewStorageKey = "guthrie-course-foundation-review-v2";
 const reviewModeKey = "guthrie-course-foundation-review-mode";
+const reviewDocumentId = "guthrie-course-foundation-260803";
+const reviewSyncUrl = "";
 const reviewModeToggle = document.getElementById("reviewModeToggle");
 const reviewModal = document.getElementById("reviewModal");
 const reviewModalKicker = document.getElementById("reviewModalKicker");
@@ -2440,20 +2487,103 @@ const blockReviewSuggestionLabel = document.getElementById("blockReviewSuggestio
 const globalReviewComment = document.getElementById("globalReviewComment");
 const reviewList = document.getElementById("reviewList");
 const reviewToast = document.getElementById("reviewToast");
+const reviewDraftStatus = document.getElementById("reviewDraftStatus");
+const reviewSaveStatus = document.getElementById("reviewSaveStatus");
+const reviewSaveStatusTitle = document.getElementById("reviewSaveStatusTitle");
+const reviewSaveStatusDetail = document.getElementById("reviewSaveStatusDetail");
 let currentReviewId = null;
+
+function emptyReviewState(){
+  return {globalComment:"", notes:{}, drafts:{}, history:[], outbox:[], localSavedAt:"", syncedAt:""};
+}
+
+function normalizeReviewState(value){
+  const base = emptyReviewState();
+  if(!value || typeof value !== "object") return base;
+  return {
+    ...base,
+    ...value,
+    notes:value.notes && typeof value.notes === "object" ? value.notes : {},
+    drafts:value.drafts && typeof value.drafts === "object" ? value.drafts : {},
+    history:Array.isArray(value.history) ? value.history : [],
+    outbox:Array.isArray(value.outbox) ? value.outbox : []
+  };
+}
 
 function readReviewState(){
   try{
-    return JSON.parse(localStorage.getItem(reviewStorageKey)) || {globalComment:"", notes:{}};
+    return normalizeReviewState(JSON.parse(localStorage.getItem(reviewStorageKey)));
   }catch(error){
-    return {globalComment:"", notes:{}};
+    return emptyReviewState();
   }
 }
 
 let reviewState = readReviewState();
 
 function writeReviewState(){
+  reviewState.localSavedAt = new Date().toISOString();
   try{ localStorage.setItem(reviewStorageKey, JSON.stringify(reviewState)); }catch(error){}
+  renderReviewSaveStatus();
+}
+
+function eventId(){
+  if(globalThis.crypto?.randomUUID) return crypto.randomUUID();
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function queueReviewEvent(kind, payload){
+  const event = {
+    eventId:eventId(),
+    documentId:reviewDocumentId,
+    reviewer:"Guthrie",
+    kind,
+    createdAt:new Date().toISOString(),
+    pageUrl:location.href.split("#")[0],
+    ...payload
+  };
+  reviewState.history.unshift(event);
+  reviewState.history = reviewState.history.slice(0,500);
+  reviewState.outbox.push(event);
+  reviewState.outbox = reviewState.outbox.slice(-500);
+  return event;
+}
+
+function renderReviewSaveStatus(){
+  if(!reviewSaveStatus) return;
+  const draftCount = Object.keys(reviewState.drafts || {}).length;
+  const pendingCount = (reviewState.outbox || []).length;
+  const connected = Boolean(reviewSyncUrl);
+  const synced = connected && pendingCount === 0;
+  reviewSaveStatus.classList.toggle("is-synced", synced);
+  if(synced){
+    reviewSaveStatusTitle.textContent = "Saved and synced";
+    reviewSaveStatusDetail.textContent = reviewState.syncedAt ? `Central archive updated ${new Date(reviewState.syncedAt).toLocaleString()}.` : "Central archive is up to date.";
+  }else if(connected){
+    reviewSaveStatusTitle.textContent = "Saved on this device";
+    reviewSaveStatusDetail.textContent = `${pendingCount} submitted ${pendingCount === 1 ? "change is" : "changes are"} waiting to sync${draftCount ? `; ${draftCount} open draft${draftCount === 1 ? "" : "s"}.` : "."}`;
+  }else{
+    reviewSaveStatusTitle.textContent = "Saved on this device";
+    reviewSaveStatusDetail.textContent = `${pendingCount} submitted ${pendingCount === 1 ? "change is" : "changes are"} queued for the central archive${draftCount ? `; ${draftCount} open draft${draftCount === 1 ? "" : "s"}.` : "."}`;
+  }
+}
+
+async function flushReviewOutbox(){
+  if(!reviewSyncUrl || !reviewState.outbox.length || !navigator.onLine) return;
+  const batch = reviewState.outbox.slice();
+  try{
+    const response = await fetch(reviewSyncUrl, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({documentId:reviewDocumentId, events:batch})
+    });
+    if(!response.ok) throw new Error("Sync failed");
+    const sentIds = new Set(batch.map(item => item.eventId));
+    reviewState.outbox = reviewState.outbox.filter(item => !sentIds.has(item.eventId));
+    reviewState.syncedAt = new Date().toISOString();
+    writeReviewState();
+  }catch(error){
+    renderReviewSaveStatus();
+  }
 }
 
 function cleanText(text){
@@ -2632,6 +2762,7 @@ function openBlockReview(id){
   if(!target) return;
   currentReviewId = id;
   const note = reviewState.notes[id] || {};
+  const draft = reviewState.drafts[id];
   const title = target.dataset.reviewTitle || titleForTarget(target);
   const isSectionAddition = target.dataset.reviewKind === "section-addition";
   reviewModalKicker.textContent = isSectionAddition ? "Section note" : "Block review";
@@ -2641,8 +2772,9 @@ function openBlockReview(id){
   blockReviewSuggestionLabel.textContent = isSectionAddition ? "New text to add" : "Suggested edit / replacement text";
   blockReviewComment.placeholder = isSectionAddition ? "What should we rethink, expand, or remember about this section?" : "What should we know about this block?";
   blockReviewSuggestion.placeholder = isSectionAddition ? "Write the new paragraph, idea, example, practice, or direction to add here. It will appear in red at the end of the section." : "Write the exact wording or direction Guthrie would prefer. This will appear in red under the block.";
-  blockReviewComment.value = note.comment || "";
-  blockReviewSuggestion.value = note.suggestion || "";
+  blockReviewComment.value = draft ? draft.comment || "" : note.comment || "";
+  blockReviewSuggestion.value = draft ? draft.suggestion || "" : note.suggestion || "";
+  reviewDraftStatus.textContent = draft ? "Recovered local draft · saved as you type" : "Drafts are saved on this device as you type.";
   reviewModal.classList.add("is-open");
   root.classList.add("lock-scroll");
   setTimeout(() => blockReviewComment.focus(), 30);
@@ -2671,19 +2803,26 @@ function saveBlockReview(){
   }else{
     delete reviewState.notes[currentReviewId];
   }
+  delete reviewState.drafts[currentReviewId];
+  queueReviewEvent("block-note-submitted", {targetId:currentReviewId, note});
   writeReviewState();
   updateReviewMarkers();
   closeBlockReview();
-  showReviewToast("Saved locally. Export the review packet when ready.");
+  void flushReviewOutbox();
+  showReviewToast(reviewSyncUrl ? "Saved locally and queued for sync." : "Saved on this device and added to submission history.");
 }
 
 function deleteBlockReview(){
   if(!currentReviewId) return;
+  const removedNote = reviewState.notes[currentReviewId] || null;
   delete reviewState.notes[currentReviewId];
+  delete reviewState.drafts[currentReviewId];
+  queueReviewEvent("block-note-deleted", {targetId:currentReviewId, previousNote:removedNote});
   writeReviewState();
   updateReviewMarkers();
   closeBlockReview();
-  showReviewToast("Block note removed.");
+  void flushReviewOutbox();
+  showReviewToast("Block note removed; the earlier version remains in submission history.");
 }
 
 function buildReviewMarkdown(){
@@ -2727,6 +2866,36 @@ function buildReviewMarkdown(){
       }
     });
   }
+  lines.push("## Submission history");
+  lines.push("");
+  if(!reviewState.history.length){
+    lines.push("_No submitted changes yet._");
+  }else{
+    reviewState.history.forEach((event, index) => {
+      lines.push(`### ${index + 1}. ${event.kind}`);
+      lines.push("");
+      lines.push(`Submitted: ${event.createdAt || "unknown"}`);
+      lines.push("");
+      if(event.note?.title) lines.push(`Block: ${event.note.title}`);
+      if(event.note?.comment){
+        lines.push("");
+        lines.push("Comment:");
+        lines.push("");
+        lines.push(event.note.comment);
+      }
+      if(event.note?.suggestion){
+        lines.push("");
+        lines.push("Suggested text:");
+        lines.push("");
+        lines.push(event.note.suggestion);
+      }
+      if(event.globalComment){
+        lines.push("");
+        lines.push(event.globalComment);
+      }
+      lines.push("");
+    });
+  }
   return lines.join("\n");
 }
 
@@ -2767,11 +2936,32 @@ globalReviewComment.addEventListener("input", () => {
   reviewState.globalComment = globalReviewComment.value;
   writeReviewState();
 });
+function saveCurrentDraft(){
+  if(!currentReviewId) return;
+  const comment = blockReviewComment.value;
+  const suggestion = blockReviewSuggestion.value;
+  if(comment || suggestion){
+    reviewState.drafts[currentReviewId] = {comment, suggestion, updatedAt:new Date().toISOString()};
+  }else{
+    delete reviewState.drafts[currentReviewId];
+  }
+  writeReviewState();
+  reviewDraftStatus.textContent = "Draft saved on this device";
+}
+blockReviewComment.addEventListener("input", saveCurrentDraft);
+blockReviewSuggestion.addEventListener("input", saveCurrentDraft);
 reviewModeToggle.addEventListener("change", () => setReviewMode(reviewModeToggle.checked));
 document.getElementById("closeReviewModal").addEventListener("click", closeBlockReview);
 document.getElementById("cancelBlockReview").addEventListener("click", closeBlockReview);
 document.getElementById("saveBlockReview").addEventListener("click", saveBlockReview);
 document.getElementById("deleteBlockReview").addEventListener("click", deleteBlockReview);
+document.getElementById("saveGlobalReview").addEventListener("click", () => {
+  reviewState.globalComment = globalReviewComment.value.trim();
+  queueReviewEvent("general-comment-submitted", {globalComment:reviewState.globalComment});
+  writeReviewState();
+  void flushReviewOutbox();
+  showReviewToast("General comment saved and added to submission history.");
+});
 document.getElementById("copyReviewMarkdown").addEventListener("click", copyReviewMarkdown);
 document.getElementById("downloadReviewMarkdown").addEventListener("click", () => {
   downloadText("guthrie-review-notes.md", buildReviewMarkdown(), "text/markdown;charset=utf-8");
@@ -2780,12 +2970,14 @@ document.getElementById("downloadReviewJson").addEventListener("click", () => {
   downloadText("guthrie-review-notes.json", JSON.stringify(reviewState, null, 2), "application/json;charset=utf-8");
 });
 document.getElementById("clearReviewNotes").addEventListener("click", () => {
-  if(!confirm("Clear all locally saved review notes in this browser?")) return;
-  reviewState = {globalComment:"", notes:{}};
+  if(!confirm("Download a JSON backup, then clear all locally saved drafts and notes in this browser?")) return;
+  const stamp = new Date().toISOString().slice(0,19).replaceAll(":","-");
+  downloadText(`guthrie-review-backup-${stamp}.json`, JSON.stringify(reviewState, null, 2), "application/json;charset=utf-8");
+  reviewState = emptyReviewState();
   globalReviewComment.value = "";
   writeReviewState();
   updateReviewMarkers();
-  showReviewToast("All local review notes cleared.");
+  showReviewToast("Backup downloaded. Local review notes cleared.");
 });
 reviewModal.addEventListener("click", (event) => {
   if(event.target === reviewModal) closeBlockReview();
@@ -2794,6 +2986,8 @@ document.addEventListener("keydown", (event) => {
   if(event.key === "Escape" && reviewModal.classList.contains("is-open")) closeBlockReview();
 });
 updateReviewMarkers();
+renderReviewSaveStatus();
+void flushReviewOutbox();
 setReviewMode((() => {
   try{return localStorage.getItem(reviewModeKey) === "1";}catch(error){return false;}
 })());
