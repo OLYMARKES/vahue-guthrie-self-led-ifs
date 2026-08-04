@@ -161,20 +161,21 @@ body.review-on .review-target:hover{
   outline-color:rgba(157,78,50,.34);
 }
 .review-action{
-  position:absolute;
-  top:8px;
-  right:8px;
-  z-index:8;
+  position:relative;
+  z-index:2;
   display:none;
   align-items:center;
+  justify-content:center;
   gap:6px;
-  min-height:32px;
-  padding:7px 10px;
-  border:1px solid rgba(157,78,50,.24);
+  width:100%;
+  min-height:40px;
+  margin-top:14px;
+  padding:9px 12px;
+  border:1px dashed rgba(157,78,50,.34);
   border-radius:4px;
-  background:rgba(251,250,245,.94);
+  background:rgba(255,248,244,.46);
   color:var(--rust);
-  box-shadow:0 8px 22px rgba(23,27,24,.07);
+  box-shadow:none;
   cursor:pointer;
   font-family:"IBM Plex Mono",ui-monospace,monospace;
   font-size:.66rem;
@@ -186,10 +187,15 @@ body.review-on .review-action{display:inline-flex}
   outline:1px solid rgba(157,78,50,.34);
   outline-offset:4px;
 }
-.review-target.has-review .review-action{
+.review-target.has-review .review-action,
+.review-action.has-review{
   background:var(--rust);
   border-color:var(--rust);
+  border-style:solid;
   color:#fffaf3;
+}
+.review-target-inline + .review-action{
+  max-width:28rem;
 }
 .review-note{
   margin-top:16px;
@@ -434,9 +440,9 @@ h1,h2{
   font-weight:400;
 }
 h1{
-  max-width:13ch;
-  font-size:clamp(3.1rem,8.2vw,6.6rem);
-  line-height:.96;
+  max-width:14ch;
+  font-size:clamp(2.45rem,5.9vw,4.85rem);
+  line-height:1;
 }
 h2{
   max-width:17ch;
@@ -481,15 +487,40 @@ p:last-child{margin-bottom:0}
   min-height:calc(100vh - 54px);
   display:flex;
   align-items:center;
-  padding:clamp(42px,7vw,82px) 0 clamp(48px,7vw,84px);
+  padding:clamp(40px,6vw,72px) 0 clamp(48px,7vw,84px);
 }
 .hero-grid{
   display:grid;
-  grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);
+  grid-template-columns:minmax(0,1fr) minmax(320px,.86fr);
   gap:clamp(28px,6vw,76px);
-  align-items:end;
+  align-items:center;
 }
 .hero h1{margin-bottom:24px}
+.hero-right{
+  display:grid;
+  gap:16px;
+}
+.guthrie-note{
+  border:1px solid rgba(157,78,50,.23);
+  border-left:3px solid var(--rust);
+  border-radius:4px;
+  background:#fff8f4;
+  padding:clamp(18px,2.5vw,24px);
+}
+.guthrie-note span{
+  display:block;
+  margin-bottom:10px;
+  color:var(--rust);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.68rem;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+.guthrie-note p{
+  color:#5d4038;
+  font-size:.98rem;
+  line-height:1.52;
+}
 .hero-card{
   border:1px solid var(--rule);
   border-radius:4px;
@@ -498,7 +529,7 @@ p:last-child{margin-bottom:0}
 }
 .hero-card p{
   font-family:"Newsreader",Georgia,serif;
-  font-size:clamp(1.35rem,2.4vw,2rem);
+  font-size:clamp(1.25rem,2.1vw,1.82rem);
   line-height:1.22;
 }
 .doc-status{
@@ -1016,8 +1047,7 @@ p:last-child{margin-bottom:0}
     flex-direction:column;
   }
   .review-action{
-    position:static;
-    margin:0 0 12px;
+    margin:12px 0;
     box-shadow:none;
   }
   .review-dialog{
@@ -1059,12 +1089,18 @@ p:last-child{margin-bottom:0}
         <div class="hero-grid">
           <div>
             <p class="section-kicker">Working document · August 2026</p>
-            <h1>A foundation for a course about <span class="accent">Self</span>.</h1>
+            <h1><span class="accent">Self-led</span> IFS course foundation.</h1>
             <p class="lede">This document is the seed of the course. It gathers the first educational layer: principles, weekly content, live-call intentions, practices, participant materials, and the landing-page story that can grow into the full program.</p>
           </div>
-          <aside class="hero-card">
-            <p>A six-week Self-led introduction to IFS for life, centered on access to Self as awake awareness, the language of parts, and the loving gaze of Self toward oneself and others.</p>
-          </aside>
+          <div class="hero-right">
+            <div class="guthrie-note">
+              <span>Dear Guthrie</span>
+              <p>This is a working draft I started shaping from our approved direction. Please read it as a course-building document, not a final syllabus. Turn on <strong>Review</strong> in the top bar to comment or suggest edits on any block. Use <strong>+ Add comment / edit</strong> under a block; your notes stay visible in the document and collect at the bottom for export.</p>
+            </div>
+            <aside class="hero-card">
+              <p>A six-week Self-led introduction to IFS for life, centered on access to Self as awake awareness, the language of parts, and the loving gaze of Self toward oneself and others.</p>
+            </aside>
+          </div>
         </div>
         <div class="doc-status" aria-label="Document status">
           <div><b>What it is now</b><span>A course foundation and writing base for the next content pass.</span></div>
@@ -1652,12 +1688,18 @@ p:last-child{margin-bottom:0}
         <div class="hero-grid">
           <div>
             <p class="section-kicker">Рабочий документ · август 2026</p>
-            <h1>Основа курса про <span class="accent">Self</span>.</h1>
+            <h1>Основа <span class="accent">Self-led</span> IFS курса.</h1>
             <p class="lede">Это документ-зерно, из которого будет вырастать сам курс. Он собирает первый учебный слой: принципы, содержание недель, intentions для live-звонков, практики, материалы для участников и историю лендинга.</p>
           </div>
-          <aside class="hero-card">
-            <p>Шестинедельное Self-led введение в IFS для жизни: про доступ к Self как awake awareness, язык частей и любящий взгляд Self к себе, своим частям и другим людям.</p>
-          </aside>
+          <div class="hero-right">
+            <div class="guthrie-note">
+              <span>Dear Guthrie</span>
+              <p>Это рабочий draft, который я начала собирать из уже согласованного направления. Пожалуйста, читай его как документ для сборки курса, не как финальный syllabus. В верхней панели есть <strong>Review</strong>: его можно включить и оставлять комментарии или suggested edits к любому блоку. Нажимай <strong>+ Add comment / edit</strong> под блоком; заметки останутся видимыми в документе и соберутся внизу для экспорта.</p>
+            </div>
+            <aside class="hero-card">
+              <p>Шестинедельное Self-led введение в IFS для жизни: про доступ к Self как awake awareness, язык частей и любящий взгляд Self к себе, своим частям и другим людям.</p>
+            </aside>
+          </div>
         </div>
         <div class="doc-status" aria-label="Статус документа">
           <div><b>Что это сейчас</b><span>Документ-основа и письменная база для следующего слоя содержания.</span></div>
@@ -2402,6 +2444,9 @@ function excerptForTarget(target){
 
 function getReviewTargets(){
   return Array.from(document.querySelectorAll([
+    ".lang-page .hero h1",
+    ".lang-page .hero .lede",
+    ".lang-page .guthrie-note",
     ".lang-page .hero-card",
     ".lang-page .doc-status > div",
     ".lang-page .chapter-head",
@@ -2419,6 +2464,14 @@ function getReviewTargets(){
   ].join(",")));
 }
 
+function isInlineReviewTarget(target){
+  return ["H1","H2","H3","H4","P","SPAN","B","LI"].includes(target.tagName);
+}
+
+function reviewControlFor(id){
+  return document.querySelector(`[data-review-control-for="${CSS.escape(id)}"]`);
+}
+
 function prepareReviewTargets(){
   getReviewTargets().forEach((target, index) => {
     if(target.dataset.reviewId) return;
@@ -2428,16 +2481,22 @@ function prepareReviewTargets(){
     target.dataset.reviewTitle = title;
     target.dataset.reviewLang = lang;
     target.classList.add("review-target");
+    if(isInlineReviewTarget(target)) target.classList.add("review-target-inline");
     const button = document.createElement("button");
     button.type = "button";
     button.className = "review-action";
-    button.textContent = "Comment / edit";
+    button.dataset.reviewControlFor = target.dataset.reviewId;
+    button.textContent = "+ Add comment / edit";
     button.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
       openBlockReview(target.dataset.reviewId);
     });
-    target.appendChild(button);
+    if(isInlineReviewTarget(target)){
+      target.insertAdjacentElement("afterend", button);
+    }else{
+      target.appendChild(button);
+    }
   });
 }
 
@@ -2454,17 +2513,26 @@ function updateReviewMarkers(){
     const id = target.dataset.reviewId;
     const note = reviewState.notes[id];
     target.classList.toggle("has-review", hasReviewContent(note));
-    target.querySelectorAll(":scope > .review-note").forEach(node => node.remove());
+    const action = reviewControlFor(id);
+    if(action) action.classList.toggle("has-review", hasReviewContent(note));
+    document.querySelectorAll(`[data-review-note-for="${CSS.escape(id)}"]`).forEach(node => node.remove());
     if(!hasReviewContent(note)) return;
     const noteNode = document.createElement("div");
     noteNode.className = "review-note";
+    noteNode.dataset.reviewNoteFor = id;
     const suggestion = cleanText(note.suggestion);
     const comment = cleanText(note.comment);
     noteNode.innerHTML = `
       ${suggestion ? `<span>Guthrie suggested edit</span><p>${escapeHtml(suggestion)}</p>` : ""}
       ${comment ? `<b>Comment</b><small>${escapeHtml(comment)}</small>` : ""}
     `;
-    target.appendChild(noteNode);
+    if(isInlineReviewTarget(target)){
+      const control = reviewControlFor(id);
+      if(control) control.insertAdjacentElement("afterend", noteNode);
+      else target.insertAdjacentElement("afterend", noteNode);
+    }else{
+      target.appendChild(noteNode);
+    }
   });
   renderReviewList();
 }
@@ -2472,7 +2540,7 @@ function updateReviewMarkers(){
 function renderReviewList(){
   const notes = Object.entries(reviewState.notes).filter(([, note]) => hasReviewContent(note));
   if(!notes.length){
-    reviewList.innerHTML = `<div class="review-list-empty">No block notes yet. Turn on Review mode and use “Comment / edit” on any block.</div>`;
+    reviewList.innerHTML = `<div class="review-list-empty">No block notes yet. Turn on Review mode and use “+ Add comment / edit” under any block.</div>`;
     return;
   }
   reviewList.innerHTML = notes.map(([id, note]) => `
