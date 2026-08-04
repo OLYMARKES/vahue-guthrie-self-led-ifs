@@ -183,6 +183,43 @@ body.review-on .review-target:hover{
   text-transform:uppercase;
 }
 body.review-on .review-action{display:inline-flex}
+.section-review-wrap{
+  display:none;
+  margin-top:clamp(34px,5vw,58px);
+}
+body.review-on .section-review-wrap,
+.section-review-wrap.has-section-review{
+  display:block;
+}
+.section-add-target{
+  width:100%;
+}
+body.review-on .section-add-target,
+body.review-on .section-add-target:hover,
+.section-add-target.has-review{
+  outline:0;
+}
+.section-add-target .section-add-action{
+  min-height:96px;
+  margin-top:0;
+  border-color:rgba(157,78,50,.42);
+  background:rgba(255,248,244,.25);
+  color:var(--rust);
+  font-size:.78rem;
+}
+.section-add-target .section-add-action:hover,
+.section-add-target .section-add-action:focus-visible{
+  border-style:solid;
+  background:rgba(255,248,244,.7);
+}
+.section-add-target.has-review .section-add-action,
+.section-add-target .section-add-action.has-review{
+  min-height:48px;
+}
+.section-add-target .review-note{
+  margin-top:12px;
+  padding:18px 20px;
+}
 .review-target.has-review{
   outline:1px solid rgba(157,78,50,.34);
   outline-offset:4px;
@@ -2326,18 +2363,18 @@ p:last-child{margin-bottom:0}
   <div class="review-dialog">
     <div class="review-dialog-head">
       <div>
-        <p class="section-kicker">Block review</p>
+        <p class="section-kicker" id="reviewModalKicker">Block review</p>
         <h3 id="reviewModalTitle">Comment on this block</h3>
       </div>
       <button type="button" class="review-close" id="closeReviewModal" aria-label="Close review dialog">×</button>
     </div>
     <p class="review-excerpt" id="reviewExcerpt"></p>
     <div class="review-field">
-      <label for="blockReviewComment">Comment</label>
+      <label for="blockReviewComment" id="blockReviewCommentLabel">Comment</label>
       <textarea id="blockReviewComment" placeholder="What should we know about this block?"></textarea>
     </div>
     <div class="review-field">
-      <label for="blockReviewSuggestion">Suggested edit / replacement text</label>
+      <label for="blockReviewSuggestion" id="blockReviewSuggestionLabel">Suggested edit / replacement text</label>
       <textarea id="blockReviewSuggestion" placeholder="Write the exact wording or direction Guthrie would prefer. This will appear in red under the block."></textarea>
     </div>
     <div class="review-actions">
@@ -2393,10 +2430,13 @@ const reviewStorageKey = "guthrie-course-foundation-review-v2";
 const reviewModeKey = "guthrie-course-foundation-review-mode";
 const reviewModeToggle = document.getElementById("reviewModeToggle");
 const reviewModal = document.getElementById("reviewModal");
+const reviewModalKicker = document.getElementById("reviewModalKicker");
 const reviewModalTitle = document.getElementById("reviewModalTitle");
 const reviewExcerpt = document.getElementById("reviewExcerpt");
 const blockReviewComment = document.getElementById("blockReviewComment");
 const blockReviewSuggestion = document.getElementById("blockReviewSuggestion");
+const blockReviewCommentLabel = document.getElementById("blockReviewCommentLabel");
+const blockReviewSuggestionLabel = document.getElementById("blockReviewSuggestionLabel");
 const globalReviewComment = document.getElementById("globalReviewComment");
 const reviewList = document.getElementById("reviewList");
 const reviewToast = document.getElementById("reviewToast");
@@ -2432,11 +2472,13 @@ function slug(text){
 }
 
 function titleForTarget(target){
+  if(target.dataset.reviewLabel) return target.dataset.reviewLabel;
   const titleNode = target.matches(".doc-status > div") ? target.querySelector("b") : target.querySelector("h1,h2,h3,h4,.section-kicker,b,strong");
   return cleanText(titleNode ? titleNode.textContent : target.textContent).slice(0, 90) || "Untitled block";
 }
 
 function excerptForTarget(target){
+  if(target.dataset.reviewExcerpt) return target.dataset.reviewExcerpt;
   const clone = target.cloneNode(true);
   clone.querySelectorAll(".review-action,.review-note").forEach(node => node.remove());
   return cleanText(clone.textContent).slice(0, 260);
@@ -2460,7 +2502,8 @@ function getReviewTargets(){
     ".lang-page .module",
     ".lang-page .boundary",
     ".lang-page .practice-side",
-    ".lang-page .next-card"
+    ".lang-page .next-card",
+    ".lang-page .section-add-target"
   ].join(",")));
 }
 
@@ -2470,6 +2513,25 @@ function isInlineReviewTarget(target){
 
 function reviewControlFor(id){
   return document.querySelector(`[data-review-control-for="${CSS.escape(id)}"]`);
+}
+
+function prepareSectionReviewSlots(){
+  document.querySelectorAll(".lang-page > section").forEach((section, index) => {
+    const lang = section.closest(".lang-page")?.dataset.lang || "global";
+    const heading = section.querySelector("h1,h2");
+    const sectionTitle = cleanText(heading?.textContent) || `Section ${index + 1}`;
+    const wrap = document.createElement("div");
+    wrap.className = "section-review-wrap";
+    const target = document.createElement("div");
+    target.className = "section-add-target";
+    target.dataset.reviewLabel = `${sectionTitle} — new text / general comment`;
+    target.dataset.reviewExcerpt = `Add a passage after this section, or leave a general comment on the section as a whole.`;
+    target.dataset.reviewKind = "section-addition";
+    target.dataset.reviewLang = lang;
+    wrap.appendChild(target);
+    const sectionInner = section.querySelector(":scope > .wrap");
+    (sectionInner || section).appendChild(wrap);
+  });
 }
 
 function prepareReviewTargets(){
@@ -2486,7 +2548,12 @@ function prepareReviewTargets(){
     button.type = "button";
     button.className = "review-action";
     button.dataset.reviewControlFor = target.dataset.reviewId;
-    button.textContent = "+ Add comment / edit";
+    if(target.dataset.reviewKind === "section-addition"){
+      button.classList.add("section-add-action");
+      button.textContent = "+ Add new text / general comments";
+    }else{
+      button.textContent = "+ Add comment / edit";
+    }
     button.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -2513,6 +2580,9 @@ function updateReviewMarkers(){
     const id = target.dataset.reviewId;
     const note = reviewState.notes[id];
     target.classList.toggle("has-review", hasReviewContent(note));
+    if(target.dataset.reviewKind === "section-addition"){
+      target.closest(".section-review-wrap")?.classList.toggle("has-section-review", hasReviewContent(note));
+    }
     const action = reviewControlFor(id);
     if(action) action.classList.toggle("has-review", hasReviewContent(note));
     document.querySelectorAll(`[data-review-note-for="${CSS.escape(id)}"]`).forEach(node => node.remove());
@@ -2563,8 +2633,14 @@ function openBlockReview(id){
   currentReviewId = id;
   const note = reviewState.notes[id] || {};
   const title = target.dataset.reviewTitle || titleForTarget(target);
+  const isSectionAddition = target.dataset.reviewKind === "section-addition";
+  reviewModalKicker.textContent = isSectionAddition ? "Section note" : "Block review";
   reviewModalTitle.textContent = title;
   reviewExcerpt.textContent = excerptForTarget(target);
+  blockReviewCommentLabel.textContent = isSectionAddition ? "General comment on this section" : "Comment";
+  blockReviewSuggestionLabel.textContent = isSectionAddition ? "New text to add" : "Suggested edit / replacement text";
+  blockReviewComment.placeholder = isSectionAddition ? "What should we rethink, expand, or remember about this section?" : "What should we know about this block?";
+  blockReviewSuggestion.placeholder = isSectionAddition ? "Write the new paragraph, idea, example, practice, or direction to add here. It will appear in red at the end of the section." : "Write the exact wording or direction Guthrie would prefer. This will appear in red under the block.";
   blockReviewComment.value = note.comment || "";
   blockReviewSuggestion.value = note.suggestion || "";
   reviewModal.classList.add("is-open");
@@ -2684,6 +2760,7 @@ function showReviewToast(message){
   showReviewToast.timer = setTimeout(() => reviewToast.classList.remove("is-visible"), 2800);
 }
 
+prepareSectionReviewSlots();
 prepareReviewTargets();
 globalReviewComment.value = reviewState.globalComment || "";
 globalReviewComment.addEventListener("input", () => {
