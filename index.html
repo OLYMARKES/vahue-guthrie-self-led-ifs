@@ -342,6 +342,12 @@ footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"
 .review-toggle{display:flex;align-items:center;gap:8px;min-height:40px;padding:4px 12px 4px 9px;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink-soft);cursor:pointer;user-select:none;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;text-transform:uppercase}
 .review-toggle input{width:15px;height:15px;margin:0;accent-color:var(--gold)}
 body.review-on .review-toggle{color:var(--ink);border-color:rgba(140,99,32,.48);background:#fffaf0}
+.review-guidance{display:none;border-bottom:1px solid rgba(140,99,32,.24);background:#f3eee1}
+body.review-on .review-guidance{display:block}
+.review-guidance .wrap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 20px;align-items:start;padding-top:16px;padding-bottom:16px}
+.review-guidance-label{padding-top:2px;color:var(--gold);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;text-transform:uppercase;white-space:nowrap}
+.review-guidance p{max-width:48rem;margin:0;color:var(--ink-soft);font-size:.9rem;line-height:1.48}
+.review-guidance strong{color:var(--ink)}
 .lang-toggle{display:inline-flex;gap:4px;min-height:40px;padding:4px;border:1px solid var(--rule);border-radius:999px;background:var(--card)}
 .lang-toggle button{min-width:52px;border:0;border-radius:999px;background:transparent;color:var(--ink-soft);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:0;cursor:pointer}
 .lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
@@ -397,7 +403,7 @@ body.review-on .review-workspace{display:block}
 .review-toast{position:fixed;right:18px;bottom:18px;z-index:80;display:none;max-width:min(360px,calc(100vw - 36px));padding:13px 15px;border:1px solid rgba(82,98,61,.25);border-radius:3px;background:var(--card);color:#52623d;box-shadow:0 18px 42px rgba(25,28,26,.16);font-size:.9rem}.review-toast.is-visible{display:block}
 body.lock-scroll{overflow:hidden}
 @media(max-width:760px){.review-workspace-head,.review-board{grid-template-columns:1fr}.review-workspace-head{align-items:start}.site-controls{gap:6px}.review-toggle{padding-right:9px}.review-toggle span{display:none}}
-@media(max-width:520px){.sitebar .wrap{align-items:center}.sitebrand{max-width:10rem;line-height:1.35}.lang-toggle button{min-width:42px}.review-dialog{padding:20px}}
+@media(max-width:520px){.sitebar .wrap{align-items:center}.sitebrand{max-width:10rem;line-height:1.35}.lang-toggle button{min-width:42px}.review-dialog{padding:20px}.review-guidance .wrap{grid-template-columns:1fr;gap:5px;padding-top:13px;padding-bottom:14px}.review-guidance-label{white-space:normal}}
 
 </style>
 </head>
@@ -417,6 +423,12 @@ body.lock-scroll{overflow:hidden}
     </div>
   </div>
 </header>
+<aside class="review-guidance" aria-label="Important review instruction">
+  <div class="wrap">
+    <span class="review-guidance-label">Before you start</span>
+    <p><strong>After every comment or suggested edit, please click “Save note.”</strong> Until you click it, your text is only a draft in this browser. Once saved, the note is sent to the shared review archive.</p>
+  </div>
+</aside>
 <main>
   <div class="lang-pane lang-en"><!-- ============ HERO ============ -->
 <section class="hero">

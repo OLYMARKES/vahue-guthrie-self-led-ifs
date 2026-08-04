@@ -123,6 +123,37 @@ body.review-on .review-toggle{
   background:var(--surface-strong);
   border-color:rgba(157,78,50,.38);
 }
+.review-guidance{
+  display:none;
+  border-bottom:1px solid rgba(157,78,50,.22);
+  background:var(--paper-warm);
+}
+body.review-on .review-guidance{display:block}
+.review-guidance .wrap{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:14px 20px;
+  align-items:start;
+  padding-top:16px;
+  padding-bottom:16px;
+}
+.review-guidance-label{
+  padding-top:2px;
+  color:var(--rust);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.66rem;
+  letter-spacing:0;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.review-guidance p{
+  max-width:48rem;
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.9rem;
+  line-height:1.48;
+}
+.review-guidance strong{color:var(--ink)}
 .lang-switch{
   display:flex;
   align-items:center;
@@ -1246,6 +1277,8 @@ p:last-child{margin-bottom:0}
   .topbar-controls{gap:6px}
   .review-toggle{padding:4px 7px;font-size:.66rem}
   .lang-switch button{padding:7px 8px}
+  .review-guidance .wrap{grid-template-columns:1fr;gap:5px;padding-top:13px;padding-bottom:14px}
+  .review-guidance-label{white-space:normal}
   .two-column,
   .week-modules,
   .material-map,
@@ -1307,6 +1340,13 @@ p:last-child{margin-bottom:0}
     </div>
   </div>
 </header>
+
+<aside class="review-guidance" aria-label="Important review instruction">
+  <div class="wrap">
+    <span class="review-guidance-label">Before you start</span>
+    <p><strong>After every comment or suggested edit, please click “Save note.”</strong> Until you click it, your text is only a draft in this browser. Once saved, the note is sent to the shared review archive.</p>
+  </div>
+</aside>
 
 <main>
   <div class="lang-page is-active" data-lang="en">
