@@ -1043,6 +1043,129 @@ p:last-child{margin-bottom:0}
 .next-card h3{margin-bottom:12px}
 .next-card p{color:var(--ink-soft)}
 
+.reading-stack{
+  display:grid;
+  gap:1px;
+  margin-top:30px;
+  border:1px solid var(--rule-soft);
+  background:var(--rule-soft);
+}
+.reading-chapter{
+  display:grid;
+  grid-template-columns:84px minmax(0,1fr);
+  gap:clamp(20px,4vw,48px);
+  padding:clamp(28px,5vw,52px);
+  background:var(--surface);
+}
+.reading-index{
+  color:var(--gold);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.72rem;
+  text-transform:uppercase;
+}
+.reading-copy{max-width:760px}
+.reading-copy h3{
+  margin-bottom:18px;
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(1.75rem,3vw,2.55rem);
+  font-weight:400;
+  line-height:1.08;
+}
+.reading-copy p{
+  color:var(--ink-soft);
+  font-size:1.03rem;
+  line-height:1.72;
+}
+.reading-copy p + p{margin-top:16px}
+.concept-map{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1px;
+  margin-top:28px;
+  border:1px solid var(--rule-soft);
+  background:var(--rule-soft);
+}
+.concept-node{
+  min-height:190px;
+  padding:24px;
+  background:var(--surface);
+}
+.concept-node span{
+  display:block;
+  margin-bottom:22px;
+  color:var(--gold);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.68rem;
+  text-transform:uppercase;
+}
+.concept-node h3{margin-bottom:10px}
+.concept-node p{color:var(--ink-soft);font-size:.94rem}
+.practice-script{
+  display:grid;
+  gap:1px;
+  margin-top:28px;
+  border:1px solid var(--rule-soft);
+  background:var(--rule-soft);
+}
+.practice-step{
+  display:grid;
+  grid-template-columns:76px minmax(0,1fr);
+  gap:22px;
+  padding:22px 24px;
+  background:var(--surface);
+}
+.practice-step time{
+  color:var(--gold);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.72rem;
+}
+.practice-step h4{margin-bottom:8px}
+.practice-step p{color:var(--ink-soft);font-size:.95rem}
+.call-timeline{
+  display:grid;
+  gap:1px;
+  margin-top:28px;
+  border:1px solid var(--rule-soft);
+  background:var(--rule-soft);
+}
+.call-step{
+  display:grid;
+  grid-template-columns:92px minmax(0,.7fr) minmax(0,1.3fr);
+  gap:24px;
+  padding:20px 24px;
+  background:var(--surface);
+  align-items:start;
+}
+.call-step time{
+  color:var(--gold);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.72rem;
+}
+.call-step b{font-weight:600}
+.call-step p{color:var(--ink-soft);font-size:.94rem}
+.day-grid{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:1px;
+  margin-top:28px;
+  border:1px solid var(--rule-soft);
+  background:var(--rule-soft);
+}
+.day-card{
+  min-height:190px;
+  padding:20px;
+  background:var(--surface);
+}
+.day-card span{
+  display:block;
+  margin-bottom:18px;
+  color:var(--gold);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.66rem;
+  text-transform:uppercase;
+}
+.day-card p{color:var(--ink-soft);font-size:.9rem;line-height:1.5}
+
 .footer{
   padding:34px 0 44px;
   border-top:1px solid var(--rule-soft);
@@ -1079,7 +1202,9 @@ p:last-child{margin-bottom:0}
   .doc-status,
   .principles,
   .next-grid,
-  .source-library{
+  .source-library,
+  .concept-map,
+  .day-grid{
     grid-template-columns:1fr;
   }
   .path{
@@ -1111,6 +1236,7 @@ p:last-child{margin-bottom:0}
   .review-board{
     grid-template-columns:1fr;
   }
+  .day-card{min-height:0}
 }
 @media (max-width:680px){
   body{font-size:16px}
@@ -1125,6 +1251,12 @@ p:last-child{margin-bottom:0}
   .material-map,
   .practice-band{
     grid-template-columns:1fr;
+  }
+  .reading-chapter,
+  .practice-step,
+  .call-step{
+    grid-template-columns:1fr;
+    gap:12px;
   }
   .week-top{
     grid-template-columns:1fr;
@@ -1197,7 +1329,7 @@ p:last-child{margin-bottom:0}
           </div>
         </div>
         <div class="doc-status" aria-label="Document status">
-          <div><b>What it is now</b><span>A course foundation and writing base for the next content pass.</span></div>
+          <div><b>What it is now</b><span>A course foundation with the complete bilingual Week 1 model package.</span></div>
           <div><b>What it becomes</b><span>Participant materials, week guides, live-call outlines, facilitator notes, and landing copy.</span></div>
           <div><b>What remains separate</b><span>The old table-heavy version is preserved as a technical draft.</span></div>
         </div>
@@ -1836,14 +1968,14 @@ p:last-child{margin-bottom:0}
             <h2>What we build from this foundation.</h2>
           </div>
           <div class="measure">
-            <p class="lede">The next step is not another structural summary. The next step is to write real course material: Week 1 in full, then the same layer for all six weeks, then landing copy that translates the same story for participants.</p>
+            <p class="lede">Week 1 is now built in full below. The next step is Guthrie's review and correction of this model package. Only after that review should the approved format be applied to Weeks 2-6 and later translated into landing copy.</p>
           </div>
         </div>
 
         <div class="next-grid">
           <article class="next-card">
-            <h3>Week 1 full draft</h3>
-            <p>Teaching text, call outline, Guthrie prompts, awareness exercises, handout, journaling prompts, and integration language.</p>
+            <h3>Week 1 review</h3>
+            <p>Review the complete draft below: teaching text, call outline, awareness exercises, handout, integration prompts, demo brief, and support language.</p>
           </article>
           <article class="next-card">
             <h3>Quote integration</h3>
@@ -1865,6 +1997,321 @@ p:last-child{margin-bottom:0}
             <li>Which quotes and formulations does he approve for public use?</li>
             <li>What materials does he want to review before launch?</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="wrap">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">09 / Week 1 full draft</p>
+            <h2>Meeting Self through awareness.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">Guiding question: what changes when awareness comes forward?</p>
+            <p class="quiet">This is the complete model package for the first week: six short chapters of participant teaching, a map of conscious experience, a seven-minute practice, three experiments, Guthrie's live-call outline, one low-intensity demonstration, seven days of integration, a lean handout, and explicit support boundaries.</p>
+          </div>
+        </div>
+
+        <div class="quote-solo">
+          <p>"Awareness processes information in parallel and attention processes it sequentially."</p>
+          <cite>Guthrie anchor · July 29 alignment call · public use pending approval</cite>
+        </div>
+
+        <div class="reading-stack" aria-label="Week 1 participant reading in six chapters">
+          <article class="reading-chapter">
+            <span class="reading-index">Chapter 01</span>
+            <div class="reading-copy">
+              <h3>You already know attention-heavy life.</h3>
+              <p>A great deal of ordinary life is organized through attention. Attention helps us read this sentence, finish a task, answer a message, follow a recipe, and decide what happens next. It is precise and useful. It can select one thing and temporarily exclude everything else.</p>
+              <p>The difficulty begins when focus is asked to carry the whole of life. We narrow harder, think faster, switch between tasks, and try to improve an overloaded system by using more of the same effort. The body often joins the strategy: the eyes tighten, the shoulders rise, the breath becomes smaller, and the next task starts to feel like the only thing that exists.</p>
+              <p>Week 1 does not ask you to reject focus. It introduces another capacity that is already here: awareness. Attention is focus; awareness is field. When the field comes forward, focus can remain, but it no longer has to pretend that it is the whole mind. This is the beginning of the move from operating system 1.0 to operating system 2.0: not an upgrade through more force, but a wider way of knowing.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Chapter 02</span>
+            <div class="reading-copy">
+              <h3>Attention is a spotlight. Awareness is the room.</h3>
+              <p>Imagine a spotlight moving across a stage. It can illuminate one face, one gesture, one object. This is attention. Now notice that the whole stage, the audience, the sounds, and your own body can also be present at once. This wider inclusion is awareness.</p>
+              <p>Attention processes mainly in sequence: this, then that. Awareness can include many signals together: the room, the body, the sound of a voice, the feeling of contact with the chair, and the task in front of you. Awareness is not spacing out. It is a panoramic form of contact. Focus becomes lighter and more skillful when it is held inside this wider field.</p>
+              <p>You do not need to believe this distinction. Week 1 is built so that you can test it. When your eyes soften, when hearing opens, or when you feel the body while also sensing the room, ask what changes. Does the breath move? Does the body use less effort? Can more than one thing be present without immediate pressure to solve it?</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Chapter 03</span>
+            <div class="reading-copy">
+              <h3>Self can be met as awake awareness.</h3>
+              <p>In this course, Self is not another inner voice trying to become the best manager of the system. Guthrie describes Self as awake awareness: the living capacity that can notice, include, and relate to what is happening. In IFS, Self is understood as already present. It may be obscured by activated parts, just as the sun may be hidden by clouds, but it does not need to be manufactured.</p>
+              <p>Access to Self is not all-or-nothing, and Self is not a perfect state to perform. We ask, “How much access to Self is available right now?” A small amount of curiosity, a little more room around a reaction, a softer breath, or the ability to pause before acting may all be signs of some access.</p>
+              <p>The qualities traditionally associated with Self—calm, clarity, curiosity, compassion, confidence, courage, creativity, and connectedness—are not a scorecard. They are possible doorways. You may not feel calm and still have access to curiosity. You may feel nervous and still be able to offer kindness. The practice is to notice what is available, not to perform an ideal state.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Chapter 04</span>
+            <div class="reading-copy">
+              <h3>Parts are the contents that awareness can notice.</h3>
+              <p>IFS begins from a simple and humane idea: the mind is naturally multiple. Different parts of us can want, fear, plan, criticize, avoid, please, rebel, protect, and rest. A part is not proof that something is wrong. It is an inner person with a perspective and an attempt to help.</p>
+              <p>Parts can narrow the field when they become urgent. “I am anxious” can feel total. The sentence “A part of me is anxious” does not deny the anxiety; it creates a little space around it. The anxious part is still here, and something else is also here that can notice it.</p>
+              <p>Week 1 introduces only this doorway. You are not asked to analyze the part, find its origin, retrieve a memory, or change it. You can name an ordinary, low-intensity part and notice whether any curiosity or compassion is available. If the answer is no, that is useful information. Nothing has to be forced.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Chapter 05</span>
+            <div class="reading-copy">
+              <h3>Ground, core, field, focus: a repeatable entrance.</h3>
+              <p>The four building blocks of Presence give the body-mind a sequence it can remember. Ground means contact and stability: feet, seat, gravity, and the support beneath you. Core means embodiment: sensing the trunk of the body from within and noticing the place from which needs, values, and inner authority can be felt.</p>
+              <p>Field means allowing awareness to open beyond the narrow point of attention. Sounds, space, body sensations, and visual periphery can be included without chasing them. Focus comes last: from ground, core, and field, attention can lightly touch what matters now.</p>
+              <p>This order matters. We do not float into a wide field while leaving the body behind, and we do not grip a task without context. We ground, inhabit the core, open the field, and then focus. The goal is not a special state. It is a practical balance between field and focus that can be revisited during work, conversation, parenting, conflict, and rest.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Chapter 06</span>
+            <div class="reading-copy">
+              <h3>The first week is a practice of recognition.</h3>
+              <p>Nothing deep has to happen for this week to work. The aim is to recognize a few differences in direct experience: narrow focus and open field; effort and supported contact; a reaction that feels like the whole self and a part that can be noticed; less access to Self and a little more access.</p>
+              <p>Frequency matters more than intensity. A three-minute return repeated during ordinary life may teach more than one dramatic experience. Duration can grow gradually: a few seconds of field awareness, then a minute, then the length of a conversation. The nervous system learns through repetition, permission, and enough safety.</p>
+              <p>At the end of the week, your task is not to declare that you have mastered Self. It is to describe, in your own language, what access to Self may feel like in you and what conditions support it. That description becomes your first personal compass for the rest of the course.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Model of conscious experience</p>
+            <h2>Four distinctions, one living system.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">The map is deliberately small. It gives language to experience without turning Week 1 into a theory class.</p>
+          </div>
+        </div>
+
+        <div class="concept-map" aria-label="Attention awareness Self and parts map">
+          <article class="concept-node">
+            <span>01 · Focus</span>
+            <h3>Attention</h3>
+            <p>Selects and highlights. Precise, sequential, useful for a task. It can become tense when asked to hold everything.</p>
+          </article>
+          <article class="concept-node">
+            <span>02 · Field</span>
+            <h3>Awareness</h3>
+            <p>Panoramic and inclusive. Can hold body, space, sound, relationship, and task in parallel.</p>
+          </article>
+          <article class="concept-node">
+            <span>03 · Awake awareness</span>
+            <h3>Self</h3>
+            <p>The living capacity to notice and relate. Access is a continuum and may appear through curiosity, clarity, compassion, or another Self quality.</p>
+          </article>
+          <article class="concept-node">
+            <span>04 · Contents</span>
+            <h3>Parts</h3>
+            <p>Inner voices, feelings, impulses, and protectors that can be noticed within awareness. They are not problems to defeat.</p>
+          </article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Seven-minute core practice</p>
+            <h2>Ground, core, field, focus.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">Read slowly or record in a calm voice. Eyes may close or rest in a soft gaze. Every invitation is optional.</p>
+          </div>
+        </div>
+
+        <div class="practice-script" aria-label="Seven-minute ground core field focus practice">
+          <article class="practice-step"><time>0:00–0:45</time><div><h4>Arrive</h4><p>Choose an upright position that is also easy. Let the spine support alertness without becoming rigid. Notice that nothing has to be achieved in the next seven minutes. If closing the eyes is uncomfortable, keep a soft gaze.</p></div></article>
+          <article class="practice-step"><time>0:45–2:00</time><div><h4>Ground</h4><p>Feel the contact of feet with the floor and the weight of the body meeting the seat. Let gravity carry what it can carry. Notice the support beneath you. You might imagine roots extending downward, or simply stay with pressure, temperature, and contact. Let the center of gravity settle a little lower.</p></div></article>
+          <article class="practice-step"><time>2:00–3:15</time><div><h4>Core</h4><p>Bring light attention to the trunk of the body: belly, chest, back, throat. Feel the body from within without changing it. Notice breath, pulsing, warmth, coolness, movement, or no clear sensation. Sense a central line from the base of the body toward the crown. Let this be the place where you listen inwardly.</p></div></article>
+          <article class="practice-step"><time>3:15–5:00</time><div><h4>Field</h4><p>Allow awareness to open into the space around the body. Include sounds without following them. If the eyes are open, include the edges of the visual field. Let body, room, and sound be present together. Thoughts may come and go inside this wider field. There is no need to remove them.</p></div></article>
+          <article class="practice-step"><time>5:00–6:10</time><div><h4>Focus</h4><p>Remain aware of ground, core, and field. Now let attention lightly touch one simple object: the breath, a sound, or the next thing you will do. Notice whether focus can be precise without becoming tight. Field remains; focus moves within it.</p></div></article>
+          <article class="practice-step"><time>6:10–7:00</time><div><h4>Return and name</h4><p>Notice how much access to Self may be available right now—none that you can identify, a little, or more. All answers are welcome. Feel the room, move the fingers and toes, and open the eyes when ready. Write one sentence: “Access to Self may feel like…”</p></div></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Three direct experiments</p>
+            <h2>Feel the distinction before explaining it.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">Each experiment is short, solo, and low intensity. Stop if you feel strain, dizziness, disorientation, or pressure.</p>
+          </div>
+        </div>
+
+        <div class="material-map">
+          <article class="material">
+            <span>Experiment 01 · 2 minutes</span>
+            <h3>Peripheral vision / fingers</h3>
+            <p>Hold both index fingers together in front of you. Look at them gently. Move them apart very slowly while trying to include both. At the point where effort rises, let the eyes soften and receive the whole visual field. Bring the fingers back. Ask: what changed when seeing became less effortful?</p>
+            <p class="source-fine">Keep the head still and the movement comfortable. Skip this exercise if it strains the eyes; use open hearing instead.</p>
+          </article>
+          <article class="material">
+            <span>Experiment 02 · 4 minutes</span>
+            <h3>Walking in four channels</h3>
+            <p>Walk one minute with open seeing, one with open hearing, one feeling the body, and one including all three. Let awareness receive rather than hunt for sensations. Keep enough focus for the ground, traffic, other people, and ordinary safety.</p>
+            <p class="source-fine">Choose a familiar, low-risk place. Do not use this experiment while crossing streets, driving, cycling, or anywhere full attention is required for safety.</p>
+          </article>
+          <article class="material">
+            <span>Experiment 03 · 3 minutes</span>
+            <h3>The full bowl of soup</h3>
+            <p>Imagine carrying a very full bowl through a crowded room. First, hyper-focus on the surface: feel the body tighten and the room disappear. Pause. Ground, widen the visual field, include the room, then lightly touch the bowl with attention. Compare the two ways of moving.</p>
+            <p class="source-fine">Use imagination or an empty, unbreakable bowl. The point is balance between field and focus, not testing coordination with hot liquid.</p>
+          </article>
+          <article class="material">
+            <span>Parts doorway · 2 minutes</span>
+            <h3>“A part of me…”</h3>
+            <p>Name one ordinary reaction at low intensity: “A part of me is rushing,” “A part of me wants to get this right,” or “A part of me is distracted.” Notice whether the sentence creates any space. Ask only: “Am I willing to be with this part for one breath?”</p>
+            <p class="source-fine">Do not ask for memories, origins, or vulnerable material. If the part feels overwhelming, return to the room and stop.</p>
+          </article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Guthrie live call · 90 minutes</p>
+            <h2>Transmission, experience, then a small map.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">The call starts in direct experience, gives just enough language, and ends with an ordinary-life experiment. The sequence is ready for Guthrie to correct.</p>
+          </div>
+        </div>
+
+        <div class="call-timeline" aria-label="Week 1 ninety-minute live call outline">
+          <article class="call-step"><time>0:00–0:10</time><b>Welcome and container</b><p>Course purpose, cameras and choice, access as a continuum, no pressure to disclose, and the line between learning and therapy.</p></article>
+          <article class="call-step"><time>0:10–0:17</time><b>Presence practice</b><p>Guthrie leads the seven-minute ground-core-field-focus practice and briefly names what participants may have noticed.</p></article>
+          <article class="call-step"><time>0:17–0:30</time><b>First teaching</b><p>Model of Conscious Experience: attention as focus, awareness as field, Self as awake awareness, and parts as contents that can be noticed.</p></article>
+          <article class="call-step"><time>0:30–0:42</time><b>Experiments</b><p>Peripheral-vision exercise, short debrief, and the bowl-of-soup demonstration to show field and focus working together.</p></article>
+          <article class="call-step"><time>0:42–0:57</time><b>Course story</b><p>OS 1.0 to OS 2.0; transcend and include; increasing the frequency and duration of access to Self without making it a performance target.</p></article>
+          <article class="call-step"><time>0:57–1:12</time><b>Low-intensity demo</b><p>One volunteer notices an ordinary part from a little more field awareness. Guthrie models pacing, consent, and a clean stop before depth.</p></article>
+          <article class="call-step"><time>1:12–1:24</time><b>Debrief and Q&amp;A</b><p>What changed in body, focus, field, and relationship to the part? Clarify that the demo is not a protocol for participants to run on each other.</p></article>
+          <article class="call-step"><time>1:24–1:30</time><b>Integration</b><p>Choose one daily experiment, complete “Access to Self may feel like…”, and leave with ground, orientation, and a clear support reminder.</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Low-intensity demonstration brief</p>
+            <h2>Notice one ordinary part without opening its history.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">Teaching intention: participants see how field awareness and parts language create space without turning the moment into deep work.</p>
+          </div>
+        </div>
+
+        <div class="practice-band">
+          <article class="practice-side is">
+            <h3>Demo frame</h3>
+            <ul class="mini-list">
+              <li>Choose an ordinary part at roughly 2–4 out of 10 intensity.</li>
+              <li>Confirm consent, privacy limits, and a stop signal.</li>
+              <li>Begin with ground, core, and field before naming the part.</li>
+              <li>Invite: “A part of me is…” and notice what changes.</li>
+              <li>Ask whether any curiosity or compassion is available.</li>
+              <li>Close by orienting to the room and naming one useful observation.</li>
+            </ul>
+          </article>
+          <article class="practice-side not">
+            <h3>Do not enter</h3>
+            <ul class="mini-list">
+              <li>No search for origin, age, burdening event, or memory.</li>
+              <li>No request that a protector step aside.</li>
+              <li>No exile contact, witnessing, retrieval, or unburdening.</li>
+              <li>No promise that the part will change.</li>
+              <li>No teaching participants to reproduce the sequence on a partner.</li>
+              <li>Stop if intensity rises, orientation drops, or consent changes.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="next-grid" style="margin-top:1px">
+          <article class="next-card"><h3>Opening question</h3><p>“As you sense the room and your body, what ordinary part would be okay to notice for a few minutes?”</p></article>
+          <article class="next-card"><h3>Middle question</h3><p>“When you say ‘a part of me,’ is any curiosity, kindness, or space available—even a little?”</p></article>
+          <article class="next-card"><h3>Closing question</h3><p>“What would help this part know that you have noticed it and that we are stopping here?”</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Seven days of integration</p>
+            <h2>Frequency before intensity.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">One small experiment per day. Three to seven minutes is enough. Participants may repeat the practice that feels most supportive.</p>
+          </div>
+        </div>
+
+        <div class="day-grid" aria-label="Week 1 daily integration prompts">
+          <article class="day-card"><span>Day 01</span><p>After the core practice, complete: “Access to Self may feel like…” and “I notice less access when…”</p></article>
+          <article class="day-card"><span>Day 02</span><p>Try peripheral vision. What changes in eyes, jaw, shoulders, breath, and mental speed?</p></article>
+          <article class="day-card"><span>Day 03</span><p>Walk through seeing, hearing, body, then all three. Which doorway into field awareness is easiest?</p></article>
+          <article class="day-card"><span>Day 04</span><p>Use one sentence: “A part of me…” Does naming the part create even one percent more space?</p></article>
+          <article class="day-card"><span>Day 05</span><p>Remember the bowl of soup during one task. Can focus become lighter while the wider room stays present?</p></article>
+          <article class="day-card"><span>Day 06</span><p>Notice frequency and duration. When did access appear today, and what helped it last a little longer?</p></article>
+          <article class="day-card"><span>Day 07</span><p>Write your Week 1 compass: three markers of access, two supports, and one question for Guthrie.</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Lean participant handout</p>
+            <h2>Week 1 on one page.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">Six points, one practice, one prompt, one boundary. This is the only handout participants need for the week.</p>
+          </div>
+        </div>
+
+        <div class="principles">
+          <article class="principle"><span class="num">01</span><h3>Attention is focus</h3><p>Precise and sequential. Useful, but tiring when it has to hold the whole field.</p></article>
+          <article class="principle"><span class="num">02</span><h3>Awareness is field</h3><p>Panoramic and inclusive. It can hold body, room, relationship, and task together.</p></article>
+          <article class="principle"><span class="num">03</span><h3>Self is awake awareness</h3><p>Access is a continuum. Curiosity, clarity, compassion, or a little more space can be a doorway.</p></article>
+          <article class="principle"><span class="num">04</span><h3>Parts can be noticed</h3><p>“A part of me…” creates room without denying the feeling or turning it into a problem.</p></article>
+          <article class="principle"><span class="num">05</span><h3>Ground, core, field, focus</h3><p>Stability, embodiment, wider awareness, then light and skillful attention.</p></article>
+          <article class="principle"><span class="num">06</span><h3>Practice recognition</h3><p>Return often, stay briefly, notice what supports access, and do not force a special state.</p></article>
+        </div>
+
+        <div class="material-map" style="margin-top:28px">
+          <article class="material"><span>One practice</span><h3>Seven-minute reset</h3><p>Ground through feet and seat; feel the core; open into field; lightly focus; name how much access to Self may be available.</p></article>
+          <article class="material"><span>One integration prompt</span><h3>My first compass</h3><p>“Access to Self may feel like… Less access may feel like… What supports a little more access is…”</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Boundary and support language</p>
+            <h2>Recognition, not therapy.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">Use this language in the guide, at the beginning of the live call, before the demo, and in the handout footer.</p>
+          </div>
+        </div>
+
+        <div class="quote-panel">
+          <blockquote>
+            <p>This week asks you to notice attention, awareness, access to Self, and one ordinary part. It does not ask you to disclose private history, revisit trauma, search for memories, or guide anyone else.</p>
+            <cite>Participant boundary</cite>
+          </blockquote>
+          <div class="quote-note">
+            <div>
+              <strong>If the practice becomes too much</strong>
+              <p>Stop. Open the eyes. Name five things you can see. Feel feet and seat. Look around the actual room, drink water, and contact a trusted support person if needed. You may skip any practice or leave the call.</p>
+            </div>
+            <p class="fine">This course is educational and is not psychotherapy, crisis care, or a substitute for individual support. If vulnerable or overwhelming material continues, pause course practice and consider contacting a qualified mental-health professional. If there is immediate risk of harm, use local emergency or crisis services.</p>
+          </div>
+        </div>
+
+        <div class="next-grid" style="margin-top:28px">
+          <article class="next-card"><h3>Review decision 01</h3><p>Does Guthrie want ground-core-field-focus to open every week in this exact seven-minute form, or should Week 1 remain the full version and later weeks use a shorter return?</p></article>
+          <article class="next-card"><h3>Review decision 02</h3><p>Which low-intensity part and which participant profile make the cleanest Week 1 live demonstration?</p></article>
+          <article class="next-card"><h3>Review decision 03</h3><p>Which lines from the July 29 call and old Self materials may be quoted publicly, and which should remain internal teaching anchors?</p></article>
         </div>
       </div>
     </section>
@@ -1890,7 +2337,7 @@ p:last-child{margin-bottom:0}
           </div>
         </div>
         <div class="doc-status" aria-label="Статус документа">
-          <div><b>Что это сейчас</b><span>Документ-основа и письменная база для следующего слоя содержания.</span></div>
+          <div><b>Что это сейчас</b><span>Документ-основа с полным bilingual model package Week 1.</span></div>
           <div><b>Во что это вырастает</b><span>Материалы участников, гайды недель, планы звонков, заметки фасилитаторов и тексты лендинга.</span></div>
           <div><b>Что сохранено отдельно</b><span>Старая табличная версия сохранена как technical draft.</span></div>
         </div>
@@ -2529,14 +2976,14 @@ p:last-child{margin-bottom:0}
             <h2>Что мы строим из этой основы.</h2>
           </div>
           <div class="measure">
-            <p class="lede">Следующий шаг - не ещё один структурный summary. Следующий шаг - писать настоящие материалы курса: полностью Week 1, потом такой же слой для всех шести недель, потом landing copy, который переводит эту историю для участников.</p>
+            <p class="lede">Week 1 теперь полностью собрана ниже. Следующий шаг — review и corrections Guthrie к этому model package. Только после этого утверждённый формат переносится на Weeks 2-6, а затем переводится в landing copy.</p>
           </div>
         </div>
 
         <div class="next-grid">
           <article class="next-card">
-            <h3>Полный draft Week 1</h3>
-            <p>Teaching text, call outline, Guthrie prompts, awareness exercises, handout, journaling prompts и integration language.</p>
+            <h3>Review Week 1</h3>
+            <p>Проверить полный draft ниже: teaching text, call outline, awareness exercises, handout, integration prompts, demo brief и support language.</p>
           </article>
           <article class="next-card">
             <h3>Интеграция цитат</h3>
@@ -2558,6 +3005,216 @@ p:last-child{margin-bottom:0}
             <li>Какие quotes and formulations он approve для public use?</li>
             <li>Какие материалы он хочет review before launch?</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="wrap">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">09 / Полный draft Week 1</p>
+            <h2>Встреча с Self через awareness.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">Главный вопрос: что меняется, когда awareness выходит на передний план?</p>
+            <p class="quiet">Это полный model package первой недели: шесть коротких глав participant teaching, карта conscious experience, семиминутная практика, три эксперимента, outline live-звонка Guthrie, одна low-intensity демонстрация, семь дней интеграции, lean handout и ясные границы поддержки.</p>
+          </div>
+        </div>
+
+        <div class="quote-solo">
+          <p>"Awareness processes information in parallel and attention processes it sequentially."</p>
+          <cite>Guthrie anchor · звонок 29 июля · публичное использование после approval</cite>
+        </div>
+
+        <div class="reading-stack" aria-label="Материал Week 1 для участника в шести главах">
+          <article class="reading-chapter">
+            <span class="reading-index">Глава 01</span>
+            <div class="reading-copy">
+              <h3>Вам уже знакома жизнь, перегруженная attention.</h3>
+              <p>Большая часть обычной жизни организована через attention. Благодаря ему мы читаем это предложение, заканчиваем задачу, отвечаем на сообщение, следуем рецепту и решаем, что делать дальше. Attention точен и полезен. Он может выбрать одну вещь и на время исключить всё остальное.</p>
+              <p>Трудность начинается, когда focus должен удерживать всю жизнь. Мы сужаемся ещё сильнее, думаем быстрее, перескакиваем между задачами и пытаемся улучшить перегруженную систему при помощи ещё большего усилия. Тело часто подключается к этой стратегии: взгляд напрягается, плечи поднимаются, дыхание становится мельче, а следующая задача начинает ощущаться как единственная существующая реальность.</p>
+              <p>Week 1 не предлагает отказаться от focus. Она знакомит с другой способностью, которая уже здесь: awareness. Attention — это focus; awareness — это field. Когда field выходит на передний план, focus остаётся, но ему больше не нужно притворяться всем умом. Так начинается движение от operating system 1.0 к operating system 2.0: не апгрейд через большее давление, а более широкий способ знать и присутствовать.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Глава 02</span>
+            <div class="reading-copy">
+              <h3>Attention — прожектор. Awareness — вся комната.</h3>
+              <p>Представьте прожектор, который движется по сцене. Он может осветить одно лицо, один жест, один предмет. Это attention. А теперь заметьте, что вся сцена, зрители, звуки и ваше собственное тело тоже могут присутствовать одновременно. Это более широкое включение и есть awareness.</p>
+              <p>Attention обрабатывает в основном последовательно: сначала это, потом то. Awareness может одновременно включать комнату, тело, звук голоса, контакт со стулом и задачу перед вами. Awareness — не рассеянность и не уход из реальности. Это панорамная форма контакта. Когда focus удерживается внутри более широкого field, он становится легче и точнее.</p>
+              <p>В это различие не нужно верить. Первая неделя устроена так, чтобы вы могли проверить его в опыте. Когда взгляд смягчается, слух раскрывается или тело ощущается вместе с комнатой, спросите: что изменилось? Стало ли дыхание свободнее? Нужно ли телу меньше усилия? Могут ли несколько вещей присутствовать без немедленной необходимости их решать?</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Глава 03</span>
+            <div class="reading-copy">
+              <h3>Self можно встретить как awake awareness.</h3>
+              <p>В этом курсе Self — не ещё один внутренний голос, который пытается стать лучшим менеджером системы. Guthrie описывает Self как awake awareness: живую способность замечать, включать и вступать в отношения с тем, что происходит. В IFS Self понимается как уже присутствующий. Активированные части могут заслонить доступ к нему, как облака заслоняют солнце, но Self не нужно создавать.</p>
+              <p>Доступ к Self не устроен по принципу «есть или нет». Мы не спрашиваем: «Я идеально в Self?» Мы спрашиваем: «Сколько доступа к Self доступно прямо сейчас?» Небольшое любопытство, чуть больше пространства вокруг реакции, более мягкое дыхание или способность остановиться перед действием — всё это может быть признаками некоторого доступа.</p>
+              <p>Качества, которые традиционно связывают с Self — calm, clarity, curiosity, compassion, confidence, courage, creativity и connectedness — не checklist успешности. Это возможные doorways. Можно не чувствовать спокойствия и всё равно иметь доступ к любопытству. Можно нервничать и при этом быть способным на доброту. Практика состоит в том, чтобы заметить доступное, а не сыграть идеальное состояние.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Глава 04</span>
+            <div class="reading-copy">
+              <h3>Части — это содержание, которое awareness может заметить.</h3>
+              <p>IFS начинается с простой и человечной идеи: наш ум естественно множественен. Разные части могут хотеть, бояться, планировать, критиковать, избегать, угождать, бунтовать, защищать и отдыхать. Наличие части не доказывает, что с вами что-то не так. Это внутренний человек со своей перспективой и попыткой помочь.</p>
+              <p>Когда часть становится срочной, field может сузиться. Фраза «я тревожусь» способна ощущаться как полная реальность. Фраза «часть меня тревожится» не отрицает тревогу; она создаёт вокруг неё немного пространства. Тревожная часть всё ещё здесь — и здесь же есть что-то, способное её заметить.</p>
+              <p>Week 1 вводит только этот doorway. Вам не нужно анализировать часть, искать её происхождение, вспоминать событие или пытаться её изменить. Можно назвать обычную low-intensity часть и заметить, доступно ли хоть немного curiosity или compassion. Если нет, это тоже полезная информация. Ничего не нужно заставлять.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Глава 05</span>
+            <div class="reading-copy">
+              <h3>Ground, core, field, focus: повторяемый вход.</h3>
+              <p>Четыре building blocks of Presence дают body-mind системе последовательность, которую легко запомнить. Ground — это контакт и устойчивость: стопы, опора под тазом, гравитация и поверхность под вами. Core — embodied presence: ощущение корпуса изнутри и контакт с местом, где можно замечать потребности, ценности и внутренний авторитет.</p>
+              <p>Field — это раскрытие awareness за пределы узкой точки attention. Звуки, пространство, телесные ощущения и периферия зрения могут быть включены без необходимости следовать за ними. Focus появляется последним: из ground, core и field attention может легко коснуться того, что сейчас важно.</p>
+              <p>Порядок важен. Мы не улетаем в широкий field, оставляя тело, и не сжимаем задачу без контекста. Сначала ground, затем core, потом field, и только после — focus. Цель не в особом состоянии, а в практическом балансе field и focus, к которому можно возвращаться в работе, разговоре, родительстве, конфликте и отдыхе.</p>
+            </div>
+          </article>
+
+          <article class="reading-chapter">
+            <span class="reading-index">Глава 06</span>
+            <div class="reading-copy">
+              <h3>Первая неделя — практика распознавания.</h3>
+              <p>Чтобы неделя состоялась, не должно произойти ничего глубокого. Задача — начать узнавать несколько различий в прямом опыте: узкий focus и открытый field; усилие и поддержанный контакт; реакцию, которая ощущается как всё «я», и часть, которую можно заметить; меньше доступа к Self и немного больше доступа.</p>
+              <p>Частота важнее интенсивности. Трёхминутное возвращение, повторённое среди обычного дня, может научить большему, чем один драматичный опыт. Duration растёт постепенно: несколько секунд field awareness, затем минута, затем длина одного разговора. Система учится через повторение, permission и достаточную безопасность.</p>
+              <p>В конце недели ваша задача — не объявить, что Self освоен. Задача — описать своими словами, как доступ к Self может ощущаться именно у вас и какие условия его поддерживают. Это описание станет первым личным компасом для остального курса.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Model of conscious experience</p><h2>Четыре различия, одна живая система.</h2></div>
+          <div class="measure"><p class="lede">Карта намеренно маленькая. Она даёт языку опыта опору, но не превращает Week 1 в теоретический класс.</p></div>
+        </div>
+
+        <div class="concept-map" aria-label="Карта attention awareness Self и parts">
+          <article class="concept-node"><span>01 · Focus</span><h3>Attention</h3><p>Выбирает и подсвечивает. Точный, последовательный, полезный для задачи. Может напрягаться, если должен удерживать всё.</p></article>
+          <article class="concept-node"><span>02 · Field</span><h3>Awareness</h3><p>Панорамный и включающий. Может одновременно удерживать тело, пространство, звук, отношения и задачу.</p></article>
+          <article class="concept-node"><span>03 · Awake awareness</span><h3>Self</h3><p>Живая способность замечать и вступать в отношения. Доступ континуален и может проявляться как curiosity, clarity, compassion или другое качество Self.</p></article>
+          <article class="concept-node"><span>04 · Contents</span><h3>Parts</h3><p>Внутренние голоса, чувства, импульсы и protectors, которые можно замечать внутри awareness. Их не нужно побеждать.</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Главная практика · 7 минут</p><h2>Ground, core, field, focus.</h2></div>
+          <div class="measure"><p class="lede">Читайте медленно или запишите спокойным голосом. Глаза можно закрыть или оставить в soft gaze. Любое приглашение можно пропустить.</p></div>
+        </div>
+
+        <div class="practice-script" aria-label="Семиминутная практика ground core field focus">
+          <article class="practice-step"><time>0:00–0:45</time><div><h4>Прийти</h4><p>Выберите вертикальную и одновременно удобную позу. Позвольте позвоночнику поддерживать бодрость без жёсткости. Заметьте: в следующие семь минут ничего не нужно достигать. Если закрывать глаза некомфортно, оставьте мягкий взгляд.</p></div></article>
+          <article class="practice-step"><time>0:45–2:00</time><div><h4>Ground</h4><p>Почувствуйте контакт стоп с полом и вес тела на опоре под тазом. Позвольте гравитации удержать то, что она может удержать. Заметьте поддержку под вами. Можно представить корни, уходящие вниз, или просто остаться с давлением, температурой и контактом. Позвольте центру тяжести опуститься немного ниже.</p></div></article>
+          <article class="practice-step"><time>2:00–3:15</time><div><h4>Core</h4><p>Мягко направьте attention в корпус: живот, грудь, спину, горло. Почувствуйте тело изнутри, не меняя его. Заметьте дыхание, пульсацию, тепло, прохладу, движение или отсутствие ясного ощущения. Почувствуйте центральную линию от основания тела к макушке. Пусть это будет место внутреннего слушания.</p></div></article>
+          <article class="practice-step"><time>3:15–5:00</time><div><h4>Field</h4><p>Позвольте awareness раскрыться в пространство вокруг тела. Включите звуки, не следуя за ними. Если глаза открыты, включите края поля зрения. Пусть тело, комната и звуки присутствуют вместе. Мысли могут приходить и уходить внутри этого более широкого field. Убирать их не нужно.</p></div></article>
+          <article class="practice-step"><time>5:00–6:10</time><div><h4>Focus</h4><p>Оставайтесь в контакте с ground, core и field. Теперь позвольте attention легко коснуться одного простого объекта: дыхания, звука или следующего действия. Заметьте, может ли focus быть точным без напряжения. Field остаётся; focus движется внутри него.</p></div></article>
+          <article class="practice-step"><time>6:10–7:00</time><div><h4>Вернуться и назвать</h4><p>Заметьте, сколько доступа к Self может быть доступно прямо сейчас: ничего различимого, немного или больше. Любой ответ подходит. Почувствуйте комнату, подвигайте пальцами рук и ног, откройте глаза, когда будете готовы. Запишите одну фразу: «Доступ к Self может ощущаться как…»</p></div></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Три прямых эксперимента</p><h2>Сначала почувствовать различие.</h2></div>
+          <div class="measure"><p class="lede">Каждый эксперимент короткий, solo и low intensity. Остановитесь при напряжении, головокружении, дезориентации или внутреннем давлении.</p></div>
+        </div>
+
+        <div class="material-map">
+          <article class="material"><span>Эксперимент 01 · 2 минуты</span><h3>Периферическое зрение / пальцы</h3><p>Соедините указательные пальцы перед собой и мягко смотрите на них. Очень медленно разводите их, стараясь включать оба. Когда усилие возрастёт, смягчите взгляд и позвольте себе воспринять всё поле зрения. Верните пальцы. Что изменилось, когда видеть стало менее затратно?</p><p class="source-fine">Голова остаётся неподвижной, движение комфортное. При нагрузке на глаза пропустите упражнение и используйте открытый слух.</p></article>
+          <article class="material"><span>Эксперимент 02 · 4 минуты</span><h3>Прогулка в четырёх каналах</h3><p>Идите минуту с открытым seeing, минуту с открытым hearing, минуту ощущая тело, затем минуту включая все три канала. Пусть awareness принимает, а не охотится за ощущениями. Оставьте достаточно focus для поверхности, движения, людей и обычной безопасности.</p><p class="source-fine">Выберите знакомое безопасное место. Не делайте упражнение при переходе дороги, вождении, езде на велосипеде или там, где безопасность требует полного attention.</p></article>
+          <article class="material"><span>Эксперимент 03 · 3 минуты</span><h3>Полная миска супа</h3><p>Представьте, что несёте очень полную миску через людную комнату. Сначала гиперсфокусируйтесь на поверхности: почувствуйте напряжение тела и исчезновение комнаты. Остановитесь. Ground, расширение визуального field, включение комнаты — и затем лёгкое касание миски attention. Сравните два способа двигаться.</p><p class="source-fine">Используйте воображение или пустую небьющуюся миску. Смысл в балансе field и focus, а не в проверке координации с горячей жидкостью.</p></article>
+          <article class="material"><span>Parts doorway · 2 минуты</span><h3>«Часть меня…»</h3><p>Назовите одну обычную low-intensity реакцию: «часть меня спешит», «часть меня хочет сделать правильно» или «часть меня отвлекается». Заметьте, создаёт ли фраза пространство. Спросите только: «Готова ли я побыть с этой частью один вдох?»</p><p class="source-fine">Не спрашивайте о воспоминаниях, происхождении или уязвимом материале. Если часть захватывает, вернитесь к комнате и остановитесь.</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Live-звонок Guthrie · 90 минут</p><h2>Transmission, experience, затем небольшая карта.</h2></div>
+          <div class="measure"><p class="lede">Звонок начинается с прямого опыта, даёт ровно столько языка, сколько нужно, и заканчивается экспериментом для обычной жизни. Последовательность готова к correction Guthrie.</p></div>
+        </div>
+
+        <div class="call-timeline" aria-label="Outline live-звонка Week 1 на девяносто минут">
+          <article class="call-step"><time>0:00–0:10</time><b>Welcome и container</b><p>Purpose курса, cameras и choice, доступ как continuum, отсутствие давления раскрывать личное и граница между обучением и терапией.</p></article>
+          <article class="call-step"><time>0:10–0:17</time><b>Presence practice</b><p>Guthrie ведёт семиминутную ground-core-field-focus практику и коротко называет то, что участники могли заметить.</p></article>
+          <article class="call-step"><time>0:17–0:30</time><b>Первый teaching</b><p>Model of Conscious Experience: attention как focus, awareness как field, Self как awake awareness, части как содержание, которое можно замечать.</p></article>
+          <article class="call-step"><time>0:30–0:42</time><b>Experiments</b><p>Периферическое зрение, короткий debrief и демонстрация с миской супа — field и focus работают вместе.</p></article>
+          <article class="call-step"><time>0:42–0:57</time><b>История курса</b><p>OS 1.0 к OS 2.0; transcend and include; рост frequency и duration доступа к Self без performance target.</p></article>
+          <article class="call-step"><time>0:57–1:12</time><b>Low-intensity demo</b><p>Один volunteer замечает ordinary part из чуть большего field awareness. Guthrie показывает pacing, consent и чистую остановку до глубины.</p></article>
+          <article class="call-step"><time>1:12–1:24</time><b>Debrief и Q&amp;A</b><p>Что изменилось в теле, focus, field и отношениях с частью? Demo — не протокол для взаимной практики участников.</p></article>
+          <article class="call-step"><time>1:24–1:30</time><b>Integration</b><p>Выбрать один daily experiment, закончить фразу «Доступ к Self может ощущаться как…» и завершить в ground с ясным support reminder.</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Low-intensity demonstration brief</p><h2>Замечаем ordinary part, не открывая её историю.</h2></div>
+          <div class="measure"><p class="lede">Teaching intention: участники видят, как field awareness и язык частей создают пространство, не превращая момент в deep work.</p></div>
+        </div>
+
+        <div class="practice-band">
+          <article class="practice-side is"><h3>Рамка demo</h3><ul class="mini-list"><li>Выбрать ordinary part интенсивностью примерно 2–4 из 10.</li><li>Подтвердить consent, границы privacy и stop signal.</li><li>Начать с ground, core и field до называния части.</li><li>Предложить: «часть меня…» и заметить изменение.</li><li>Спросить, доступно ли хоть немного curiosity или compassion.</li><li>Закрыть через ориентацию в комнате и одно полезное наблюдение.</li></ul></article>
+          <article class="practice-side not"><h3>Не входить</h3><ul class="mini-list"><li>Не искать происхождение, возраст, burdening event или memory.</li><li>Не просить protector отойти.</li><li>Не входить в exile contact, witnessing, retrieval или unburdening.</li><li>Не обещать, что часть изменится.</li><li>Не учить участников повторять последовательность с партнёром.</li><li>Остановиться при росте интенсивности, снижении ориентации или изменении consent.</li></ul></article>
+        </div>
+
+        <div class="next-grid" style="margin-top:1px">
+          <article class="next-card"><h3>Открывающий вопрос</h3><p>«Когда вы чувствуете комнату и тело, какую ordinary part было бы okay замечать несколько минут?»</p></article>
+          <article class="next-card"><h3>Вопрос в середине</h3><p>«Когда вы говорите “часть меня”, доступно ли хоть немного curiosity, kindness или пространства?»</p></article>
+          <article class="next-card"><h3>Закрывающий вопрос</h3><p>«Что поможет этой части понять, что вы её заметили и что здесь мы останавливаемся?»</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Семь дней интеграции</p><h2>Frequency важнее intensity.</h2></div>
+          <div class="measure"><p class="lede">Один маленький эксперимент в день. Трёх–семи минут достаточно. Можно повторять практику, которая поддерживает лучше всего.</p></div>
+        </div>
+
+        <div class="day-grid" aria-label="Daily integration prompts Week 1">
+          <article class="day-card"><span>День 01</span><p>После главной практики закончите: «Доступ к Self может ощущаться как…» и «Я замечаю меньше доступа, когда…»</p></article>
+          <article class="day-card"><span>День 02</span><p>Попробуйте peripheral vision. Что меняется во взгляде, челюсти, плечах, дыхании и скорости мыслей?</p></article>
+          <article class="day-card"><span>День 03</span><p>Пройдите через seeing, hearing, body, затем все три. Какой doorway в field awareness оказался самым доступным?</p></article>
+          <article class="day-card"><span>День 04</span><p>Используйте одну фразу: «часть меня…» Даёт ли называние хотя бы один процент пространства?</p></article>
+          <article class="day-card"><span>День 05</span><p>Вспомните миску супа во время одной задачи. Может ли focus стать легче, пока комната остаётся в awareness?</p></article>
+          <article class="day-card"><span>День 06</span><p>Заметьте frequency и duration. Когда доступ появлялся сегодня и что помогло ему продлиться чуть дольше?</p></article>
+          <article class="day-card"><span>День 07</span><p>Запишите Week 1 compass: три признака доступа, две поддержки и один вопрос Guthrie.</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Lean participant handout</p><h2>Week 1 на одной странице.</h2></div>
+          <div class="measure"><p class="lede">Шесть пунктов, одна практика, один prompt, одна граница. Это единственный handout, который нужен участникам на неделю.</p></div>
+        </div>
+
+        <div class="principles">
+          <article class="principle"><span class="num">01</span><h3>Attention — focus</h3><p>Точный и последовательный. Полезный, но утомляется, если должен удерживать всё поле.</p></article>
+          <article class="principle"><span class="num">02</span><h3>Awareness — field</h3><p>Панорамный и включающий. Может удерживать тело, комнату, отношения и задачу вместе.</p></article>
+          <article class="principle"><span class="num">03</span><h3>Self — awake awareness</h3><p>Доступ континуален. Curiosity, clarity, compassion или немного пространства могут стать doorway.</p></article>
+          <article class="principle"><span class="num">04</span><h3>Части можно замечать</h3><p>«Часть меня…» создаёт пространство, не отрицая чувство и не делая его проблемой.</p></article>
+          <article class="principle"><span class="num">05</span><h3>Ground, core, field, focus</h3><p>Устойчивость, embodiment, широкая awareness, затем лёгкое и точное attention.</p></article>
+          <article class="principle"><span class="num">06</span><h3>Практика распознавания</h3><p>Возвращаться часто, оставаться недолго, замечать поддержку и не вынуждать особое состояние.</p></article>
+        </div>
+
+        <div class="material-map" style="margin-top:28px">
+          <article class="material"><span>Одна практика</span><h3>Семиминутный reset</h3><p>Ground через стопы и опору; почувствовать core; открыть field; легко сфокусироваться; назвать, сколько доступа к Self может быть доступно.</p></article>
+          <article class="material"><span>Один integration prompt</span><h3>Мой первый компас</h3><p>«Доступ к Self может ощущаться как… Меньше доступа может ощущаться как… Немного больше доступа поддерживает…»</p></article>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div><p class="section-kicker">Boundary and support language</p><h2>Распознавание, не терапия.</h2></div>
+          <div class="measure"><p class="lede">Использовать в guide, в начале live-звонка, перед demo и в footer handout.</p></div>
+        </div>
+
+        <div class="quote-panel">
+          <blockquote><p>Эта неделя предлагает замечать attention, awareness, доступ к Self и одну ordinary part. Она не просит раскрывать личную историю, возвращаться в травматический опыт, искать воспоминания или вести другого человека.</p><cite>Граница для участника</cite></blockquote>
+          <div class="quote-note"><div><strong>Если практика становится слишком интенсивной</strong><p>Остановитесь. Откройте глаза. Назовите пять предметов, которые видите. Почувствуйте стопы и опору под тазом. Осмотритесь в реальной комнате, выпейте воды и при необходимости свяжитесь с человеком поддержки. Любую практику можно пропустить, из звонка можно выйти.</p></div><p class="fine">Курс носит образовательный характер и не является психотерапией, кризисной помощью или заменой индивидуальной поддержки. Если уязвимый или перегружающий материал продолжает быть активным, приостановите практику курса и рассмотрите обращение к квалифицированному mental-health специалисту. При непосредственном риске причинения вреда используйте местные emergency или crisis services.</p></div>
+        </div>
+
+        <div class="next-grid" style="margin-top:28px">
+          <article class="next-card"><h3>Review decision 01</h3><p>Хочет ли Guthrie открывать каждую неделю ground-core-field-focus в этой семиминутной форме, или Week 1 остаётся полной версией, а следующие недели используют короткое возвращение?</p></article>
+          <article class="next-card"><h3>Review decision 02</h3><p>Какая low-intensity part и какой профиль participant дадут самую чистую live demonstration Week 1?</p></article>
+          <article class="next-card"><h3>Review decision 03</h3><p>Какие линии звонка 29 июля и старых Self materials можно цитировать публично, а какие должны остаться internal teaching anchors?</p></article>
         </div>
       </div>
     </section>
@@ -2864,6 +3521,11 @@ function getReviewTargets(){
     ".lang-page .boundary",
     ".lang-page .practice-side",
     ".lang-page .next-card",
+    ".lang-page .reading-chapter",
+    ".lang-page .concept-node",
+    ".lang-page .practice-step",
+    ".lang-page .call-step",
+    ".lang-page .day-card",
     ".lang-page .section-add-target"
   ].join(",")));
 }
