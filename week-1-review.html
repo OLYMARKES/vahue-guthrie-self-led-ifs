@@ -1420,583 +1420,208 @@ p:last-child{margin-bottom:0}
   }
 }
 </style>
-<style id="week-one-composition">
-/* ============================================================
-   WEEK 1 REVIEW · COMPOSITION LAYER
-   Scoped to .week-one-page (+ the shared chrome it must align to).
-   The original stylesheet is left in place because it still serves
-   the hidden foundation sections and course-foundation-document.html.
-   One reading axis. One rail. One gutter. No decorative hero.
-   ============================================================ */
-
-.week-one-page,
-body.week-one-only{
-  --rail:7rem;
-  --gap:1.75rem;
-  --col:38rem;
-  --gutter:10rem;
-  --doc:calc(var(--rail) + var(--gap) + var(--col) + var(--gap) + var(--gutter));
-  --wide:var(--doc);
-  --track:.075em;
-  --edge:rgba(23,27,24,.16);
-}
-
+<style>
+/* Week 1 editorial pass · Claude UX review, 2026-08-05 */
 .week-one-page{
-  counter-reset:chapter;
-  padding:clamp(40px,5vw,72px) 0 clamp(64px,7vw,104px);
-  border-top:0;
+  --week-measure:34rem;
+  --week-measure-wide:42rem;
+  --week-fs-chapter:clamp(1.95rem,1.1vw + 1.25rem,2.6rem);
+  --week-fs-block:clamp(1.45rem,.7vw + 1.1rem,1.85rem);
+  --week-fs-quote:clamp(1.3rem,.7vw + 1rem,1.7rem);
+  --week-fs-lede:clamp(1.05rem,.35vw + .95rem,1.2rem);
+  --week-fs-card:1.0625rem;
+  --week-fs-body:1.0625rem;
+  --week-fs-small:.95rem;
+  --week-track-label:.075em;
 }
-.week-one-page > .wrap{
-  display:grid;
-  grid-template-columns:var(--rail) minmax(0,var(--col)) var(--gutter);
-  column-gap:var(--gap);
-  align-content:start;
-  justify-content:center;
-  max-width:none;
-  padding:0 clamp(20px,4vw,40px);
+body.lang-ru .week-one-page{
+  --week-measure:32rem;
+  --week-measure-wide:40rem;
 }
-.week-one-page > .wrap > *{grid-column:2 / span 1; min-width:0}
-.week-one-page > .wrap > .chapter-head,
-.week-one-page > .wrap > .hairline,
-.week-one-page > .wrap > .orientation-grid,
-.week-one-page > .wrap > .guide-profile,
-.week-one-page > .wrap > .resource-grid,
-.week-one-page > .wrap > .reading-stack,
-.week-one-page > .wrap > .practice-script,
-.week-one-page > .wrap > .material-map.exp-flow,
-.week-one-page > .wrap > .call-timeline,
-.week-one-page > .wrap > .day-grid,
-.week-one-page > .wrap > .section-review-wrap{grid-column:1 / span 2}
-
-.week-one-page .chapter-head,
-.week-one-page .orientation-card,
-.week-one-page .resource-card,
-.week-one-page .reading-chapter,
-.week-one-page .practice-step,
-.week-one-page .call-step,
-.week-one-page .day-card,
-.week-one-page .material-map.exp-flow .material,
-.week-one-page .guide-profile{
-  display:grid;
-  grid-template-columns:var(--rail) minmax(0,1fr);
-  column-gap:var(--gap);
-  align-items:start;
-  position:relative;
-  margin:0;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  min-height:0;
-  padding:0;
-}
-
-.week-one-page{font-size:1.0625rem; line-height:1.62}
 .week-one-page h2{
-  grid-column:2;
-  max-width:26ch;
-  margin:0;
-  font-family:"Newsreader",Georgia,serif;
-  font-weight:400;
-  font-size:clamp(1.6rem,.9vw + 1.25rem,1.95rem);
-  line-height:1.14;
+  max-width:22ch;
+  font-size:var(--week-fs-chapter);
+  line-height:1.1;
   text-wrap:balance;
 }
+body.lang-ru .week-one-page h2{max-width:20ch}
+.week-one-page .chapter-head{
+  grid-template-columns:minmax(min(100%,20rem),.95fr) minmax(0,1.3fr);
+  gap:clamp(18px,2.6vw,40px);
+  margin-bottom:clamp(20px,2.2vw,30px);
+}
+.week-one-page .chapter-head .lede{margin-top:8px}
 .week-one-page h3{
   font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:1.0625rem;
+  font-size:var(--week-fs-card);
   font-weight:600;
   line-height:1.34;
   color:var(--ink);
 }
+.week-one-page .reading-copy h3,
+.week-one-page .guide-profile h3{
+  max-width:26ch;
+  font-family:"Newsreader",Georgia,serif;
+  font-size:var(--week-fs-block);
+  font-weight:400;
+  line-height:1.14;
+  text-wrap:balance;
+}
+body.lang-ru .week-one-page .reading-copy h3{max-width:24ch}
 .week-one-page h4{
   font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:1.0625rem;
+  font-size:var(--week-fs-card);
   font-weight:600;
-  line-height:1.34;
+  line-height:1.32;
   text-transform:none;
   letter-spacing:0;
   color:var(--ink);
 }
-.week-one-page p{max-width:var(--col); text-wrap:pretty}
+.week-one-page .practice-step h4{margin-bottom:6px}
 .week-one-page .section-kicker,
 .week-one-page .reading-index,
 .week-one-page .practice-step time,
 .week-one-page .call-step time,
-.week-one-page .day-card > span,
-.week-one-page .orientation-card > span,
-.week-one-page .resource-card > span,
-.week-one-page .material > span,
-.week-one-page .concept-node > span,
-.week-one-page .principle .num,
-.week-one-page cite{
-  font-family:"IBM Plex Mono",ui-monospace,monospace;
-  font-size:.7rem;
-  line-height:1.5;
-  letter-spacing:var(--track);
-  text-transform:uppercase;
-  color:var(--ink-faint);
-  font-style:normal;
+.week-one-page .concept-node span,
+.week-one-page .day-card span,
+.week-one-page .quote-panel cite,
+.week-one-page .quote-solo cite{
+  letter-spacing:var(--week-track-label);
 }
-
-.week-one-page .chapter-head{margin:0 0 clamp(20px,2.4vw,30px)}
-.week-one-page .chapter-head > div{display:contents}
-.week-one-page .chapter-head::before{
-  counter-increment:chapter;
-  content:counter(chapter,decimal-leading-zero);
-  grid-column:1;
-  grid-row:1;
-  padding-top:.35em;
-  font-family:"IBM Plex Mono",ui-monospace,monospace;
-  font-size:.78rem;
-  letter-spacing:var(--track);
-  color:var(--gold);
-}
-.week-one-page .chapter-head .section-kicker{grid-column:2; margin:0 0 .55em}
-.week-one-page .chapter-head .lede,
-.week-one-page .chapter-head .quiet,
-.week-one-page .chapter-head > .measure,
-.week-one-page .chapter-head .review-note{grid-column:2; max-width:none}
-.week-one-page .chapter-head .lede{
-  margin:.85em 0 0;
-  font-size:1.0625rem;
-  line-height:1.62;
-  color:var(--ink-soft);
-}
-.week-one-page .chapter-head .quiet{margin:.7em 0 0; color:var(--ink-soft)}
-.week-one-page .measure{max-width:none}
-
-.week-one-page .hairline{
-  height:0;
-  margin:clamp(48px,5.5vw,80px) 0 clamp(30px,3.4vw,44px);
-  background:transparent;
-  border-top:1px solid var(--edge);
-}
-
-.week-one-page .reading-stack{
-  display:grid;
-  gap:clamp(28px,3.2vw,42px);
-  margin-top:clamp(28px,3vw,40px);
-  border:0;
-  background:transparent;
-}
-.week-one-page .reading-chapter{padding:0; background:transparent}
-.week-one-page .reading-index{grid-column:1; padding-top:.4em; color:var(--gold)}
-.week-one-page .reading-copy{grid-column:2; max-width:none}
-.week-one-page .reading-copy h3{
-  font-family:"Newsreader",Georgia,serif;
-  font-weight:400;
-  font-size:1.35rem;
-  line-height:1.24;
-  margin-bottom:.6em;
-  max-width:30ch;
-  text-wrap:balance;
-}
-.week-one-page .reading-copy p{font-size:1.0625rem; line-height:1.7; color:var(--ink-soft)}
-.week-one-page .reading-copy p + p{margin-top:.9em}
-
-.week-one-page .orientation-grid,
-.week-one-page .resource-grid{
-  display:grid;
-  gap:clamp(22px,2.6vw,32px);
-  margin-top:clamp(24px,2.8vw,34px);
-  border:0;
-  background:transparent;
-}
-.week-one-page .orientation-card,
-.week-one-page .resource-card{padding:0; background:transparent}
-.week-one-page .orientation-card > span,
-.week-one-page .resource-card > span{grid-column:1; display:block; padding-top:.4em}
-.week-one-page .orientation-card > h3,
-.week-one-page .orientation-card > p,
-.week-one-page .resource-card > h3,
-.week-one-page .resource-card > p,
-.week-one-page .orientation-card > .review-note,
-.week-one-page .resource-card > .review-note{grid-column:2}
-.week-one-page .orientation-card > h3,
-.week-one-page .resource-card > h3{margin-bottom:.5em}
-.week-one-page .orientation-card > p,
-.week-one-page .resource-card > p{color:var(--ink-soft)}
-.week-one-page .orientation-card > p + p,
-.week-one-page .resource-card > p + p{margin-top:.65em}
-
-.week-one-page .guide-profile{
-  margin-top:clamp(28px,3vw,40px);
-  padding:0;
-  background:transparent;
-  border:0;
-}
-.week-one-page .guide-profile > div:not(.profile-facts){display:contents}
-.week-one-page .guide-profile .section-kicker{grid-column:1; padding-top:.4em; margin:0}
-.week-one-page .guide-profile h3,
-.week-one-page .guide-profile > div > p,
-.week-one-page .guide-profile .profile-facts,
-.week-one-page .guide-profile > .review-note{grid-column:2}
-.week-one-page .guide-profile h3{
-  font-family:"Newsreader",Georgia,serif;
-  font-weight:400;
-  font-size:1.35rem;
-  line-height:1.24;
-  margin-bottom:.6em;
-  max-width:32ch;
-}
-.week-one-page .guide-profile > div > p{color:var(--ink-soft)}
-.week-one-page .guide-profile > div > p + p{margin-top:.7em}
-.week-one-page .profile-facts{display:grid; gap:0; margin-top:1.2em}
-.week-one-page .profile-fact{
-  padding:.7em 0;
-  border-top:1px solid var(--rule-soft);
-  color:var(--ink-soft);
-  font-size:1rem;
-}
-.week-one-page .profile-fact:first-child{padding-top:.7em; border-top:1px solid var(--rule-soft)}
-
-.week-one-page .glossary-grid{
-  display:block;
-  margin-top:clamp(22px,2.6vw,32px);
-  border:0;
-  background:transparent;
-}
-.week-one-page .glossary-item{
-  display:block;
-  position:relative;
-  min-height:0;
-  padding:.62em 0;
-  border:0;
-  border-top:1px solid var(--rule-soft);
-  background:transparent;
-}
-.week-one-page .glossary-item:first-child{border-top:0; padding-top:0}
-.week-one-page .glossary-item dt{display:inline; margin:0; font-weight:650; color:var(--ink)}
-.week-one-page .glossary-item dt::after{content:" · "; color:var(--ink-faint); font-weight:400}
-.week-one-page .glossary-item dd{display:inline; margin:0; font-size:1rem; line-height:1.6; color:var(--ink-soft)}
-.week-one-page .glossary-item .review-note{display:block; margin-top:10px}
-
-.week-one-page .practice-script,
-.week-one-page .call-timeline,
-.week-one-page .day-grid,
-.week-one-page .material-map.exp-flow{
-  display:grid;
-  gap:0;
-  margin-top:clamp(24px,2.8vw,34px);
-  border:0;
-  background:transparent;
-  grid-template-columns:minmax(0,1fr);
-}
-.week-one-page .practice-step,
-.week-one-page .call-step,
-.week-one-page .day-card,
-.week-one-page .material-map.exp-flow .material{
-  padding:1.05em 0;
-  border-top:1px solid var(--rule-soft);
-  background:transparent;
-}
-.week-one-page .practice-script > *:first-child,
-.week-one-page .call-timeline > *:first-child,
-.week-one-page .day-grid > *:first-child,
-.week-one-page .material-map.exp-flow > *:first-child{border-top:0; padding-top:0}
-.week-one-page .practice-step time,
-.week-one-page .call-step time,
-.week-one-page .day-card > span,
-.week-one-page .material-map.exp-flow .material > span{grid-column:1; display:block; padding-top:.28em; color:var(--gold)}
-.week-one-page .practice-step h4,
-.week-one-page .practice-step p,
-.week-one-page .call-step b,
-.week-one-page .call-step p,
-.week-one-page .day-card p,
-.week-one-page .material-map.exp-flow .material h3,
-.week-one-page .material-map.exp-flow .material p,
-.week-one-page .practice-step .review-note,
-.week-one-page .call-step .review-note,
-.week-one-page .day-card .review-note,
-.week-one-page .material-map.exp-flow .material .review-note{grid-column:2}
-.week-one-page .practice-step h4,
-.week-one-page .call-step b,
-.week-one-page .material-map.exp-flow .material h3{margin:0 0 .35em; font-size:1.0625rem; font-weight:600}
-.week-one-page .practice-step p,
-.week-one-page .call-step p,
-.week-one-page .day-card p,
-.week-one-page .material-map.exp-flow .material p{font-size:1rem; line-height:1.62; color:var(--ink-soft)}
-.week-one-page .material-map.exp-flow .material p + p{margin-top:.55em}
-.week-one-page .source-fine{
-  padding-left:.85em;
-  border-left:2px solid rgba(139,97,32,.35);
-  font-size:.94rem;
-  line-height:1.55;
-  color:var(--ink-faint);
-}
-
-.week-one-page .concept-map,
-.week-one-page .principles,
-.week-one-page .practice-band,
-.week-one-page .material-map.pair{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:1px;
-  margin-top:clamp(24px,2.8vw,34px);
-  border:1px solid var(--rule-soft);
-  background:var(--rule-soft);
-}
-.week-one-page .concept-node,
-.week-one-page .principle,
-.week-one-page .practice-side,
-.week-one-page .material-map.pair .material{
-  position:relative;
-  display:block;
-  min-height:0;
-  margin:0;
-  padding:20px 22px 20px;
-  border:0;
-  border-radius:0;
-  background:var(--surface);
-}
-.week-one-page .concept-node > span,
-.week-one-page .material-map.pair .material > span,
-.week-one-page .principle .num{display:block; margin-bottom:.85em; color:var(--gold)}
-.week-one-page .principle .num{font-size:.78rem}
-.week-one-page .concept-node h3,
-.week-one-page .principle h3,
-.week-one-page .practice-side h3,
-.week-one-page .material-map.pair .material h3{margin-bottom:.5em}
-.week-one-page .concept-node p,
-.week-one-page .principle p,
-.week-one-page .material-map.pair .material p{font-size:1rem; line-height:1.58; color:var(--ink-soft)}
-.week-one-page .practice-side .mini-list li{padding-left:16px; font-size:1rem; line-height:1.5; color:var(--ink-soft)}
-
-.week-one-page .quote-solo,
 .week-one-page .quote-panel{
-  display:block;
-  position:relative;
-  margin:clamp(26px,3vw,38px) 0;
-  padding:0;
-  border:0;
-  border-radius:0;
-  background:transparent;
+  grid-template-columns:minmax(0,1.25fr) minmax(240px,.75fr);
+  gap:clamp(18px,3vw,40px);
+  margin:clamp(30px,4vw,52px) 0;
+  align-items:start;
 }
 .week-one-page .quote-panel blockquote,
-.week-one-page .quote-solo{border-left:2px solid var(--gold); padding:.1em 0 .1em clamp(16px,1.6vw,24px)}
-.week-one-page .quote-panel blockquote{margin:0}
+.week-one-page .quote-solo{
+  max-width:var(--week-measure-wide);
+  margin:0;
+  border:0;
+  border-left:2px solid var(--gold);
+  border-radius:0;
+  background:transparent;
+  padding:2px 0 2px clamp(18px,2.4vw,34px);
+}
 .week-one-page .quote-panel blockquote p,
 .week-one-page .quote-solo p{
-  margin:0;
   font-family:"Newsreader",Georgia,serif;
+  font-size:var(--week-fs-quote);
   font-weight:300;
-  font-size:clamp(1.2rem,.5vw + 1.05rem,1.4rem);
-  line-height:1.38;
+  line-height:1.34;
   color:var(--ink);
+  text-wrap:pretty;
 }
 .week-one-page .quote-panel cite,
-.week-one-page .quote-solo cite{display:block; margin-top:.9em}
+.week-one-page .quote-solo cite{
+  margin-top:14px;
+  font-size:.68rem;
+  line-height:1.5;
+}
 .week-one-page .quote-note{
-  display:block;
-  gap:0;
-  margin-top:1.4em;
-  padding-top:1.1em;
-  border:0;
-  border-top:1px solid var(--rule-soft);
-  background:transparent;
+  border:1px solid var(--rule-soft);
+  border-radius:4px;
+  background:var(--surface);
+  padding:clamp(18px,2.4vw,26px);
+  font-size:var(--week-fs-small);
 }
-.week-one-page .quote-note strong{display:block; margin-bottom:.4em; font-size:1.0625rem; font-weight:600}
-.week-one-page .quote-note p{color:var(--ink-soft)}
-.week-one-page .quote-note .fine{margin-top:.7em; color:var(--ink-faint)}
-
-.week-one-page .next-grid{
-  display:grid;
-  gap:0;
-  margin-top:clamp(22px,2.6vw,32px);
-  border:0;
+.week-one-page .hairline{
+  height:0;
   background:transparent;
-  grid-template-columns:minmax(0,1fr);
+  border-top:1px solid var(--rule);
+  margin:clamp(52px,6.5vw,92px) 0 clamp(34px,4vw,56px);
 }
-.week-one-page .next-card{
-  position:relative;
-  min-height:0;
-  margin:0 0 14px;
-  padding:.85em 0 .85em 1em;
-  border:0;
-  border-left:2px solid var(--rust);
-  background:transparent;
+.week-one-page .measure,
+.week-one-page .lede{max-width:var(--week-measure-wide)}
+.week-one-page .lede{
+  font-size:var(--week-fs-lede);
+  line-height:1.5;
 }
-.week-one-page .next-card:last-child{margin-bottom:0}
-.week-one-page .next-card h3{margin-bottom:.35em}
-.week-one-page .next-card p{color:var(--ink-soft)}
-.week-one-page .next-grid.decision-set .next-card h3{color:var(--rust)}
-
-.week-one-page .review-target{position:relative}
-.week-one-page .review-action{
-  position:absolute;
-  top:0;
-  left:calc(100% + var(--gap));
-  width:var(--gutter);
-  min-height:0;
-  margin:0;
-  padding:5px 8px;
-  border:1px solid rgba(157,78,50,.22);
+.week-one-page .reading-copy{max-width:var(--week-measure)}
+.week-one-page .reading-copy p{
+  font-size:var(--week-fs-body);
+  line-height:1.7;
+  text-wrap:pretty;
+}
+.week-one-page .reading-chapter{
+  grid-template-columns:72px minmax(0,1fr);
+  padding:clamp(26px,4vw,44px);
+}
+.week-one-page .glossary-grid{grid-template-columns:repeat(auto-fit,minmax(17rem,1fr))}
+.week-one-page .concept-map{grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.week-one-page .day-grid{grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr))}
+.week-one-page .orientation-grid,
+.week-one-page .resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.week-one-page .material-map,
+.week-one-page .next-grid{grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))}
+.week-one-page .glossary-item,
+.week-one-page .concept-node,
+.week-one-page .day-card,
+.week-one-page .os-card{min-height:0}
+.week-one-page .glossary-item{padding:18px 20px}
+.week-one-page .glossary-item dd,
+.week-one-page .concept-node p,
+.week-one-page .day-card p,
+.week-one-page .orientation-card p,
+.week-one-page .resource-card p{
+  font-size:var(--week-fs-small);
+  line-height:1.56;
+}
+.week-one-page .call-step{grid-template-columns:88px minmax(0,.75fr) minmax(0,1.25fr)}
+.week-one-page .practice-step{grid-template-columns:72px minmax(0,1fr)}
+.week-one-page .practice-step p,
+.week-one-page .call-step p{max-width:44rem}
+body.review-on .week-one-page .review-target{
+  outline:0;
+  box-shadow:inset 2px 0 0 rgba(157,78,50,.14);
+}
+body.review-on .week-one-page .review-target:hover,
+body.review-on .week-one-page .review-target:focus-within,
+body.review-on .week-one-page .review-target.has-review{
+  outline:0;
+  box-shadow:inset 2px 0 0 var(--rust);
+}
+.week-one-page .review-action:not(.section-add-action){
+  width:fit-content;
+  min-height:36px;
+  margin-top:10px;
+  padding:7px 11px;
   border-style:solid;
-  border-radius:3px;
+  border-color:rgba(157,78,50,.26);
   background:transparent;
-  color:var(--rust);
-  text-align:left;
-  font-size:.62rem;
-  letter-spacing:var(--track);
-  opacity:0;
-  transition:opacity .14s ease,border-color .14s ease;
+  opacity:.68;
+  justify-self:start;
+  align-self:start;
+  letter-spacing:var(--week-track-label);
+  transition:opacity .15s ease,border-color .15s ease,background .15s ease;
 }
-body.review-on .week-one-page .review-action{display:block; opacity:.34}
 body.review-on .week-one-page .review-target:hover .review-action,
 body.review-on .week-one-page .review-target:focus-within .review-action,
-body.review-on .week-one-page .review-action:hover,
-body.review-on .week-one-page .review-action:focus-visible,
-body.review-on .week-one-page .review-action.has-review{opacity:1}
-body.review-on .week-one-page .review-action.has-review{border-color:var(--rust); background:var(--rust); color:#fffaf3}
-.week-one-page .concept-node,
-.week-one-page .principle,
-.week-one-page .practice-side,
-.week-one-page .material-map.pair .material{padding-bottom:44px}
-.week-one-page .concept-node .review-action,
-.week-one-page .principle .review-action,
-.week-one-page .practice-side .review-action,
-.week-one-page .material-map.pair .material .review-action{
-  top:auto;
-  left:22px;
-  right:22px;
-  bottom:14px;
-  width:auto;
-}
-body.review-on .week-one-page .review-target{outline:0; box-shadow:none}
-body.review-on .week-one-page .review-target::after{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:calc(-1 * var(--gap) / 2);
-  width:2px;
-  background:rgba(157,78,50,.14);
-  pointer-events:none;
-}
-body.review-on .week-one-page .concept-node::after,
-body.review-on .week-one-page .principle::after,
-body.review-on .week-one-page .practice-side::after,
-body.review-on .week-one-page .material-map.pair .material::after{left:0}
-body.review-on .week-one-page .review-target:hover::after,
-body.review-on .week-one-page .review-target:focus-within::after,
-body.review-on .week-one-page .review-target.has-review::after{background:var(--rust)}
-.week-one-page .review-note{
-  max-width:var(--col);
-  margin-top:14px;
-  border-radius:0;
-  border:0;
-  border-left:2px solid var(--rust);
-  background:rgba(255,248,244,.7);
-  padding:12px 14px;
-}
-.week-one-page .section-review-wrap{margin-top:clamp(40px,5vw,72px)}
-.week-one-page .section-add-target{position:relative}
-.week-one-page .section-add-target .section-add-action{
-  position:static;
-  width:100%;
-  min-height:64px;
-  opacity:1;
-  border-style:dashed;
-  font-size:.72rem;
-}
-.week-one-page .section-add-target::after{display:none}
-
-@media (max-width:1120px){
-  .week-one-page,
-  body.week-one-only{--rail:6rem; --gutter:0rem; --gap:1.4rem}
-  .week-one-page > .wrap{grid-template-columns:var(--rail) minmax(0,var(--col))}
-  .week-one-page > .wrap > *{grid-column:2 / span 1}
-  .week-one-page > .wrap > .chapter-head,
-  .week-one-page > .wrap > .hairline,
-  .week-one-page > .wrap > .orientation-grid,
-  .week-one-page > .wrap > .guide-profile,
-  .week-one-page > .wrap > .resource-grid,
-  .week-one-page > .wrap > .reading-stack,
-  .week-one-page > .wrap > .practice-script,
-  .week-one-page > .wrap > .material-map.exp-flow,
-  .week-one-page > .wrap > .call-timeline,
-  .week-one-page > .wrap > .day-grid,
-  .week-one-page > .wrap > .section-review-wrap{grid-column:1 / span 2}
-  .week-one-page .review-action{position:static; width:100%; min-height:44px; margin-top:12px; opacity:1}
-  body.review-on .week-one-page .review-action{opacity:1}
-  .week-one-page .concept-node,
-  .week-one-page .principle,
-  .week-one-page .practice-side,
-  .week-one-page .material-map.pair .material{padding-bottom:20px}
-  .week-one-page .concept-node .review-action,
-  .week-one-page .principle .review-action,
-  .week-one-page .practice-side .review-action,
-  .week-one-page .material-map.pair .material .review-action{position:static; left:auto; right:auto; bottom:auto}
-}
+body.review-on .week-one-page .review-target:hover + .review-action,
+body.review-on .week-one-page .review-target:focus-within + .review-action,
+.week-one-page .review-action:hover,
+.week-one-page .review-action:focus-visible,
+.week-one-page .review-action.has-review{opacity:1}
+.week-one-page .section-add-target .section-add-action{min-height:64px;opacity:1}
 @media (hover:none){
-  .week-one-page .review-action{position:static; width:100%; min-height:44px; margin-top:12px; opacity:1}
-  body.review-on .week-one-page .review-action{opacity:1}
+  body.review-on .week-one-page .review-action{width:100%;min-height:44px;opacity:1}
 }
-
 @media (max-width:680px){
-  .week-one-page,
-  body.week-one-only{--rail:0rem; --gap:0rem; --col:100%}
-  .week-one-page > .wrap{grid-template-columns:minmax(0,1fr); padding:0 18px}
-  .week-one-page > .wrap > *,
-  .week-one-page > .wrap > .chapter-head,
-  .week-one-page > .wrap > .hairline,
-  .week-one-page > .wrap > .orientation-grid,
-  .week-one-page > .wrap > .guide-profile,
-  .week-one-page > .wrap > .resource-grid,
-  .week-one-page > .wrap > .reading-stack,
-  .week-one-page > .wrap > .practice-script,
-  .week-one-page > .wrap > .material-map.exp-flow,
-  .week-one-page > .wrap > .call-timeline,
-  .week-one-page > .wrap > .day-grid,
-  .week-one-page > .wrap > .section-review-wrap{grid-column:1}
-  .week-one-page .chapter-head,
-  .week-one-page .orientation-card,
-  .week-one-page .resource-card,
+  .week-one-page .chapter-head{grid-template-columns:1fr;gap:14px}
+  .week-one-page h2{max-width:100%;font-size:clamp(1.75rem,6.4vw,2.1rem)}
+  .week-one-page .reading-copy h3,
+  .week-one-page .guide-profile h3{font-size:clamp(1.3rem,5.2vw,1.6rem)}
+  .week-one-page .quote-panel blockquote,
+  .week-one-page .quote-solo{padding-left:16px}
+  .week-one-page .hairline{margin:44px 0 30px}
   .week-one-page .reading-chapter,
   .week-one-page .practice-step,
-  .week-one-page .call-step,
-  .week-one-page .day-card,
-  .week-one-page .material-map.exp-flow .material,
-  .week-one-page .guide-profile{grid-template-columns:minmax(0,1fr)}
-  .week-one-page .chapter-head::before{grid-row:auto; grid-column:1; padding-top:0; margin-bottom:.5em}
-  .week-one-page .chapter-head .section-kicker,
-  .week-one-page .chapter-head h2,
-  .week-one-page .chapter-head .lede,
-  .week-one-page .chapter-head .quiet,
-  .week-one-page .chapter-head .review-note,
-  .week-one-page .orientation-card > *,
-  .week-one-page .resource-card > *,
-  .week-one-page .reading-index,
-  .week-one-page .reading-copy,
-  .week-one-page .practice-step > *,
-  .week-one-page .call-step > *,
-  .week-one-page .day-card > *,
-  .week-one-page .material-map.exp-flow .material > *,
-  .week-one-page .guide-profile > *,
-  .week-one-page .guide-profile .section-kicker,
-  .week-one-page .guide-profile h3,
-  .week-one-page .guide-profile .profile-facts{grid-column:1}
-  .week-one-page .reading-index,
-  .week-one-page .practice-step time,
-  .week-one-page .call-step time,
-  .week-one-page .day-card > span,
-  .week-one-page .orientation-card > span,
-  .week-one-page .resource-card > span,
-  .week-one-page .material-map.exp-flow .material > span,
-  .week-one-page .guide-profile .section-kicker{padding-top:0; margin-bottom:.55em}
-  .week-one-page h2{font-size:clamp(1.45rem,5.6vw,1.75rem); max-width:100%}
-  .week-one-page .reading-copy h3,
-  .week-one-page .guide-profile h3{font-size:1.22rem}
-  .week-one-page .quote-panel blockquote p,
-  .week-one-page .quote-solo p{font-size:1.15rem}
-  .week-one-page .concept-map,
-  .week-one-page .principles,
-  .week-one-page .practice-band,
-  .week-one-page .material-map.pair{grid-template-columns:minmax(0,1fr)}
-  body.review-on .week-one-page .review-target::after{left:-12px}
-  .week-one-page .review-note{margin-left:0}
-  .lang-switch button{min-height:44px; padding:0 12px}
-  .review-toggle{min-height:44px}
+  .week-one-page .call-step{grid-template-columns:1fr}
+  .week-one-page .orientation-grid,
+  .week-one-page .resource-grid{grid-template-columns:1fr}
+  .lang-switch button{min-height:44px;padding:0 12px;font-size:.74rem}
+  .review-toggle{min-height:44px;padding:6px 10px}
   .review-button{min-height:44px}
 }
 </style>
@@ -2918,7 +2543,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           </div>
         </div>
 
-        <div class="material-map exp-flow">
+        <div class="material-map">
           <article class="material">
             <span>Experiment 01 · 2 minutes</span>
             <h3>Peripheral vision / fingers</h3>
@@ -3003,7 +2628,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           </article>
         </div>
 
-        <div class="next-grid question-set">
+        <div class="next-grid" style="margin-top:1px">
           <article class="next-card"><h3>Opening question</h3><p>“As you sense the room and your body, what ordinary part would be okay to notice for a few minutes?”</p></article>
           <article class="next-card"><h3>Middle question</h3><p>“When you say ‘a part of me,’ is any curiosity, kindness, or space available—even a little?”</p></article>
           <article class="next-card"><h3>Closing question</h3><p>“What would help this part know that you have noticed it and that we are stopping here?”</p></article>
@@ -3050,7 +2675,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           <article class="principle"><span class="num">06</span><h3>Practice recognition</h3><p>Return often, stay briefly, notice what supports access, and do not force a special state.</p></article>
         </div>
 
-        <div class="material-map pair">
+        <div class="material-map" style="margin-top:28px">
           <article class="material"><span>One practice</span><h3>Seven-minute reset</h3><p>Ground through feet and seat; feel the core; open into field; lightly focus; name how much access to Self may be available.</p></article>
           <article class="material"><span>One integration prompt</span><h3>My first compass</h3><p>“Access to Self may feel like… Less access may feel like… What supports a little more access is…”</p></article>
         </div>
@@ -3080,7 +2705,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           </div>
         </div>
 
-        <div class="next-grid decision-set">
+        <div class="next-grid" style="margin-top:28px">
           <article class="next-card"><h3>Review decision 01</h3><p>Does Guthrie want ground-core-field-focus to open every week in this exact seven-minute form, or should Week 1 remain the full version and later weeks use a shorter return?</p></article>
           <article class="next-card"><h3>Review decision 02</h3><p>Which low-intensity part and which participant profile make the cleanest Week 1 live demonstration?</p></article>
           <article class="next-card"><h3>Review decision 03</h3><p>Which lines from the July 29 call and old Self materials may be quoted publicly, and which should remain internal teaching anchors?</p></article>
@@ -3936,7 +3561,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           <div class="measure"><p class="lede">Каждый эксперимент короткий, solo и low intensity. Остановитесь при напряжении, головокружении, дезориентации или внутреннем давлении.</p></div>
         </div>
 
-        <div class="material-map exp-flow">
+        <div class="material-map">
           <article class="material"><span>Эксперимент 01 · 2 минуты</span><h3>Периферическое зрение / пальцы</h3><p>Соедините указательные пальцы перед собой и мягко смотрите на них. Очень медленно разводите их, стараясь включать оба. Когда усилие возрастёт, смягчите взгляд и позвольте себе воспринять всё поле зрения. Верните пальцы. Что изменилось, когда видеть стало менее затратно?</p><p class="source-fine">Голова остаётся неподвижной, движение комфортное. При нагрузке на глаза пропустите упражнение и используйте открытый слух.</p></article>
           <article class="material"><span>Эксперимент 02 · 4 минуты</span><h3>Прогулка в четырёх каналах</h3><p>Идите минуту с открытым seeing, минуту с открытым hearing, минуту ощущая тело, затем минуту включая все три канала. Пусть awareness принимает, а не охотится за ощущениями. Оставьте достаточно focus для поверхности, движения, людей и обычной безопасности.</p><p class="source-fine">Выберите знакомое безопасное место. Не делайте упражнение при переходе дороги, вождении, езде на велосипеде или там, где безопасность требует полного attention.</p></article>
           <article class="material"><span>Эксперимент 03 · 3 минуты</span><h3>Полная миска супа</h3><p>Представьте, что несёте очень полную миску через людную комнату. Сначала гиперсфокусируйтесь на поверхности: почувствуйте напряжение тела и исчезновение комнаты. Остановитесь. Ground, расширение визуального field, включение комнаты — и затем лёгкое касание миски attention. Сравните два способа двигаться.</p><p class="source-fine">Используйте воображение или пустую небьющуюся миску. Смысл в балансе field и focus, а не в проверке координации с горячей жидкостью.</p></article>
@@ -3971,7 +3596,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           <article class="practice-side not"><h3>Не входить</h3><ul class="mini-list"><li>Не искать происхождение, возраст, burdening event или memory.</li><li>Не просить protector отойти.</li><li>Не входить в exile contact, witnessing, retrieval или unburdening.</li><li>Не обещать, что часть изменится.</li><li>Не учить участников повторять последовательность с партнёром.</li><li>Остановиться при росте интенсивности, снижении ориентации или изменении consent.</li></ul></article>
         </div>
 
-        <div class="next-grid question-set">
+        <div class="next-grid" style="margin-top:1px">
           <article class="next-card"><h3>Открывающий вопрос</h3><p>«Когда вы чувствуете комнату и тело, какую ordinary part было бы okay замечать несколько минут?»</p></article>
           <article class="next-card"><h3>Вопрос в середине</h3><p>«Когда вы говорите “часть меня”, доступно ли хоть немного curiosity, kindness или пространства?»</p></article>
           <article class="next-card"><h3>Закрывающий вопрос</h3><p>«Что поможет этой части понять, что вы её заметили и что здесь мы останавливаемся?»</p></article>
@@ -4008,7 +3633,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           <article class="principle"><span class="num">06</span><h3>Практика распознавания</h3><p>Возвращаться часто, оставаться недолго, замечать поддержку и не вынуждать особое состояние.</p></article>
         </div>
 
-        <div class="material-map pair">
+        <div class="material-map" style="margin-top:28px">
           <article class="material"><span>Одна практика</span><h3>Семиминутный reset</h3><p>Ground через стопы и опору; почувствовать core; открыть field; легко сфокусироваться; назвать, сколько доступа к Self может быть доступно.</p></article>
           <article class="material"><span>Один integration prompt</span><h3>Мой первый компас</h3><p>«Доступ к Self может ощущаться как… Меньше доступа может ощущаться как… Немного больше доступа поддерживает…»</p></article>
         </div>
@@ -4024,7 +3649,7 @@ body.review-on .week-one-page .review-target.has-review::after{background:var(--
           <div class="quote-note"><div><strong>Если практика становится слишком интенсивной</strong><p>Остановитесь. Откройте глаза. Назовите пять предметов, которые видите. Почувствуйте стопы и опору под тазом. Осмотритесь в реальной комнате, выпейте воды и при необходимости свяжитесь с человеком поддержки. Любую практику можно пропустить, из звонка можно выйти.</p></div><p class="fine">Курс носит образовательный характер и не является психотерапией, кризисной помощью или заменой индивидуальной поддержки. Если уязвимый или перегружающий материал продолжает быть активным, приостановите практику курса и рассмотрите обращение к квалифицированному mental-health специалисту. При непосредственном риске причинения вреда используйте местные emergency или crisis services.</p></div>
         </div>
 
-        <div class="next-grid decision-set">
+        <div class="next-grid" style="margin-top:28px">
           <article class="next-card"><h3>Review decision 01</h3><p>Хочет ли Guthrie открывать каждую неделю ground-core-field-focus в этой семиминутной форме, или Week 1 остаётся полной версией, а следующие недели используют короткое возвращение?</p></article>
           <article class="next-card"><h3>Review decision 02</h3><p>Какая low-intensity part и какой профиль participant дадут самую чистую live demonstration Week 1?</p></article>
           <article class="next-card"><h3>Review decision 03</h3><p>Какие линии звонка 29 июля и старых Self materials можно цитировать публично, а какие должны остаться internal teaching anchors?</p></article>
