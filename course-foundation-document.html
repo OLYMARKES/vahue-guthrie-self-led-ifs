@@ -154,6 +154,7 @@ body.review-on .review-guidance{display:block}
   line-height:1.48;
 }
 .review-guidance strong{color:var(--ink)}
+.review-guidance a{color:var(--rust);font-weight:600;text-underline-offset:3px}
 .lang-switch{
   display:flex;
   align-items:center;
@@ -1344,7 +1345,7 @@ p:last-child{margin-bottom:0}
 <aside class="review-guidance" aria-label="Important review instruction">
   <div class="wrap">
     <span class="review-guidance-label">Before you start</span>
-    <p><strong>After every comment or suggested edit, please click “Save note.”</strong> Until you click it, your text is only a draft in this browser. Once saved, the note is sent to the shared review archive.</p>
+    <p><strong>After every comment or suggested edit, please click “Save note.”</strong> Until you click it, your text is only a draft in this browser. Once saved, the note is sent to the shared review archive. <a href="week-1-review.html#reviewKey=8d30c9ad9853cbe463c6e858f0aab30bfc628cbcbd003ba4">Open the complete Week 1 draft on its own page.</a></p>
   </div>
 </aside>
 
@@ -2013,10 +2014,10 @@ p:last-child{margin-bottom:0}
         </div>
 
         <div class="next-grid">
-          <article class="next-card">
+          <a class="next-card" href="week-1-review.html#reviewKey=8d30c9ad9853cbe463c6e858f0aab30bfc628cbcbd003ba4" style="text-decoration:none">
             <h3>Week 1 review</h3>
-            <p>Review the complete draft below: teaching text, call outline, awareness exercises, handout, integration prompts, demo brief, and support language.</p>
-          </article>
+            <p>Open Week 1 on its own review page: teaching text, call outline, awareness exercises, handout, integration prompts, demo brief, and support language.</p>
+          </a>
           <article class="next-card">
             <h3>Quote integration</h3>
             <p>Return to the quote bank and choose the strongest Guthrie anchors for each week and for the future landing page.</p>
@@ -2041,7 +2042,7 @@ p:last-child{margin-bottom:0}
       </div>
     </section>
 
-    <section class="reveal">
+    <section class="reveal week-one-page" id="week-1-en">
       <div class="wrap">
         <div class="chapter-head">
           <div>
@@ -3021,10 +3022,10 @@ p:last-child{margin-bottom:0}
         </div>
 
         <div class="next-grid">
-          <article class="next-card">
+          <a class="next-card" href="week-1-review.html#reviewKey=8d30c9ad9853cbe463c6e858f0aab30bfc628cbcbd003ba4" style="text-decoration:none">
             <h3>Review Week 1</h3>
-            <p>Проверить полный draft ниже: teaching text, call outline, awareness exercises, handout, integration prompts, demo brief и support language.</p>
-          </article>
+            <p>Открыть Week 1 на отдельной review-странице: teaching text, call outline, awareness exercises, handout, integration prompts, demo brief и support language.</p>
+          </a>
           <article class="next-card">
             <h3>Интеграция цитат</h3>
             <p>Вернуться к quote bank и выбрать самые сильные Guthrie anchors для каждой недели и будущего лендинга.</p>
@@ -3049,7 +3050,7 @@ p:last-child{margin-bottom:0}
       </div>
     </section>
 
-    <section class="reveal">
+    <section class="reveal week-one-page" id="week-1-ru">
       <div class="wrap">
         <div class="chapter-head">
           <div>
@@ -3371,7 +3372,7 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, {threshold:.08});
+}, {threshold:.01});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 /* ---------- Guthrie review mode ---------- */

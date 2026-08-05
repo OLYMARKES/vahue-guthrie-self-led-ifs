@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Self-led IFS Course Foundation - VAHUE x Guthrie Sayen</title>
+<title>Week 1 Review · Meeting Self through Awareness — VAHUE x Guthrie Sayen</title>
+<meta name="description" content="A bilingual review draft of Week 1: participant teaching, practices, live-call outline, handout, integration, and support boundaries.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -47,6 +48,8 @@ button{font:inherit}
 
 .lang-page{display:none}
 .lang-page.is-active{display:block}
+body.week-one-only .lang-page > section:not(.week-one-page){display:none}
+body.week-one-only .week-one-page{display:block;opacity:1;transform:none}
 
 .topbar{
   position:sticky;
@@ -1325,10 +1328,10 @@ p:last-child{margin-bottom:0}
 }
 </style>
 </head>
-<body class="lang-en">
+<body class="lang-en week-one-only">
 <header class="topbar" aria-label="Document controls">
   <div class="topbar-inner">
-    <div class="brand"><span class="brand-mark"></span><span>VAHUE x Guthrie Sayen · course foundation</span></div>
+    <div class="brand"><span class="brand-mark"></span><span>VAHUE x Guthrie Sayen · Week 1 review</span></div>
     <div class="topbar-controls">
       <label class="review-toggle">
         <input type="checkbox" id="reviewModeToggle">
@@ -1345,7 +1348,7 @@ p:last-child{margin-bottom:0}
 <aside class="review-guidance" aria-label="Important review instruction">
   <div class="wrap">
     <span class="review-guidance-label">Before you start</span>
-    <p><strong>After every comment or suggested edit, please click “Save note.”</strong> Until you click it, your text is only a draft in this browser. Once saved, the note is sent to the shared review archive. <a href="week-1-review.html#reviewKey=8d30c9ad9853cbe463c6e858f0aab30bfc628cbcbd003ba4">Open the complete Week 1 draft on its own page.</a></p>
+    <p><strong>This page contains only the complete Week 1 draft.</strong> After every comment or suggested edit, please click “Save note.” Until you click it, your text is only a draft in this browser. Once saved, the note is sent to the shared review archive. <a href="course-foundation-document.html#reviewKey=8d30c9ad9853cbe463c6e858f0aab30bfc628cbcbd003ba4">Return to the course foundation.</a></p>
   </div>
 </aside>
 
@@ -3266,17 +3269,17 @@ p:last-child{margin-bottom:0}
   <div class="wrap">
     <div class="chapter-head">
       <div>
-        <p class="section-kicker">Guthrie review layer</p>
-        <h2>Comments, suggested edits, and next notes.</h2>
+        <p class="section-kicker">Week 1 review layer</p>
+        <h2>Comments and edits for the first week.</h2>
       </div>
       <div class="measure">
-        <p class="lede">Every draft is saved on this device as it is typed. Every submitted note also enters a version history, so later edits do not erase what Guthrie wrote before. Suggested edits remain visible under the relevant block in red.</p>
+        <p class="lede">Comment directly on the Week 1 teaching, practices, live-call flow, demonstration, handout, or boundaries. Drafts stay on this device while you type; every submitted note also enters the shared archive and version history.</p>
       </div>
     </div>
     <div class="review-board">
       <div>
         <div class="review-field">
-          <label for="globalReviewComment">General comment for the whole document</label>
+          <label for="globalReviewComment">General comment for Week 1</label>
           <textarea id="globalReviewComment" placeholder="Add an overall note, missing topic, sequence change, or anything that should guide the next revision."></textarea>
         </div>
         <div class="review-actions">
@@ -3304,7 +3307,7 @@ p:last-child{margin-bottom:0}
 <footer class="footer">
   <div class="wrap footer-inner">
     <span>VAHUE x Guthrie Sayen</span>
-    <span>Course foundation · working version</span>
+    <span>Week 1 · review draft</span>
   </div>
 </footer>
 
@@ -3352,7 +3355,7 @@ function setLang(lang){
     button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
-  try{ localStorage.setItem("guthrie-course-foundation-lang", lang); }catch(error){}
+  try{ localStorage.setItem("guthrie-week-one-review-lang", lang); }catch(error){}
   window.scrollTo({top:0, behavior:"smooth"});
 }
 
@@ -3361,7 +3364,7 @@ buttons.forEach(button => {
 });
 
 const preferred = (() => {
-  try{return localStorage.getItem("guthrie-course-foundation-lang") || "en";}catch(error){return "en";}
+  try{return localStorage.getItem("guthrie-week-one-review-lang") || "en";}catch(error){return "en";}
 })();
 setLang(preferred === "ru" ? "ru" : "en");
 
@@ -3376,9 +3379,9 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 /* ---------- Guthrie review mode ---------- */
-const reviewStorageKey = "guthrie-course-foundation-review-v2";
-const reviewModeKey = "guthrie-course-foundation-review-mode";
-const reviewDocumentId = "guthrie-course-foundation-260803";
+const reviewStorageKey = "guthrie-week-one-review-v2";
+const reviewModeKey = "guthrie-week-one-review-mode";
+const reviewDocumentId = "guthrie-course-week-1-260805";
 const reviewFormAction = "https://docs.google.com/forms/d/e/1FAIpQLScfkG1bdk0D-OOnZjFGC_VtyJDiIRk7a41FOo3jlegPu_faHw/formResponse";
 const reviewFormEventField = "entry.1292771604";
 const reviewFormPayloadField = "entry.863961216";
@@ -3545,29 +3548,19 @@ function excerptForTarget(target){
 
 function getReviewTargets(){
   return Array.from(document.querySelectorAll([
-    ".lang-page .hero h1",
-    ".lang-page .hero .lede",
-    ".lang-page .guthrie-note",
-    ".lang-page .hero-card",
-    ".lang-page .doc-status > div",
-    ".lang-page .chapter-head",
-    ".lang-page .quote-panel",
-    ".lang-page .quote-solo",
-    ".lang-page .principle",
-    ".lang-page .os-card",
-    ".lang-page .journey-step",
-    ".lang-page .material",
-    ".lang-page .week-card",
-    ".lang-page .module",
-    ".lang-page .boundary",
-    ".lang-page .practice-side",
-    ".lang-page .next-card",
-    ".lang-page .reading-chapter",
-    ".lang-page .concept-node",
-    ".lang-page .practice-step",
-    ".lang-page .call-step",
-    ".lang-page .day-card",
-    ".lang-page .section-add-target"
+    ".week-one-page .chapter-head",
+    ".week-one-page .quote-panel",
+    ".week-one-page .quote-solo",
+    ".week-one-page .principle",
+    ".week-one-page .material",
+    ".week-one-page .practice-side",
+    ".week-one-page .next-card",
+    ".week-one-page .reading-chapter",
+    ".week-one-page .concept-node",
+    ".week-one-page .practice-step",
+    ".week-one-page .call-step",
+    ".week-one-page .day-card",
+    ".week-one-page .section-add-target"
   ].join(",")));
 }
 
@@ -3580,7 +3573,7 @@ function reviewControlFor(id){
 }
 
 function prepareSectionReviewSlots(){
-  document.querySelectorAll(".lang-page > section").forEach((section, index) => {
+  document.querySelectorAll(".lang-page > section.week-one-page").forEach((section, index) => {
     const lang = section.closest(".lang-page")?.dataset.lang || "global";
     const heading = section.querySelector("h1,h2");
     const sectionTitle = cleanText(heading?.textContent) || `Section ${index + 1}`;
@@ -3764,7 +3757,7 @@ function buildReviewMarkdown(){
   const lines = [
     "# Guthrie review notes",
     "",
-    `Document: A Self-led IFS Course Foundation`,
+    `Document: Week 1 — Meeting Self through Awareness`,
     `Exported: ${new Date().toLocaleString()}`,
     "",
     "## General comment",
@@ -3851,7 +3844,7 @@ async function copyReviewMarkdown(){
     await navigator.clipboard.writeText(text);
     showReviewToast("Review packet copied.");
   }catch(error){
-    downloadText("guthrie-review-notes.md", text, "text/markdown;charset=utf-8");
+    downloadText("guthrie-week-1-review-notes.md", text, "text/markdown;charset=utf-8");
     showReviewToast("Clipboard was unavailable, so Markdown was downloaded.");
   }
 }
@@ -3898,15 +3891,15 @@ document.getElementById("saveGlobalReview").addEventListener("click", () => {
 });
 document.getElementById("copyReviewMarkdown").addEventListener("click", copyReviewMarkdown);
 document.getElementById("downloadReviewMarkdown").addEventListener("click", () => {
-  downloadText("guthrie-review-notes.md", buildReviewMarkdown(), "text/markdown;charset=utf-8");
+  downloadText("guthrie-week-1-review-notes.md", buildReviewMarkdown(), "text/markdown;charset=utf-8");
 });
 document.getElementById("downloadReviewJson").addEventListener("click", () => {
-  downloadText("guthrie-review-notes.json", JSON.stringify(reviewState, null, 2), "application/json;charset=utf-8");
+  downloadText("guthrie-week-1-review-notes.json", JSON.stringify(reviewState, null, 2), "application/json;charset=utf-8");
 });
 document.getElementById("clearReviewNotes").addEventListener("click", () => {
   if(!confirm("Download a JSON backup, then clear all locally saved drafts and notes in this browser?")) return;
   const stamp = new Date().toISOString().slice(0,19).replaceAll(":","-");
-  downloadText(`guthrie-review-backup-${stamp}.json`, JSON.stringify(reviewState, null, 2), "application/json;charset=utf-8");
+  downloadText(`guthrie-week-1-review-backup-${stamp}.json`, JSON.stringify(reviewState, null, 2), "application/json;charset=utf-8");
   reviewState = emptyReviewState();
   globalReviewComment.value = "";
   writeReviewState();
@@ -3922,7 +3915,7 @@ document.addEventListener("keydown", (event) => {
 updateReviewMarkers();
 renderReviewSaveStatus();
 void flushReviewOutbox();
-setReviewMode((() => {
+setReviewMode(Boolean(reviewAccessKey) || (() => {
   try{return localStorage.getItem(reviewModeKey) === "1";}catch(error){return false;}
 })());
 </script>
