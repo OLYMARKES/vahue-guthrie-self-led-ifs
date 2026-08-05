@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Week 1 · Meeting Self through awareness · VAHUE × Guthrie Sayen</title>
+
+<!--
+================================================================================
+CONTENT ARCHITECTURE: participant Week 1 preview (separate from WEEK_1_REVIEW.html)
+================================================================================
+This file is a participant-facing learning guide, written to be read from
+beginning to end in one sitting (~25 min) and returned to during the week.
+It is not a curriculum outline, not a reviewer document, not a landing page.
+
+Reading order (single narrative column, one chapter rail):
+
+  Opening      Welcome, what this week is, what you have, what to do first.
+  I            The larger journey: why the course exists, six weeks in human
+               language, OS 1.0 ceiling, OS 2.0, transcend and include.
+  II           IFS in plain language: origin, multiplicity, parts, Self, and
+               the explicit boundary: educational layer, not psychotherapy.
+  III          Who is teaching: Guthrie's line (working bio, pending his
+               correction).
+  IV           This week's theory: seven distinctions + one figure
+               (attention / awareness / Self / parts). Theory serves experience.
+  V            Direct experience: the seven-minute ground · core · field ·
+               focus practice, three short experiments, one low-intensity
+               parts doorway.
+  VI           The week in life: seven daily invitations, the personal
+               compass prompt, frequency before intensity, before the call.
+  VII          Keep with you: printable one-page summary (six points, one
+               practice, one prompt, one boundary).
+  VIII         If it becomes too much: boundary and support language.
+  Reference    Optional glossary and reading. The guide is complete without it.
+  Appendix     Reviewer notes, collapsed, visually separated, NOT participant
+               reading flow: old-course provenance, what is new, questions for
+               Guthrie, quote/adaptation rights pending approval.
+
+Visual system:
+  Content-type is carried by structure and weight, not by colour-coding or
+  cards: prose = plain column; practice = ruled movement list; experiment =
+  ruled block with a care note; reflection = indented prompt; keep-with-you =
+  bordered printable sheet; safety = tinted panel; reference = compact list.
+  One accent (moss) only. Signature motif: a focus dot travelling inside a
+  wider field band: attention held inside awareness: used in the reading rail,
+  the chapter dividers and the Model figure.
+
+Print: only the "Keep with you" sheet prints, plus a minimal identifying header.
+================================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#EDEAE1;
+  --paper-deep:#E4E0D5;
+  --surface:#F8F6F1;
+  --ink:#1F231D;
+  --ink-2:#3B4136;
+  --muted:#6C7165;
+  --line:rgba(31,35,29,.15);
+  --line-soft:rgba(31,35,29,.08);
+  --moss:#4B6543;
+  --moss-deep:#38492F;
+  --moss-wash:rgba(75,101,67,.09);
+  --serif-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --serif-body:"Literata",Georgia,"Iowan Old Style",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --measure:34rem;
+  --wide:44rem;
+  --bar:54px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif-body);
+  font-size:17px;
+  line-height:1.72;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-wrap:break-word;
+}
+img,svg{max-width:100%;}
+
+/* ---------- top bar ---------- */
+.bar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(237,234,225,.93);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--line-soft);
+}
+.bar-inner{
+  max-width:64rem;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem);
+  height:var(--bar);display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.bar-id{
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.bar-id b{color:var(--ink-2);font-weight:600;}
+.bar-prefix{display:none;}
+@media (min-width:720px){ .bar-prefix{display:inline;} }
+.toc-btn{
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-2);background:none;border:1px solid var(--line);border-radius:2px;
+  min-height:36px;padding:.4rem .8rem;cursor:pointer;display:flex;align-items:center;gap:.5rem;
+}
+.toc-btn:hover{border-color:var(--moss);color:var(--moss-deep);}
+.progress{height:2px;background:var(--line-soft);}
+.progress i{display:block;height:100%;width:0;background:var(--moss);}
+
+.toc{
+  display:none;border-bottom:1px solid var(--line-soft);background:var(--surface);
+}
+.toc.open{display:block;}
+.toc ol{
+  max-width:64rem;margin:0 auto;padding:1rem clamp(1rem,4vw,2.5rem) 1.4rem;
+  list-style:none;display:grid;gap:.15rem;grid-template-columns:1fr;
+}
+@media (min-width:640px){ .toc ol{grid-template-columns:1fr 1fr;gap:.15rem 2rem;} }
+.toc a{
+  display:flex;gap:.9rem;align-items:baseline;min-height:44px;padding:.35rem 0;
+  text-decoration:none;color:var(--ink-2);border-bottom:1px solid var(--line-soft);
+}
+.toc a:hover{color:var(--moss-deep);}
+.toc .n{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;color:var(--muted);min-width:2.4rem;}
+.toc .t{font-family:var(--serif-display);font-size:1rem;}
+
+/* ---------- page frame ---------- */
+.page{max-width:64rem;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem);}
+.col{max-width:var(--measure);}
+section{padding:clamp(2.4rem,5.5vw,3.8rem) 0;}
+.motif{margin-bottom:-.4rem;}
+
+/* rail: chapter marker + field/focus motif */
+@media (min-width:1080px){
+  .page{display:grid;grid-template-columns:7.5rem minmax(0,1fr);column-gap:3rem;}
+  .page > .flow{grid-column:2;}
+  .rail{grid-column:1;position:sticky;top:calc(var(--bar) + 2.5rem);align-self:start;height:0;}
+}
+.rail{display:none;}
+@media (min-width:1080px){ .rail{display:block;} }
+.rail-band{
+  width:9px;height:60vh;max-height:520px;border-radius:9px;
+  background:linear-gradient(180deg,rgba(75,101,67,.05),rgba(75,101,67,.16),rgba(75,101,67,.05));
+  position:relative;margin-left:.35rem;
+}
+.rail-dot{
+  position:absolute;left:50%;transform:translate(-50%,-50%);
+  width:9px;height:9px;border-radius:50%;background:var(--moss);top:0;
+  transition:top .18s linear;
+}
+.rail-label{
+  font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:1rem;max-width:6.5rem;line-height:1.5;
+}
+
+/* ---------- masthead ---------- */
+.masthead{padding-top:clamp(2.6rem,7vw,4.6rem);}
+.kicker{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 1.6rem;
+}
+h1{
+  font-family:var(--serif-display);font-weight:400;
+  font-size:clamp(1.65rem,1.25rem+1.5vw,2.2rem);line-height:1.24;letter-spacing:-.008em;
+  margin:0 0 .9rem;max-width:22ch;
+}
+h1 em{font-style:italic;color:var(--moss-deep);}
+.standfirst{font-size:1.06rem;color:var(--ink-2);margin:0 0 2rem;max-width:38rem;}
+
+.outcome{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:1.4rem 0;margin:2rem 0 0;max-width:var(--wide);
+}
+.outcome .lab{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:.6rem;
+}
+.outcome p{
+  font-family:var(--serif-display);font-size:1.12rem;font-style:italic;line-height:1.55;
+  margin:0;color:var(--ink);
+}
+
+/* ---------- headings ---------- */
+.eyebrow{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--moss-deep);margin:0 0 .8rem;display:flex;align-items:center;gap:.65rem;
+}
+.eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--moss);opacity:.5;}
+h2{
+  font-family:var(--serif-display);font-weight:400;font-size:clamp(1.3rem,1.15rem+.5vw,1.55rem);
+  line-height:1.3;letter-spacing:-.005em;margin:0 0 1.1rem;max-width:26ch;
+}
+h3{
+  font-family:var(--serif-display);font-weight:600;font-size:1.14rem;line-height:1.35;
+  margin:2.4rem 0 .55rem;letter-spacing:-.003em;
+}
+h4{
+  font-family:var(--sans);font-weight:600;font-size:.8rem;letter-spacing:.06em;
+  margin:1.6rem 0 .4rem;color:var(--ink-2);
+}
+p{margin:0 0 1.05rem;}
+.lead{font-size:1.05rem;color:var(--ink-2);}
+strong{font-weight:600;}
+em{font-style:italic;}
+
+a{color:var(--moss-deep);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:.5px;}
+a:hover{color:var(--ink);}
+:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:2px;}
+
+/* ---------- quote anchor ---------- */
+blockquote{
+  margin:1.9rem 0;padding:0 0 0 1.2rem;border-left:2px solid var(--moss);max-width:var(--wide);
+}
+blockquote p{
+  font-family:var(--serif-display);font-size:1.1rem;font-style:italic;line-height:1.5;
+  color:var(--ink);margin:0 0 .5rem;
+}
+blockquote cite{
+  font-family:var(--sans);font-style:normal;font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+}
+
+/* ---------- simple lists ---------- */
+ul.plain,ol.plain{margin:1rem 0 1.4rem;padding:0;list-style:none;max-width:var(--measure);}
+ul.plain li,ol.plain li{
+  padding:.55rem 0 .55rem 1.5rem;border-bottom:1px solid var(--line-soft);position:relative;
+}
+ul.plain li::before{
+  content:"";position:absolute;left:.15rem;top:1.35rem;width:5px;height:5px;border-radius:50%;
+  background:var(--moss);opacity:.55;
+}
+ol.plain{counter-reset:pl;}
+ol.plain li{counter-increment:pl;padding-left:2.2rem;}
+ol.plain li::before{
+  content:counter(pl,decimal-leading-zero);position:absolute;left:0;top:.62rem;
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.08em;color:var(--muted);
+}
+
+/* ---------- two-state teaching element (OS 1.0 / 2.0) ---------- */
+.states{
+  display:grid;gap:0;margin:1.8rem 0 .6rem;max-width:var(--wide);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+@media (min-width:720px){ .states{grid-template-columns:1fr 1fr;} }
+.state{padding:1.3rem 0;}
+@media (min-width:720px){
+  .state:first-child{padding-right:2rem;border-right:1px solid var(--line-soft);}
+  .state:last-child{padding-left:2rem;}
+}
+@media (max-width:719px){ .state + .state{border-top:1px solid var(--line-soft);} }
+.state .lab{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:.5rem;
+}
+.state h5{font-family:var(--serif-display);font-weight:500;font-size:1.02rem;margin:0 0 .5rem;}
+.state p{font-size:.98rem;margin:0;color:var(--ink-2);}
+.bridge{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--moss-deep);margin:.9rem 0 0;
+}
+
+/* ---------- figure ---------- */
+figure{margin:2.2rem 0;max-width:var(--wide);}
+figure svg{display:block;width:100%;height:auto;}
+figcaption{
+  font-family:var(--sans);font-size:.79rem;line-height:1.6;color:var(--muted);
+  margin-top:.9rem;padding-top:.2rem;border-top:1px solid var(--line-soft);
+}
+figcaption .key{display:block;padding:.5rem 0;border-bottom:1px solid var(--line-soft);}
+figcaption .key:last-child{border-bottom:none;}
+figcaption .key b{color:var(--ink-2);font-weight:600;}
+
+/* ---------- practice ---------- */
+.practice{
+  max-width:var(--wide);margin:1.8rem 0;background:var(--surface);
+  border:1px solid var(--line);border-left:2px solid var(--moss);
+  padding:clamp(1.2rem,3vw,1.8rem);
+}
+.practice > .lab{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--moss-deep);display:block;margin-bottom:.6rem;
+}
+.practice h3{margin-top:0;}
+.practice .note{font-size:.95rem;color:var(--muted);margin-bottom:.4rem;}
+.movements{margin:1.2rem 0 0;padding:0;list-style:none;}
+.movements li{
+  display:grid;grid-template-columns:1fr;gap:.15rem;
+  padding:1rem 0;border-top:1px solid var(--line-soft);
+}
+@media (min-width:640px){
+  .movements li{grid-template-columns:5.6rem 1fr;column-gap:1.4rem;}
+  .movements .time{grid-row:span 2;}
+}
+.movements .time{
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.06em;color:var(--muted);
+  padding-top:.25rem;font-variant-numeric:tabular-nums;
+}
+.movements .name{font-family:var(--serif-display);font-size:1.02rem;font-weight:500;}
+.movements p{margin:.15rem 0 0;font-size:.98rem;color:var(--ink-2);}
+
+/* ---------- experiments ---------- */
+.experiment{
+  max-width:var(--wide);margin:1.6rem 0;padding:1.3rem 0;border-top:1px solid var(--line);
+}
+.experiment .lab{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:.45rem;
+}
+.experiment h3{margin:0 0 .5rem;}
+.experiment p{margin:0 0 .7rem;}
+.care{
+  font-family:var(--sans);font-size:.82rem;line-height:1.6;color:var(--muted);
+  padding-left:1rem;border-left:1px solid var(--line);margin:0;
+}
+
+/* ---------- reflection prompt ---------- */
+.prompt{
+  max-width:var(--wide);margin:1.8rem 0;padding:1.2rem 1.4rem;background:var(--moss-wash);
+  border-radius:2px;
+}
+.prompt .lab{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--moss-deep);display:block;margin-bottom:.5rem;
+}
+.prompt p{margin:0 0 .5rem;font-family:var(--serif-display);font-size:1.04rem;font-style:italic;}
+.prompt p:last-child{margin-bottom:0;}
+
+/* ---------- days ---------- */
+.days{margin:1.6rem 0;padding:0;list-style:none;max-width:var(--wide);border-top:1px solid var(--line);}
+.days li{
+  display:grid;grid-template-columns:1fr;gap:.2rem;padding:.95rem 0;border-bottom:1px solid var(--line-soft);
+}
+@media (min-width:640px){ .days li{grid-template-columns:4.6rem 1fr;column-gap:1.4rem;align-items:baseline;} }
+.days .d{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+}
+.days p{margin:0;font-size:.99rem;}
+
+/* ---------- keep with you sheet ---------- */
+.sheet{
+  max-width:var(--wide);margin:1.8rem 0 0;background:var(--surface);
+  border:1px solid var(--ink-2);padding:clamp(1.3rem,3.5vw,2rem);
+}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.sheet-head .lab{
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.print-btn{
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  min-height:44px;padding:.5rem 1rem;border:1px solid var(--line);background:none;color:var(--ink-2);
+  cursor:pointer;border-radius:2px;
+}
+.print-btn:hover{border-color:var(--moss);color:var(--moss-deep);}
+.six{margin:0;padding:0;list-style:none;counter-reset:six;border-top:1px solid var(--line-soft);}
+@media (min-width:680px){ .six{columns:2;column-gap:2.2rem;} }
+.six li{
+  counter-increment:six;padding:.85rem 0;border-bottom:1px solid var(--line-soft);
+  break-inside:avoid;
+}
+.six .h{display:block;font-family:var(--serif-display);font-size:1.02rem;font-weight:500;}
+.six .h::before{
+  content:counter(six,decimal-leading-zero);font-family:var(--sans);font-size:.68rem;
+  letter-spacing:.1em;color:var(--muted);margin-right:.6rem;
+}
+.six p{margin:.15rem 0 0;font-size:.94rem;color:var(--ink-2);}
+.sheet-foot{display:grid;gap:1rem;margin-top:1.4rem;}
+@media (min-width:680px){ .sheet-foot{grid-template-columns:repeat(3,1fr);gap:1.6rem;} }
+.sheet-foot div{border-top:1px solid var(--line);padding-top:.8rem;}
+.sheet-foot .lab{
+  font-family:var(--sans);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:.35rem;
+}
+.sheet-foot p{margin:0;font-size:.93rem;color:var(--ink-2);}
+
+/* ---------- safety ---------- */
+.safety{
+  max-width:var(--wide);margin:1.6rem 0;background:var(--paper-deep);
+  border:1px solid var(--line);padding:clamp(1.2rem,3vw,1.7rem);
+}
+.safety h3{margin-top:0;}
+.safety p:last-child{margin-bottom:0;}
+.steps{margin:.6rem 0 1rem;padding:0;list-style:none;counter-reset:st;}
+.steps li{
+  counter-increment:st;position:relative;padding:.4rem 0 .4rem 2rem;font-size:.99rem;
+}
+.steps li::before{
+  content:counter(st);position:absolute;left:0;top:.5rem;font-family:var(--sans);
+  font-size:.7rem;color:var(--moss-deep);border:1px solid var(--line);border-radius:50%;
+  width:1.25rem;height:1.25rem;display:grid;place-items:center;
+}
+
+/* ---------- reference ---------- */
+dl.glossary{margin:1.4rem 0;max-width:var(--wide);border-top:1px solid var(--line);}
+dl.glossary div{padding:.85rem 0;border-bottom:1px solid var(--line-soft);}
+@media (min-width:680px){
+  dl.glossary div{display:grid;grid-template-columns:11rem 1fr;column-gap:1.6rem;align-items:baseline;}
+}
+dl.glossary dt{font-family:var(--serif-display);font-weight:500;font-size:1rem;}
+dl.glossary dd{margin:.15rem 0 0;font-size:.95rem;color:var(--ink-2);}
+
+/* ---------- divider motif ---------- */
+.motif{display:flex;align-items:center;gap:.5rem;margin:2.4rem 0 0;max-width:var(--wide);}
+.motif .band{height:5px;border-radius:5px;flex:1;background:linear-gradient(90deg,rgba(75,101,67,.04),rgba(75,101,67,.16),rgba(75,101,67,.04));}
+.motif .dot{width:5px;height:5px;border-radius:50%;background:var(--moss);}
+
+/* ---------- appendix ---------- */
+.appendix{
+  border-top:1px solid var(--ink-2);margin-top:2rem;padding:2.4rem 0 4rem;
+}
+.appendix .warn{
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 1rem;
+}
+details{border:1px solid var(--line);background:var(--surface);}
+summary{
+  cursor:pointer;list-style:none;padding:1rem 1.2rem;min-height:44px;display:flex;
+  align-items:center;justify-content:space-between;gap:1rem;
+  font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";font-size:1rem;color:var(--muted);}
+details[open] summary::after{content:"–";}
+.details-body{padding:0 1.2rem 1.6rem;max-width:var(--wide);}
+.details-body h3{font-size:1rem;margin:1.4rem 0 .5rem;}
+.details-body p,.details-body li{font-size:.95rem;}
+.details-body ul{margin:.4rem 0 1rem;padding-left:1.1rem;}
+.details-body li{margin-bottom:.35rem;}
+
+footer.colophon{
+  padding:1.6rem 0 3rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.05em;
+  color:var(--muted);border-top:1px solid var(--line-soft);
+}
+
+/* ---------- print: keep-with-you only ---------- */
+@media print{
+  @page{margin:16mm;}
+  body{background:#fff;color:#000;font-size:11pt;line-height:1.5;}
+  .bar,.toc,.rail,.no-print,section,.appendix,footer.colophon{display:none !important;}
+  section#keep{display:block !important;padding:0;border:none;}
+  .page{display:block;max-width:none;padding:0;}
+  .print-head{display:block !important;border-bottom:1px solid #000;padding-bottom:6pt;margin-bottom:12pt;}
+  .sheet{border:none;background:none;padding:0;max-width:none;}
+  .six{columns:2;column-gap:14mm;}
+  .print-btn,.motif{display:none !important;}
+  h2{font-size:15pt;}
+  a{color:#000;text-decoration:none;}
+}
+.print-head{display:none;font-family:var(--sans);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="print-head">Week 1 · Keep with you · VAHUE × Guthrie Sayen · The Centrality of Self</div>
+
+<header class="bar no-print">
+  <div class="bar-inner">
+    <div class="bar-id"><span class="bar-prefix">VAHUE × Guthrie Sayen · </span><b>Week 1: Meeting Self through awareness</b></div>
+    <button class="toc-btn" id="tocBtn" aria-expanded="false" aria-controls="toc">Contents</button>
+  </div>
+  <div class="progress"><i id="progressBar"></i></div>
+  <nav class="toc" id="toc" aria-label="Guide contents">
+    <ol>
+      <li><a href="#welcome"><span class="n">Open</span><span class="t">Welcome to Week 1</span></a></li>
+      <li><a href="#journey"><span class="n">I</span><span class="t">The larger journey</span></a></li>
+      <li><a href="#ifs"><span class="n">II</span><span class="t">IFS in plain language</span></a></li>
+      <li><a href="#guthrie"><span class="n">III</span><span class="t">Who is teaching</span></a></li>
+      <li><a href="#theory"><span class="n">IV</span><span class="t">This week's distinctions</span></a></li>
+      <li><a href="#experience"><span class="n">V</span><span class="t">Direct experience</span></a></li>
+      <li><a href="#life"><span class="n">VI</span><span class="t">The week in life</span></a></li>
+      <li><a href="#keep"><span class="n">VII</span><span class="t">Keep with you</span></a></li>
+      <li><a href="#support"><span class="n">VIII</span><span class="t">If it becomes too much</span></a></li>
+      <li><a href="#reference"><span class="n">Ref</span><span class="t">Optional glossary and reading</span></a></li>
+    </ol>
+  </nav>
+</header>
+
+<div class="page">
+
+  <div class="rail no-print" aria-hidden="true">
+    <div class="rail-band"><span class="rail-dot" id="railDot"></span></div>
+    <div class="rail-label" id="railLabel">Welcome</div>
+  </div>
+
+  <main class="flow">
+
+  <section class="masthead" id="welcome">
+    <p class="kicker">VAHUE × Guthrie Sayen · The Centrality of Self · A six-week introduction to IFS</p>
+    <h1>Week 1: Meeting Self through <em>awareness</em></h1>
+    <p class="standfirst">A guide to read once from beginning to end, and then to return to during the week. Everything in it is an invitation. Nothing has to be achieved.</p>
+
+    <div class="col">
+      <p class="lead">Welcome. This first week is quieter than you might expect. There is no technique to master and no inner problem to solve by Sunday. You are going to test one distinction in your own experience, the difference between attention and awareness, and begin to notice what happens when awareness comes forward.</p>
+
+      <p>That distinction sounds small on paper. In practice it is the doorway to everything else in this course: the language of parts, the loving gaze toward what is difficult in you, and a way of being with other people that does not require you to manage them.</p>
+
+      <h3>What you have this week</h3>
+      <ul class="plain">
+        <li>This guide: theory, practice and the week's invitations in one place.</li>
+        <li>A seven-minute core practice: <em>ground, core, field, focus</em>. It repeats all six weeks.</li>
+        <li>Three short experiments, two to four minutes each.</li>
+        <li>One sentence that opens the language of parts.</li>
+        <li>The 90-minute live call with Guthrie, and the replay.</li>
+        <li>A one-page summary at the end that you can print and keep near you.</li>
+      </ul>
+
+      <h3>What to do first</h3>
+      <p>Read this guide once, slowly, without doing any of the practices. Then choose a time in the next day or two when you will not be interrupted, and do the seven-minute practice once. That is enough to begin. The daily invitations start after that.</p>
+
+      <p>If you only have a little time this week, do the seven-minute practice three times and skip everything else. Frequency matters more here than volume.</p>
+
+      <p><strong>A calm note before you start.</strong> Nothing has to happen for this week to work. You may feel spacious, or bored, or nothing in particular. All of that is information, and none of it is failure. Every practice in this guide is optional, and you can stop any of them at any point.</p>
+    </div>
+
+    <div class="outcome">
+      <span class="lab">Where this week is going</span>
+      <p>“I can feel the difference between attention and awareness, and I am beginning to recognize what access to Self, awake awareness, feels like for me.”</p>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="journey">
+    <div class="col">
+      <p class="eyebrow">Part I</p>
+      <h2>The larger journey</h2>
+
+      <p class="lead">Most of us try to improve our lives with the equipment we already use: think harder, plan better, focus longer, get on top of it. That equipment is genuinely useful. It also has a ceiling.</p>
+
+      <p>You probably know the ceiling from the inside. The list gets managed but the day feels narrow. You are efficient in a conversation and slightly absent from it. You solve the problem in front of you while your shoulders stay up around your ears. More effort of the same kind stops producing more life.</p>
+
+      <p>This course exists because there is another capacity available, and it is not something you have to acquire. It is already running quietly in the background: the wider awareness in which all of your focusing happens. The whole of the six weeks is about bringing that capacity forward, and learning to live and relate from it more often.</p>
+
+      <blockquote>
+        <p>“What we're doing is bringing something that's already present, but in the background, into the foreground.”</p>
+        <cite>Guthrie Sayen</cite>
+      </blockquote>
+
+      <h3>The shift, in ordinary language</h3>
+      <p>Guthrie calls it a change of operating system. It is a metaphor, not a claim about the brain, but it is a useful one, because it names what actually changes: not the content of your life, but what is running it.</p>
+    </div>
+
+    <div class="states">
+      <div class="state">
+        <span class="lab">Operating system 1.0</span>
+        <h5>Thought-based, led by parts</h5>
+        <p>Attention is narrow, sequential and task-driven. Urgency, control, avoidance, pleasing or self-criticism often decide the next move. It works until it is asked to carry everything, and then the only remaining strategy is more effort.</p>
+      </div>
+      <div class="state">
+        <span class="lab">Operating system 2.0</span>
+        <h5>Awareness-based, led by Self</h5>
+        <p>Awareness opens into a field. Focus is still available, but it is held inside something wider. Reactions can be noticed rather than obeyed, and there is usually a little more room, a little more clarity, and less internal force.</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="bridge">Transcend and include</p>
+      <p>This is not an upgrade that deletes the old system. Focus is precious; you will keep using it all day. The move is to stop asking focus to be the whole mind, and to let it work inside a wider field. Nothing you can already do is lost.</p>
+
+      <h3>The six weeks in human language</h3>
+      <ol class="plain">
+        <li><strong>Meet Self through awareness.</strong> Feel the difference between focus and field, and begin to recognize access to Self.</li>
+        <li><strong>Learn the language of parts.</strong> Move from “I am anxious” to “a part of me is anxious”, and notice what that opens.</li>
+        <li><strong>Experience the loving gaze.</strong> Discover why a part changes when it is met with love rather than argued with.</li>
+        <li><strong>Meet protectors with permission and gratitude.</strong> Understand what your defences are protecting, and learn to stop when the system says no.</li>
+        <li><strong>Respect vulnerable parts without forcing depth.</strong> Recognize tenderness, treat it with care, and know when individual support is the right next step.</li>
+        <li><strong>Bring it into life and relationships.</strong> Use field awareness and parts language with the people and the work in front of you.</li>
+      </ol>
+
+      <p>By the end of the six weeks you will not be an IFS practitioner, and you will not have completed deep therapeutic work. You will have a language for your inner life that does not treat you as broken, a practice you can return to in ordinary minutes, and a more accurate sense of when to go further and with whom.</p>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="ifs">
+    <div class="col">
+      <p class="eyebrow">Part II</p>
+      <h2>IFS in plain language</h2>
+
+      <p class="lead">Internal Family Systems was developed in the 1980s by the American family therapist Richard Schwartz. He had been trained to look at families as systems, and he kept hearing clients describe their inner life the same way: one part of me wants this, another part won't allow it. So he began applying systems thinking inside a single person.</p>
+
+      <p>What he found became the ground of the model, and it is worth stating plainly because it changes how the rest of this course reads.</p>
+
+      <h3>The mind is naturally multiple</h3>
+      <p>Having different parts with different agendas is not a symptom. It is how minds work. The part of you that wants to rest and the part of you that wants to finish are not evidence of a fault; they are two positions in a system that has to hold a whole life.</p>
+
+      <h3>Parts are not defects</h3>
+      <p>A part may behave in ways that cost you: driving too hard, avoiding, criticizing, going numb. In this model, that behaviour is a role, not an identity, and roles are usually taken on for a reason. Every part is trying to help, protect, or prevent something, however clumsy the strategy looks from outside.</p>
+
+      <h3>There is a Self, and it is not damaged</h3>
+      <p>IFS holds that everyone has a core that is not a part and does not need to be built: whole, wise, warm, clear. It can be obscured, the way the sun is obscured by cloud, but it is not something you have to earn or construct. When it is available, it leads through relationship rather than force: it can be curious about a reaction instead of at war with it.</p>
+
+      <p>In this course, following Guthrie, we will meet Self primarily as <strong>awake awareness</strong>: the living capacity that notices, includes and relates. That is why Week 1 begins with awareness rather than with parts.</p>
+
+      <h3>What IFS is, and what this course is doing with it</h3>
+      <p>IFS is a psychotherapy model. It is also something wider: a non-pathologizing map of inner life and a language people use in coaching, education, relationships and their own development.</p>
+      <p>This course works with the educational and personal-development layer. It is not psychotherapy, it does not train you to conduct IFS sessions, and it does not ask you to do therapeutic work with each other. Later in this guide you will find exactly where the line is and what to do if you meet it.</p>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="guthrie">
+    <div class="col">
+      <p class="eyebrow">Part III</p>
+      <h2>Who is teaching</h2>
+
+      <p class="lead">Guthrie Sayen, PhD, PCC, is a Level 3-trained IFS practitioner who teaches coaches, therapists, spiritual directors and other practitioners. He co-created and co-led <em>Coaching for Self-Leadership</em> through the IFS Institute for more than a thousand participants, and has studied extensively with Richard Schwartz.</p>
+
+      <p>That is the line on paper. What is distinctive about him is harder to put in a biography: he teaches classic IFS, and he teaches it through presence. The live calls are not only explanation. Much of what you will learn is transmitted by the quality of attention he brings to whoever is speaking: unhurried, unforced, interested.</p>
+
+      <h4>Three things that shape how he teaches</h4>
+      <ul class="plain">
+        <li><strong>Experience before explanation.</strong> Practice comes first; language is offered afterwards to name something you have already felt.</li>
+        <li><strong>Access, not perfection.</strong> He does not ask whether you are “in Self”. He asks how much access to Self is available right now, and what might support a little more.</li>
+        <li><strong>No pressure to go deeper.</strong> Force is not the method. Nothing in his teaching requires you to open something you are not ready to open.</li>
+      </ul>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="theory">
+    <div class="col">
+      <p class="eyebrow">Part IV</p>
+      <h2>This week's distinctions</h2>
+      <p class="lead">Seven small distinctions, offered as language for something you can test directly. Read them once. They will mean more after the practice than before it.</p>
+    </div>
+
+    <div class="col">
+      <h3>1 · Attention is a spotlight</h3>
+      <p>Attention selects. It picks one thing out of everything available and holds it: this sentence, that task, this face. It is precise, and it excludes; that is what makes it useful.</p>
+
+      <h3>2 · Awareness is the room</h3>
+      <p>Awareness includes. It is the wider field in which the spotlight moves: the body, the sounds, the space, the mood of the room, the task, all present at once. Awareness is not vagueness or spacing out. It is a panoramic form of contact.</p>
+
+      <blockquote>
+        <p>“Attention is selective… awareness is inclusive.”</p>
+        <cite>Guthrie Sayen</cite>
+      </blockquote>
+
+      <h3>3 · Attention works in sequence; awareness works in parallel</h3>
+      <p>Focus takes things one at a time, which is why holding six things in focus feels like strain. A field can hold many signals together without the same cost. Much of what we call overload is focus being asked to do the work of a field.</p>
+
+      <h3>4 · Self can be experienced as awake awareness</h3>
+      <p>The field is not blank. Something is awake in it: noticing, including, able to be interested in what appears. In this course that is where we meet Self: not as another inner voice with better opinions, but as the awake quality of awareness itself.</p>
+
+      <h3>5 · Parts are what awareness can notice</h3>
+      <p>Inside the field, contents appear: thoughts, impulses, reactions, moods, inner voices. When a reaction has a perspective and an intention of its own, IFS calls it a part. Noticing one is not a diagnosis. It is the beginning of a relationship.</p>
+
+      <h3>6 · Access to Self is a continuum, not a performance</h3>
+      <p>There is no state to achieve and no test to pass. The useful question is: how much access is available right now: none I can identify, a little, more than before? A bit of curiosity, a slightly softer breath, or the ability to pause for one second before reacting can all be signs of some access.</p>
+
+      <h3>7 · One sentence can create space</h3>
+      <p>“I am rushing” fills the whole screen. “A part of me is rushing” leaves a small margin: the part is here, and something else is here too, noticing it. That margin is where the rest of this course happens.</p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 700 330" role="img" aria-labelledby="figTitle figDesc">
+        <title id="figTitle">The model of conscious experience</title>
+        <desc id="figDesc">A wide oval represents the field of awareness. Small marks inside it represent parts, the contents that can be noticed. A single filled dot with a ring represents attention, a narrow focus held inside the field. A line beneath the oval marks Self as the awake awareness in which all of it appears.</desc>
+        <ellipse cx="350" cy="150" rx="300" ry="115" fill="var(--moss-wash)" stroke="var(--moss)" stroke-opacity=".35" stroke-width="1"/>
+        <ellipse cx="350" cy="150" rx="230" ry="80" fill="none" stroke="var(--moss)" stroke-opacity=".14" stroke-width="1"/>
+
+        <!-- parts: contents appearing in the field -->
+        <g fill="var(--ink)" fill-opacity=".38">
+          <circle cx="190" cy="120" r="5"/>
+          <circle cx="470" cy="112" r="6"/>
+          <circle cx="520" cy="185" r="4"/>
+          <circle cx="245" cy="200" r="6"/>
+          <circle cx="395" cy="205" r="4.5"/>
+          <circle cx="330" cy="98" r="4"/>
+        </g>
+
+        <!-- attention: focus inside the field -->
+        <circle cx="285" cy="150" r="26" fill="none" stroke="var(--moss)" stroke-opacity=".5" stroke-width="1"/>
+        <circle cx="285" cy="150" r="9" fill="var(--moss)"/>
+
+        <!-- self: the awake awareness in which all of it appears -->
+        <line x1="50" y1="292" x2="650" y2="292" stroke="var(--moss)" stroke-opacity=".45" stroke-width="1"/>
+        <line x1="350" y1="265" x2="350" y2="292" stroke="var(--moss)" stroke-opacity=".3" stroke-width="1"/>
+
+        <!-- markers -->
+        <g font-family="IBM Plex Sans, sans-serif" font-size="18" fill="var(--ink-2)">
+          <g>
+            <circle cx="628" cy="70" r="15" fill="none" stroke="var(--line)"/>
+            <text x="628" y="75" text-anchor="middle">1</text>
+            <line x1="618" y1="80" x2="580" y2="105" stroke="var(--line)"/>
+          </g>
+          <g>
+            <circle cx="285" cy="150" r="13" fill="none" stroke="var(--moss)" stroke-opacity=".01"/>
+            <circle cx="200" cy="252" r="15" fill="none" stroke="var(--line)"/>
+            <text x="200" y="257" text-anchor="middle">2</text>
+            <line x1="210" y1="243" x2="270" y2="176" stroke="var(--line)"/>
+          </g>
+          <g>
+            <circle cx="512" cy="55" r="15" fill="none" stroke="var(--line)"/>
+            <text x="512" y="60" text-anchor="middle">3</text>
+            <line x1="505" y1="66" x2="474" y2="100" stroke="var(--line)"/>
+          </g>
+          <g>
+            <circle cx="350" cy="315" r="15" fill="none" stroke="var(--line)"/>
+            <text x="350" y="320" text-anchor="middle">4</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>
+        <span class="key"><b>1 · Awareness, the field.</b> Panoramic and inclusive; it can hold body, room, relationship and task together.</span>
+        <span class="key"><b>2 · Attention, focus.</b> Precise and sequential, working inside the field rather than replacing it.</span>
+        <span class="key"><b>3 · Parts, contents.</b> Voices, feelings, impulses and protections that awareness can notice. Not defects.</span>
+        <span class="key"><b>4 · Self, awake awareness.</b> The living capacity in which all of it appears and can be met. Access is a continuum.</span>
+      </figcaption>
+    </figure>
+
+    <div class="col">
+      <p>That is the whole map for this week. It is deliberately small. Everything else in Week 1 is designed to let you meet it in experience rather than remember it.</p>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="experience">
+    <div class="col">
+      <p class="eyebrow">Part V</p>
+      <h2>Direct experience</h2>
+      <p class="lead">This is the centre of the week. One practice you will keep for all six weeks, three short experiments, and one sentence that opens the language of parts.</p>
+      <blockquote>
+        <p>“The key meditation for me is… ground, core, field, focus.”</p>
+        <cite>Guthrie Sayen</cite>
+      </blockquote>
+      <p>The sequence has an order for a reason. We do not open into a wide field while leaving the body behind, and we do not grip a task without any context around it. Ground first, then the core of the body, then the field, and only then focus, held inside everything that came before.</p>
+    </div>
+
+    <div class="practice">
+      <span class="lab">Core practice · about seven minutes</span>
+      <h3>Ground, core, field, focus</h3>
+      <p class="note">Sit upright and comfortable. Eyes can close, or rest in a soft gaze a metre or two in front of you. Read it through first, or record it slowly in your own voice. Every invitation is optional, and the timings are a guide, not a schedule.</p>
+      <ul class="movements">
+        <li>
+          <span class="time">0:00–0:45</span>
+          <span class="name">Arrive</span>
+          <p>Let the spine support you without becoming rigid. Notice that nothing has to be achieved in the next seven minutes. You are not going anywhere, and there is nothing here to get right.</p>
+        </li>
+        <li>
+          <span class="time">0:45–2:00</span>
+          <span class="name">Ground</span>
+          <p>Feel the contact of your feet with the floor and the weight of your body meeting the seat. Let gravity carry what it can carry. Notice the support underneath you; it is holding you whether or not you attend to it. You might sense the weight settling a little lower.</p>
+        </li>
+        <li>
+          <span class="time">2:00–3:15</span>
+          <span class="name">Core</span>
+          <p>Bring a light attention into the trunk of the body: belly, chest, back, throat. Feel it from the inside without changing anything. Breath, warmth, coolness, pulsing, movement, or no clear sensation at all, which is also fine. Sense the central line from the base of the body toward the crown. This is the place from which you can listen inwardly.</p>
+        </li>
+        <li>
+          <span class="time">3:15–5:00</span>
+          <span class="name">Field</span>
+          <p>Let awareness open into the space around you. Include sounds without following them anywhere. If your eyes are open, include the edges of what you can see. Let body, room and sound be present together. Thoughts may come and go inside this wider field; they do not have to be removed.</p>
+        </li>
+        <li>
+          <span class="time">5:00–6:10</span>
+          <span class="name">Focus</span>
+          <p>Keeping ground, core and field, let attention lightly touch one simple thing: the breath, a sound, or the next thing you will do. Notice whether focus can be precise without becoming tight. The field stays; focus moves within it.</p>
+        </li>
+        <li>
+          <span class="time">6:10–7:00</span>
+          <span class="name">Return and name</span>
+          <p>Notice how much access to Self may be available right now: none you can identify, a little, or more. Every answer is welcome. Feel the room, move your fingers and toes, and open your eyes when you are ready. Then finish one sentence, out loud or on paper: <em>“Access to Self may feel like…”</em></p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <h3>Three short experiments</h3>
+      <p>Each one is solo, low intensity, and designed to let you feel the distinction rather than agree with it. Stop any of them if you notice strain, dizziness, disorientation or pressure.</p>
+    </div>
+
+    <div class="experiment">
+      <span class="lab">Experiment one · two minutes</span>
+      <h3>Peripheral vision</h3>
+      <p>Hold your two index fingers together in front of you and look at them gently. Move them apart very slowly, trying to keep both in view. At the point where effort starts to rise, let the eyes soften and simply receive the whole visual field instead of tracking. Bring the fingers back together.</p>
+      <p>Ask: what changed when seeing became less effortful: in the eyes, the jaw, the shoulders, the breath, the speed of thinking?</p>
+      <p class="care">Keep the head still and the movement comfortable. If this strains your eyes, skip it and use open hearing instead: let sound arrive from all directions without following any of it.</p>
+    </div>
+
+    <div class="experiment">
+      <span class="lab">Experiment two · four minutes</span>
+      <h3>Walking in four channels</h3>
+      <p>Walk for one minute with open seeing. One minute with open hearing. One minute feeling the body from inside. Then one minute including all three at once. Let awareness receive rather than hunt for sensations.</p>
+      <p>Ask: which doorway into the field is easiest for you? That one is worth using during the week.</p>
+      <p class="care">Choose a familiar, low-risk place, and keep enough focus for the ground, other people and ordinary safety. Do not use this experiment while crossing streets, driving or cycling.</p>
+    </div>
+
+    <div class="experiment">
+      <span class="lab">Experiment three · three minutes</span>
+      <h3>The full bowl of soup</h3>
+      <p>Imagine carrying a very full bowl across a crowded room. First, hyper-focus on the surface of the liquid: notice how the body tightens and the room disappears. Pause. Then ground, let the visual field widen, include the room, and only now let attention touch the bowl lightly.</p>
+      <p>Ask: which way of moving is actually more capable? This is the balance you are learning to find in tasks, conversations and conflict.</p>
+      <p class="care">Use imagination, or an empty unbreakable bowl. The point is the relationship between field and focus, not a test of coordination with hot liquid.</p>
+    </div>
+
+    <div class="col">
+      <h3>One doorway into parts</h3>
+      <p>This is the only parts practice in Week 1, and it stays deliberately light. It is not analysis, and it is not the beginning of inner work on something difficult.</p>
+      <blockquote>
+        <p>“Parts are really cool, because by noticing a part we're taking the first step to recovering access to Self.”</p>
+        <cite>Guthrie Sayen</cite>
+      </blockquote>
+    </div>
+
+    <div class="practice">
+      <span class="lab">Parts doorway · two minutes</span>
+      <h3>“A part of me…”</h3>
+      <p class="note">Choose something ordinary and low in intensity: the kind of thing that is around on a normal Tuesday.</p>
+      <ol class="plain">
+        <li>Ground for a few breaths, and let the field open a little.</li>
+        <li>Name one ordinary reaction: <em>“A part of me is rushing.” “A part of me wants to get this right.” “A part of me is distracted.”</em></li>
+        <li>Notice whether the sentence creates any space at all, even one percent.</li>
+        <li>Ask only this: <em>“Am I willing to be with this part for one breath?”</em> Yes and no are both complete answers.</li>
+      </ol>
+      <p class="note">That is the whole practice. Do not ask the part for memories, origins or explanations, do not try to change it, and do not go looking for something more significant. If the part feels large or overwhelming, return to the room and stop; that is a good outcome, not a failed one.</p>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="life">
+    <div class="col">
+      <p class="eyebrow">Part VI</p>
+      <h2>The week in life</h2>
+      <p class="lead">Seven small invitations, three to seven minutes each. One a day is plenty. Repeat whichever one supports you most, and skip any that does not fit your week.</p>
+      <blockquote>
+        <p>“Increasing the frequency of access, and then increasing the duration.”</p>
+        <cite>Guthrie Sayen</cite>
+      </blockquote>
+      <p><strong>Frequency before intensity.</strong> A three-minute return repeated in an ordinary week teaches the nervous system more than one dramatic experience. Duration grows on its own: a few seconds of field awareness, then a minute, then the length of a conversation.</p>
+    </div>
+
+    <ul class="days">
+      <li><span class="d">Day 1</span><p>Do the seven-minute practice. Afterwards, finish two sentences: “Access to Self may feel like…” and “I notice less access when…”</p></li>
+      <li><span class="d">Day 2</span><p>Peripheral vision, twice: once when you are calm, once when you are busy. What changes in the eyes, jaw, shoulders, breath and mental speed?</p></li>
+      <li><span class="d">Day 3</span><p>Walk through seeing, hearing, body, then all three. Note which doorway into the field opens most easily for you.</p></li>
+      <li><span class="d">Day 4</span><p>Use one sentence during the day: “A part of me…” Does naming it create even one percent more space?</p></li>
+      <li><span class="d">Day 5</span><p>Remember the bowl of soup during one real task. Can focus become lighter while the room stays present?</p></li>
+      <li><span class="d">Day 6</span><p>Notice frequency and duration. When did access appear today, and what helped it last a little longer?</p></li>
+      <li><span class="d">Day 7</span><p>Write your Week 1 compass: three markers of more access, two things that support it, and one question to bring to the call.</p></li>
+    </ul>
+
+    <div class="prompt">
+      <span class="lab">Your personal compass</span>
+      <p>“Access to Self may feel like…”</p>
+      <p>“Less access may feel like…”</p>
+      <p>“What supports a little more access is…”</p>
+    </div>
+
+    <div class="col">
+      <p>Keep these three lines somewhere you will see them again. They are not a journal exercise for its own sake; over six weeks they become your own instrument for recognizing your state, in your own words rather than in ours.</p>
+
+      <h3>Before the live call</h3>
+      <p>Come having done the seven-minute practice at least once. Take two minutes beforehand to ground and let the field open; arriving in the call from a wide field is itself part of the learning.</p>
+      <p>Bring one question. The most useful ones are usually about your own direct experience: what happened, what did not happen, what confused you. You never have to speak, share personal history, or turn your camera on.</p>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="keep">
+    <div class="col">
+      <p class="eyebrow">Part VII</p>
+      <h2>Keep with you</h2>
+      <p class="lead">The whole week on one page. Print it, or keep it open somewhere you will pass by.</p>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-head">
+        <span class="lab">Week 1 · Meeting Self through awareness</span>
+        <button class="print-btn no-print" id="printBtn">Print this page</button>
+      </div>
+      <ul class="six">
+        <li><span class="h">Attention is focus</span><p>Precise and sequential. Useful, and tiring when it is asked to hold the whole field.</p></li>
+        <li><span class="h">Awareness is field</span><p>Panoramic and inclusive. It can hold body, room, relationship and task together.</p></li>
+        <li><span class="h">Self is awake awareness</span><p>Access is a continuum. Curiosity, clarity, compassion or a little more room can each be a doorway.</p></li>
+        <li><span class="h">Parts can be noticed</span><p>“A part of me…” makes space without denying the feeling or turning it into a problem.</p></li>
+        <li><span class="h">Ground, core, field, focus</span><p>Support, embodiment, wider awareness, then light and skillful attention, in that order.</p></li>
+        <li><span class="h">Practice recognition, not perfection</span><p>Return often, stay briefly, notice what supports access. Frequency before intensity.</p></li>
+      </ul>
+      <div class="sheet-foot">
+        <div>
+          <span class="lab">One practice</span>
+          <p>Seven minutes: ground through feet and seat, feel the core, open the field, focus lightly, then name how much access to Self is available.</p>
+        </div>
+        <div>
+          <span class="lab">One prompt</span>
+          <p>“Access to Self may feel like… Less access may feel like… What supports a little more access is…”</p>
+        </div>
+        <div>
+          <span class="lab">One boundary</span>
+          <p>This week is recognition, not therapy. Ordinary, low-intensity parts only. Stop whenever you want to; stopping is a skill, not a failure.</p>
+        </div>
+      </div>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="support">
+    <div class="col">
+      <p class="eyebrow">Part VIII</p>
+      <h2>Boundary and support</h2>
+
+      <p class="lead">This week asks you to notice attention, awareness, access to Self, and one ordinary part. It does not ask you to disclose private history, revisit anything painful, search for memories, or guide anyone else.</p>
+
+      <h3>What this course does not include</h3>
+      <ul class="plain">
+        <li>No guiding another person through an inner process, in pairs or in groups.</li>
+        <li>No working with young, hurt or vulnerable parts as a practice between participants.</li>
+        <li>No searching for origins, memories or causes.</li>
+        <li>No pressure to go deeper, to share, or to have an experience.</li>
+      </ul>
+      <p>These are not restrictions added out of caution alone. Depth work belongs in a relationship with a qualified professional who can stay with you afterwards, and the value of this course does not depend on it.</p>
+    </div>
+
+    <div class="safety">
+      <h3>If a practice becomes too much</h3>
+      <ol class="steps">
+        <li>Stop the practice. You do not need a reason.</li>
+        <li>Open your eyes and look around the actual room. Name five things you can see.</li>
+        <li>Feel your feet on the floor and your weight on the seat. Let the support be there.</li>
+        <li>Move: stand up, stretch, walk to another room, drink some water.</li>
+        <li>Contact someone you trust, or step away from the material for the day.</li>
+      </ol>
+      <p>You may skip any practice, leave a live call, or take a week more slowly. None of it affects your place in the course.</p>
+      <p>This course is educational. It is not psychotherapy, not crisis care, and not a substitute for individual support. If difficult material keeps returning, pause the practices and consider speaking with a qualified mental-health professional, an IFS therapist if you would like to continue in this language. If there is any immediate risk of harm to yourself or someone else, contact your local emergency or crisis services.</p>
+    </div>
+    <div class="motif" aria-hidden="true"><span class="dot"></span><span class="band"></span></div>
+  </section>
+
+  <section id="reference">
+    <div class="col">
+      <p class="eyebrow">Optional reference</p>
+      <h2>Glossary and further reading</h2>
+      <p class="lead">Nothing here is required. This guide is complete without opening a single link, and none of these words need to be memorized; you will meet them again in experience over the six weeks.</p>
+    </div>
+
+    <dl class="glossary">
+      <div><dt>IFS</dt><dd>Internal Family Systems. A model of psychotherapy, and also a non-pathologizing map of a naturally multiple mind as a system of parts related to by Self.</dd></div>
+      <div><dt>Inner system</dt><dd>The living relationships among parts and Self. A change in one relationship can shift the whole system.</dd></div>
+      <div><dt>Self</dt><dd>The undamaged core of a person: whole, wise, warm, clear. In this course, met as awake awareness.</dd></div>
+      <div><dt>Access to Self</dt><dd>A continuum rather than an on/off state. Curiosity, clarity, compassion, spaciousness or the ability to pause may signal more access.</dd></div>
+      <div><dt>Part</dt><dd>An inner voice, feeling, impulse or pattern with its own perspective and intention. Not a defect.</dd></div>
+      <div><dt>Protector</dt><dd>A part working to prevent pain or manage danger. Met with curiosity and gratitude rather than pressure. Week 4.</dd></div>
+      <div><dt>Vulnerable part</dt><dd>A young or sensitive part that may carry pain. In this course: recognized and respected, never opened as a participant practice. Week 5.</dd></div>
+      <div><dt>Blending</dt><dd>When a part's feelings and beliefs fill so much of experience that they feel like the whole of “me”.</dd></div>
+      <div><dt>Speaking on behalf of a part</dt><dd>Saying “a part of me…” while keeping some relationship to it, which is different from speaking as the part while fully blended.</dd></div>
+      <div><dt>Ground · core · field · focus</dt><dd>The four building blocks of presence: support, embodiment, inclusive awareness, and precise attention held inside the field.</dd></div>
+    </dl>
+
+    <div class="col">
+      <h4>If you want more context</h4>
+      <ul class="plain">
+        <li><strong>IFS Institute.</strong> <a href="https://ifs-institute.com/" target="_blank" rel="noopener">The official short overview of the model</a>, and the Institute's <a href="https://ifs-institute.com/resources/articles/internal-family-systems-model-outline" target="_blank" rel="noopener">model outline</a>.</li>
+        <li><strong>Books.</strong> <a href="https://ifs-institute.com/store/39" target="_blank" rel="noopener"><em>Introduction to Internal Family Systems</em></a> and <em>No Bad Parts</em> by Richard Schwartz are accessible entry points in English.</li>
+        <li><strong>По-русски.</strong> <a href="https://ifs-russia.ru/" target="_blank" rel="noopener">IFS Russia</a>: обзор подхода и его истории, а также <a href="https://ifs-russia.ru/resources" target="_blank" rel="noopener">страница ресурсов</a> с книгами и статьями.</li>
+      </ul>
+      <p>The research base for IFS is described by the Institute as promising but still emerging and limited in scope. <a href="https://ifs-institute.com/resources/research" target="_blank" rel="noopener">Read the Institute's current research overview.</a> We would rather you hear that from us than discover it later.</p>
+    </div>
+  </section>
+
+  <section class="appendix" id="appendix">
+    <div class="col">
+      <p class="warn">Reviewer notes · not part of the participant guide</p>
+    </div>
+    <details>
+      <summary>Reviewer notes: provenance, changes, questions and rights</summary>
+      <div class="details-body">
+        <h3>What came from the old Week 1</h3>
+        <ul>
+          <li>The ground · core · field · focus presencing induction, carried forward as the repeating experiential thread and expanded into a timed seven-minute participant script.</li>
+          <li>Attention / awareness as the opening teaching, the peripheral-vision exercise and the bowl-of-soup image, all from the live sessions.</li>
+          <li>The core of the Self material: Self as innate and undamaged, access as a continuum, Self qualities as doorways rather than a scorecard.</li>
+          <li>“A part of me…” as the first language move, and multiplicity as normal rather than pathological.</li>
+          <li>Boundary language on stopping, orienting and seeking individual support.</li>
+        </ul>
+
+        <h3>What is new for the six-week non-practitioner course</h3>
+        <ul>
+          <li>One coherent weekly guide instead of a set of PDF handouts, a direct response to the concern that multiple documents per week overload participants.</li>
+          <li>OS 1.0 → OS 2.0 as the opening story, with “transcend and include” stated explicitly so nothing reads as a rejection of focus.</li>
+          <li>The Six Organizing Principles of IFS, the Six F's, triad practice and practitioner framing are all absent by design.</li>
+          <li>The parts doorway is capped at a single low-intensity sentence and one question, with an explicit instruction not to look for origins or memories.</li>
+          <li>The live-call runbook, the demonstration brief and facilitator decisions are deliberately not in the participant document; they stay in the reviewer page.</li>
+          <li>The personal compass prompt is introduced in Week 1 as the beginning of a six-week instrument for frequency and duration of access.</li>
+          <li>Wording follows the agreed rules: “access to Self”, never “in Self”; “Self-led”, never “Self-centered”; “ordinary, low-intensity part”, never “soft” or “mild part”.</li>
+        </ul>
+
+        <h3>Questions for Guthrie about the participant kit</h3>
+        <ul>
+          <li>Should the seven-minute practice be recorded in your voice for Week 1, or scripted for participants to record themselves until later weeks?</li>
+          <li>Is the seven-minute form the right length for the whole course, or should Weeks 2–6 use a shorter return with the full version kept for Week 1?</li>
+          <li>Does the working bio in Part III describe your line accurately, and is “classic IFS amplified by presence and spiritual learning” a description you want in participant materials?</li>
+          <li>Is one low-intensity parts doorway the right dose for Week 1, or would you rather move it entirely into Week 2?</li>
+          <li>Which of the optional kit elements do you want to commit to: a two-minute welcome video per week, a “before the call” orientation, a post-call integration note, a question box or office hours, captions and transcripts for every practice and replay?</li>
+          <li>Do you want a support and referral page linked from every week rather than only from the safety section?</li>
+          <li>How explicit should the guide be about the limits of the IFS evidence base?</li>
+          <li>Should an optional continuation path after Week 6 be named in Week 1, or only at the end?</li>
+        </ul>
+
+        <h3>Rights and approvals still outstanding</h3>
+        <ul>
+          <li>Four short quote anchors appear in the participant flow and are all pending your approval: “Attention is selective… awareness is inclusive”; “What we're doing is bringing something that's already present, but in the background, into the foreground”; “The key meditation for me is… ground, core, field, focus”; “Parts are really cool, because by noticing a part we're taking the first step to recovering access to Self”; and “Increasing the frequency of access, and then increasing the duration.”</li>
+          <li>All are drawn from the July 29 alignment call and the old course transcripts. No long lesson passages or transcript sections are reproduced anywhere in the guide.</li>
+          <li>Permission is still needed to adapt the written lessons and the presencing inductions into participant materials, and to use selected quotes publicly on a future landing page.</li>
+          <li>The OS 1.0 / OS 2.0 framing is your language; confirm whether it may be used publicly as the course story.</li>
+          <li>Bio details in Part III (Level 3 training, <em>Coaching for Self-Leadership</em>, the participant number, study with Richard Schwartz) need your confirmation before publication.</li>
+          <li>Russian translation follows only after this structure is approved. Terminology decisions for the Russian version (Self, parts, access, field) are not yet fixed.</li>
+        </ul>
+      </div>
+    </details>
+    <footer class="colophon">
+      Participant preview · Week 1 of six · VAHUE × Guthrie Sayen · working draft, August 2026. Separate from the canonical Week 1 review page.
+    </footer>
+  </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var bar = document.getElementById('progressBar');
+  var dot = document.getElementById('railDot');
+  var railLabel = document.getElementById('railLabel');
+  var tocBtn = document.getElementById('tocBtn');
+  var toc = document.getElementById('toc');
+  var printBtn = document.getElementById('printBtn');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main > section'));
+  var names = {welcome:'Welcome', journey:'I · The journey', ifs:'II · IFS', guthrie:'III · Teaching', theory:'IV · Distinctions', experience:'V · Practice', life:'VI · The week', keep:'VII · Keep', support:'VIII · Support', reference:'Reference', appendix:'Reviewer notes'};
+
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, h.scrollTop / max)) : 0;
+    if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+    if (dot) dot.style.top = (p * 100).toFixed(2) + '%';
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 140) current = sections[i];
+    }
+    if (railLabel && current && names[current.id]) railLabel.textContent = names[current.id];
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  if (tocBtn){
+    tocBtn.addEventListener('click', function(){
+      var open = toc.classList.toggle('open');
+      tocBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    toc.addEventListener('click', function(e){
+      if (e.target.closest('a')){
+        toc.classList.remove('open');
+        tocBtn.setAttribute('aria-expanded','false');
+      }
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && toc.classList.contains('open')){
+        toc.classList.remove('open');
+        tocBtn.setAttribute('aria-expanded','false');
+        tocBtn.focus();
+      }
+    });
+  }
+
+  if (printBtn){
+    printBtn.addEventListener('click', function(){ window.print(); });
+  }
+})();
+</script>
+
+</body>
+</html>
