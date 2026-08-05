@@ -1112,6 +1112,95 @@ p:last-child{margin-bottom:0}
   line-height:1.72;
 }
 .reading-copy p + p{margin-top:16px}
+.orientation-grid,
+.resource-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  margin-top:28px;
+  border:1px solid var(--rule-soft);
+  background:var(--rule-soft);
+}
+.orientation-card,
+.resource-card{
+  background:var(--surface);
+  padding:clamp(22px,3vw,32px);
+}
+.orientation-card span,
+.resource-card span{
+  display:block;
+  margin-bottom:16px;
+  color:var(--gold);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.68rem;
+  text-transform:uppercase;
+}
+.orientation-card h3,
+.resource-card h3{margin-bottom:12px}
+.orientation-card p,
+.resource-card p{color:var(--ink-soft)}
+.orientation-card p + p,
+.resource-card p + p{margin-top:12px}
+.orientation-card a,
+.resource-card a,
+.guide-profile a{
+  color:var(--rust);
+  text-underline-offset:3px;
+}
+.guide-profile{
+  display:grid;
+  grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+  gap:clamp(24px,5vw,58px);
+  margin-top:28px;
+  padding:clamp(26px,5vw,48px);
+  border:1px solid var(--rule-soft);
+  background:var(--paper-warm);
+}
+.guide-profile h3{
+  margin-bottom:16px;
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(1.8rem,3vw,2.7rem);
+  font-weight:400;
+  line-height:1.08;
+}
+.guide-profile p{color:var(--ink-soft)}
+.guide-profile p + p{margin-top:14px}
+.profile-facts{
+  display:grid;
+  gap:12px;
+  align-content:start;
+}
+.profile-fact{
+  padding-top:12px;
+  border-top:1px solid var(--rule-soft);
+  color:var(--ink-soft);
+}
+.profile-fact:first-child{padding-top:0;border-top:0}
+.profile-fact b{color:var(--ink)}
+.glossary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  margin-top:28px;
+  border:1px solid var(--rule-soft);
+  background:var(--rule-soft);
+}
+.glossary-item{
+  min-height:170px;
+  padding:22px;
+  background:var(--surface);
+}
+.glossary-item dt{
+  margin-bottom:10px;
+  color:var(--ink);
+  font-weight:700;
+}
+.glossary-item dd{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.94rem;
+  line-height:1.55;
+}
 .concept-map{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
@@ -1238,6 +1327,9 @@ p:last-child{margin-bottom:0}
   .principles,
   .next-grid,
   .source-library,
+  .orientation-grid,
+  .resource-grid,
+  .glossary-grid,
   .concept-map,
   .day-grid{
     grid-template-columns:1fr;
@@ -1271,6 +1363,7 @@ p:last-child{margin-bottom:0}
   .review-board{
     grid-template-columns:1fr;
   }
+  .guide-profile{grid-template-columns:1fr}
   .day-card{min-height:0}
 }
 @media (max-width:680px){
@@ -2054,13 +2147,68 @@ p:last-child{margin-bottom:0}
           </div>
           <div class="measure">
             <p class="lede">Guiding question: what changes when awareness comes forward?</p>
-            <p class="quiet">This is the complete model package for the first week: six short chapters of participant teaching, a map of conscious experience, a seven-minute practice, three experiments, Guthrie's live-call outline, one low-intensity demonstration, seven days of integration, a lean handout, and explicit support boundaries.</p>
+            <p class="quiet">This review draft now has two layers: a short orientation to IFS and Guthrie, followed by the full Week 1 teaching and practice package. The glossary and reading list are reference material, not vocabulary to memorize. Guthrie can decide what belongs before the course, inside Week 1, or later.</p>
           </div>
         </div>
 
         <div class="quote-solo">
-          <p>"Awareness processes information in parallel and attention processes it sequentially."</p>
-          <cite>Guthrie anchor · July 29 alignment call · public use pending approval</cite>
+          <p>"We have two ways of processing information: attention and awareness. Attention is selective. It isolates something in the field of awareness to understand it more completely. Awareness, on the other hand, is inclusive. It holds everything in our subjective experience: sights and sounds, thoughts and emotions."</p>
+          <cite>Guthrie Sayen · wording supplied in the first foundation review</cite>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Orientation layer · proposed 6–8 minute read</p>
+            <h2>What IFS is—and what this course is doing with it.</h2>
+          </div>
+          <div class="measure">
+            <p class="lede">A participant needs enough context to understand the language, the lineage, and the boundary of the course before entering the practices.</p>
+            <p class="quiet">This is the cognitive frame Guthrie asked for: the rudiments of Self and parts, a light touch of systems thinking, and then direct experience. It should orient, not turn Week 1 into professional training.</p>
+          </div>
+        </div>
+
+        <div class="orientation-grid">
+          <article class="orientation-card"><span>Origin</span><h3>IFS began inside family therapy.</h3><p>Internal Family Systems was developed in the 1980s by American family therapist Richard C. Schwartz. As he listened to clients describe conflicting inner “parts,” he began applying systems thinking—originally used with families—to the relationships inside one person.</p><p class="source-fine">Sources: <a href="https://ifs-institute.com/about-us/richard-c-schwartz-phd" target="_blank" rel="noreferrer">IFS Institute · Richard Schwartz</a> and <a href="https://ifs-institute.com/resources/articles/evolution-internal-family-systems-model-dr-richard-schwartz-ph-d" target="_blank" rel="noreferrer">Evolution of the IFS model</a>.</p></article>
+          <article class="orientation-card"><span>Therapy, model, and language</span><h3>IFS is more than one thing.</h3><p>IFS is a psychotherapy model. It is also a non-pathologizing map of inner life and a language people use in personal development, coaching, education, and relationships. Its core view is that the mind is naturally multiple, parts have understandable intentions, and every person has access to a core Self.</p><p>This course uses the educational and personal-development layer. It is not psychotherapy and does not train participants to conduct IFS sessions.</p></article>
+          <article class="orientation-card"><span>Classic IFS in one paragraph</span><h3>Parts form an inner system; Self can lead it.</h3><p>Parts may protect, organize, react, or carry hurt. When they are under pressure, they can take on extreme roles and conflict with one another. IFS does not treat them as defects. It helps create relationship between parts and Self—the whole, wise, loving, and good center that can meet the system with curiosity, clarity, and compassion.</p><p class="source-fine">The course will introduce this map without teaching clinical protocol, memory work, exile retrieval, or unburdening.</p></article>
+          <article class="orientation-card"><span>The operating-system frame</span><h3>OS 2.0 includes OS 1.0; it does not destroy it.</h3><p>OS 1.0 is thought-based, parts-led, and attention-heavy. It plans, selects, compares, and solves in sequence; it is useful, but reaches a ceiling when more effort is the only answer. OS 2.0 is awareness-based and Self-led. It can hold body, feeling, relationship, environment, and task in one field, then use focus where it is needed.</p><p>The movement is <em>transcend and include</em>: focus remains available inside a wider awareness. Week 1 lets participants feel that difference before asking them to adopt the story.</p></article>
+        </div>
+
+        <aside class="guide-profile">
+          <div><p class="section-kicker">Who is teaching</p><h3>Guthrie's line: classic IFS amplified by presence and spiritual learning.</h3><p>This is a working bio for Guthrie to correct. Guthrie Sayen, PhD, PCC, is a Level 3-trained IFS practitioner who trains coaches, therapists, spiritual directors, and other practitioners worldwide. He co-created and co-led <em>Coaching for Self-Leadership</em> through the IFS Institute for more than one thousand participants and has studied extensively with IFS founder Richard Schwartz.</p><p>In this course, his emphasis is not technical mastery. It is a way of being: increasing access to Self, meeting parts without force, and bringing awake awareness into ordinary life.</p></div>
+          <div class="profile-facts"><p class="profile-fact"><b>Presence before protocol.</b> Ground, core, field, and focus make the teaching experiential from the first minutes.</p><p class="profile-fact"><b>Access, not perfection.</b> Guthrie does not use “in Self” as a binary achievement; he asks how much access to Self is available now.</p><p class="profile-fact"><b>A spiritual amplification.</b> Classic IFS is held together with Self as awake awareness, love as the universal solvent, and the shift from a thought-based to an awareness-based operating system.</p><p class="profile-fact"><b>Published background.</b> <a href="https://www.bridgetothedivine.com/about" target="_blank" rel="noreferrer">Bridge to the Divine</a> · <a href="https://ifs-institute.com/profile/185862" target="_blank" rel="noreferrer">IFS Institute profile</a>.</p></div>
+        </aside>
+
+        <div class="hairline"></div>
+        <div class="chapter-head"><div><p class="section-kicker">Living glossary · reference, not homework</p><h2>Words participants will meet across the six weeks.</h2></div><div class="measure"><p class="lede">The glossary gives plain-language orientation now and can grow only when the course genuinely needs a new term.</p></div></div>
+
+        <dl class="glossary-grid">
+          <div class="glossary-item"><dt>IFS · Internal Family Systems</dt><dd>A model of psychotherapy and a non-pathologizing framework for understanding a naturally multiple mind as a system of parts guided by Self.</dd></div>
+          <div class="glossary-item"><dt>Inner system</dt><dd>The living relationships among parts and Self. A change in one relationship can affect the whole system.</dd></div>
+          <div class="glossary-item"><dt>Self</dt><dd>The undamaged core of a person: whole, wise, loving, and good. In Guthrie's language, Self can also be met as awake awareness.</dd></div>
+          <div class="glossary-item"><dt>Access to Self</dt><dd>A continuum, not an on/off state. Curiosity, clarity, compassion, spaciousness, or the ability to pause may signal more access.</dd></div>
+          <div class="glossary-item"><dt>Part</dt><dd>An inner person, voice, feeling, impulse, or pattern with its own perspective and intention. A part is not a defect.</dd></div>
+          <div class="glossary-item"><dt>Protector</dt><dd>A part trying to prevent pain or manage danger. Protectors are met with curiosity, gratitude, and compassion—not pressure.</dd></div>
+          <div class="glossary-item"><dt>Manager / firefighter</dt><dd>Managers try to prevent difficulty through control and anticipation. Firefighters react quickly when pain or threat is already present.</dd></div>
+          <div class="glossary-item"><dt>Exile / vulnerable part</dt><dd>A young, sensitive, hurt part that may carry pain. Participants learn recognition and respectful boundaries, not exile work.</dd></div>
+          <div class="glossary-item"><dt>Blending</dt><dd>When a part's feelings, beliefs, or impulses fill so much of experience that they feel like the whole “me.”</dd></div>
+          <div class="glossary-item"><dt>Speaking on behalf of a part</dt><dd>Saying “a part of me…” while keeping some relationship to the part. This differs from speaking as the part while fully blended.</dd></div>
+          <div class="glossary-item"><dt>Self-leadership</dt><dd>Parts remain present, but Self has enough access to relate, choose, and lead without defeating or silencing them.</dd></div>
+          <div class="glossary-item"><dt>Attention / awareness</dt><dd>Attention selects and focuses. Awareness includes the wider field. Both are needed; Week 1 explores their relationship.</dd></div>
+          <div class="glossary-item"><dt>Ground / core / field / focus</dt><dd>Four building blocks of Presence: support, embodied center, inclusive awareness, and precise attention held inside the field.</dd></div>
+          <div class="glossary-item"><dt>Burden / unburdening</dt><dd>A burden is an extreme belief, feeling, or role carried by a part. Unburdening is a deeper IFS process and is outside participant practice here.</dd></div>
+          <div class="glossary-item"><dt>Demo</dt><dd>A live teaching illustration led by Guthrie. Watching a demonstration does not authorize participants to reproduce a therapeutic process with one another.</dd></div>
+        </dl>
+
+        <div class="hairline"></div>
+        <div class="chapter-head"><div><p class="section-kicker">Optional reading and listening</p><h2>Where to go for more IFS context.</h2></div><div class="measure"><p class="lede">These links are a small, curated doorway—not a required library. The course should remain understandable without extra reading.</p></div></div>
+
+        <div class="resource-grid">
+          <article class="resource-card"><span>English · start here</span><h3>IFS Institute</h3><p><a href="https://ifs-institute.com/" target="_blank" rel="noreferrer">What is Internal Family Systems?</a> gives the official short overview. Richard Schwartz's <a href="https://ifs-institute.com/resources/articles/evolution-internal-family-systems-model-dr-richard-schwartz-ph-d" target="_blank" rel="noreferrer">Evolution of the IFS Model</a> explains how systems thinking and multiplicity came together.</p></article>
+          <article class="resource-card"><span>English · books and evidence</span><h3>Read further with precision</h3><p><em>Introduction to Internal Family Systems</em> and <em>No Bad Parts</em> by Richard Schwartz are accessible entry points. The IFS Institute's <a href="https://ifs-institute.com/resources/research" target="_blank" rel="noreferrer">research page</a> describes the evidence base as promising but still emerging and limited in scope.</p></article>
+          <article class="resource-card"><span>Русский · обзор</span><h3>IFS Russia</h3><p><a href="https://ifs-russia.ru/" target="_blank" rel="noreferrer">Русскоязычный обзор подхода и его истории</a>. IFS Institute lists IFS Russia among its international partners.</p></article>
+          <article class="resource-card"><span>Русский · книги</span><h3>Курируемый список переводов</h3><p>На странице <a href="https://ifs-russia.ru/source" target="_blank" rel="noreferrer">«Ресурсы» IFS Russia</a> собраны русские издания Ричарда Шварца и других авторов IFS, включая <em>«Внутренние семейные системы»</em> и <em>«Внутренние субличности»</em>.</p></article>
         </div>
 
         <div class="reading-stack" aria-label="Week 1 participant reading in six chapters">
@@ -2120,7 +2268,7 @@ p:last-child{margin-bottom:0}
               <h3>The first week is a practice of recognition.</h3>
               <p>Nothing deep has to happen for this week to work. The aim is to recognize a few differences in direct experience: narrow focus and open field; effort and supported contact; a reaction that feels like the whole self and a part that can be noticed; less access to Self and a little more access.</p>
               <p>Frequency matters more than intensity. A three-minute return repeated during ordinary life may teach more than one dramatic experience. Duration can grow gradually: a few seconds of field awareness, then a minute, then the length of a conversation. The nervous system learns through repetition, permission, and enough safety.</p>
-              <p>At the end of the week, your task is not to declare that you have mastered Self. It is to describe, in your own language, what access to Self may feel like in you and what conditions support it. That description becomes your first personal compass for the rest of the course.</p>
+              <p>At the end of the week, the practical outcome is simple: “I can feel the difference between attention and awareness; I know when I am gaining access to Self, or awake awareness.” This is not mastery. It is the beginning of a personal compass: how access feels in you and what conditions support it.</p>
             </div>
           </article>
         </div>
@@ -3062,13 +3210,54 @@ p:last-child{margin-bottom:0}
           </div>
           <div class="measure">
             <p class="lede">Главный вопрос: что меняется, когда awareness выходит на передний план?</p>
-            <p class="quiet">Это полный model package первой недели: шесть коротких глав participant teaching, карта conscious experience, семиминутная практика, три эксперимента, outline live-звонка Guthrie, одна low-intensity демонстрация, семь дней интеграции, lean handout и ясные границы поддержки.</p>
+            <p class="quiet">В этом review draft теперь два слоя: короткая ориентация в IFS и подходе Guthrie, затем полный teaching и practice package Week 1. Глоссарий и список источников — справочный слой, а не слова для заучивания. Guthrie может решить, что дать до курса, что оставить в Week 1, а что перенести дальше.</p>
           </div>
         </div>
 
         <div class="quote-solo">
-          <p>"Awareness processes information in parallel and attention processes it sequentially."</p>
-          <cite>Guthrie anchor · звонок 29 июля · публичное использование после approval</cite>
+          <p>«У нас есть два способа обрабатывать информацию: attention и awareness. Attention избирательно: оно выделяет что-то из поля awareness, чтобы понять это полнее. Awareness, напротив, включает всё поле субъективного опыта — то, что мы видим и слышим, мысли и эмоции».</p>
+          <cite>Guthrie Sayen · рабочий перевод формулировки из первого foundation review</cite>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="chapter-head"><div><p class="section-kicker">Ориентационный слой · предлагаемые 6–8 минут чтения</p><h2>Что такое IFS — и что именно этот курс делает с моделью.</h2></div><div class="measure"><p class="lede">До практик участнику нужна короткая опора: язык, происхождение модели и ясная граница курса.</p><p class="quiet">Это cognitive frame, о котором писал Guthrie: основы Self и parts, лёгкое прикосновение к systems thinking, затем прямой опыт. Ориентация не должна превращать Week 1 в профессиональное обучение.</p></div></div>
+
+        <div class="orientation-grid">
+          <article class="orientation-card"><span>Происхождение</span><h3>IFS родилась внутри семейной терапии.</h3><p>Internal Family Systems разработал в 1980-х американский семейный терапевт Ричард К. Шварц. Слушая, как клиенты описывают конфликтующие внутренние «части», он начал применять systems thinking — изначально созданное для работы с семьями — к отношениям внутри одного человека.</p><p class="source-fine">Источники: <a href="https://ifs-institute.com/about-us/richard-c-schwartz-phd" target="_blank" rel="noreferrer">IFS Institute · Richard Schwartz</a> и <a href="https://ifs-institute.com/resources/articles/evolution-internal-family-systems-model-dr-richard-schwartz-ph-d" target="_blank" rel="noreferrer">Evolution of the IFS Model</a>.</p></article>
+          <article class="orientation-card"><span>Терапия, модель и язык</span><h3>IFS — не только одна вещь.</h3><p>IFS — модель психотерапии. Одновременно это non-pathologizing карта внутренней жизни и язык, который используют в personal development, coaching, образовании и отношениях. В основе — естественная множественность психики, понятные намерения частей и доступ каждого человека к Self.</p><p>Этот курс использует образовательный и personal-development слой. Он не является психотерапией и не учит участников проводить IFS-сессии.</p></article>
+          <article class="orientation-card"><span>Classic IFS в одном абзаце</span><h3>Части образуют внутреннюю систему; Self может её вести.</h3><p>Части могут защищать, организовывать, быстро реагировать или нести боль. Под давлением они принимают крайние роли и конфликтуют друг с другом. IFS не считает их дефектами. Модель помогает восстанавливать отношения между частями и Self — целостным, мудрым, любящим и добрым центром, способным встречать систему с curiosity, clarity и compassion.</p><p class="source-fine">Курс знакомит с этой картой, но не учит clinical protocol, memory work, exile retrieval или unburdening.</p></article>
+          <article class="orientation-card"><span>Operating-system frame</span><h3>OS 2.0 включает OS 1.0, а не уничтожает её.</h3><p>OS 1.0 — thought-based, parts-led и attention-heavy. Она планирует, выбирает, сравнивает и решает последовательно; она полезна, но упирается в потолок, когда единственный ответ — ещё больше усилия. OS 2.0 — awareness-based и Self-led. Она может удерживать тело, чувство, отношения, среду и задачу в одном поле, а затем направлять focus туда, где он нужен.</p><p>Движение — <em>transcend and include</em>: focus остаётся доступным внутри более широкой awareness. Week 1 сначала даёт почувствовать различие, а уже потом предлагает историю.</p></article>
+        </div>
+
+        <aside class="guide-profile"><div><p class="section-kicker">Кто ведёт курс</p><h3>Линия Guthrie: classic IFS, усиленная presence и spiritual learning.</h3><p>Это рабочая биография, которую Guthrie может поправить. Guthrie Sayen, PhD, PCC, — IFS practitioner с Level 3 training; он обучает coaches, therapists, spiritual directors и других practitioners по всему миру. Он создал и вёл вместе с коллегой курс <em>Coaching for Self-Leadership</em> через IFS Institute для более чем тысячи участников и много учился непосредственно у основателя IFS Ричарда Шварца.</p><p>В этом курсе его центр — не техническое мастерство, а способ быть: увеличивать доступ к Self, встречать части без force и приносить awake awareness в обычную жизнь.</p></div><div class="profile-facts"><p class="profile-fact"><b>Presence перед protocol.</b> Ground, core, field и focus делают обучение experiential с первых минут.</p><p class="profile-fact"><b>Access, а не perfection.</b> Guthrie не использует «in Self» как бинарное достижение; он спрашивает, сколько доступа к Self есть сейчас.</p><p class="profile-fact"><b>Spiritual amplification.</b> Classic IFS соединяется с Self как awake awareness, love как universal solvent и переходом от thought-based к awareness-based operating system.</p><p class="profile-fact"><b>Публичная биография.</b> <a href="https://www.bridgetothedivine.com/about" target="_blank" rel="noreferrer">Bridge to the Divine</a> · <a href="https://ifs-institute.com/profile/185862" target="_blank" rel="noreferrer">профиль IFS Institute</a>.</p></div></aside>
+
+        <div class="hairline"></div>
+        <div class="chapter-head"><div><p class="section-kicker">Живой глоссарий · справка, не homework</p><h2>Слова, которые встретятся в шести неделях.</h2></div><div class="measure"><p class="lede">Сейчас глоссарий даёт plain-language ориентацию и растёт только тогда, когда курсу действительно нужен новый термин.</p></div></div>
+        <dl class="glossary-grid">
+          <div class="glossary-item"><dt>IFS · Internal Family Systems</dt><dd>Модель психотерапии и non-pathologizing framework, которая описывает естественно множественную психику как систему частей, способную быть ведомой Self.</dd></div>
+          <div class="glossary-item"><dt>Внутренняя система</dt><dd>Живые отношения между частями и Self. Изменение одного отношения может влиять на всю систему.</dd></div>
+          <div class="glossary-item"><dt>Self</dt><dd>Неповреждённый центр человека: целостный, мудрый, любящий и добрый. В языке Guthrie Self также можно встретить как awake awareness.</dd></div>
+          <div class="glossary-item"><dt>Доступ к Self</dt><dd>Континуум, не переключатель on/off. Curiosity, clarity, compassion, пространство или способность сделать паузу могут указывать на больший доступ.</dd></div>
+          <div class="glossary-item"><dt>Part · часть</dt><dd>Внутренний человек, голос, чувство, импульс или pattern со своей точкой зрения и намерением. Часть не является дефектом.</dd></div>
+          <div class="glossary-item"><dt>Protector</dt><dd>Часть, которая старается предотвратить боль или справиться с опасностью. Protectors встречают с curiosity, gratitude и compassion, а не с давлением.</dd></div>
+          <div class="glossary-item"><dt>Manager / firefighter</dt><dd>Managers пытаются предупредить трудность через контроль и предвидение. Firefighters быстро реагируют, когда боль или угроза уже появились.</dd></div>
+          <div class="glossary-item"><dt>Exile / уязвимая часть</dt><dd>Молодая, чувствительная, раненая часть, которая может нести боль. Участники учатся распознаванию и уважению границ, не exile work.</dd></div>
+          <div class="glossary-item"><dt>Blending</dt><dd>Состояние, когда чувства, убеждения или импульсы части заполняют опыт настолько, что ощущаются как весь «я».</dd></div>
+          <div class="glossary-item"><dt>Speaking on behalf of a part</dt><dd>Фраза «часть меня…» при сохранении отношений с частью. Это отличается от речи as a part при полном blending.</dd></div>
+          <div class="glossary-item"><dt>Self-leadership</dt><dd>Части остаются, но доступа к Self достаточно, чтобы вступать в отношения, выбирать и вести без подавления частей.</dd></div>
+          <div class="glossary-item"><dt>Attention / awareness</dt><dd>Attention выбирает и фокусируется. Awareness включает широкое поле. Нужны обе способности; Week 1 исследует их отношения.</dd></div>
+          <div class="glossary-item"><dt>Ground / core / field / focus</dt><dd>Четыре building blocks of Presence: опора, воплощённый центр, включающая awareness и точное attention внутри поля.</dd></div>
+          <div class="glossary-item"><dt>Burden / unburdening</dt><dd>Burden — крайнее убеждение, чувство или роль, которые несёт часть. Unburdening — более глубокий IFS process вне participant practice этого курса.</dd></div>
+          <div class="glossary-item"><dt>Demo</dt><dd>Live teaching illustration под руководством Guthrie. Просмотр demo не означает, что участники могут повторять терапевтический процесс друг с другом.</dd></div>
+        </dl>
+
+        <div class="hairline"></div>
+        <div class="chapter-head"><div><p class="section-kicker">Необязательное чтение и просмотр</p><h2>Где получить больше контекста об IFS.</h2></div><div class="measure"><p class="lede">Это маленькая курируемая дверь, а не обязательная библиотека. Курс должен оставаться понятным без дополнительного чтения.</p></div></div>
+        <div class="resource-grid">
+          <article class="resource-card"><span>English · start here</span><h3>IFS Institute</h3><p><a href="https://ifs-institute.com/" target="_blank" rel="noreferrer">What is Internal Family Systems?</a> — официальный краткий обзор. Статья Richard Schwartz <a href="https://ifs-institute.com/resources/articles/evolution-internal-family-systems-model-dr-richard-schwartz-ph-d" target="_blank" rel="noreferrer">Evolution of the IFS Model</a> объясняет соединение systems thinking и multiplicity.</p></article>
+          <article class="resource-card"><span>English · books and evidence</span><h3>Читать дальше аккуратно</h3><p><em>Introduction to Internal Family Systems</em> и <em>No Bad Parts</em> Richard Schwartz — доступные точки входа. <a href="https://ifs-institute.com/resources/research" target="_blank" rel="noreferrer">Страница исследований IFS Institute</a> прямо описывает evidence base как promising, но пока ограниченную по масштабу.</p></article>
+          <article class="resource-card"><span>Русский · обзор</span><h3>IFS Russia</h3><p><a href="https://ifs-russia.ru/" target="_blank" rel="noreferrer">Русскоязычный обзор подхода и его истории</a>. IFS Institute включает IFS Russia в список international partners.</p></article>
+          <article class="resource-card"><span>Русский · книги</span><h3>Курируемый список переводов</h3><p>На странице <a href="https://ifs-russia.ru/source" target="_blank" rel="noreferrer">«Ресурсы» IFS Russia</a> собраны русские издания Richard Schwartz и других авторов IFS, включая <em>«Внутренние семейные системы»</em> и <em>«Внутренние субличности»</em>.</p></article>
         </div>
 
         <div class="reading-stack" aria-label="Материал Week 1 для участника в шести главах">
@@ -3128,7 +3317,7 @@ p:last-child{margin-bottom:0}
               <h3>Первая неделя — практика распознавания.</h3>
               <p>Чтобы неделя состоялась, не должно произойти ничего глубокого. Задача — начать узнавать несколько различий в прямом опыте: узкий focus и открытый field; усилие и поддержанный контакт; реакцию, которая ощущается как всё «я», и часть, которую можно заметить; меньше доступа к Self и немного больше доступа.</p>
               <p>Частота важнее интенсивности. Трёхминутное возвращение, повторённое среди обычного дня, может научить большему, чем один драматичный опыт. Duration растёт постепенно: несколько секунд field awareness, затем минута, затем длина одного разговора. Система учится через повторение, permission и достаточную безопасность.</p>
-              <p>В конце недели ваша задача — не объявить, что Self освоен. Задача — описать своими словами, как доступ к Self может ощущаться именно у вас и какие условия его поддерживают. Это описание станет первым личным компасом для остального курса.</p>
+              <p>К концу недели практический результат прост: «Я чувствую разницу между attention и awareness; я начинаю узнавать, когда получаю больше доступа к Self, или awake awareness». Это не mastery, а начало личного компаса: как доступ ощущается у вас и какие условия его поддерживают.</p>
             </div>
           </article>
         </div>
@@ -3270,17 +3459,17 @@ p:last-child{margin-bottom:0}
     <div class="chapter-head">
       <div>
         <p class="section-kicker">Week 1 review layer</p>
-        <h2>Comments and edits for the first week.</h2>
+        <h2>Guthrie, shape the structure of this week.</h2>
       </div>
       <div class="measure">
-        <p class="lede">Comment directly on the Week 1 teaching, practices, live-call flow, demonstration, handout, or boundaries. Drafts stay on this device while you type; every submitted note also enters the shared archive and version history.</p>
+        <p class="lede">Please use the large field below for the week as a whole: what is essential, what is missing, what should be shorter, and what belongs before Week 1 or in a later week. You can also give us your preferred sequence for the live call and the demonstration. Drafts stay on this device while you type; every saved note also enters the shared archive.</p>
       </div>
     </div>
     <div class="review-board">
       <div>
         <div class="review-field">
-          <label for="globalReviewComment">General comment for Week 1</label>
-          <textarea id="globalReviewComment" placeholder="Add an overall note, missing topic, sequence change, or anything that should guide the next revision."></textarea>
+          <label for="globalReviewComment">Your view of the Week 1 structure</label>
+          <textarea id="globalReviewComment" placeholder="For example: keep / remove / move; required reading versus optional reference; missing IFS theory or glossary terms; preferred order of meditation, debrief, teaching, experiment, demo, and Q&A; anything that should guide the next revision."></textarea>
         </div>
         <div class="review-actions">
           <button type="button" class="review-button primary" id="saveGlobalReview">Save general comment</button>
@@ -3294,7 +3483,7 @@ p:last-child{margin-bottom:0}
           <strong id="reviewSaveStatusTitle">Saved on this device</strong>
           <small id="reviewSaveStatusDetail">Central archive is not connected yet.</small>
         </div>
-        <p class="fine" style="margin-top:14px">The page keeps local drafts and a submission history. Until the central archive is connected, export remains the second-device backup.</p>
+        <p class="fine" style="margin-top:14px">Text is only a local draft until you click “Save general comment.” After saving, the status above confirms whether the shared archive has synced; Markdown and JSON remain optional backups.</p>
       </div>
       <div>
         <h3>Block notes</h3>
@@ -3556,6 +3745,10 @@ function getReviewTargets(){
     ".week-one-page .practice-side",
     ".week-one-page .next-card",
     ".week-one-page .reading-chapter",
+    ".week-one-page .orientation-card",
+    ".week-one-page .guide-profile",
+    ".week-one-page .glossary-item",
+    ".week-one-page .resource-card",
     ".week-one-page .concept-node",
     ".week-one-page .practice-step",
     ".week-one-page .call-step",
