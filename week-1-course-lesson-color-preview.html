@@ -47,7 +47,7 @@
       background: var(--page);
       border-bottom: 1px solid var(--line);
     }
-    button, textarea { font: inherit; }
+    button, textarea, input, select { font: inherit; }
     button { color: inherit; }
     a { color: var(--accent); text-underline-offset: 3px; }
     ::selection { background: #dbe7ff; color: #112552; }
@@ -447,6 +447,21 @@
     .review-note p + b, .review-note small + b { margin-top: .65rem; }
 
     @media (min-width: 821px) {
+      .course-top {
+        display: grid;
+        grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+        padding: 0;
+      }
+      .course-top > .product-mark { padding: 0 1.5rem; }
+      .course-top-actions {
+        width: min(calc(100% - 2rem), var(--lesson-width));
+        justify-content: flex-end;
+        margin-left: clamp(
+          1rem,
+          calc((100vw - var(--sidebar-width) - var(--lesson-width)) / 2),
+          11.25rem
+        );
+      }
       .review-guidance-inner {
         margin-left: clamp(1rem, calc((100vw - var(--sidebar-width) - var(--lesson-width)) / 2 + var(--sidebar-width)), calc(var(--sidebar-width) + 11.25rem));
       }
@@ -504,6 +519,46 @@
     .bank-tag.available { background: #edf3ff; color: #315fcb; }
     .bank-tag.hold { background: #fbf3e8; color: #8a5b1e; }
     .bank-card .review-action { margin-top: .7rem; width: 100%; }
+    .bank-card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin-top: .75rem; }
+    .bank-card-actions .review-action { margin: 0; }
+    .bank-transfer-button {
+      min-height: 38px;
+      padding: .55rem .7rem;
+      border: 1px solid #cdd8eb;
+      border-radius: 8px;
+      background: #f5f8fe;
+      color: #315fcb;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    .bank-transfer-button.has-transfer { border-color: #b9d8c7; background: #eef7f2; color: #276749; }
+    .bank-transfer-editor { margin-top: .8rem; padding: .9rem; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-subtle); }
+    .bank-transfer-editor label { display: block; margin-bottom: .35rem; color: var(--ink); font-size: .76rem; font-weight: 700; }
+    .bank-transfer-editor select,
+    .bank-transfer-editor input {
+      width: 100%;
+      min-height: 40px;
+      padding: .55rem .65rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+    .bank-transfer-editor .transfer-note-field { margin-top: .7rem; }
+    .bank-transfer-editor-actions { display: flex; gap: .55rem; margin-top: .75rem; }
+    .bank-transfer-editor-actions button { min-height: 38px; padding: .55rem .75rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); font-size: .78rem; font-weight: 700; }
+    .bank-transfer-editor-actions .save-transfer { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .bank-transfer-summary { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; margin-top: .7rem; padding: .65rem .75rem; border-radius: 8px; background: #eef7f2; color: #276749; font-size: .78rem; line-height: 1.4; }
+    .bank-transfer-summary button { flex: 0 0 auto; padding: .15rem 0; background: transparent; color: #276749; font-size: .75rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+    .content-proposals { display: none; margin: 2rem 0 .25rem; padding: 1.1rem 0; border-top: 1px solid #cdd8eb; border-bottom: 1px solid #cdd8eb; }
+    body.review-on .content-proposals.has-items { display: block; }
+    .content-proposals h3 { margin: 0 0 .35rem; color: #244b9a; font-size: .94rem; }
+    .content-proposals > p { margin: 0 0 .8rem; color: var(--muted); font-size: .82rem; }
+    .content-proposal-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .75rem; padding: .75rem 0; border-top: 1px solid var(--line); }
+    .content-proposal-row strong { display: block; font-size: .88rem; }
+    .content-proposal-row span { display: block; margin-top: .2rem; color: var(--muted); font-size: .8rem; }
+    .content-proposal-row button { align-self: start; min-height: 36px; padding: .45rem .6rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink-soft); font-size: .75rem; font-weight: 700; }
     .bank-overall { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
     .bank-overall label { display: block; margin-bottom: .55rem; color: var(--ink); font-size: .9rem; font-weight: 700; }
     .bank-overall textarea { width: 100%; min-height: 140px; padding: .8rem .9rem; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--surface); color: var(--ink); }
@@ -539,6 +594,12 @@
     .review-toast.is-visible { display: block; }
     body.review-lock { overflow: hidden; }
 
+    @media (min-width: 1760px) {
+      .content-bank {
+        inset: 0 auto 0 calc(var(--sidebar-width) + 11.25rem + var(--lesson-width) + 1rem);
+      }
+    }
+
     @media (max-width: 720px) {
       .course-top { padding: 0 .8rem; }
       .course-top-actions { gap: .35rem; }
@@ -548,6 +609,9 @@
       body.review-access .course-state { display: none; }
       .review-guidance-inner { margin: 0 auto; }
       body.review-on .review-wrap > .review-action { width: 100%; margin: 0 0 1rem; }
+      .bank-card-actions { grid-template-columns: 1fr; }
+      .content-proposal-row { grid-template-columns: 1fr; }
+      .content-proposal-row button { justify-self: start; }
       .review-dialog { padding: 1.1rem; }
     }
   </style>
@@ -573,7 +637,7 @@
         <button class="bank-close" id="closeContentBank" type="button" aria-label="Close content bank">×</button>
       </header>
       <div class="bank-body">
-        <p class="bank-intro">These are real sources and production options behind the participant lesson. They are <strong>not automatically part of the student version</strong>. Please mark what should be added, shortened, moved to another week, or left as internal reference.</p>
+        <p class="bank-intro">These are real sources and production options behind the participant lesson. They are <strong>not automatically part of the student version</strong>. Use <strong>Add to Week 1</strong> to place a source into a specific lesson as a review proposal; the participant text will not change until we accept and edit it.</p>
 
         <section class="bank-section" aria-labelledby="bank-included-title">
           <h3 id="bank-included-title">Already represented in this draft</h3>
@@ -689,7 +753,7 @@
     let reviewOn = Boolean(reviewAccessKey);
 
     function emptyReviewState() {
-      return { globalComment: '', notes: {}, drafts: {}, history: [], outbox: [], localSavedAt: '', syncedAt: '' };
+      return { globalComment: '', notes: {}, drafts: {}, transfers: {}, history: [], outbox: [], localSavedAt: '', syncedAt: '' };
     }
 
     function normalizeReviewState(value) {
@@ -700,6 +764,7 @@
         ...value,
         notes: value.notes && typeof value.notes === 'object' ? value.notes : {},
         drafts: value.drafts && typeof value.drafts === 'object' ? value.drafts : {},
+        transfers: value.transfers && typeof value.transfers === 'object' ? value.transfers : {},
         history: Array.isArray(value.history) ? value.history : [],
         outbox: Array.isArray(value.outbox) ? value.outbox : []
       };
@@ -761,7 +826,11 @@
       document.querySelectorAll('[data-review-status-title]').forEach(node => { node.textContent = title; });
       document.querySelectorAll('[data-review-status-detail]').forEach(node => { node.textContent = detail; });
       document.querySelectorAll('[data-review-count]').forEach(node => {
-        node.textContent = String(Object.values(reviewState.notes).filter(hasReviewContent).length + (reviewState.globalComment ? 1 : 0));
+        node.textContent = String(
+          Object.values(reviewState.notes).filter(hasReviewContent).length
+          + Object.keys(reviewState.transfers).length
+          + (reviewState.globalComment ? 1 : 0)
+        );
       });
     }
 
@@ -770,7 +839,13 @@
       const batch = reviewState.outbox.slice();
       for (const event of batch) {
         try {
-          const note = event.note || event.previousNote || {};
+          const transfer = event.transfer || event.previousTransfer || null;
+          const note = event.note || event.previousNote || (transfer ? {
+            title: transfer.title,
+            excerpt: `Content Bank proposal for ${transfer.targetLabel || transfer.targetSection || 'Week 1'}`,
+            comment: transfer.note || '',
+            suggestion: event.kind === 'content-transfer-removed' ? 'Remove from the weekly plan' : `Add to ${transfer.targetLabel || transfer.targetSection}`
+          } : {});
           const payload = [
             `Document: ${event.documentId}`,
             `Reviewer: ${event.reviewer}`,
@@ -893,7 +968,12 @@
       general.dataset.reviewLabel = `${section.nav} — general comments`;
       general.dataset.reviewExcerpt = `General comments about the ${section.nav} lesson: what is missing, unclear, too long, too advanced, or better moved.`;
       general.appendChild(reviewButton(general.dataset.reviewId, '+ General comments to this lesson', true));
-      copy.insertAdjacentElement('afterend', general);
+      const proposals = document.createElement('section');
+      proposals.className = 'content-proposals';
+      proposals.dataset.contentProposals = section.id;
+      copy.insertAdjacentElement('afterend', proposals);
+      proposals.insertAdjacentElement('afterend', general);
+      renderVisibleTransfers(section);
       renderNoteForTarget(general);
     }
 
@@ -901,8 +981,132 @@
       document.querySelectorAll('.bank-card[data-bank-id]').forEach(card => {
         const id = `content-bank-${card.dataset.bankId}`;
         card.dataset.reviewId = id;
-        if (!card.querySelector('[data-review-control-for]')) card.appendChild(reviewButton(id, '+ Comment on this source'));
+        if (!card.querySelector('.bank-card-actions')) {
+          const actions = document.createElement('div');
+          actions.className = 'bank-card-actions';
+          actions.appendChild(reviewButton(id, 'Comment'));
+          const transferButton = document.createElement('button');
+          transferButton.type = 'button';
+          transferButton.className = 'bank-transfer-button';
+          transferButton.dataset.transferFor = card.dataset.bankId;
+          transferButton.addEventListener('click', () => toggleTransferEditor(card));
+          actions.appendChild(transferButton);
+          card.appendChild(actions);
+        }
+        renderContentBankTransfer(card);
         renderNoteForTarget(card);
+      });
+    }
+
+    function transferLabel(sectionId) {
+      const index = sections.findIndex(section => section.id === sectionId);
+      if (index < 0) return 'Week 1';
+      return `Lesson ${index + 1} · ${sections[index].nav}`;
+    }
+
+    function renderContentBankTransfer(card) {
+      const bankId = card.dataset.bankId;
+      const transfer = reviewState.transfers[bankId];
+      const button = card.querySelector(`[data-transfer-for="${CSS.escape(bankId)}"]`);
+      card.querySelectorAll(':scope > .bank-transfer-editor,:scope > .bank-transfer-summary').forEach(node => node.remove());
+      if (!button) return;
+      button.classList.toggle('has-transfer', Boolean(transfer));
+      button.textContent = transfer ? 'Change placement' : 'Add to Week 1';
+      if (!transfer) return;
+      const summary = document.createElement('div');
+      summary.className = 'bank-transfer-summary';
+      summary.innerHTML = `<span><strong>${escapeHtml(transfer.targetLabel)}</strong>${transfer.note ? `<br>${escapeHtml(transfer.note)}` : ''}</span>`;
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = 'Remove';
+      remove.addEventListener('click', () => removeContentTransfer(bankId));
+      summary.appendChild(remove);
+      card.querySelector('.bank-card-actions').insertAdjacentElement('afterend', summary);
+    }
+
+    function toggleTransferEditor(card) {
+      const existing = card.querySelector(':scope > .bank-transfer-editor');
+      if (existing) {
+        existing.remove();
+        return;
+      }
+      const bankId = card.dataset.bankId;
+      const transfer = reviewState.transfers[bankId] || {};
+      const editor = document.createElement('div');
+      editor.className = 'bank-transfer-editor';
+      editor.innerHTML = `
+        <label for="transfer-target-${escapeHtml(bankId)}">Place in the weekly plan</label>
+        <select id="transfer-target-${escapeHtml(bankId)}">
+          ${sections.map((section, index) => `<option value="${section.id}" ${section.id === transfer.targetSection ? 'selected' : ''}>Lesson ${index + 1} · ${escapeHtml(section.nav)}</option>`).join('')}
+        </select>
+        <div class="transfer-note-field">
+          <label for="transfer-note-${escapeHtml(bankId)}">Note for the revision <span class="quiet">(optional)</span></label>
+          <input id="transfer-note-${escapeHtml(bankId)}" type="text" placeholder="What exactly should we take from this source?">
+        </div>
+        <div class="bank-transfer-editor-actions">
+          <button class="save-transfer" type="button">Save to lesson</button>
+          <button class="cancel-transfer" type="button">Cancel</button>
+        </div>`;
+      editor.querySelector('.save-transfer').addEventListener('click', () => saveContentTransfer(card, editor));
+      editor.querySelector('.cancel-transfer').addEventListener('click', () => editor.remove());
+      editor.querySelector('input').value = transfer.note || '';
+      const anchor = card.querySelector('.bank-transfer-summary') || card.querySelector('.bank-card-actions');
+      anchor.insertAdjacentElement('afterend', editor);
+      editor.querySelector('select').focus();
+    }
+
+    function saveContentTransfer(card, editor) {
+      const bankId = card.dataset.bankId;
+      const targetSection = editor.querySelector('select').value;
+      const transfer = {
+        bankId,
+        title: cleanText(card.querySelector('h4')?.textContent) || targetTitle(card),
+        targetSection,
+        targetLabel: transferLabel(targetSection),
+        note: editor.querySelector('input').value.trim(),
+        updatedAt: new Date().toISOString()
+      };
+      reviewState.transfers[bankId] = transfer;
+      queueReviewEvent('content-transfer-submitted', { targetId: `content-bank-${bankId}`, transfer });
+      writeReviewState();
+      renderContentBankTransfer(card);
+      renderVisibleTransfers(sections[state.section[1]]);
+      void flushReviewOutbox();
+      showReviewToast(`${transfer.title} proposed for ${transfer.targetLabel}.`);
+    }
+
+    function removeContentTransfer(bankId) {
+      const previousTransfer = reviewState.transfers[bankId];
+      if (!previousTransfer) return;
+      delete reviewState.transfers[bankId];
+      queueReviewEvent('content-transfer-removed', { targetId: `content-bank-${bankId}`, previousTransfer });
+      writeReviewState();
+      const card = document.querySelector(`.bank-card[data-bank-id="${CSS.escape(bankId)}"]`);
+      if (card) renderContentBankTransfer(card);
+      renderVisibleTransfers(sections[state.section[1]]);
+      void flushReviewOutbox();
+      showReviewToast('Proposal removed from the weekly plan; its submission remains in history.');
+    }
+
+    function renderVisibleTransfers(section) {
+      const container = document.querySelector(`[data-content-proposals="${CSS.escape(section.id)}"]`);
+      if (!container) return;
+      const transfers = Object.values(reviewState.transfers).filter(transfer => transfer.targetSection === section.id);
+      container.classList.toggle('has-items', transfers.length > 0);
+      if (!transfers.length) {
+        container.innerHTML = '';
+        return;
+      }
+      container.innerHTML = `
+        <h3>Proposed from Content Bank</h3>
+        <p>Review-only placement proposals. The participant text has not been changed yet.</p>
+        ${transfers.map(transfer => `
+          <div class="content-proposal-row">
+            <div><strong>${escapeHtml(transfer.title)}</strong>${transfer.note ? `<span>${escapeHtml(transfer.note)}</span>` : ''}</div>
+            <button type="button" data-remove-transfer="${escapeHtml(transfer.bankId)}">Remove</button>
+          </div>`).join('')}`;
+      container.querySelectorAll('[data-remove-transfer]').forEach(button => {
+        button.addEventListener('click', () => removeContentTransfer(button.dataset.removeTransfer));
       });
     }
 
