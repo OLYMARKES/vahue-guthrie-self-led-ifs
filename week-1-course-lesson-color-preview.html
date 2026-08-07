@@ -363,6 +363,193 @@
       .course-nav button { grid-template-columns: 8px 1fr; align-items: center; }
       .course-nav .nav-colour { margin-top: 0; }
     }
+
+    /* Guthrie review layer. It is available only through the private review link. */
+    .course-top-actions { display: flex; align-items: center; gap: .65rem; }
+    .review-top-button {
+      display: none;
+      min-height: 36px;
+      padding: .45rem .7rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink-soft);
+      font-size: .82rem;
+      font-weight: 650;
+    }
+    body.review-access .review-top-button { display: inline-flex; align-items: center; gap: .45rem; }
+    body.review-on .review-toggle-button { color: var(--accent); border-color: var(--section-line); background: var(--section-soft); }
+    .review-top-button .review-count {
+      display: inline-flex;
+      min-width: 1.25rem;
+      height: 1.25rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      color: var(--muted);
+      font-size: .72rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .review-mobile-label { display: none; }
+    body.review-on .review-toggle-button .review-count { background: var(--surface); color: var(--accent); }
+
+    .review-guidance {
+      display: none;
+      border-bottom: 1px solid #eadccf;
+      background: #fffaf4;
+    }
+    body.review-on .review-guidance { display: block; }
+    .review-guidance-inner {
+      width: min(calc(100% - 2rem), var(--lesson-width));
+      padding: 1.05rem 0;
+    }
+    .review-guidance strong { display: block; margin-bottom: .25rem; color: #674429; font-size: .9rem; }
+    .review-guidance p { margin: 0; color: #725b49; font-size: .86rem; line-height: 1.55; }
+    .review-guidance-status { display: flex; align-items: center; gap: .45rem; margin-top: .7rem; color: #725b49; font-size: .78rem; }
+    .review-status-dot { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: #b57a2c; }
+    body.review-synced .review-status-dot { background: var(--success); }
+
+    .review-wrap { display: contents; }
+    body.review-on .review-wrap { position: relative; display: block; }
+    .review-action {
+      display: none;
+      min-height: 38px;
+      padding: .55rem .75rem;
+      border: 1px dashed #d7bda6;
+      border-radius: 8px;
+      background: #fffaf5;
+      color: #815734;
+      font-size: .78rem;
+      font-weight: 650;
+      text-align: left;
+    }
+    body.review-on .review-action { display: inline-flex; align-items: center; justify-content: center; }
+    .review-action:hover, .review-action:focus-visible { border-style: solid; background: #fff6ec; }
+    .review-action.has-review { border-style: solid; border-color: #b37a4e; background: #f8eadc; color: #694323; }
+    .review-general {
+      display: none;
+      margin: 2rem 0 .25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #eadccf;
+    }
+    body.review-on .review-general { display: block; }
+    .review-general .review-action { width: 100%; min-height: 58px; }
+    .review-note {
+      margin: .75rem 0 1.1rem;
+      padding: .85rem 1rem;
+      border: 1px solid #dfc7b2;
+      border-radius: 8px;
+      background: #fffaf5;
+    }
+    .review-note span, .review-note b { display: block; margin-bottom: .25rem; color: #815734; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .025em; }
+    .review-note p, .review-note small { display: block; margin: 0; color: #674e3b; font-size: .86rem; line-height: 1.5; white-space: pre-wrap; }
+    .review-note p + b, .review-note small + b { margin-top: .65rem; }
+
+    @media (min-width: 821px) {
+      .review-guidance-inner {
+        margin-left: clamp(1rem, calc((100vw - var(--sidebar-width) - var(--lesson-width)) / 2 + var(--sidebar-width)), calc(var(--sidebar-width) + 11.25rem));
+      }
+    }
+    @media (min-width: 1600px) {
+      body.review-on .review-wrap > .review-action:not(.review-general .review-action) {
+        position: absolute;
+        top: 0;
+        left: calc(100% + 1.25rem);
+        width: 148px;
+      }
+    }
+
+    .review-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: none;
+      background: rgba(20, 28, 41, .28);
+    }
+    .review-backdrop.is-open { display: block; }
+    .content-bank {
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: min(520px, 100%);
+      overflow: auto;
+      background: var(--surface);
+      box-shadow: -24px 0 70px rgba(22, 31, 46, .18);
+    }
+    .bank-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 1.35rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.97);
+    }
+    .bank-head h2 { margin: 0; font-size: 1.25rem; }
+    .bank-close { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 8px; background: var(--surface-subtle); font-size: 1.25rem; }
+    .bank-body { padding: 1.35rem 1.35rem 3rem; }
+    .bank-intro { margin-bottom: 1.5rem; color: var(--ink-soft); font-size: .92rem; }
+    .bank-section + .bank-section { margin-top: 2rem; }
+    .bank-section > h3 { margin: 0 0 .75rem; color: var(--ink); font-size: .86rem; letter-spacing: .025em; text-transform: uppercase; }
+    .bank-card { position: relative; padding: 1rem 0; border-top: 1px solid var(--line); }
+    .bank-card:last-child { border-bottom: 1px solid var(--line); }
+    .bank-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: .8rem; }
+    .bank-card h4 { margin: 0; color: var(--ink); font-size: .98rem; }
+    .bank-card p { margin: .45rem 0 .65rem; font-size: .88rem; line-height: 1.55; }
+    .bank-source { color: var(--muted); font-size: .75rem; }
+    .bank-tag { flex: 0 0 auto; padding: .22rem .45rem; border-radius: 999px; background: var(--surface-subtle); color: var(--muted); font-size: .68rem; font-weight: 700; }
+    .bank-tag.included { background: #eef7f2; color: #276749; }
+    .bank-tag.available { background: #edf3ff; color: #315fcb; }
+    .bank-tag.hold { background: #fbf3e8; color: #8a5b1e; }
+    .bank-card .review-action { margin-top: .7rem; width: 100%; }
+    .bank-overall { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .bank-overall label { display: block; margin-bottom: .55rem; color: var(--ink); font-size: .9rem; font-weight: 700; }
+    .bank-overall textarea { width: 100%; min-height: 140px; padding: .8rem .9rem; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--surface); color: var(--ink); }
+    .review-save-row { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-top: .75rem; }
+    .review-save-button { min-height: 40px; padding: .6rem .85rem; border-radius: 8px; background: #815734; color: #fff; font-size: .84rem; font-weight: 700; }
+    .review-save-detail { color: var(--muted); font-size: .76rem; }
+
+    .review-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(20, 28, 41, .32);
+    }
+    .review-modal.is-open { display: flex; }
+    .review-dialog { width: min(680px, 100%); max-height: min(88vh, 760px); overflow: auto; padding: 1.4rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 28px 80px rgba(22, 31, 46, .2); }
+    .review-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .review-dialog-head h2 { margin: 0; font-size: 1.35rem; }
+    .review-dialog-close { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 8px; background: var(--surface-subtle); font-size: 1.25rem; }
+    .review-excerpt { margin: 0 0 1rem; padding: .8rem .9rem; border-left: 2px solid #b27a4c; background: #fffaf5; color: #725b49; font-size: .85rem; line-height: 1.5; }
+    .review-field + .review-field { margin-top: 1rem; }
+    .review-field label { display: block; margin-bottom: .45rem; color: var(--ink); font-size: .86rem; font-weight: 700; }
+    .review-field textarea { width: 100%; min-height: 112px; padding: .8rem .9rem; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--surface); color: var(--ink); }
+    .review-modal-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
+    .review-modal-actions button { min-height: 40px; padding: .6rem .85rem; border-radius: 8px; border: 1px solid var(--line-strong); background: var(--surface); font-size: .84rem; font-weight: 700; }
+    .review-modal-actions .save { border-color: #815734; background: #815734; color: #fff; }
+    .review-modal-actions .delete { color: #9a3b32; }
+    .review-draft-status { min-height: 1.2em; margin: .7rem 0 0; color: var(--muted); font-size: .76rem; }
+    .review-toast { position: fixed; right: 1rem; bottom: 1rem; z-index: 100; display: none; max-width: min(360px, calc(100vw - 2rem)); padding: .8rem 1rem; border: 1px solid #cfe3d8; border-radius: 9px; background: #f3fbf6; color: #276749; box-shadow: 0 18px 44px rgba(22,31,46,.14); font-size: .86rem; }
+    .review-toast.is-visible { display: block; }
+    body.review-lock { overflow: hidden; }
+
+    @media (max-width: 720px) {
+      .course-top { padding: 0 .8rem; }
+      .course-top-actions { gap: .35rem; }
+      .review-top-button { min-height: 40px; padding: .45rem .58rem; font-size: .76rem; }
+      .review-desktop-label { display: none; }
+      .review-mobile-label { display: inline; }
+      body.review-access .course-state { display: none; }
+      .review-guidance-inner { margin: 0 auto; }
+      body.review-on .review-wrap > .review-action { width: 100%; margin: 0 0 1rem; }
+      .review-dialog { padding: 1.1rem; }
+    }
   </style>
 </head>
 <body>
@@ -376,7 +563,426 @@
     <button class="proto-picker-item">Guided lesson</button>
   </nav>
 
+  <div class="review-backdrop" id="contentBankBackdrop" aria-hidden="true">
+    <aside class="content-bank" id="contentBank" aria-labelledby="contentBankTitle">
+      <header class="bank-head">
+        <div>
+          <div class="quiet" style="font-size:.76rem;margin-bottom:.2rem">Week 1 · internal review layer</div>
+          <h2 id="contentBankTitle">Content bank</h2>
+        </div>
+        <button class="bank-close" id="closeContentBank" type="button" aria-label="Close content bank">×</button>
+      </header>
+      <div class="bank-body">
+        <p class="bank-intro">These are real sources and production options behind the participant lesson. They are <strong>not automatically part of the student version</strong>. Please mark what should be added, shortened, moved to another week, or left as internal reference.</p>
+
+        <section class="bank-section" aria-labelledby="bank-included-title">
+          <h3 id="bank-included-title">Already represented in this draft</h3>
+          <article class="bank-card" data-bank-id="alignment-call" data-review-label="Content bank — July 29 alignment call" data-review-excerpt="OS 1.0 to OS 2.0; attention and awareness; access to Self; ground, core, field, focus; a part of me language.">
+            <div class="bank-card-head"><h4>July 29 alignment call</h4><span class="bank-tag included">Included</span></div>
+            <p>OS 1.0 → OS 2.0, attention as focus, awareness as field, access to Self as a continuum, and the ground–core–field–focus sequence.</p>
+            <span class="bank-source">Source: call transcript, voicebank and approved working direction</span>
+          </article>
+          <article class="bank-card" data-bank-id="presencing" data-review-label="Content bank — Guthrie presencing inductions" data-review-excerpt="Ground, core, field, focus and relaxed attention from Guthrie’s live openings.">
+            <div class="bank-card-head"><h4>Guthrie’s presencing inductions</h4><span class="bank-tag included">Partly included</span></div>
+            <p>The seven-minute core practice is adapted from Guthrie’s recurring live-call openings. The source can also support a short approved audio script.</p>
+            <span class="bank-source">Source: presencing_inductions_guthrie.md</span>
+          </article>
+          <article class="bank-card" data-bank-id="quotes" data-review-label="Content bank — Guthrie quote bank" data-review-excerpt="Two short teaching anchors are used in the lesson; all direct quotes still need Guthrie’s approval for publication.">
+            <div class="bank-card-head"><h4>Guthrie quote bank</h4><span class="bank-tag included">2 quotes used</span></div>
+            <p>The page currently uses “background into the foreground” and “noticing a part” as short teaching anchors. Other quotes remain internal until approved.</p>
+            <span class="bank-source">Source: curated quote bank and live transcripts</span>
+          </article>
+        </section>
+
+        <section class="bank-section" aria-labelledby="bank-available-title">
+          <h3 id="bank-available-title">Available to add or develop</h3>
+          <article class="bank-card" data-bank-id="self-original" data-review-label="Content bank — Self — ORIGINAL" data-review-excerpt="Possible additions: Self as innate and undamaged; seat of awareness; 8 Cs; bodily and behavioural markers of access to Self.">
+            <div class="bank-card-head"><h4>Self — ORIGINAL</h4><span class="bank-tag available">Available</span></div>
+            <p>Could add a little more theory: Self as innate and undamaged, Self as the seat of awareness, selected 8 Cs, and markers of access. The main decision is how much belongs in Week 1 without turning it into a theory lecture.</p>
+            <span class="bank-source">Source: old course Week 4 handout · adapt, do not reproduce wholesale</span>
+          </article>
+          <article class="bank-card" data-bank-id="six-principles" data-review-label="Content bank — Six Organizing Principles of IFS" data-review-excerpt="Old Week 1 handout. Possible source for the light systems frame; practitioner-heavy teaching should not be transferred directly.">
+            <div class="bank-card-head"><h4>The Six Organizing Principles of IFS</h4><span class="bank-tag available">Select only</span></div>
+            <p>The previous course’s Week 1 handout may supply one clear systems paragraph or visual map. It should not be compressed into the participant lesson as a protocol.</p>
+            <span class="bank-source">Source: old Week 1 handout in English and Russian</span>
+          </article>
+          <article class="bank-card" data-bank-id="experiments" data-review-label="Content bank — short awareness experiments" data-review-excerpt="Peripheral vision/fingers, walking through seeing-hearing-body, and bowl-of-soup examples from the July 29 call.">
+            <div class="bank-card-head"><h4>Three short awareness experiments</h4><span class="bank-tag available">Available</span></div>
+            <p>Peripheral vision / fingers, walking through seeing–hearing–body, and the bowl-of-soup example. Any of these could become an optional experiment rather than more reading.</p>
+            <span class="bank-source">Source: July 29 call exercise bank</span>
+          </article>
+          <article class="bank-card" data-bank-id="weekly-kit" data-review-label="Content bank — participant kit options" data-review-excerpt="Potential production pieces: audio practice, one-page keep-with-you summary, visual map, replay chapters, welcome video, transcript, post-call note.">
+            <div class="bank-card-head"><h4>Participant kit options</h4><span class="bank-tag available">Production choice</span></div>
+            <p>Short audio practice, one-page “Keep with you” summary, a simple visual distinction, chaptered replay, welcome video, transcript, or post-call integration note.</p>
+            <span class="bank-source">Source: new weekly participant-kit proposal</span>
+          </article>
+        </section>
+
+        <section class="bank-section" aria-labelledby="bank-hold-title">
+          <h3 id="bank-hold-title">Keep out of this participant week</h3>
+          <article class="bank-card" data-bank-id="practitioner-material" data-review-label="Content bank — practitioner material held back" data-review-excerpt="Six Fs, practitioner/client/observer triads, guiding another person, memory retrieval, exile work, unburdening and practitioner competence are intentionally excluded.">
+            <div class="bank-card-head"><h4>Practitioner protocols and peer work</h4><span class="bank-tag hold">Hold back</span></div>
+            <p>Six Fs, triads, guiding another person, memory retrieval, exile work, unburdening and practitioner-competence framing are intentionally excluded from this six-week participant course.</p>
+            <span class="bank-source">Source: old twelve-week archive · internal reference only</span>
+          </article>
+        </section>
+
+        <section class="bank-overall">
+          <label for="globalReviewComment">Your overall view of Week 1</label>
+          <textarea id="globalReviewComment" placeholder="What is essential, missing, too long, too advanced, or better moved to another week?"></textarea>
+          <div class="review-save-row">
+            <button class="review-save-button" id="saveGlobalReview" type="button">Save overall comment</button>
+            <span class="review-save-detail" data-review-status-detail>Draft saved in this browser until submitted.</span>
+          </div>
+        </section>
+      </div>
+    </aside>
+  </div>
+
+  <div class="review-modal" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+    <div class="review-dialog">
+      <header class="review-dialog-head">
+        <div><div class="quiet" id="reviewModalKicker" style="font-size:.76rem;margin-bottom:.2rem">Block review</div><h2 id="reviewModalTitle">Comment on this block</h2></div>
+        <button class="review-dialog-close" id="closeReviewModal" type="button" aria-label="Close review dialog">×</button>
+      </header>
+      <p class="review-excerpt" id="reviewExcerpt"></p>
+      <div class="review-field">
+        <label for="blockReviewComment" id="blockReviewCommentLabel">Comment</label>
+        <textarea id="blockReviewComment" placeholder="What should we know about this block?"></textarea>
+      </div>
+      <div class="review-field">
+        <label for="blockReviewSuggestion" id="blockReviewSuggestionLabel">Suggested edit or text to add</label>
+        <textarea id="blockReviewSuggestion" placeholder="Write the exact wording or direction you would prefer."></textarea>
+      </div>
+      <div class="review-modal-actions">
+        <button class="save" id="saveBlockReview" type="button">Save note</button>
+        <button class="delete" id="deleteBlockReview" type="button">Delete current note</button>
+        <button id="cancelBlockReview" type="button">Cancel</button>
+      </div>
+      <p class="review-draft-status" id="reviewDraftStatus">Drafts are saved in this browser as you type.</p>
+    </div>
+  </div>
+
+  <div class="review-toast" id="reviewToast" role="status" aria-live="polite"></div>
+
   <script>
+    const reviewStorageKey = 'guthrie-week-one-participant-review-v1';
+    const reviewDocumentId = 'guthrie-course-week-1-participant-preview-260807';
+    const reviewFormAction = 'https://docs.google.com/forms/d/e/1FAIpQLScfkG1bdk0D-OOnZjFGC_VtyJDiIRk7a41FOo3jlegPu_faHw/formResponse';
+    const reviewFormEventField = 'entry.1292771604';
+    const reviewFormPayloadField = 'entry.863961216';
+    const reviewAccessKey = new URLSearchParams(location.hash.slice(1)).get('reviewKey') || '';
+    const reviewModal = document.getElementById('reviewModal');
+    const reviewModalTitle = document.getElementById('reviewModalTitle');
+    const reviewModalKicker = document.getElementById('reviewModalKicker');
+    const reviewExcerpt = document.getElementById('reviewExcerpt');
+    const blockReviewComment = document.getElementById('blockReviewComment');
+    const blockReviewSuggestion = document.getElementById('blockReviewSuggestion');
+    const blockReviewCommentLabel = document.getElementById('blockReviewCommentLabel');
+    const blockReviewSuggestionLabel = document.getElementById('blockReviewSuggestionLabel');
+    const reviewDraftStatus = document.getElementById('reviewDraftStatus');
+    const reviewToast = document.getElementById('reviewToast');
+    const contentBankBackdrop = document.getElementById('contentBankBackdrop');
+    const contentBank = document.getElementById('contentBank');
+    const globalReviewComment = document.getElementById('globalReviewComment');
+    let currentReviewId = null;
+    let reviewOn = Boolean(reviewAccessKey);
+
+    function emptyReviewState() {
+      return { globalComment: '', notes: {}, drafts: {}, history: [], outbox: [], localSavedAt: '', syncedAt: '' };
+    }
+
+    function normalizeReviewState(value) {
+      const base = emptyReviewState();
+      if (!value || typeof value !== 'object') return base;
+      return {
+        ...base,
+        ...value,
+        notes: value.notes && typeof value.notes === 'object' ? value.notes : {},
+        drafts: value.drafts && typeof value.drafts === 'object' ? value.drafts : {},
+        history: Array.isArray(value.history) ? value.history : [],
+        outbox: Array.isArray(value.outbox) ? value.outbox : []
+      };
+    }
+
+    function readReviewState() {
+      try { return normalizeReviewState(JSON.parse(localStorage.getItem(reviewStorageKey))); }
+      catch (error) { return emptyReviewState(); }
+    }
+
+    let reviewState = readReviewState();
+
+    function writeReviewState() {
+      reviewState.localSavedAt = new Date().toISOString();
+      try { localStorage.setItem(reviewStorageKey, JSON.stringify(reviewState)); } catch (error) {}
+      renderReviewStatus();
+    }
+
+    function eventId() {
+      if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
+      return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function queueReviewEvent(kind, payload) {
+      const event = {
+        eventId: eventId(),
+        documentId: reviewDocumentId,
+        reviewer: 'Guthrie',
+        kind,
+        createdAt: new Date().toISOString(),
+        pageUrl: location.href.split('#')[0],
+        ...payload
+      };
+      reviewState.history.unshift(event);
+      reviewState.history = reviewState.history.slice(0, 500);
+      reviewState.outbox.push(event);
+      reviewState.outbox = reviewState.outbox.slice(-500);
+      return event;
+    }
+
+    function cleanText(text) { return (text || '').replace(/\s+/g, ' ').trim(); }
+    function escapeHtml(text) {
+      return (text || '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    }
+
+    function hasReviewContent(note) {
+      return Boolean(cleanText(note?.comment) || cleanText(note?.suggestion));
+    }
+
+    function renderReviewStatus() {
+      const draftCount = Object.keys(reviewState.drafts || {}).length;
+      const pendingCount = (reviewState.outbox || []).length;
+      const synced = Boolean(reviewFormAction) && pendingCount === 0;
+      document.body.classList.toggle('review-synced', synced);
+      const title = synced ? 'Saved and synced' : 'Saved on this device';
+      const detail = synced
+        ? (reviewState.syncedAt ? `Shared archive updated ${new Date(reviewState.syncedAt).toLocaleString()}.` : 'Shared archive is up to date.')
+        : `${pendingCount} submitted ${pendingCount === 1 ? 'change is' : 'changes are'} waiting to sync${draftCount ? `; ${draftCount} open draft${draftCount === 1 ? '' : 's'}.` : '.'}`;
+      document.querySelectorAll('[data-review-status-title]').forEach(node => { node.textContent = title; });
+      document.querySelectorAll('[data-review-status-detail]').forEach(node => { node.textContent = detail; });
+      document.querySelectorAll('[data-review-count]').forEach(node => {
+        node.textContent = String(Object.values(reviewState.notes).filter(hasReviewContent).length + (reviewState.globalComment ? 1 : 0));
+      });
+    }
+
+    async function flushReviewOutbox() {
+      if (!reviewFormAction || !reviewState.outbox.length || !navigator.onLine) return;
+      const batch = reviewState.outbox.slice();
+      for (const event of batch) {
+        try {
+          const note = event.note || event.previousNote || {};
+          const payload = [
+            `Document: ${event.documentId}`,
+            `Reviewer: ${event.reviewer}`,
+            `Action: ${event.kind}`,
+            `Block: ${note.title || event.targetId || 'General comment'}`,
+            `Original text: ${note.excerpt || ''}`,
+            `Comment: ${note.comment || event.globalComment || ''}`,
+            `Suggested text: ${note.suggestion || ''}`,
+            `Saved at: ${event.createdAt}`,
+            `Page: ${event.pageUrl}`,
+            `Review key: ${reviewAccessKey || 'direct-page-access'}`,
+            '',
+            `JSON: ${JSON.stringify(event)}`
+          ].join('\n');
+          const fields = new URLSearchParams();
+          fields.set(reviewFormEventField, event.eventId);
+          fields.set(reviewFormPayloadField, payload);
+          await fetch(reviewFormAction, {
+            method: 'POST',
+            mode: 'no-cors',
+            keepalive: true,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+            body: fields.toString()
+          });
+          reviewState.outbox = reviewState.outbox.filter(item => item.eventId !== event.eventId);
+          reviewState.syncedAt = new Date().toISOString();
+          writeReviewState();
+        } catch (error) {
+          renderReviewStatus();
+          break;
+        }
+      }
+    }
+
+    function showReviewToast(message) {
+      reviewToast.textContent = message;
+      reviewToast.classList.add('is-visible');
+      clearTimeout(showReviewToast.timer);
+      showReviewToast.timer = setTimeout(() => reviewToast.classList.remove('is-visible'), 2800);
+    }
+
+    function setReviewMode(on) {
+      reviewOn = Boolean(on && reviewAccessKey);
+      document.body.classList.toggle('review-on', reviewOn);
+      document.querySelectorAll('[data-review-toggle]').forEach(button => {
+        button.setAttribute('aria-pressed', String(reviewOn));
+      });
+      if (!reviewOn) closeContentBank();
+      renderReviewStatus();
+    }
+
+    function openContentBank() {
+      if (!reviewOn) setReviewMode(true);
+      contentBankBackdrop.classList.add('is-open');
+      contentBankBackdrop.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('review-lock');
+      document.getElementById('closeContentBank').focus();
+    }
+
+    function closeContentBank() {
+      contentBankBackdrop.classList.remove('is-open');
+      contentBankBackdrop.setAttribute('aria-hidden', 'true');
+      if (!reviewModal.classList.contains('is-open')) document.body.classList.remove('review-lock');
+    }
+
+    function targetTitle(target) {
+      return target.dataset.reviewLabel || cleanText(target.querySelector('h1,h2,h3,h4,strong,b')?.textContent || target.textContent).slice(0, 100) || 'Untitled block';
+    }
+
+    function targetExcerpt(target) {
+      if (target.dataset.reviewExcerpt) return target.dataset.reviewExcerpt;
+      const clone = target.cloneNode(true);
+      clone.querySelectorAll('.review-action,.review-note').forEach(node => node.remove());
+      return cleanText(clone.textContent).slice(0, 300);
+    }
+
+    function reviewButton(id, label, isGeneral = false) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `review-action${isGeneral ? ' general-action' : ''}`;
+      button.dataset.reviewControlFor = id;
+      button.textContent = label;
+      button.addEventListener('click', () => openBlockReview(id));
+      return button;
+    }
+
+    function renderNoteForTarget(target) {
+      const id = target.dataset.reviewId;
+      const note = reviewState.notes[id];
+      const button = document.querySelector(`[data-review-control-for="${CSS.escape(id)}"]`);
+      if (button) button.classList.toggle('has-review', hasReviewContent(note));
+      const holder = target.closest('.review-wrap,.review-general,.bank-card') || target;
+      holder.querySelectorAll(`:scope > [data-review-note-for="${CSS.escape(id)}"]`).forEach(node => node.remove());
+      if (!hasReviewContent(note)) return;
+      const node = document.createElement('div');
+      node.className = 'review-note';
+      node.dataset.reviewNoteFor = id;
+      node.innerHTML = `${note.suggestion ? `<span>Suggested text</span><p>${escapeHtml(note.suggestion)}</p>` : ''}${note.comment ? `<b>Comment</b><small>${escapeHtml(note.comment)}</small>` : ''}`;
+      holder.appendChild(node);
+    }
+
+    function prepareVisibleReviewTargets(section) {
+      const copy = document.querySelector('.course-content .lesson-copy');
+      if (!copy) return;
+      [...copy.children].forEach((target, index) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'review-wrap';
+        target.before(wrap);
+        wrap.appendChild(target);
+        const id = `lesson-${section.id}-block-${String(index + 1).padStart(2, '0')}`;
+        target.dataset.reviewId = id;
+        target.dataset.reviewLabel = `${section.nav} — ${targetTitle(target)}`;
+        target.dataset.reviewExcerpt = targetExcerpt(target);
+        wrap.appendChild(reviewButton(id, '+ Comment / suggest edit'));
+        renderNoteForTarget(target);
+      });
+      const general = document.createElement('div');
+      general.className = 'review-general';
+      general.dataset.reviewId = `lesson-${section.id}-general`;
+      general.dataset.reviewLabel = `${section.nav} — general comments`;
+      general.dataset.reviewExcerpt = `General comments about the ${section.nav} lesson: what is missing, unclear, too long, too advanced, or better moved.`;
+      general.appendChild(reviewButton(general.dataset.reviewId, '+ General comments to this lesson', true));
+      copy.insertAdjacentElement('afterend', general);
+      renderNoteForTarget(general);
+    }
+
+    function prepareContentBankTargets() {
+      document.querySelectorAll('.bank-card[data-bank-id]').forEach(card => {
+        const id = `content-bank-${card.dataset.bankId}`;
+        card.dataset.reviewId = id;
+        if (!card.querySelector('[data-review-control-for]')) card.appendChild(reviewButton(id, '+ Comment on this source'));
+        renderNoteForTarget(card);
+      });
+    }
+
+    function findReviewTarget(id) {
+      return document.querySelector(`[data-review-id="${CSS.escape(id)}"]`);
+    }
+
+    function openBlockReview(id) {
+      const target = findReviewTarget(id);
+      if (!target) return;
+      currentReviewId = id;
+      const note = reviewState.notes[id] || {};
+      const draft = reviewState.drafts[id];
+      const isGeneral = id.endsWith('-general');
+      const isBank = id.startsWith('content-bank-');
+      reviewModalKicker.textContent = isBank ? 'Content bank note' : (isGeneral ? 'Lesson note' : 'Block review');
+      reviewModalTitle.textContent = targetTitle(target);
+      reviewExcerpt.textContent = targetExcerpt(target);
+      blockReviewCommentLabel.textContent = isGeneral ? 'General comments to this lesson' : 'Comment';
+      blockReviewSuggestionLabel.textContent = isGeneral ? 'New text or direction to add' : 'Suggested edit or text to add';
+      blockReviewComment.value = draft ? draft.comment || '' : note.comment || '';
+      blockReviewSuggestion.value = draft ? draft.suggestion || '' : note.suggestion || '';
+      reviewDraftStatus.textContent = draft ? 'Recovered local draft · saved as you type.' : 'Drafts are saved in this browser as you type.';
+      reviewModal.classList.add('is-open');
+      document.body.classList.add('review-lock');
+      setTimeout(() => blockReviewComment.focus(), 30);
+    }
+
+    function closeBlockReview() {
+      reviewModal.classList.remove('is-open');
+      if (!contentBankBackdrop.classList.contains('is-open')) document.body.classList.remove('review-lock');
+      currentReviewId = null;
+    }
+
+    function saveCurrentDraft() {
+      if (!currentReviewId) return;
+      const comment = blockReviewComment.value;
+      const suggestion = blockReviewSuggestion.value;
+      if (comment || suggestion) reviewState.drafts[currentReviewId] = { comment, suggestion, updatedAt: new Date().toISOString() };
+      else delete reviewState.drafts[currentReviewId];
+      writeReviewState();
+      reviewDraftStatus.textContent = 'Draft saved in this browser.';
+    }
+
+    function saveBlockReview() {
+      if (!currentReviewId) return;
+      const target = findReviewTarget(currentReviewId);
+      const note = {
+        id: currentReviewId,
+        title: target ? targetTitle(target) : currentReviewId,
+        excerpt: target ? targetExcerpt(target) : '',
+        comment: blockReviewComment.value.trim(),
+        suggestion: blockReviewSuggestion.value.trim(),
+        updatedAt: new Date().toISOString()
+      };
+      if (hasReviewContent(note)) reviewState.notes[currentReviewId] = note;
+      else delete reviewState.notes[currentReviewId];
+      delete reviewState.drafts[currentReviewId];
+      queueReviewEvent('block-note-submitted', { targetId: currentReviewId, note });
+      writeReviewState();
+      if (target) renderNoteForTarget(target);
+      closeBlockReview();
+      void flushReviewOutbox();
+      showReviewToast('Saved locally and sent to the shared review archive.');
+    }
+
+    function deleteBlockReview() {
+      if (!currentReviewId) return;
+      const target = findReviewTarget(currentReviewId);
+      const previousNote = reviewState.notes[currentReviewId] || null;
+      delete reviewState.notes[currentReviewId];
+      delete reviewState.drafts[currentReviewId];
+      queueReviewEvent('block-note-deleted', { targetId: currentReviewId, previousNote });
+      writeReviewState();
+      if (target) renderNoteForTarget(target);
+      closeBlockReview();
+      void flushReviewOutbox();
+      showReviewToast('Current note removed; the earlier submission remains in history.');
+    }
+
     const sections = [
       {
         id: 'start',
@@ -580,8 +1186,19 @@
         <div class="course-view" style="--section-accent:${theme.accent};--section-accent-deep:${theme.deep};--section-soft:${theme.soft};--section-line:${theme.line}">
           <header class="course-top">
             <div class="product-mark"><strong>The Centrality of Self</strong><span> · Week 1</span></div>
-            <div class="course-state"><span>${i + 1} of ${sections.length}</span><i style="--progress:${((i + 1) / sections.length) * 100}%"></i></div>
+            <div class="course-top-actions">
+              <button class="review-top-button review-toggle-button" type="button" data-review-toggle aria-pressed="${reviewOn}">Review <span class="review-count" data-review-count>0</span></button>
+              <button class="review-top-button" type="button" data-content-bank-open><span class="review-desktop-label">Content bank</span><span class="review-mobile-label">Sources</span></button>
+              <div class="course-state"><span>${i + 1} of ${sections.length}</span><i style="--progress:${((i + 1) / sections.length) * 100}%"></i></div>
+            </div>
           </header>
+          <aside class="review-guidance" aria-label="Note for Guthrie">
+            <div class="review-guidance-inner">
+              <strong>Guthrie — this is a participant-facing Week 1 prototype, not final copy.</strong>
+              <p>Please review the clarity, length and level as well as the content. You can comment on any passage, leave a general note after each lesson, or open the Content bank to see source material and possible additions. Text is saved locally while you type; click <b>Save note</b> to submit it. Saved submissions enter the shared archive as separate records, so later edits do not erase earlier feedback.</p>
+              <div class="review-guidance-status"><span class="review-status-dot" aria-hidden="true"></span><span data-review-status-title>Saved on this device</span><span aria-hidden="true">·</span><span data-review-status-detail>Waiting for status.</span></div>
+            </div>
+          </aside>
           <div class="course-shell">
             <nav class="course-nav" aria-label="Week 1 lessons"><h2>Week 1</h2>${nav}</nav>
             <main class="course-main"><article class="course-content">
@@ -666,7 +1283,11 @@
         state.note = field.value;
         localStorage.setItem('week1-personal-compass', state.note);
       }));
+      stage.querySelectorAll('[data-review-toggle]').forEach(button => button.addEventListener('click', () => setReviewMode(!reviewOn)));
+      stage.querySelectorAll('[data-content-bank-open]').forEach(button => button.addEventListener('click', openContentBank));
+      if (current === 1) prepareVisibleReviewTargets(sections[state.section[1]]);
       syncFields();
+      setReviewMode(reviewOn);
       updateReaderProgress();
     }
 
@@ -727,7 +1348,39 @@
     window.addEventListener('resize', moveHighlight);
     window.addEventListener('scroll', updateReaderProgress, { passive: true });
 
+    document.body.classList.toggle('review-access', Boolean(reviewAccessKey));
+    prepareContentBankTargets();
+    globalReviewComment.value = reviewState.globalComment || '';
+    globalReviewComment.addEventListener('input', () => {
+      reviewState.globalComment = globalReviewComment.value;
+      writeReviewState();
+    });
+    document.getElementById('saveGlobalReview').addEventListener('click', () => {
+      reviewState.globalComment = globalReviewComment.value.trim();
+      queueReviewEvent('general-comment-submitted', { globalComment: reviewState.globalComment });
+      writeReviewState();
+      void flushReviewOutbox();
+      showReviewToast('Overall comment saved locally and sent to the shared review archive.');
+    });
+    blockReviewComment.addEventListener('input', saveCurrentDraft);
+    blockReviewSuggestion.addEventListener('input', saveCurrentDraft);
+    document.getElementById('saveBlockReview').addEventListener('click', saveBlockReview);
+    document.getElementById('deleteBlockReview').addEventListener('click', deleteBlockReview);
+    document.getElementById('closeReviewModal').addEventListener('click', closeBlockReview);
+    document.getElementById('cancelBlockReview').addEventListener('click', closeBlockReview);
+    document.getElementById('closeContentBank').addEventListener('click', closeContentBank);
+    reviewModal.addEventListener('click', event => { if (event.target === reviewModal) closeBlockReview(); });
+    contentBankBackdrop.addEventListener('click', event => { if (event.target === contentBankBackdrop) closeContentBank(); });
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      if (reviewModal.classList.contains('is-open')) closeBlockReview();
+      else if (contentBankBackdrop.classList.contains('is-open')) closeContentBank();
+    });
+    window.addEventListener('online', () => void flushReviewOutbox());
+
     setActive(1);
+    renderReviewStatus();
+    void flushReviewOutbox();
     requestAnimationFrame(() => requestAnimationFrame(() => picker.setAttribute('data-ready', '')));
   </script>
 </body>
