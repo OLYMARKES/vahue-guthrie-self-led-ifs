@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Week 1 · Course lesson color preview</title>
+  <title>The Centrality of Self · Six-week course plan</title>
   <style>
     :root {
       --page: #f6f7f9;
@@ -24,6 +24,7 @@
       --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --measure: 70ch;
       --topbar: 58px;
+      --weekbar: 68px;
       --sidebar-width: 260px;
       --lesson-width: 760px;
     }
@@ -162,7 +163,39 @@
     .course-top { height: var(--topbar); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 1.5rem; background: var(--surface); border-bottom: 1px solid var(--line); }
     .course-state { display: flex; align-items: center; gap: .8rem; color: var(--muted); font-size: .82rem; }
     .course-state i { display: block; width: 90px; height: 4px; border-radius: 999px; background: linear-gradient(to right, var(--accent) var(--progress), var(--line) var(--progress)); }
-    .course-shell { min-height: calc(100vh - var(--topbar)); display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
+    .week-tabs {
+      position: sticky;
+      top: var(--topbar);
+      z-index: 25;
+      min-height: var(--weekbar);
+      display: flex;
+      align-items: stretch;
+      gap: .2rem;
+      padding: .45rem max(1rem, calc((100vw - 1500px) / 2));
+      overflow-x: auto;
+      background: rgba(255,255,255,.98);
+      border-bottom: 1px solid var(--line);
+      scrollbar-width: none;
+    }
+    .week-tabs::-webkit-scrollbar { display: none; }
+    .week-tab {
+      flex: 1 0 138px;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      align-items: center;
+      gap: .55rem;
+      padding: .55rem .7rem;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--muted);
+      text-align: left;
+    }
+    .week-tab:hover { background: var(--surface-subtle); color: var(--ink); }
+    .week-tab[aria-current="page"] { background: var(--section-soft); color: var(--ink); }
+    .week-tab-index { font-size: .73rem; font-variant-numeric: tabular-nums; color: var(--muted); }
+    .week-tab-title { overflow: hidden; font-size: .78rem; font-weight: 650; line-height: 1.25; text-overflow: ellipsis; }
+    .course-shell { min-height: calc(100vh - var(--topbar) - var(--weekbar)); display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
     .course-nav { background: var(--surface-subtle); border-right: 1px solid var(--line); padding: 1.5rem 1rem 7rem; }
     .course-nav h2 { font-size: 1rem; margin: .25rem .75rem 1.2rem; letter-spacing: -.01em; }
     .course-nav button { width: 100%; display: grid; grid-template-columns: 24px 1fr; gap: .65rem; align-items: start; text-align: left; padding: .72rem .75rem; border-radius: 9px; background: transparent; color: var(--ink-soft); font-size: .88rem; }
@@ -175,6 +208,10 @@
     .course-content h1 { font-size: clamp(1.85rem, 3vw, 2.55rem); }
     .course-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 2.5rem; margin-top: 3rem; border-top: 1px solid var(--line); }
     .course-footer .buttons { display: flex; gap: .65rem; }
+    .phase-plan { list-style: none; padding: 0; margin: 1.5rem 0 2rem; border-top: 1px solid var(--line); }
+    .phase-plan li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 1.25rem; padding: .85rem 0; margin: 0; border-bottom: 1px solid var(--line); }
+    .phase-plan strong { font-size: .9rem; }
+    .phase-plan span { color: var(--ink-soft); }
 
     /* Variant 3: one step at a time */
     .guided-page { min-height: 100vh; background: var(--surface); }
@@ -201,7 +238,9 @@
       .reader-toc a { white-space: nowrap; padding: .5rem .7rem; border: 1px solid var(--line); border-radius: 8px; }
       .reader-article { padding-top: 2.5rem; }
       .course-shell { display: block; }
-      .course-nav { position: sticky; top: 60px; z-index: 15; display: flex; overflow-x: auto; gap: .35rem; padding: .65rem .75rem; border-right: 0; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+      .week-tabs { padding-inline: .65rem; }
+      .week-tab { flex-basis: 144px; }
+      .course-nav { position: sticky; top: calc(var(--topbar) + var(--weekbar)); z-index: 15; display: flex; overflow-x: auto; gap: .35rem; padding: .65rem .75rem; border-right: 0; border-bottom: 1px solid var(--line); scrollbar-width: none; }
       .course-nav h2 { display: none; }
       .course-nav button { width: auto; min-height: 44px; flex: 0 0 auto; display: block; padding: .55rem .75rem; white-space: nowrap; }
       .course-nav .nav-index { display: none; }
@@ -214,6 +253,8 @@
       .meta-row span + span::before { display: none; }
       .key-list li { display: block; }
       .key-list strong { display: block; margin-bottom: .3rem; }
+      .phase-plan li { display: block; }
+      .phase-plan strong { display: block; margin-bottom: .25rem; }
       .practice-head, .course-footer, .guided-actions-inner { align-items: flex-start; }
       .practice-steps li { grid-template-columns: 4.8rem 1fr; gap: .35rem .8rem; }
       .practice-steps p { grid-column: 1 / -1; }
@@ -359,7 +400,7 @@
     }
 
     @media (max-width: 820px) {
-      .course-nav { top: var(--topbar); }
+      .course-nav { top: calc(var(--topbar) + var(--weekbar)); }
       .course-nav button { grid-template-columns: 8px 1fr; align-items: center; }
       .course-nav .nav-colour { margin-top: 0; }
     }
@@ -670,13 +711,13 @@
     <aside class="content-bank" id="contentBank" aria-labelledby="contentBankTitle">
       <header class="bank-head">
         <div>
-          <div class="quiet" style="font-size:.76rem;margin-bottom:.2rem">Week 1 · internal review layer</div>
+          <div class="quiet" style="font-size:.76rem;margin-bottom:.2rem">Six-week course · internal review layer</div>
           <h2 id="contentBankTitle">Content bank</h2>
         </div>
         <button class="bank-close" id="closeContentBank" type="button" aria-label="Close content bank">×</button>
       </header>
       <div class="bank-body">
-        <p class="bank-intro">These are real sources and production options behind the participant lesson. They are <strong>not automatically part of the student version</strong>. Open any full candidate material to review the substance, then use <strong>Add to Week 1</strong> to place it into a specific lesson as a proposal. The participant text will not change until we accept and edit it.</p>
+        <p class="bank-intro">These are real sources and production options behind the participant course. They are <strong>not automatically part of the student version</strong>. Open any full candidate material to review the substance, then use <strong>Add to course</strong> to place it into a specific week and lesson as a proposal. The participant text will not change until we accept and edit it.</p>
 
         <section class="bank-section" aria-labelledby="bank-included-title">
           <h3 id="bank-included-title">Already represented in this draft</h3>
@@ -688,11 +729,11 @@
               <summary>Open full candidate material</summary>
               <div class="bank-material-body">
                 <h5>A wider operating system</h5>
-                <p>Most of us have learned to meet life through focused attention: analysing, planning, naming and trying to solve one thing at a time. Guthrie calls this OS 1.0. It is useful, but it can become narrow and effortful when we rely on it alone.</p>
+                <p>Most of us have learned to meet life through focused attention: analysing, planning, naming and trying to solve one thing at a time. Guthrie calls this OS 1.0. It is useful, but it can become overconcentrated and effortful when we rely on it alone.</p>
                 <p>OS 2.0 adds awareness. Attention can still focus, but it is held inside a wider field that also includes the body, the room, other people and what matters most. The point is not to discard thinking. It is to transcend and include it: focus remains available without having to carry the whole experience.</p>
                 <h5>The direction of the course</h5>
                 <p>This course is not asking participants to create a rare or permanent state. It is helping them notice a capacity that is already present, bring it from the background into the foreground, and gradually increase both the frequency and the duration of access to Self.</p>
-                <p>When that access narrows, parts language offers a simple doorway. “I am rushing” can become “A part of me is rushing.” The situation has not disappeared, but even a small amount of space may return. From there, the participant can relate to the experience rather than be completely defined by it.</p>
+                <p>When access becomes shallower, parts language offers a simple doorway. “I am rushing” can become “A part of me is rushing.” The situation has not disappeared, but even a small amount of space may return. From there, the participant can relate to the experience rather than be completely defined by it.</p>
                 <p class="bank-material-note">Possible placement: Lesson 1 as the course frame, or Lesson 2 as the bridge from attention to awareness.</p>
               </div>
             </details>
@@ -718,14 +759,14 @@
               </div>
             </details>
           </article>
-          <article class="bank-card" data-bank-id="quotes" data-review-label="Content bank — Guthrie quote bank" data-review-excerpt="Two short teaching anchors are used in the lesson; all direct quotes still need Guthrie’s approval for publication.">
-            <div class="bank-card-head"><h4>Guthrie quote bank</h4><span class="bank-tag included">2 quotes used</span></div>
-            <p>The page currently uses “background into the foreground” and “noticing a part” as short teaching anchors. Other quotes remain internal until approved.</p>
+          <article class="bank-card" data-bank-id="quotes" data-review-label="Content bank — Guthrie quote bank" data-review-excerpt="Direct quotes remain in the review bank until Guthrie approves the exact wording and placement.">
+            <div class="bank-card-head"><h4>Guthrie quote bank</h4><span class="bank-tag available">Approval pending</span></div>
+            <p>The participant lessons currently paraphrase these teaching ideas. Direct quotations remain internal until Guthrie approves the exact wording and placement.</p>
             <span class="bank-source">Source: curated quote bank and live transcripts</span>
             <details class="bank-material">
               <summary>Open full candidate material</summary>
               <div class="bank-material-body">
-                <h5>Teaching anchors already in the draft</h5>
+                <h5>Candidate teaching anchors</h5>
                 <p>“What we're doing is bringing something that's already present, but in the background, into the foreground.”</p>
                 <p>“Parts are really cool, because by noticing a part we're taking the first step to recovering access to Self.”</p>
                 <h5>Additional ideas to develop in Guthrie’s voice</h5>
@@ -735,7 +776,7 @@
                   <li>Parts language creates relationship: noticing a part is different from becoming the part.</li>
                   <li>Ground, core and field make relaxed focus possible.</li>
                 </ul>
-                <p class="bank-material-note">Use these as teaching anchors, not as a quote collage. Exact quotations beyond the two above still need Guthrie’s approval.</p>
+                <p class="bank-material-note">Use these as teaching anchors, not as a quote collage. Every direct quotation still needs Guthrie’s approval before participant publication.</p>
               </div>
             </details>
           </article>
@@ -781,20 +822,20 @@
               </div>
             </details>
           </article>
-          <article class="bank-card" data-bank-id="experiments" data-review-label="Content bank — short awareness experiments" data-review-excerpt="Peripheral vision/fingers, walking through seeing-hearing-body, and bowl-of-soup examples from the July 29 call.">
-            <div class="bank-card-head"><h4>Three short awareness experiments</h4><span class="bank-tag available">Available</span></div>
-            <p>Peripheral vision / fingers, walking through seeing–hearing–body, and the bowl-of-soup example. Any of these could become an optional experiment rather than more reading.</p>
+          <article class="bank-card" data-bank-id="experiments" data-review-label="Content bank — awareness experiments and release points" data-review-excerpt="Bowl of soup is reserved for the Week 1 live session; walking and peripheral vision appear only after Guthrie introduces them; the fingers variation is held back.">
+            <div class="bank-card-head"><h4>Awareness experiments and release points</h4><span class="bank-tag available">Placed by stage</span></div>
+            <p>The bowl-of-soup experiment belongs in the Week 1 live session with debrief. Walking and peripheral-vision practice appear only after Guthrie introduces them. The fingers variation is held back.</p>
             <span class="bank-source">Source: July 29 call exercise bank</span>
             <details class="bank-material">
               <summary>Open full candidate material</summary>
               <div class="bank-material-body">
-                <h5>1. Peripheral vision · 1–2 minutes</h5>
-                <p>Hold one hand to each side where both remain comfortable to see. Focus on one hand, then the other. Finally, soften the eyes enough to include both hands and the space between them. Notice whether the body or breath responds when the visual field widens.</p>
-                <h5>2. Three channels while walking · 3–4 minutes</h5>
+                <h5>1. Peripheral vision · after live, if introduced</h5>
+                <p>Soften the eyes and notice how much of the room can be included without strain. Compare a calm moment with an ordinary busy moment. The earlier fingers variation is not proposed for this course.</p>
+                <h5>2. Three channels while walking · after live</h5>
                 <p>In an ordinary, safe place, walk first with attention on seeing. Then let hearing become more prominent. Then notice sensations in the body. For the final minute, see whether all three channels can be present together without forcing equal attention.</p>
-                <h5>3. The bowl-of-soup test · 1–2 minutes</h5>
+                <h5>3. The bowl-of-soup test · live session only</h5>
                 <p>Imagine carrying a full bowl across a room, or try the experiment with an unbreakable cup in a safe environment. First notice what happens when attention clamps tightly onto the object. Then find ground, widen the field and allow a light focus on the object. Compare effort, stability and available awareness.</p>
-                <p class="bank-material-note">These are observation experiments, not tests to pass. Stop if the environment or the body does not feel safe enough.</p>
+                <p class="bank-material-note">Release rule: do not publish an experiment as independent participant practice until Guthrie has introduced it live. These are observations, not tests to pass.</p>
               </div>
             </details>
           </article>
@@ -844,7 +885,7 @@
         </section>
 
         <section class="bank-overall">
-          <label for="globalReviewComment">Your overall view of Week 1</label>
+          <label for="globalReviewComment">Your overall view of the six-week course</label>
           <textarea id="globalReviewComment" placeholder="What is essential, missing, too long, too advanced, or better moved to another week?"></textarea>
           <div class="review-save-row">
             <button class="review-save-button" id="saveGlobalReview" type="button">Save overall comment</button>
@@ -882,8 +923,8 @@
   <div class="review-toast" id="reviewToast" role="status" aria-live="polite"></div>
 
   <script>
-    const reviewStorageKey = 'guthrie-week-one-participant-review-v1';
-    const reviewDocumentId = 'guthrie-course-week-1-participant-preview-260807';
+    const reviewStorageKey = 'guthrie-six-week-participant-review-v1';
+    const reviewDocumentId = 'guthrie-course-six-week-participant-plan-260809';
     const reviewFormAction = 'https://docs.google.com/forms/d/e/1FAIpQLScfkG1bdk0D-OOnZjFGC_VtyJDiIRk7a41FOo3jlegPu_faHw/formResponse';
     const reviewFormEventField = 'entry.1292771604';
     const reviewFormPayloadField = 'entry.863961216';
@@ -1099,7 +1140,7 @@
       holder.appendChild(node);
     }
 
-    function prepareVisibleReviewTargets(section) {
+    function prepareVisibleReviewTargets(section, weekIndex = 0) {
       const copy = document.querySelector('.course-content .lesson-copy');
       if (!copy) return;
       [...copy.children].forEach((target, index) => {
@@ -1107,18 +1148,18 @@
         wrap.className = 'review-wrap';
         target.before(wrap);
         wrap.appendChild(target);
-        const id = `lesson-${section.id}-block-${String(index + 1).padStart(2, '0')}`;
+        const id = `${weekIndex === 0 ? '' : `week-${weekIndex + 1}-`}lesson-${section.id}-block-${String(index + 1).padStart(2, '0')}`;
         target.dataset.reviewId = id;
-        target.dataset.reviewLabel = `${section.nav} — ${targetTitle(target)}`;
+        target.dataset.reviewLabel = `Week ${weekIndex + 1} · ${section.nav} — ${targetTitle(target)}`;
         target.dataset.reviewExcerpt = targetExcerpt(target);
         wrap.appendChild(reviewButton(id, '+ Comment / suggest edit'));
         renderNoteForTarget(target);
       });
       const general = document.createElement('div');
       general.className = 'review-general';
-      general.dataset.reviewId = `lesson-${section.id}-general`;
-      general.dataset.reviewLabel = `${section.nav} — general comments`;
-      general.dataset.reviewExcerpt = `General comments about the ${section.nav} lesson: what is missing, unclear, too long, too advanced, or better moved.`;
+      general.dataset.reviewId = `${weekIndex === 0 ? '' : `week-${weekIndex + 1}-`}lesson-${section.id}-general`;
+      general.dataset.reviewLabel = `Week ${weekIndex + 1} · ${section.nav} — general comments`;
+      general.dataset.reviewExcerpt = `General comments about Week ${weekIndex + 1}, ${section.nav}: what is missing, unclear, too long, too advanced, or better moved.`;
       general.appendChild(reviewButton(general.dataset.reviewId, '+ General comments to this lesson', true));
       const proposals = document.createElement('section');
       proposals.className = 'content-proposals';
@@ -1151,9 +1192,9 @@
     }
 
     function transferLabel(sectionId) {
-      const index = sections.findIndex(section => section.id === sectionId);
-      if (index < 0) return 'Week 1';
-      return `Lesson ${index + 1} · ${sections[index].nav}`;
+      const match = allSections().find(item => item.section.id === sectionId);
+      if (!match) return 'Course plan';
+      return `Week ${match.weekIndex + 1} · Lesson ${match.sectionIndex + 1} · ${match.section.nav}`;
     }
 
     function renderContentBankTransfer(card) {
@@ -1163,7 +1204,7 @@
       card.querySelectorAll(':scope > .bank-transfer-editor,:scope > .bank-transfer-summary').forEach(node => node.remove());
       if (!button) return;
       button.classList.toggle('has-transfer', Boolean(transfer));
-      button.textContent = transfer ? 'Change placement' : 'Add to Week 1';
+      button.textContent = transfer ? 'Change placement' : 'Add to course';
       if (!transfer) return;
       const summary = document.createElement('div');
       summary.className = 'bank-transfer-summary';
@@ -1187,9 +1228,9 @@
       const editor = document.createElement('div');
       editor.className = 'bank-transfer-editor';
       editor.innerHTML = `
-        <label for="transfer-target-${escapeHtml(bankId)}">Place in the weekly plan</label>
+        <label for="transfer-target-${escapeHtml(bankId)}">Place in the course plan</label>
         <select id="transfer-target-${escapeHtml(bankId)}">
-          ${sections.map((section, index) => `<option value="${section.id}" ${section.id === transfer.targetSection ? 'selected' : ''}>Lesson ${index + 1} · ${escapeHtml(section.nav)}</option>`).join('')}
+          ${weeks.map((week, weekIndex) => `<optgroup label="Week ${weekIndex + 1} · ${escapeHtml(week.shortTitle)}">${week.sections.map((section, sectionIndex) => `<option value="${section.id}" ${section.id === transfer.targetSection ? 'selected' : ''}>Lesson ${sectionIndex + 1} · ${escapeHtml(section.nav)}</option>`).join('')}</optgroup>`).join('')}
         </select>
         <div class="transfer-note-field">
           <label for="transfer-note-${escapeHtml(bankId)}">Note for the revision <span class="quiet">(optional)</span></label>
@@ -1222,7 +1263,7 @@
       queueReviewEvent('content-transfer-submitted', { targetId: `content-bank-${bankId}`, transfer });
       writeReviewState();
       renderContentBankTransfer(card);
-      renderVisibleTransfers(sections[state.section[1]]);
+      renderVisibleTransfers(activeSections()[state.section[1]]);
       void flushReviewOutbox();
       showReviewToast(`${transfer.title} proposed for ${transfer.targetLabel}.`);
     }
@@ -1235,7 +1276,7 @@
       writeReviewState();
       const card = document.querySelector(`.bank-card[data-bank-id="${CSS.escape(bankId)}"]`);
       if (card) renderContentBankTransfer(card);
-      renderVisibleTransfers(sections[state.section[1]]);
+      renderVisibleTransfers(activeSections()[state.section[1]]);
       void flushReviewOutbox();
       showReviewToast('Proposal removed from the weekly plan; its submission remains in history.');
     }
@@ -1339,7 +1380,7 @@
       showReviewToast('Current note removed; the earlier submission remains in history.');
     }
 
-    const sections = [
+    const legacyWeekOneSections = [
       {
         id: 'start',
         nav: 'Start here',
@@ -1490,6 +1531,226 @@
       }
     ];
 
+    const weeks = [
+      {
+        id: 'week-1',
+        shortTitle: 'Meeting Self',
+        title: 'Meeting Self through awareness',
+        question: 'What changes when awareness comes forward?',
+        sections: [
+          {
+            id: 'start', nav: 'Start here', title: 'Meeting Self through awareness',
+            intro: 'Week 1 begins with one practical distinction: attention is not the same as awareness. You will test that difference and begin to recognise what access to Self may feel like for you.',
+            duration: '5 minutes',
+            body: `
+              <div class="meta-row"><span>Week 1 of 6</span><span>About 35 minutes before live</span><span>One 7-minute practice</span></div>
+              <div class="summary"><strong>By the end of this week</strong><p>You can notice the difference between concentrated attention and wider awareness, and recognise at least one personal sign of access to Self.</p></div>
+              <ul class="phase-plan">
+                <li><strong>Before live</strong><span>Read the foundations and try the fixed seven-minute home practice.</span></li>
+                <li><strong>Live session</strong><span>Experience Guthrie’s improvised four-part opening, one awareness experiment and one short demonstration.</span></li>
+                <li><strong>After live</strong><span>Repeat brief returns to awareness and use one simple parts-language doorway in ordinary life.</span></li>
+              </ul>
+              <h3>The larger journey</h3>
+              <p>Most of us meet pressure by thinking harder, planning better and concentrating longer. That equipment is useful. Eventually, more effort gives diminishing returns and can become counterproductive. This course adds another capacity: the wider knowing in which thought, body, feeling and relationship can all be included.</p>
+              <p>Guthrie sometimes describes this as moving from a thought-based operating system toward an awareness-based one. This is not an upgrade achieved by willpower. Focus stays available, but it becomes a tool held inside a wider field as we relax our exclusive reliance on thought.</p>
+            `
+          },
+          {
+            id: 'history', nav: 'A short history of IFS', title: 'Where IFS came from',
+            intro: 'IFS is best known as a therapeutic model, but its underlying map of the human psyche is useful far beyond the therapy room.',
+            duration: '5 minutes',
+            body: `
+              <p>Internal Family Systems was developed in the 1980s by American family therapist Richard Schwartz. Trained to see families as systems, he kept hearing people speak about their inner lives in the same way: one part wanted something while another part resisted it. He began applying systems thinking within a single person.</p>
+              <p>The result was a model of the human psyche built on two propositions: the mind is naturally multiple, and every person has access to Self — a core capacity able to relate to experience with clarity and care.</p>
+              <h3>Therapy model, language and practice</h3>
+              <p>IFS became widely known as a psychotherapy model. It is also a non-pathologising language for understanding inner conflict, a way of practising Self-leadership and a framework for relationships and systems. This course uses that educational and experiential layer. It is not psychotherapy or practitioner training.</p>
+              <p>Guthrie studied extensively with Richard Schwartz and later co-created and co-led <em>Coaching for Self-Leadership</em> through the IFS Institute. His approach keeps the IFS map while placing direct access to Self at the centre.</p>
+            `
+          },
+          {
+            id: 'ifs', nav: 'IFS in plain language', title: 'IFS in plain language',
+            intro: 'The model offers a humane way to understand different voices, reactions and intentions inside one person.',
+            duration: '6 minutes',
+            body: `
+              <h3>The mind is naturally multiple</h3>
+              <p>The part that wants to rest and the part that wants to finish are not evidence of a fault. Different inner positions are an ordinary part of being human.</p>
+              <h3>Parts are not defects</h3>
+              <p>A part may push, criticise, avoid or go numb. In IFS, even a costly strategy is understood as an attempt to help or protect. When a person has been hurt or threatened, parts may organise into protectors and younger hurting parts the protectors are trying to save.</p>
+              <h3>Self does not have to be built</h3>
+              <p>IFS holds that everyone has a core capacity that is whole and able to relate without force. Following Guthrie, this course also understands Self as <strong>awake awareness</strong>: the living capacity that can notice, include and relate holistically to what is happening.</p>
+              <ul class="key-list">
+                <li><strong>Access is a continuum</strong><span>A homeopathic amount can be enough for change to begin. This is not a pass-or-fail state.</span></li>
+                <li><strong>Self-leadership</strong><span>Enough access to Self that parts do not have to run the whole system and can collaborate for the good of that system.</span></li>
+                <li><strong>Parts language</strong><span>“A part of me is rushing” creates more relationship than “I am rushing”.</span></li>
+              </ul>
+            `
+          },
+          {
+            id: 'guthrie', nav: 'Guthrie’s approach', title: 'How Guthrie teaches',
+            intro: 'The course is not only an explanation of IFS. Its centre is the quality of presence Guthrie brings to the material and to the people in the room.',
+            duration: '5 minutes',
+            body: `
+              <p>Guthrie Sayen, PhD, PCC, is a Level 3-trained IFS practitioner. He co-created and co-led <em>Coaching for Self-Leadership</em> through the IFS Institute for more than a thousand participants and has studied extensively with Richard Schwartz.</p>
+              <ul class="key-list">
+                <li><strong>Experience before explanation</strong><span>Practice comes first; language is offered afterwards to name something already felt.</span></li>
+                <li><strong>Access, not perfection</strong><span>The question is not whether you are “in Self”, but how much access may be available now.</span></li>
+                <li><strong>No pressure to go deeper</strong><span>Force is not the method. Nothing here requires you to open something you are not ready to open.</span></li>
+              </ul>
+              <h3>Classic IFS and Awakened IFS</h3>
+              <p>Classic IFS often works from the bottom up, meeting parts one by one and helping them unblend so access to Self can emerge. Guthrie’s Awakened IFS also works from the top down: direct access to Self is invited first, then parts are met within that wider awareness. His spiritual amplification is simple and practical — Self as awake awareness, love as a universal solvent, and a shift from exclusive reliance on thought toward awareness.</p>
+              <p>During a live call, notice not only what Guthrie says but how he listens: unhurried, interested and without trying to make another person change. That quality of attention is part of the teaching.</p>
+            `
+          },
+          {
+            id: 'w1-before', nav: 'Before the live session', title: 'Prepare through direct experience',
+            intro: 'This fixed seven-minute sequence is a participant home aid. Guthrie’s live opening uses the same four building blocks, but his language and timing are improvised each week.',
+            duration: '10 minutes',
+            body: `
+              <ul class="key-list">
+                <li><strong>Concentrated attention</strong><span>Selects one thing. It is precise and useful, but necessarily excludes.</span></li>
+                <li><strong>Awareness</strong><span>Can include body, sound, space, mood and task at the same time.</span></li>
+                <li><strong>Relaxing</strong><span>Allows a wider knowing to come forward; this is not something we force by concentrating harder.</span></li>
+                <li><strong>Open to the field</strong><span>Let the room and the body remain present while attention rests lightly on one thing.</span></li>
+              </ul>
+              <div class="practice">
+                <div class="practice-head"><strong>Ground, core, field, focus</strong><span>About 7 minutes</span></div>
+                <ol class="practice-steps">
+                  <li><time>0:00–0:45</time><b>Arrive</b><p>Sit upright and comfortable. Let the spine support you without becoming rigid. Nothing has to be achieved.</p></li>
+                  <li><time>0:45–2:00</time><b>Ground</b><p>Feel your feet and the support beneath the body. Let gravity carry what it can carry.</p></li>
+                  <li><time>2:00–3:15</time><b>Core</b><p>Bring light attention to belly, chest, back and throat. Feel from within without changing anything.</p></li>
+                  <li><time>3:15–5:00</time><b>Field</b><p>Open to the field. Include sound, soft vision and the body together. Thoughts do not have to leave.</p></li>
+                  <li><time>5:00–6:10</time><b>Focus</b><p>Let attention touch one simple thing while ground, core and field remain present.</p></li>
+                  <li><time>6:10–7:00</time><b>Return</b><p>Notice how much access to Self may be available: none you can identify, a little, or more.</p></li>
+                </ol>
+                <div class="practice-foot"><p>Every invitation is optional. If you feel strain or disorientation, open your eyes, orient to the room and stop.</p></div>
+              </div>
+              <button class="complete-btn" data-action="practice-complete" aria-pressed="false" type="button">Mark practice as complete</button>
+              <p>Before the call, try the practice once. Bring one observation about effort versus effortlessness, or reaction versus a response that felt curious or compassionate. A brief glimpse is enough.</p>
+            `
+          },
+          {
+            id: 'w1-live', nav: 'Live session', title: 'What happens in the live session',
+            intro: 'The live work is deliberately responsive. It is not a script for participants to memorise or reproduce on one another.',
+            duration: '90-minute session',
+            body: `
+              <ol class="phase-plan">
+                <li><strong>Arrive</strong><span>Guthrie leads ground, core, field and focus in language shaped to the room. The four building blocks stay; their order, emphasis and length may vary.</span></li>
+                <li><strong>Teach</strong><span>A concise orientation to attention, awareness and access to Self, followed by questions from direct experience.</span></li>
+                <li><strong>Experience</strong><span>One “bowl of soup” awareness experiment, then a full group debrief. It is introduced here before appearing in the after-live material.</span></li>
+                <li><strong>Demonstrate</strong><span>A short live demonstration with whatever part is available and safe to meet at surface level. Guthrie may have a brief conversation with the part and ends with appreciation.</span></li>
+                <li><strong>Integrate</strong><span>Debrief, questions and one small invitation to carry into ordinary life.</span></li>
+              </ol>
+              <div class="summary"><strong>What not to rehearse</strong><p>Guthrie’s live presencing is improvisational. Participants are learning the four building blocks and the quality of attention behind them, not a fixed sequence of lines.</p></div>
+            `
+          },
+          {
+            id: 'w1-after', nav: 'After the live session', title: 'Bring awareness into ordinary life',
+            intro: 'After the live introduction, short returns help recognition become familiar. Repeat what helps; there is no need to complete a list.',
+            duration: '5–10 minutes a day',
+            body: `
+              <ol>
+                <li>Repeat the seven-minute home practice two or three times.</li>
+                <li>Once a day, soften concentrated attention and open to the field for three breaths.</li>
+                <li>Try the walking version introduced on the call: seeing, hearing, body, then all three together.</li>
+                <li>If Guthrie introduced peripheral vision in the session, test it once while calm and once while busy.</li>
+                <li>With a present but not overwhelming reaction, say “A part of me…” and notice whether curiosity or compassion becomes even slightly more available.</li>
+              </ol>
+              <p>The aim is not one dramatic experience. A brief glimpse, repeated, gradually builds recognition.</p>
+              <div class="prompt">
+                <label for="week-note">Your personal compass</label>
+                <textarea id="week-note" data-note placeholder="Access to Self may feel like…\nLess access may feel like…\nWhat supports a little more access is…"></textarea>
+                <small>Your note is saved in this browser.</small>
+              </div>
+            `
+          },
+          {
+            id: 'support', nav: 'Boundaries & glossary', title: 'Boundaries, support and key words',
+            intro: 'The boundary is part of the method: Week 1 is about recognition, not depth work.',
+            duration: '5 minutes',
+            body: `
+              <div class="safety"><h3>If a practice becomes too much</h3><ol><li>Stop. You do not need a reason.</li><li>Open your eyes and name five things you can see.</li><li>Feel your feet and the support beneath you.</li><li>Stand, move, drink water or leave the material for the day.</li><li>Contact someone you trust if support would help.</li></ol><p>This course is educational. It is not psychotherapy, crisis care or a substitute for individual support.</p></div>
+              <h3>What Week 1 does not include</h3>
+              <ul><li>No guiding another person through an inner process.</li><li>No searching for origins, memories or causes.</li><li>No work with young, hurt or vulnerable parts between participants.</li><li>No pressure to go deeper, share or produce an experience.</li></ul>
+              <h3>Key words</h3>
+              <ul class="key-list">
+                <li><strong>IFS</strong><span>A model of the human psyche, best known as a therapeutic model and also used as a language for Self-leadership.</span></li>
+                <li><strong>Attention</strong><span>Selective, concentrated focus on one thing.</span></li>
+                <li><strong>Awareness</strong><span>The wider field in which experience appears.</span></li>
+                <li><strong>Self</strong><span>The innate core of the IFS system; also understood here as awake, relational awareness.</span></li>
+                <li><strong>Part</strong><span>An inner position with its own feeling, view or protective intention.</span></li>
+                <li><strong>Access to Self</strong><span>A continuum, not a pass-or-fail state.</span></li>
+              </ul>
+            `
+          }
+        ]
+      },
+      {
+        id: 'week-2', shortTitle: 'Parts language', title: 'Learning the language of parts', question: 'Can I notice a part without becoming it?',
+        sections: [
+          { id:'w2-start', nav:'Week overview', title:'Learning the language of parts', intro:'Week 2 makes inner multiplicity practical. The goal is not to analyse every reaction, but to recognise a part and create enough relationship to stay present.', duration:'5 minutes', body:`
+            <div class="summary"><strong>By the end of this week</strong><p>You can use “A part of me…” with one everyday reaction and notice whether it creates even a little space.</p></div>
+            <ul class="phase-plan"><li><strong>Before live</strong><span>Learn the basic map: parts are natural, good in intention and capable of relationship.</span></li><li><strong>Live session</strong><span>Practise moving from blending to noticing through teaching, demonstration and debrief.</span></li><li><strong>After live</strong><span>Use parts language in ordinary moments and begin a simple parts journal.</span></li></ul>
+          `},
+          { id:'w2-before', nav:'Before the live session', title:'Multiplicity without pathology', intro:'You do not need a complete map of your inner system to begin. Start with what is already easy to notice.', duration:'10 minutes', body:`
+            <p>In IFS, the mind is naturally multiple. A part may carry an emotion, belief, impulse, body pattern or way of seeing the world. It is not a defect and it is not the whole of you.</p>
+            <ul class="key-list"><li><strong>Parts are people</strong><span>Meet a part as a someone with a point of view, not an object to remove.</span></li><li><strong>All parts are good</strong><span>The strategy may be costly, but the underlying intention is protective.</span></li><li><strong>Blending</strong><span>A part temporarily feels like the whole “me”.</span></li><li><strong>Unblending</strong><span>Enough space to notice and relate to the part without exiling it.</span></li></ul>
+            <h3>A three-breath doorway</h3><p>Ground for one breath, feel the body for one breath, then say: “A part of me is…” Ask only, “How do I feel toward this part?” Do not look for a memory or an explanation.</p>
+          `},
+          { id:'w2-live', nav:'Live session', title:'From becoming a part to noticing it', intro:'The live session turns a useful sentence into a felt shift in relationship.', duration:'90-minute session', body:`
+            <ol class="phase-plan"><li><strong>Arrive</strong><span>Guthrie improvises with ground, core, field and focus.</span></li><li><strong>Teach</strong><span>Natural multiplicity, parts as people, blending and the good intention beneath protective strategies.</span></li><li><strong>Demonstrate</strong><span>A surface-level example of moving from “I am…” to “A part of me…”, then checking the quality of relationship.</span></li><li><strong>Practise</strong><span>Individual reflection with optional sharing; no one guides another person.</span></li><li><strong>Debrief</strong><span>Questions about what created space and what increased pressure.</span></li></ol>
+          `},
+          { id:'w2-after', nav:'After the live session', title:'Use parts language in real life', intro:'Small, accurate noticing is more useful than a perfect inner map.', duration:'5 minutes a day', body:`
+            <ol><li>Once a day, complete: “A part of me is…”</li><li>Write what the part seems to want you to know, without correcting it.</li><li>Notice your feeling toward the part: curious, compassionate, afraid, annoyed, blank or something else.</li><li>If another part reacts, name that second part too.</li></ol>
+            <div class="prompt"><label>One part I can recognise</label><textarea placeholder="A part of me…\nIt seems to be trying to…\nWhen I notice it, I feel…"></textarea><small>Keep the example current and low-intensity.</small></div>
+          `},
+          { id:'w2-boundary', nav:'Boundaries & keep with you', title:'Speak on behalf of a part', intro:'Parts language supports relationship only when it does not become a diagnosis or a way to control someone else.', duration:'4 minutes', body:`
+            <ul class="key-list"><li><strong>Speak for yourself</strong><span>“A part of me is afraid” rather than “You make me afraid”.</span></li><li><strong>Do not diagnose</strong><span>Do not name or interpret another person’s parts.</span></li><li><strong>Do not guide</strong><span>Course partners listen; they do not lead inner work.</span></li></ul>
+            <div class="summary"><strong>Keep with you</strong><p>A part is something you can be in relationship with. Noticing it is already the beginning of unblending.</p></div>
+          `}
+        ]
+      },
+      {
+        id:'week-3', shortTitle:'Loving gaze', title:'The loving gaze of Self', question:'What happens when Self looks at a part with love?',
+        sections:[
+          { id:'w3-start', nav:'Week overview', title:'The loving gaze of Self', intro:'Week 3 shifts the emphasis from identifying a part to the quality of relationship that meets it.', duration:'5 minutes', body:`<div class="summary"><strong>By the end of this week</strong><p>You can recognise one quality of Self that becomes available when you stop trying to make a part change.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Meet the familiar qualities of Self as signals, not a performance checklist.</span></li><li><strong>Live session</strong><span>Experience the difference between force and a loving, interested gaze.</span></li><li><strong>After live</strong><span>Offer a few minutes of curiosity or compassion to one present, manageable part.</span></li></ul>`},
+          { id:'w3-before', nav:'Before the live session', title:'Self qualities are signs, not requirements', intro:'Calm is one possible signal of access. It is not the entrance fee.', duration:'10 minutes', body:`<p>IFS often names eight qualities associated with Self: calm, curiosity, clarity, compassion, confidence, courage, creativity and connectedness. They describe ways access may appear; they are not a checklist to manufacture.</p><p>A quieter sign may be enough: one percent more space, an easier breath, less urgency, or genuine interest in what a part is trying to do.</p><h3>Prepare one example</h3><p>Choose a part that is present but not overwhelming. Notice what happens when you replace “How do I fix this?” with “Can I become interested in this?”</p>`},
+          { id:'w3-live', nav:'Live session', title:'Force and love feel different', intro:'The session explores relationship as the active ingredient, with direct experience before explanation.', duration:'90-minute session', body:`<ol class="phase-plan"><li><strong>Arrive</strong><span>Four building blocks of Presence, improvised for this group.</span></li><li><strong>Teach</strong><span>Self qualities, the loving gaze and the difference between care and an agenda to change.</span></li><li><strong>Demonstrate</strong><span>Guthrie meets an available part with curiosity and compassion, without pushing for depth.</span></li><li><strong>Experience</strong><span>Participants test one small shift in how they look toward a part.</span></li><li><strong>Debrief</strong><span>What softened, what resisted and what felt performative?</span></li></ol>`},
+          { id:'w3-after', nav:'After the live session', title:'Practise the quality of relationship', intro:'The practice is not to feel loving on command. It is to notice honestly what is available and stay in relationship.', duration:'5 minutes a day', body:`<ol><li>Ground, core, field and focus.</li><li>Notice one present, manageable part.</li><li>Ask, “How do I feel toward this part?”</li><li>If curiosity or compassion is available, let the part receive it for three breaths.</li><li>If another reaction appears, thank it for showing itself and stop there.</li></ol>`},
+          { id:'w3-boundary', nav:'Boundaries & keep with you', title:'Love does not force access', intro:'A loving gaze includes protection, reluctance and “not now”.', duration:'4 minutes', body:`<div class="safety"><h3>Stay within capacity</h3><p>Do not choose the most painful material to prove the practice works. If a part does not want attention, respect that response and return to the room.</p></div><div class="summary"><strong>Keep with you</strong><p>The relationship changes before the part has to change. Curiosity without an agenda is already meaningful.</p></div>`}
+        ]
+      },
+      {
+        id:'week-4', shortTitle:'Protectors', title:'Meeting protectors with gratitude', question:'What is this protector trying to protect?',
+        sections:[
+          { id:'w4-start', nav:'Week overview', title:'Meeting protectors with gratitude', intro:'Week 4 treats protective strategies as intelligent responses with a history and a good intention.', duration:'5 minutes', body:`<div class="summary"><strong>By the end of this week</strong><p>You can recognise one everyday protector and approach it with gratitude, compassion and respect for its pace.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Learn a simple map of managers, firefighters and the vulnerable material they protect.</span></li><li><strong>Live session</strong><span>Watch Guthrie meet protection without arguing with it.</span></li><li><strong>After live</strong><span>Practise appreciation and ask what a protector wants you to understand.</span></li></ul>`},
+          { id:'w4-before', nav:'Before the live session', title:'Protection has an intention', intro:'The goal is not to approve every behaviour. It is to understand what the system is trying to prevent.', duration:'10 minutes', body:`<ul class="key-list"><li><strong>Managers</strong><span>Try to prevent pain through planning, control, perfection, vigilance or pleasing.</span></li><li><strong>Firefighters</strong><span>React quickly when pain breaks through, using distraction, numbing, anger or escape.</span></li><li><strong>Vulnerable parts</strong><span>Carry younger hurt, fear, shame, loneliness or unmet need.</span></li></ul><p>Choose one mild protective pattern. Ask: “What does this part fear would happen if it stopped?” You do not need an answer before the live session.</p>`},
+          { id:'w4-live', nav:'Live session', title:'Meet the protector before the problem', intro:'The live work demonstrates that gratitude and pacing are practical, not sentimental.', duration:'90-minute session', body:`<ol class="phase-plan"><li><strong>Arrive</strong><span>Four building blocks of Presence.</span></li><li><strong>Teach</strong><span>Managers, firefighters, good intentions and why protectors resist pressure.</span></li><li><strong>Demonstrate</strong><span>Guthrie acknowledges an available protector, checks how the person feels toward it and ends with appreciation.</span></li><li><strong>Reflect</strong><span>Participants notice the difference between understanding a strategy and approving its effects.</span></li><li><strong>Debrief</strong><span>What helped the protector feel less opposed?</span></li></ol>`},
+          { id:'w4-after', nav:'After the live session', title:'Build trust through appreciation', intro:'A protector may need consistency more than insight.', duration:'5 minutes a day', body:`<ol><li>Name one protective response as “a part of me”.</li><li>Thank it for trying to help, even if you dislike its method.</li><li>Ask: “What would you like me to understand?”</li><li>Listen without promising change.</li><li>Finish by orienting to the room and appreciating the part for its time.</li></ol>`},
+          { id:'w4-boundary', nav:'Boundaries & keep with you', title:'Respect pace and permission', intro:'Protection is information about capacity.', duration:'4 minutes', body:`<div class="safety"><h3>Do not push past protection</h3><p>If pressure, blankness, panic or strong resistance increases, stop. Return to ground, core and field. Respecting “not now” is part of Self-leadership.</p></div><div class="summary"><strong>Keep with you</strong><p>There are no bad parts. A protector’s strategy can be costly while its intention remains worthy of gratitude.</p></div>`}
+        ]
+      },
+      {
+        id:'week-5', shortTitle:'Vulnerability', title:'Vulnerable parts without forcing depth', question:'How do we respect vulnerable material without pushing it open?',
+        sections:[
+          { id:'w5-start', nav:'Week overview', title:'Vulnerable parts without forcing depth', intro:'Week 5 teaches recognition, tenderness and support planning. It does not ask participants to conduct exile work.', duration:'5 minutes', body:`<div class="summary"><strong>By the end of this week</strong><p>You can recognise signs of vulnerable material, respect the protectors around it and choose support instead of forcing depth.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Understand vulnerability and prepare a personal support map.</span></li><li><strong>Live session</strong><span>Learn how Guthrie orients toward tenderness while keeping the work within capacity.</span></li><li><strong>After live</strong><span>Practise recognising, grounding and choosing an appropriate next step.</span></li></ul>`},
+          { id:'w5-before', nav:'Before the live session', title:'Tenderness is not an assignment', intro:'Vulnerable parts may carry young hurt, shame, fear, loneliness or unmet need. Protectors often organise around keeping that pain out of awareness.', duration:'10 minutes', body:`<p>Witnessing is an important IFS process, but this course introduces it as a concept rather than asking participants to take one another into deep memory work. The first skill is recognising when vulnerability is near and responding without forcing.</p><h3>Your support map</h3><ul><li>Three signs that you are within capacity.</li><li>Three signs that you are becoming overwhelmed or shut down.</li><li>Two people or professional supports you can contact.</li><li>One reliable way to orient to the present.</li></ul>`},
+          { id:'w5-live', nav:'Live session', title:'Stay close without pushing open', intro:'The live session models tenderness, protector respect and clear stopping points.', duration:'90-minute session', body:`<ol class="phase-plan"><li><strong>Arrive</strong><span>Four building blocks of Presence with extra emphasis on support and orientation.</span></li><li><strong>Teach</strong><span>Vulnerable parts, the protectors around them and witnessing as an IFS concept.</span></li><li><strong>Demonstrate</strong><span>A contained orientation to vulnerable material only if appropriate, with protector consent and explicit choice.</span></li><li><strong>Plan</strong><span>Participants refine their support map; there is no peer exile work.</span></li><li><strong>Debrief</strong><span>How do we recognise care, pressure and the need for more support?</span></li></ol>`},
+          { id:'w5-after', nav:'After the live session', title:'Recognise, orient, choose support', intro:'The integration practice is deliberately simple.', duration:'5 minutes a day', body:`<ol><li>Name tenderness without searching for its origin.</li><li>Feel the support beneath you and orient to the present room.</li><li>Notice any protector that wants distance and thank it.</li><li>Ask what is needed now: rest, movement, contact, professional support or stopping.</li><li>Take only the next safe step.</li></ol>`},
+          { id:'w5-boundary', nav:'Boundaries & keep with you', title:'Know when the course is not enough', intro:'Educational material cannot replace individual therapeutic or crisis support.', duration:'5 minutes', body:`<div class="safety"><h3>Pause and seek support</h3><p>Stop if practice brings flooding, disorientation, persistent shutdown, traumatic memory you cannot contain, or an urge to harm yourself or someone else. Contact an appropriate trusted or professional support. In an immediate crisis, use local emergency or crisis services.</p></div><div class="summary"><strong>Keep with you</strong><p>Respecting protection and choosing support are signs of Self-leadership, not failure.</p></div>`}
+        ]
+      },
+      {
+        id:'week-6', shortTitle:'Self-led life', title:'Self-led life and relationships', question:'How does this become a life practice?',
+        sections:[
+          { id:'w6-start', nav:'Week overview', title:'Self-led life and relationships', intro:'Week 6 gathers the course into a repeatable way of meeting work, conflict, decisions and connection.', duration:'5 minutes', body:`<div class="summary"><strong>By the end of this week</strong><p>You have a personal continuation plan and can use parts language and field awareness in one real relationship.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Review your markers of access, recurring parts and the practices that genuinely helped.</span></li><li><strong>Live session</strong><span>Bring Self-leadership into relationship and integrate the six-week arc.</span></li><li><strong>After live</strong><span>Choose a sustainable practice, a relational experiment and a support pathway.</span></li></ul>`},
+          { id:'w6-before', nav:'Before the live session', title:'Review what has become usable', intro:'Integration begins with evidence from your own experience, not an ideal version of the course.', duration:'10 minutes', body:`<ol><li>Write three signs that you have more access to Self.</li><li>Name two parts you now recognise more quickly.</li><li>Choose one practice that reliably creates a little more space.</li><li>Recall one relationship in which speaking on behalf of a part could help.</li></ol><p>Field awareness in relationship means staying aware of your body, the other person and the wider situation while focus moves between them.</p>`},
+          { id:'w6-live', nav:'Live session', title:'Self-leadership in a shared field', intro:'The final live session moves from individual recognition to relationship and continuation.', duration:'90-minute session', body:`<ol class="phase-plan"><li><strong>Arrive</strong><span>Four building blocks of Presence, revisiting the full course arc.</span></li><li><strong>Teach</strong><span>Internal and external systems, relational parts language and enough Self access for parts to collaborate.</span></li><li><strong>Demonstrate</strong><span>A current, contained relational example: noticing a part, opening to the field and speaking on its behalf.</span></li><li><strong>Integrate</strong><span>Participants identify what they will continue, what needs support and what belongs beyond this course.</span></li><li><strong>Close</strong><span>Questions, appreciation and a final return to the shared field.</span></li></ol>`},
+          { id:'w6-after', nav:'After the live session', title:'Make a continuation plan', intro:'A sustainable practice should be small enough to survive a difficult week.', duration:'15 minutes once', body:`<ul class="key-list"><li><strong>Daily</strong><span>One 60-second return to ground, core and field.</span></li><li><strong>Weekly</strong><span>One longer practice or written check-in with a recurring part.</span></li><li><strong>Relational</strong><span>One experiment speaking on behalf of a part without blaming or diagnosing.</span></li><li><strong>Support</strong><span>A clear choice of community, coaching, therapy or further study if needed.</span></li></ul><div class="prompt"><label>Your next month</label><textarea placeholder="The practice I will keep…\nThe relationship where I will experiment…\nThe support I can use…"></textarea><small>Choose consistency over ambition.</small></div>`},
+          { id:'w6-boundary', nav:'Boundaries & keep with you', title:'Completion is a beginning', intro:'Six weeks can build recognition and language. It cannot complete every process or confer practitioner competence.', duration:'4 minutes', body:`<ul><li>This course does not certify you to guide IFS work.</li><li>Do not use parts language to diagnose or override another person.</li><li>Deep or persistent material deserves appropriate individual support.</li><li>Returning to one simple practice is a valid continuation path.</li></ul><div class="summary"><strong>Keep with you</strong><p>Self-led does not mean part-free. It means enough access to Self that parts can be heard, valued and invited into collaboration.</p></div>`}
+        ]
+      }
+    ];
+
     const sectionThemes = [
       { accent: '#315fcb', deep: '#244b9a', soft: '#f1f5fd', line: '#d7e2f7' },
       { accent: '#315fcb', deep: '#244b9a', soft: '#f1f5fd', line: '#d7e2f7' },
@@ -1500,7 +1761,15 @@
       { accent: '#94611f', deep: '#754b17', soft: '#fbf6ed', line: '#eee0c8' }
     ];
 
+    const sections = weeks[0].sections;
+    const allSections = () => weeks.flatMap((week, weekIndex) => week.sections.map((section, sectionIndex) => ({ week, weekIndex, section, sectionIndex })));
+    const activeWeek = () => weeks[state.week];
+    const activeSections = () => activeWeek().sections;
+    const requestedWeek = Number(new URLSearchParams(location.search).get('week') || 1) - 1;
+    const initialWeek = Number.isFinite(requestedWeek) ? Math.max(0, Math.min(weeks.length - 1, requestedWeek)) : 0;
+
     const state = {
+      week: initialWeek,
       section: [0, 0, 0],
       practiceComplete: localStorage.getItem('week1-practice-complete') === 'true',
       note: localStorage.getItem('week1-personal-compass') || ''
@@ -1532,39 +1801,51 @@
 
     function renderCourse() {
       const i = state.section[1];
-      const s = sections[i];
-      const theme = sectionThemes[i];
-      const nav = sections.map((item, j) => `
-        <button type="button" data-section="${j}" style="--nav-accent:${sectionThemes[j].accent};--nav-soft:${sectionThemes[j].soft};--nav-line:${sectionThemes[j].line}" ${j === i ? 'aria-current="step"' : ''}>
-          <span class="nav-colour" aria-hidden="true"></span><span class="nav-index">${String(j + 1).padStart(2, '0')}</span><span>${item.nav}</span>
+      const week = activeWeek();
+      const weekSections = activeSections();
+      const s = weekSections[i];
+      const theme = sectionThemes[(state.week + i) % sectionThemes.length];
+      const weekNav = weeks.map((item, j) => `
+        <button class="week-tab" type="button" data-week="${j}" ${j === state.week ? 'aria-current="page"' : ''} title="Week ${j + 1}: ${item.title}">
+          <span class="week-tab-index">${String(j + 1).padStart(2, '0')}</span><span class="week-tab-title">${item.shortTitle}</span>
         </button>`).join('');
+      const nav = weekSections.map((item, j) => {
+        const navTheme = sectionThemes[(state.week + j) % sectionThemes.length];
+        return `
+        <button type="button" data-section="${j}" style="--nav-accent:${navTheme.accent};--nav-soft:${navTheme.soft};--nav-line:${navTheme.line}" ${j === i ? 'aria-current="step"' : ''}>
+          <span class="nav-colour" aria-hidden="true" style="--nav-accent:${navTheme.accent}"></span><span class="nav-index">${String(j + 1).padStart(2, '0')}</span><span>${item.nav}</span>
+        </button>`;
+      }).join('');
+      const previousWeek = state.week > 0 ? weeks[state.week - 1] : null;
+      const nextWeek = state.week < weeks.length - 1 ? weeks[state.week + 1] : null;
       return `
         <div class="course-view" style="--section-accent:${theme.accent};--section-accent-deep:${theme.deep};--section-soft:${theme.soft};--section-line:${theme.line}">
           <header class="course-top">
-            <div class="product-mark"><strong>The Centrality of Self</strong><span> · Week 1</span></div>
+            <div class="product-mark"><strong>The Centrality of Self</strong><span> · Week ${state.week + 1}</span></div>
             <div class="course-top-actions">
               <button class="review-top-button review-toggle-button" type="button" data-review-toggle aria-pressed="${reviewOn}">Review <span class="review-count" data-review-count>0</span></button>
               <button class="review-top-button" type="button" data-content-bank-open><span class="review-desktop-label">Content bank</span><span class="review-mobile-label">Sources</span></button>
-              <div class="course-state"><span>${i + 1} of ${sections.length}</span><i style="--progress:${((i + 1) / sections.length) * 100}%"></i></div>
+              <div class="course-state"><span>Week ${state.week + 1} · ${i + 1} of ${weekSections.length}</span><i style="--progress:${((i + 1) / weekSections.length) * 100}%"></i></div>
             </div>
           </header>
+          <nav class="week-tabs" aria-label="Six-week course plan">${weekNav}</nav>
           <aside class="review-guidance" aria-label="Note for Guthrie">
             <div class="review-guidance-inner">
-              <strong>Guthrie — this is a participant-facing Week 1 prototype, not final copy.</strong>
-              <p>Please review the clarity, length and level as well as the content. You can comment on any passage, leave a general note after each lesson, or open the Content bank to see source material and possible additions. Text is saved locally while you type; click <b>Save note</b> to submit it. Saved submissions enter the shared archive as separate records, so later edits do not erase earlier feedback.</p>
+              <strong>Guthrie — this is the participant-facing six-week course plan, not final copy.</strong>
+              <p>Week 1 is the most developed; Weeks 2–6 show the proposed learning arc and the separation between before-live material, the live session and after-live integration. You can comment on any passage, leave a general note after each lesson, or use the Content bank to propose source material for any week. Text is saved locally while you type; click <b>Save note</b> to submit it. Each saved submission remains a separate record, so later edits do not erase earlier feedback.</p>
               <div class="review-guidance-status"><span class="review-status-dot" aria-hidden="true"></span><span data-review-status-title>Saved on this device</span><span aria-hidden="true">·</span><span data-review-status-detail>Waiting for status.</span></div>
             </div>
           </aside>
           <div class="course-shell">
-            <nav class="course-nav" aria-label="Week 1 lessons"><h2>Week 1</h2>${nav}</nav>
+            <nav class="course-nav" aria-label="Week ${state.week + 1} lessons"><h2>Week ${state.week + 1}</h2>${nav}</nav>
             <main class="course-main"><article class="course-content">
-              <header><div class="meta-row"><span>Lesson ${i + 1}</span><span>${i === 4 ? '10 minutes' : '4–6 minutes'}</span></div></header>
+              <header><div class="meta-row"><span>Week ${state.week + 1} of 6</span><span>Lesson ${i + 1}</span><span>${s.duration || '4–6 minutes'}</span></div></header>
               ${articleContent(s)}
               <footer class="course-footer">
-                <span class="quiet">Lesson ${i + 1} of ${sections.length}</span>
+                <span class="quiet">${i === weekSections.length - 1 && nextWeek ? `Next week: ${nextWeek.shortTitle}` : `Lesson ${i + 1} of ${weekSections.length}`}</span>
                 <div class="buttons">
-                  <button class="secondary-btn" type="button" data-step="prev" ${i === 0 ? 'disabled' : ''}>Previous</button>
-                  <button class="primary-btn" type="button" data-step="next" ${i === sections.length - 1 ? 'disabled' : ''}>Continue</button>
+                  <button class="secondary-btn" type="button" data-step="prev" ${i === 0 && !previousWeek ? 'disabled' : ''}>Previous</button>
+                  <button class="primary-btn" type="button" data-step="next" ${i === weekSections.length - 1 && !nextWeek ? 'disabled' : ''}>Continue</button>
                 </div>
               </footer>
             </article></main>
@@ -1617,6 +1898,16 @@
     }
 
     function attachInteractions() {
+      stage.querySelectorAll('[data-week]').forEach(button => button.addEventListener('click', () => {
+        state.week = Number(button.dataset.week);
+        state.section[1] = 0;
+        const url = new URL(location);
+        url.searchParams.set('week', state.week + 1);
+        history.replaceState(null, '', url);
+        focusAfterMount = true;
+        mount(current);
+        window.scrollTo(0, 0);
+      }));
       stage.querySelectorAll('[data-section]').forEach(button => button.addEventListener('click', () => {
         state.section[current] = Number(button.dataset.section);
         focusAfterMount = true;
@@ -1625,7 +1916,23 @@
       }));
       stage.querySelectorAll('[data-step]').forEach(button => button.addEventListener('click', () => {
         const delta = button.dataset.step === 'next' ? 1 : -1;
-        state.section[current] = Math.max(0, Math.min(sections.length - 1, state.section[current] + delta));
+        if (current === 1) {
+          const nextSection = state.section[current] + delta;
+          if (nextSection < 0 && state.week > 0) {
+            state.week -= 1;
+            state.section[current] = activeSections().length - 1;
+          } else if (nextSection >= activeSections().length && state.week < weeks.length - 1) {
+            state.week += 1;
+            state.section[current] = 0;
+          } else {
+            state.section[current] = Math.max(0, Math.min(activeSections().length - 1, nextSection));
+          }
+          const url = new URL(location);
+          url.searchParams.set('week', state.week + 1);
+          history.replaceState(null, '', url);
+        } else {
+          state.section[current] = Math.max(0, Math.min(sections.length - 1, state.section[current] + delta));
+        }
         focusAfterMount = true;
         mount(current);
         window.scrollTo(0, 0);
@@ -1641,7 +1948,7 @@
       }));
       stage.querySelectorAll('[data-review-toggle]').forEach(button => button.addEventListener('click', () => setReviewMode(!reviewOn)));
       stage.querySelectorAll('[data-content-bank-open]').forEach(button => button.addEventListener('click', openContentBank));
-      if (current === 1) prepareVisibleReviewTargets(sections[state.section[1]]);
+      if (current === 1) prepareVisibleReviewTargets(activeSections()[state.section[1]], state.week);
       syncFields();
       setReviewMode(reviewOn);
       updateReaderProgress();
@@ -1677,7 +1984,12 @@
             heading.setAttribute('tabindex', '-1');
             heading.focus({ preventScroll: true });
           }
-          document.getElementById('lessonStatus').textContent = `Lesson ${state.section[i] + 1} of ${sections.length}: ${sections[state.section[i]].nav}`;
+          if (i === 1) {
+            const currentSection = activeSections()[state.section[i]];
+            document.getElementById('lessonStatus').textContent = `Week ${state.week + 1}, lesson ${state.section[i] + 1} of ${activeSections().length}: ${currentSection.nav}`;
+          } else {
+            document.getElementById('lessonStatus').textContent = `Lesson ${state.section[i] + 1} of ${sections.length}: ${sections[state.section[i]].nav}`;
+          }
           focusAfterMount = false;
         }
       });
