@@ -20,6 +20,9 @@
       --success: #287a55;
       --success-soft: #edf8f2;
       --warning-soft: #f5f6f8;
+      --decision: #8a5a18;
+      --decision-soft: #fff8ec;
+      --decision-line: #ead5ae;
       --radius: 12px;
       --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --measure: 70ch;
@@ -539,6 +542,47 @@
     }
     .review-guidance strong { display: block; margin-bottom: .25rem; color: #674429; font-size: .9rem; }
     .review-guidance p { margin: 0; color: #725b49; font-size: .86rem; line-height: 1.55; }
+    .review-guidance p + p { margin-top: .5rem; }
+    .review-guidance-legend {
+      display: flex;
+      align-items: flex-start;
+      gap: .55rem;
+      margin-top: .75rem;
+      padding-top: .7rem;
+      border-top: 1px solid #eadccf;
+      color: #725b49;
+      font-size: .8rem;
+      line-height: 1.5;
+    }
+    .review-guidance-legend::before,
+    .review-decision::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      margin-top: .35rem;
+      border: 1px solid #b98232;
+      border-radius: 2px;
+      background: #f5c66f;
+      transform: rotate(45deg);
+    }
+    .review-guidance-legend strong { display: inline; margin: 0; color: #674429; font-size: inherit; }
+    .review-decision {
+      display: none;
+      grid-template-columns: auto 1fr;
+      gap: .7rem;
+      margin: 1.25rem 0 1.75rem;
+      padding: .9rem 1rem;
+      border: 1px solid var(--decision-line);
+      border-radius: 10px;
+      background: var(--decision-soft);
+      color: #62461f;
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+    body.review-on .review-decision { display: grid; }
+    .review-decision strong { display: block; margin-bottom: .14rem; color: var(--decision); font-size: .78rem; }
+    .review-decision p { margin: 0; color: #62461f; font-size: inherit; }
     .review-guidance-status { display: flex; align-items: center; gap: .45rem; margin-top: .7rem; color: #725b49; font-size: .78rem; }
     .review-status-dot { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: #b57a2c; }
     body.review-synced .review-status-dot { background: var(--success); }
@@ -657,6 +701,7 @@
     .bank-tag.available { background: #edf3ff; color: #315fcb; }
     .bank-tag.hold { background: #fbf3e8; color: #8a5b1e; }
     .bank-tag.author { background: #f3effa; color: #654b91; }
+    .bank-card:has(.bank-tag.hold) { border-color: var(--decision-line); background: #fffdf8; }
     .bank-card .review-action { margin-top: .7rem; width: 100%; }
     .bank-card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin-top: .75rem; }
     .bank-card-actions .review-action { margin: 0; }
@@ -894,7 +939,7 @@
         <section class="bank-section" aria-labelledby="bank-available-title">
           <h3 id="bank-available-title">Available to add or develop</h3>
           <article class="bank-card" data-bank-id="self-original" data-review-label="Content bank — Self — ORIGINAL" data-review-excerpt="Possible additions: Self as innate and undamaged; seat of awareness; 8 Cs; bodily and behavioural markers of access to Self.">
-            <div class="bank-card-head"><h4>Self — ORIGINAL</h4><span class="bank-tag available">Available</span></div>
+            <div class="bank-card-head"><h4>Self — ORIGINAL</h4><span class="bank-tag hold">Review scope</span></div>
             <p>Could add a little more theory: Self as innate and undamaged, Self as the seat of awareness, selected 8 Cs, and markers of access. The main decision is how much belongs in Week 1 without turning it into a theory lecture.</p>
             <span class="bank-source">Source: old course Week 4 handout · adapt, do not reproduce wholesale</span>
             <details class="bank-material">
@@ -911,7 +956,7 @@
             </details>
           </article>
           <article class="bank-card" data-bank-id="six-principles" data-review-label="Content bank — Six Organizing Principles of IFS" data-review-excerpt="Old Week 1 handout. Possible source for the light systems frame; practitioner-heavy teaching should not be transferred directly.">
-            <div class="bank-card-head"><h4>The Six Organizing Principles of IFS</h4><span class="bank-tag available">Select only</span></div>
+            <div class="bank-card-head"><h4>The Six Organizing Principles of IFS</h4><span class="bank-tag hold">Review scope</span></div>
             <p>The previous course’s Week 1 handout may supply one clear systems paragraph or visual map. It should not be compressed into the participant lesson as a protocol.</p>
             <span class="bank-source">Source: old Week 1 handout in English and Russian</span>
             <details class="bank-material">
@@ -1011,7 +1056,7 @@
             </details>
           </article>
           <article class="bank-card" data-bank-id="week-2-examples-practice" data-review-label="Content bank — Week 2 examples and reflection options" data-review-excerpt="Everyday examples, a one-situation parts map, a language ladder and optional reading for Week 2.">
-            <div class="bank-card-head"><h4>Examples and reflection options</h4><span class="bank-tag available">Optional depth</span></div>
+            <div class="bank-card-head"><h4>Examples and reflection options</h4><span class="bank-tag hold">Review scope</span></div>
             <p>Additional participant material for readers who want more examples without moving into practitioner technique.</p>
             <span class="bank-source">Sources: old-course handout and transcript; anonymised themes from course custdev; Richard Schwartz, “Introduction to IFS” and “No Bad Parts”</span>
             <details class="bank-material">
@@ -1137,7 +1182,7 @@
         <section class="bank-section" id="bank-week-5" aria-labelledby="bank-week-5-title">
           <h3 id="bank-week-5-title">Week 5 · Vulnerable parts</h3>
           <article class="bank-card" data-bank-id="vulnerable-parts-orientation" data-review-label="Content bank — vulnerable parts orientation" data-review-excerpt="A gentle explanation of vulnerable or exiled parts, their qualities and the protection organised around them.">
-            <div class="bank-card-head"><h4>Vulnerability inside the system</h4><span class="bank-tag included">Included</span></div>
+            <div class="bank-card-head"><h4>Vulnerability inside the system</h4><span class="bank-tag hold">Review scope</span></div>
             <p>A humane orientation that explains vulnerability without turning the week into self-directed trauma treatment.</p>
             <span class="bank-source">Sources: Guthrie Sayen, “Exiles”; IFS Institute model outline · participant adaptation only</span>
             <details class="bank-material">
@@ -1419,6 +1464,19 @@
       '+ Comment / suggest edit': '+ Комментарий / предложить правку',
       'General comments to this lesson': 'Общий комментарий к этому уроку',
       'Guthrie — this is the full participant-facing course reader draft.': 'Гэтри, это полный черновик учебника для участников.',
+      'Guthrie — this is an intentionally generous working draft, not a final participant pack.': 'Гэтри, это намеренно расширенный рабочий черновик, а не финальный комплект материалов для участников.',
+      'I have brought together as much relevant material as possible so we can see the full field before editing down. Some passages may still carry language or depth from the earlier practitioner course. That is deliberate at this review stage: it is easier to remove, simplify or move material than to reconstruct what was omitted. I am continuing to refine the reader and incorporate your comments as they arrive.': 'Я собрала здесь как можно больше релевантного материала, чтобы перед сокращением мы видели всю картину. В некоторых фрагментах ещё может сохраняться язык или глубина прежнего курса для практиков. На этом этапе ревью это сделано намеренно: убрать, упростить или перенести материал легче, чем заново восстанавливать то, что было упущено. Я продолжаю дорабатывать учебник и вносить ваши комментарии по мере их появления.',
+      'Amber Editorial decision notes mark material where I especially need your view: keep, simplify, move to a later week, or remove.': 'Янтарные метки «Редакторское решение» показывают места, где особенно важно ваше мнение: оставить, упростить, перенести на более позднюю неделю или удалить.',
+      'Amber Editorial decision notes': 'Янтарные метки «Редакторское решение»',
+      ' mark material where I especially need your view: keep, simplify, move to a later week, or remove.': ' показывают места, где особенно важно ваше мнение: оставить, упростить, перенести на более позднюю неделю или удалить.',
+      'You can comment on any passage, leave a general note after each lesson, or move a Content bank source to another lesson. Draft text is saved locally while you type; click Save note to submit it. Every submission remains a separate record, so later edits do not erase earlier feedback.': 'Вы можете прокомментировать любой фрагмент, оставить общий комментарий после каждого урока или перенести материал из Банка в выбранный урок. Черновик сохраняется в браузере по мере ввода; нажмите «Сохранить заметку», чтобы отправить комментарий. Каждая отправленная версия остаётся отдельной записью, поэтому новые правки не стирают предыдущие.',
+      'Editorial decision': 'Редакторское решение',
+      'Review scope': 'Проверить уместность',
+      'This distinction comes from more advanced teaching. Should it stay as a short participant safeguard, move later, or be removed?': 'Это различие пришло из более продвинутого материала. Стоит ли оставить его как короткий ориентир по безопасности, перенести на более поздний этап или удалить?',
+      'Please review whether vulnerable parts belong in this six-week introductory course at all, and, if so, whether Week 5 is the right place.': 'Пожалуйста, оцените, нужны ли уязвимые части в этом шестинедельном вводном курсе вообще и, если да, подходит ли для них пятая неделя.',
+      'This lesson names deeper IFS processes only to define the boundary. Please mark any terms that feel too clinical or practitioner-facing for participants.': 'Более глубокие процессы IFS названы здесь только для обозначения границы. Пожалуйста, отметьте термины, которые кажутся слишком клиническими или ориентированными на практиков.',
+      'The demonstration is intentionally bounded and optional. Please confirm whether it belongs in the live plan or should remain author-only.': 'Демонстрация намеренно ограничена и необязательна. Пожалуйста, подтвердите, стоит ли включать её в план живой встречи или оставить только в авторских заметках.',
+      'The glossary preserves formal terms participants may meet in books. Please mark any entries that should be removed from the participant edition.': 'Глоссарий сохраняет формальные термины, которые участники могут встретить в книгах. Пожалуйста, отметьте статьи, которые следует убрать из версии для участников.',
       'All six weeks now contain complete theory chapters, examples, live-session orientation, integration practices, boundaries, a full glossary and a source library. The Content bank preserves additional adapted material and author-only safety notes. You can comment on any passage, leave a general note after each lesson, or move a Content bank source to another lesson. Text is saved locally while you type; click ': 'Все шесть недель включают полноценные теоретические главы, примеры, подготовку к живой встрече, практики интеграции, границы применения, полный глоссарий и библиотеку источников. В Банке материалов собраны дополнительные адаптированные фрагменты и авторские заметки по безопасности. Вы можете прокомментировать любой фрагмент, оставить общий комментарий после каждого урока или перенести материал из Банка в выбранный урок. Текст сохраняется в браузере по мере ввода; нажмите ',
       ' to submit it. Each saved submission remains a separate record, so later edits do not erase earlier feedback.': ', чтобы отправить комментарий. Каждая отправленная версия остаётся отдельной записью, поэтому новые правки не стирают предыдущие.',
       'All six weeks now contain complete theory chapters, examples, live-session orientation, integration practices, boundaries, a full glossary and a source library. The Content bank preserves additional adapted material and author-only safety notes. You can comment on any passage, leave a general note after each lesson, or move a Content bank source to another lesson. Text is saved locally while you type; click Save note to submit it. Each saved submission remains a separate record, so later edits do not erase earlier feedback.': 'Все шесть недель теперь включают полноценные теоретические главы, примеры, подготовку к живой встрече, практики интеграции, границы применения, полный глоссарий и библиотеку источников. В Банке материалов собраны дополнительные адаптированные фрагменты и авторские заметки по безопасности. Вы можете прокомментировать любой фрагмент, оставить общий комментарий после каждого урока или перенести материал из Банка в выбранный урок. Текст сохраняется в браузере по мере ввода; нажмите «Сохранить заметку», чтобы отправить комментарий. Каждая отправленная версия остаётся отдельной записью, поэтому новые правки не стирают предыдущие.',
@@ -3231,8 +3289,18 @@
     };
     let focusAfterMount = false;
 
+    const reviewDecisions = {
+      'w3-markers': 'This distinction comes from more advanced teaching. Should it stay as a short participant safeguard, move later, or be removed?',
+      'w5-start': 'Please review whether vulnerable parts belong in this six-week introductory course at all, and, if so, whether Week 5 is the right place.',
+      'w5-capacity': 'This lesson names deeper IFS processes only to define the boundary. Please mark any terms that feel too clinical or practitioner-facing for participants.',
+      'w5-live': 'The demonstration is intentionally bounded and optional. Please confirm whether it belongs in the live plan or should remain author-only.',
+      'w6-glossary': 'The glossary preserves formal terms participants may meet in books. Please mark any entries that should be removed from the participant edition.'
+    };
+
     function articleContent(section) {
-      return `<h1>${section.title}</h1><p class="lesson-intro">${section.intro}</p><div class="lesson-copy">${section.body}</div>`;
+      const decision = reviewDecisions[section.id];
+      const decisionNote = decision ? `<aside class="review-decision" aria-label="Editorial decision"><span><strong>Editorial decision</strong><p>${decision}</p></span></aside>` : '';
+      return `<h1>${section.title}</h1><p class="lesson-intro">${section.intro}</p><div class="lesson-copy">${decisionNote}${section.body}</div>`;
     }
 
     function renderReader() {
@@ -3291,8 +3359,10 @@
           <nav class="week-tabs" aria-label="Six-week course reader">${weekNav}</nav>
           <aside class="review-guidance" aria-label="Note for Guthrie">
             <div class="review-guidance-inner">
-              <strong>Guthrie — this is the full participant-facing course reader draft.</strong>
-              <p>All six weeks now contain complete theory chapters, examples, live-session orientation, integration practices, boundaries, a full glossary and a source library. The Content bank preserves additional adapted material and author-only safety notes. You can comment on any passage, leave a general note after each lesson, or move a Content bank source to another lesson. Text is saved locally while you type; click <b>Save note</b> to submit it. Each saved submission remains a separate record, so later edits do not erase earlier feedback.</p>
+              <strong>Guthrie — this is an intentionally generous working draft, not a final participant pack.</strong>
+              <p>I have brought together as much relevant material as possible so we can see the full field before editing down. Some passages may still carry language or depth from the earlier practitioner course. That is deliberate at this review stage: it is easier to remove, simplify or move material than to reconstruct what was omitted. I am continuing to refine the reader and incorporate your comments as they arrive.</p>
+              <p>You can comment on any passage, leave a general note after each lesson, or move a Content bank source to another lesson. Draft text is saved locally while you type; click <b>Save note</b> to submit it. Every submission remains a separate record, so later edits do not erase earlier feedback.</p>
+              <div class="review-guidance-legend"><span><strong>Amber Editorial decision notes</strong> mark material where I especially need your view: keep, simplify, move to a later week, or remove.</span></div>
               <div class="review-guidance-status"><span class="review-status-dot" aria-hidden="true"></span><span data-review-status-title>Saved on this device</span><span aria-hidden="true">·</span><span data-review-status-detail>Waiting for status.</span></div>
             </div>
           </aside>
