@@ -274,9 +274,35 @@
     .course-nav button:hover { background: #eef1f5; }
     .course-nav button[aria-current="step"] { color: var(--ink); background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
     .course-nav .nav-index { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .nav-copy { min-width: 0; }
+    .nav-title { display: block; line-height: 1.28; }
+    .nav-kind { display: block; margin-top: .22rem; color: var(--muted); font-size: .67rem; font-weight: 650; line-height: 1.25; letter-spacing: .015em; }
+    .nav-kind[data-kind="required"] { color: #26704e; }
+    .nav-kind[data-kind="optional"] { color: #53647d; }
+    .nav-kind[data-kind="reference"] { color: #87612a; }
     .course-main { background: var(--surface); }
     .course-content { width: min(100% - 2rem, var(--lesson-width)); margin: 0 auto; padding: 4rem 0 8rem; }
     .course-content > header { margin-bottom: 2.5rem; }
+    .content-kind {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: .22rem .5rem;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--surface-subtle);
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .content-kind[data-kind="required"] { border-color: #cce2d6; background: #f0f8f4; color: #26704e; }
+    .content-kind[data-kind="optional"] { border-color: #d8e0eb; background: #f5f7fa; color: #53647d; }
+    .content-kind[data-kind="reference"] { border-color: #e7dcc8; background: #fbf7ef; color: #87612a; }
+    .meta-row .content-kind::before { display: none; }
+    .reading-path-key { display: grid; gap: .6rem; margin-top: .95rem; }
+    .reading-path-key > div { display: grid; grid-template-columns: 8.4rem minmax(0, 1fr); gap: .8rem; align-items: baseline; }
+    .reading-path-key p { margin: 0; color: var(--ink-soft); font-size: .86rem; }
     .course-content h1 { font-size: clamp(1.85rem, 3vw, 2.55rem); }
     .course-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 2.5rem; margin-top: 3rem; border-top: 1px solid var(--line); }
     .course-footer .buttons { display: flex; gap: .65rem; }
@@ -314,8 +340,9 @@
       .week-tab { flex-basis: 144px; }
       .course-nav { position: sticky; top: calc(var(--topbar) + var(--weekbar)); z-index: 15; display: flex; overflow-x: auto; gap: .35rem; padding: .65rem .75rem; border-right: 0; border-bottom: 1px solid var(--line); scrollbar-width: none; }
       .course-nav h2 { display: none; }
-      .course-nav button { width: auto; min-height: 44px; flex: 0 0 auto; display: block; padding: .55rem .75rem; white-space: nowrap; }
+      .course-nav button { width: auto; min-height: 52px; flex: 0 0 auto; display: grid; grid-template-columns: 8px minmax(0, 1fr); padding: .5rem .75rem; white-space: nowrap; }
       .course-nav .nav-index { display: none; }
+      .nav-kind { margin-top: .12rem; font-size: .64rem; }
       .course-content { padding-top: 2.8rem; }
     }
     @media (max-width: 620px) {
@@ -327,6 +354,7 @@
       .key-list strong { display: block; margin-bottom: .3rem; }
       .phase-plan li { display: block; }
       .phase-plan strong { display: block; margin-bottom: .25rem; }
+      .reading-path-key > div { grid-template-columns: 1fr; gap: .25rem; }
       .term-list > div { display: block; }
       .term-list dt { margin-bottom: .25rem; }
       .practice-head, .course-footer, .guided-actions-inner { align-items: flex-start; }
@@ -1565,6 +1593,111 @@
       'Repeat brief returns to awareness and use one simple parts-language doorway in ordinary life.': 'Ненадолго возвращайтесь к осознаванию и используйте в повседневной жизни простую формулу языка частей.',
       'Respond to what is present in the group field: either a current relational example—notice a part, open to the field, speak on its behalf and make a clear request or repair—or, if vulnerability appears, model how to be a curious and compassionate presence without conducting a full IFS session.': 'Откликнитесь на то, что присутствует в поле группы: возьмите либо актуальный пример из отношений — заметить часть, открыться полю, говорить от её имени и сформулировать ясную просьбу или восстановить контакт, — либо, если проявится уязвимость, покажите, как оставаться любопытным и сострадательным присутствием, не проводя полноценную IFS-сессию.'
     });
+    Object.assign(ruTextMap, {
+      'Required · Core': 'Обязательно · Основа',
+      'Optional · Textbook': 'По желанию · Учебник',
+      'Reference': 'Справочный материал',
+      'Choose the depth that fits this week': 'Выберите подходящую глубину на эту неделю',
+      'The week overview and final “Keep with you” lesson. About 10 minutes in total.': 'Обзор недели и финальный урок «Главное с собой». Всего около 10 минут.',
+      'Theory, examples, live-session orientation and integration practice.': 'Теория, примеры, подготовка к живой встрече и практика интеграции.',
+      'Glossary, books, sources and material to return to when useful.': 'Глоссарий, книги, источники и материалы, к которым можно возвращаться по необходимости.',
+      'Hope:': 'Надежда:',
+      'Orient:': 'Ориентация в настоящем:',
+      'Striver': 'Стремящаяся часть',
+      'Capacity': 'Устойчивость',
+      'Within capacity': 'В пределах устойчивости',
+      'Beyond capacity': 'За пределами устойчивости',
+      'Enmeshment': 'Чрезмерная взаимозависимость',
+      'Relational': 'В отношениях',
+      'Repair': 'Восстановление контакта',
+      'Integration is transfer': 'Интеграция — это перенос в жизнь',
+      'Repair after blending': 'Восстановление контакта после слияния с частью',
+      'Repair after a reaction': 'Восстановление контакта после сильной реакции',
+      'Blending and unblending': 'Слияние с частью и разотождествление',
+      'A stop sentence': 'Фраза для остановки',
+      'A three-breath doorway': 'Практика на три дыхания',
+      'Attention and awareness': 'Внимание и осознавание',
+      'Awareness experiments and release points': 'Эксперименты с осознаванием и ясные точки остановки',
+      'Week 1 · awareness and access': 'Неделя 1 · Осознавание и доступ к Self',
+      'The productivity loop': 'Цикл постоянных усилий',
+      'Innate rather than manufactured': 'Врожденное, а не созданное усилиями',
+      'Blending changes the whole view': 'При слиянии взгляд части ощущается как единственно возможный',
+      'Field awareness in dialogue': 'Осознавание поля в диалоге',
+      'Save to lesson': 'Предложить для урока',
+      'Guthrie quote bank': 'Банк цитат Гэтри',
+      'IFS Research': 'Исследования IFS',
+      'The innate capacity for awake, relational awareness.': 'Врожденная способность к бодрствующему осознаванию и живому контакту.',
+      '— relational patterns, requests, reactivity and repair.': '— паттерны в отношениях, просьбы, реактивность и восстановление контакта.',
+      'Less attachment to making the part change immediately.': 'Меньше стремления заставить часть немедленно измениться.',
+      'Accessible overview of parts, Self and inner relationship.': 'Доступное введение в части, Self и внутренние отношения.',
+      'Self-leadership becomes visible through choices, boundaries and repair.': 'Self-лидерство проявляется в выборе, границах и способности восстанавливать контакт.',
+      'attention, awareness, Self and parts on a single page.': 'внимание, осознавание, Self и части на одной странице.',
+      'Less tunnel vision, softer focus and more peripheral awareness.': 'Меньше туннельного зрения, мягче фокус и шире периферическое осознавание.',
+      'Sources: 29 July call transcript, presencing inductions and curated quote bank': 'Источники: запись разговора 29 июля, практики присутствия и отобранные цитаты.',
+      'Standard definitions for blending, burdens, managers, firefighters, Self-leadership and systems terms.': 'Стандартные определения слияния с частью, бремени, менеджеров, пожарных, Self-лидерства и системных понятий.',
+      '— standard definitions for blending, burdens, managers, firefighters, polarisation and Self-leadership.': '— стандартные определения слияния с частью, бремени, менеджеров, пожарных, поляризации и Self-лидерства.',
+      'May try to improve performance before someone else can humiliate or reject.': 'Может подталкивать к лучшему результату, чтобы предотвратить возможное унижение или отвержение.',
+      'Sources: Guthrie Sayen, “Exiles”; IFS Institute model outline · participant adaptation only': 'Источники: Гэтри Сэйен, «Изгнанники»; описание модели IFS Institute · только адаптация для участников.',
+      'Bring field awareness, parts language, boundaries and repair into a relational demonstration.': 'Перенесите осознавание поля, язык частей, границы и восстановление контакта в демонстрацию на примере отношений.',
+      '— multiplicity, protectors, burdens, Self and parts mapping; most relevant to Weeks 2–4.': '— внутренняя множественность, защитники, бремена, Self и карта частей; особенно полезно для недель 2–4.',
+      'Week 6 applies the language to decisions, boundaries, conflict, repair and continued practice.': 'На шестой неделе этот язык применяется к решениям, границам, конфликтам, восстановлению контакта и дальнейшей практике.',
+      'The innate core of the IFS system; also understood here as awake, relational awareness.': 'Врожденный центр внутренней системы; в этом курсе также понимается как бодрствующее осознавание, способное быть в отношениях.',
+      'practices proposed by Guthrie on 29 July 2026; participant-safe parts doorway from current material rules.': 'Практики, предложенные Гэтри 29 июля 2026 года; безопасный для участников вход в язык частей согласно действующим правилам курса.',
+      'Awareness-led, panoramic and inclusive. Able to receive several signals at once and hold them in relationship.': 'Опирается на осознавание: широкое, панорамное и включающее. Позволяет одновременно замечать несколько сигналов и удерживать их во взаимосвязи.',
+      'A concise orientation to attention, awareness and access to Self, followed by questions from direct experience.': 'Короткое введение во внимание, осознавание и доступ к Self, затем вопросы о непосредственном опыте.',
+      'Participant learning goal: recognition and support planning. No searching for origins, witnessing procedure, retrieval or unburdening.': 'Цель для участника — распознавание состояния и план поддержки. Без поиска причин, терапевтического свидетельствования, возвращения частей из прошлого или освобождения от бремени.',
+      'Use parts language in ordinary moments and build a small, current map rather than a complete inventory.': 'Используйте язык частей в повседневных ситуациях и составляйте небольшую карту того, что происходит сейчас, а не полный перечень всех частей.',
+      'Partnership, parenting, leadership, business collaboration, receiving feedback, making a decision, asking for rest or repairing after conflict.': 'Партнерство, родительство, лидерство, деловое сотрудничество, получение обратной связи, принятие решений, просьба об отдыхе или восстановление контакта после конфликта.',
+      'The aim is not to remove parts but to increase their access to a trustworthy relationship with Self.': 'Цель не в том, чтобы убрать части, а в том, чтобы у них появилось больше доступа к надежным отношениям с Self.',
+      'A part is something you can be in relationship with. Noticing it is already the beginning of unblending.': 'С частью можно вступить в отношения. Само замечание части уже становится началом разотождествления с ней.',
+      'These sources are private working materials. Direct quotations and substantial reproduction remain subject to Guthrie\'s review and permission.': 'Это частные рабочие материалы. Прямые цитаты и значительное воспроизведение текста требуют проверки и разрешения Гэтри.',
+      'A little curiosity or one second of pause can already be meaningful. There is no performance state to achieve.': 'Даже немного любопытства или одна секунда паузы уже имеют значение. Здесь нет состояния, которое нужно правильно продемонстрировать.',
+      'The participant lessons currently paraphrase these teaching ideas. Direct quotations remain internal until Guthrie approves the exact wording and placement.': 'В уроках для участников эти идеи пока переданы своими словами. Прямые цитаты остаются внутренним материалом, пока Гэтри не утвердит точную формулировку и место.',
+      'Guided by enough access to Self for parts to be heard, reality to be included and responsible choice to remain available.': 'Опирается на достаточный доступ к Self, чтобы части были услышаны, реальность оставалась в поле внимания, а ответственный выбор — доступным.',
+      'OS 1.0 → OS 2.0, attention as focus, awareness as field, access to Self as a continuum, and the ground–core–field–focus sequence.': 'OS 1.0 → OS 2.0: внимание как фокус, осознавание как поле, доступ к Self как континуум и последовательность «опора — центр — поле — фокус».',
+      'Know your stop sentence, one grounding action, one person you can contact and the appropriate professional or emergency route for your location.': 'Заранее выберите фразу для остановки, одно действие для возвращения в настоящее, человека, с которым можно связаться, и подходящий способ получить профессиональную или экстренную помощь.',
+      'Attention selects. Awareness includes. You need both, and the practice is learning to move between them without turning either into an achievement.': 'Внимание выбирает. Осознавание включает. Нужны обе способности; практика состоит в том, чтобы свободнее переходить между ними, не превращая ни одну в достижение.',
+      'Six Fs, triads, guiding another person, memory retrieval, exile work, unburdening and practitioner-competence framing are intentionally excluded from this six-week participant course.': 'Шесть F, тройки, ведение другого человека, поиск воспоминаний, работа с изгнанниками, освобождение от бремени и оценка профессиональных навыков намеренно исключены из этого шестинедельного курса для участников.',
+      'A current, contained relational example: noticing a part, opening to the field, speaking on its behalf and making a clear request or repair.': 'Актуальный и ограниченный пример из отношений: заметить часть, открыть осознавание к полю, говорить от имени части и сформулировать ясную просьбу или шаг к восстановлению контакта.',
+      'Self-leadership therefore does not mean becoming part-free. It means enough access to Self that parts can contribute without carrying the whole system alone.': 'Поэтому Self-лидерство не означает жизнь без частей. Оно означает достаточный доступ к Self, чтобы части могли вносить свой вклад, не неся всю систему в одиночку.',
+      'Let attention rest lightly on one simple thing while ground, core and field remain available. Focus does not need to collapse the wider awareness.': 'Мягко направьте внимание на один простой объект, сохраняя ощущение опоры, центра и поля. Фокус не должен сужать более широкое осознавание.',
+      'official IFS guidance on the power of parts language, responsibility for one’s own parts and relational repair; earlier participant applications in family and work.': 'Официальные материалы IFS о языке частей, ответственности за собственные части и восстановлении контакта; примеры применения участниками в семье и работе.',
+      'The previous practitioner course included the Six Fs, practitioner–client–observer triads, guiding another person, memory retrieval, exile witnessing, unburdening and questions of practitioner competence or supervision.': 'Предыдущий курс для практиков включал шесть F, тройки «практик — клиент — наблюдатель», ведение другого человека, работу с воспоминаниями, свидетельствование опыта изгнанников, освобождение от бремени и вопросы профессиональной компетентности и супервизии.',
+      'The transfer of course learning into ordinary life. In formal IFS, the word can also refer to steps following unburdening; those clinical steps are outside this course.': 'Перенос изученного в повседневную жизнь. В формальной IFS этим словом также могут называть этапы после освобождения от бремени; эти клинические процессы находятся за пределами курса.',
+      'These are not yet treated as approved public quotations. Guthrie can use “Add to course” to propose a location and place any wording correction in the accompanying review note.': 'Эти формулировки пока не считаются утвержденными публичными цитатами. Гэтри может нажать «Добавить в курс», предложить место и указать правку в заметке.',
+      'Searching for memories, inviting a young part to tell its story, witnessing past experience, retrieval and unburdening are deeper IFS processes. They are not participant practices in this course.': 'Поиск воспоминаний, приглашение молодой части рассказать свою историю, терапевтическое свидетельствование прошлого опыта, возвращение части из прошлого и освобождение от бремени относятся к более глубоким процессам IFS. Участники этого курса их не практикуют.',
+      'Finishing the course does not authorise participants to guide parts work, advertise IFS services, interpret another person\'s system or use the material as a substitute for professional training and supervision.': 'Окончание курса не дает права вести работу с частями, предлагать услуги IFS, интерпретировать систему другого человека или заменять этими материалами профессиональное обучение и супервизию.',
+      'Self-leadership does not mean getting rid of parts. It means that parts can be seen and valued without having to run the whole system. The relationship changes before the experience necessarily changes.': 'Self-лидерство не означает избавление от частей. Части можно видеть и ценить, не отдавая им управление всей системой. Сначала меняется качество отношений, а сам опыт может измениться позже.',
+      'Movement is not linear. Stress, sleep and context can return a familiar pattern to stage one. That does not erase learning. The relevant evidence is whether recognition and repair become more available over time.': 'Движение не бывает линейным. Стресс, недосып или обстоятельства могут вернуть знакомый паттерн к первой стадии. Это не отменяет обучение. Важно, становится ли со временем легче замечать реакцию и восстанавливать контакт.',
+      'People described noticing a protector before a conflict escalated, using parts language with a teenager, and reducing tension between business partners by naming a perfectionistic reaction without turning the other person into the problem. These are possibilities, not guaranteed outcomes.': 'Участники рассказывали, что замечали защитника до обострения конфликта, использовали язык частей в разговоре с подростком и снижали напряжение между деловыми партнерами, называя перфекционистскую реакцию и не превращая другого человека в проблему. Это возможные применения, а не гарантированные результаты.',
+      'In formal IFS, a way a practitioner speaks directly with a client\'s part. It is not participant practice in this course. Guthrie also uses “direct access to Self” in a different sense for awareness-based presencing; the context should always be specified.': 'В формальной IFS это способ, при котором практик напрямую обращается к части клиента. Участники курса этого не практикуют. Гэтри также говорит о «прямом доступе к Self» в другом смысле — как о практике присутствия через осознавание; поэтому контекст важно всегда уточнять.',
+      'People sometimes turn Self into a perfect state they must maintain. That creates another performance system. In this course, access is a continuum and a relationship: a little curiosity beside fear counts; a moment of clearer choice counts; returning after blending counts.': 'Иногда Self превращают в идеальное состояние, которое нужно постоянно поддерживать. Так возникает еще одна система требований к себе. В этом курсе доступ понимается как континуум и отношения: немного любопытства рядом со страхом уже имеет значение; момент более ясного выбора имеет значение; возвращение после слияния с частью тоже имеет значение.',
+      'This distinction supports accountability. If a defensive part spoke harshly, “a part did it” is not an excuse. It is a more precise starting point for repair: name the reaction, recognise its intention, take responsibility for its impact, and choose what happens next.': 'Это различие помогает сохранять ответственность. Если защитная часть говорила резко, фраза «это сделала часть» не становится оправданием. Это более точная точка начала: назвать реакцию, увидеть ее намерение, признать влияние своих слов и выбрать следующий шаг.',
+      'You still become defensive, but notice it sooner. You can say “a part of me is preparing to argue.” You feel your feet, hear the other person and ask for a pause. Later you return and repair. The part did not disappear; leadership widened.': 'Вы по-прежнему можете защищаться, но замечаете это раньше. Можно сказать: «Часть меня готовится спорить». Вы чувствуете опору под ногами, слышите другого человека и просите паузу. Позже вы возвращаетесь к разговору и восстанавливаете контакт. Часть не исчезла — пространство для лидерства стало шире.',
+      'Move from identity to relationship: “I am anxious” → “Something in me is anxious” → “A part of me is anxious” → “I notice a part that expects something difficult.” Use only the wording that feels natural; the sentence is a doorway, not a formula.': 'Переходите от отождествления к отношениям: «Я тревожусь» → «Что-то во мне тревожится» → «Часть меня тревожится» → «Я замечаю часть, которая ожидает трудностей». Используйте только естественную для вас формулировку: это способ начать отношения, а не обязательная формула.',
+      '“We have two ways of processing information: attention and awareness. Attention is selective. It isolates something in the field of awareness to understand it more completely. Awareness, on the other hand, is inclusive. It holds everything in our subjective experience: sights and sounds, thoughts and emotions.”': '«У нас есть два способа обрабатывать информацию: внимание и осознавание. Внимание избирательно: оно выделяет что-то из поля осознавания, чтобы понять это полнее. Осознавание, напротив, включает весь субъективный опыт — то, что мы видим и слышим, мысли и эмоции».',
+      'Before the meeting, the manager can be thanked for preparing. During feedback, ground and field can preserve contact with the room. After activation, the firefighter can be recognised before the phone is opened. During repair, the critical backlash can be asked what it fears would happen without punishment.': 'До встречи можно поблагодарить менеджера за подготовку. Во время обратной связи опора и поле помогают сохранять контакт с комнатой. После активации можно заметить пожарного до того, как рука потянется к телефону. При восстановлении контакта можно спросить критическую часть, чего она боится, если не наказывать себя.',
+      'Repair includes impact, not only intention. Try: “A defensive part took over and I spoke harshly. That hurt you. I am sorry. I want to understand what you need now, and I will pause if I become defensive again.” The part explains the sequence; it does not erase accountability.': 'Восстановление контакта учитывает не только намерение, но и последствия. Например: «Защитная часть взяла верх, и я говорил резко. Это причинило тебе боль. Мне жаль. Я хочу понять, что тебе сейчас нужно, и возьму паузу, если снова начну защищаться». Часть объясняет последовательность, но не снимает ответственности.',
+      'In full IFS therapy, witnessing has a specific place in work with exiles and is followed by other steps. Here, the word is used only in its ordinary educational sense: recognising that vulnerable experience deserves respectful presence. The therapeutic process of witnessing, retrieval and unburdening is outside participant practice.': 'В полной IFS-терапии свидетельствование занимает определенное место в работе с изгнанниками, после него следуют другие этапы. Здесь слово используется только в обычном образовательном смысле: уязвимый опыт заслуживает уважительного присутствия. Терапевтические процессы свидетельствования, возвращения части из прошлого и освобождения от бремени не входят в практику участников.',
+      'When access becomes shallower, parts language offers a simple doorway. “I am rushing” can become “A part of me is rushing.” The situation has not disappeared, but even a small amount of space may return. From there, the participant can relate to the experience rather than be completely defined by it.': 'Когда доступ к Self становится менее глубоким, язык частей предлагает простой вход: «Я спешу» может превратиться в «Часть меня спешит». Ситуация не исчезает, но может появиться немного пространства. Тогда с переживанием можно вступить в отношения, а не быть полностью им определенным.',
+      'When a part blends, its view can feel like the whole truth: “I am a failure,” “I must fix this now,” or “Nothing matters.” Unblending does not banish the part. It creates enough space to say, “A part of me believes this,” so Self and the part can begin to know one another.': 'Когда происходит слияние с частью, ее взгляд может ощущаться как вся правда: «Я неудачник», «Я должен исправить это сейчас» или «Ничто не имеет значения». Разотождествление не прогоняет часть. Оно создает достаточно пространства, чтобы сказать: «Часть меня в это верит», — и начать отношения между Self и частью.',
+      'OS 2.0 adds awareness. Attention can still focus, but it is held inside a wider field that also includes the body, the room, other people and what matters most. The point is not to discard thinking. It is to transcend and include it: focus remains available without having to carry the whole experience.': 'OS 2.0 добавляет осознавание. Внимание по-прежнему может фокусироваться, но теперь оно удерживается внутри более широкого поля, включающего тело, пространство, других людей и то, что важнее всего. Задача не в том, чтобы отказаться от мышления, а в том, чтобы выйти за его пределы и включить его: фокус остается доступным, но больше не должен вмещать весь опыт.',
+      'Unblending is not pushing a part away. It is enough differentiation for relationship: the reaction is present, but it is not the only available perspective. The shift may be grammatical (“I am a failure” becomes “a part believes I failed”), bodily (a fraction more breath), attentional (the room returns) or relational (curiosity appears beside irritation).': 'Разотождествление — это не попытка оттолкнуть часть. Это достаточное различение для отношений: реакция остается, но перестает быть единственной доступной точкой зрения. Сдвиг может проявиться в языке («Я неудачник» превращается в «Часть меня считает, что я потерпел неудачу»), в теле (становится чуть легче дышать), во внимании (снова замечается комната) или в отношении (рядом с раздражением появляется любопытство).',
+      'IFS has a growing research base, but it is important not to oversell it. The IFS Institute describes the evidence as emerging and still limited in scope. Small randomised and single-arm studies have reported promising findings, including work involving depression, post-traumatic stress symptoms and self-compassion. More well-designed, replicated trials are needed before broad condition-specific claims can be made.': 'Исследовательская база IFS растет, но ее важно не преувеличивать. IFS Institute называет имеющиеся данные формирующимися и пока ограниченными. Небольшие рандомизированные и неконтролируемые исследования показали обнадеживающие результаты, в том числе в работе с депрессией, симптомами посттравматического стресса и самосостраданием. Для широких выводов по отдельным состояниям нужны более крупные, качественные и воспроизводимые исследования.',
+      'Come having tried the practice at least once. Bring one question about direct experience: what happened, what did not happen, or what confused you. You never have to speak or share personal history. We do ask participants to keep cameras on during the live session to support the shared field; if that is not possible for you, contact the course team before the call.': 'До встречи попробуйте практику хотя бы один раз и подготовьте один вопрос о непосредственном опыте: что произошло, чего не произошло или что осталось непонятным. Вам не обязательно говорить или делиться личной историей. Мы просим участников оставлять камеры включенными во время живой встречи, чтобы поддерживать общее поле. Если это невозможно, заранее свяжитесь с командой курса.',
+      'Guthrie is a PhD and Professional Certified Coach, a Level 3-trained IFS practitioner, and the founder of the Institute for Healing and Awakening. He has created international training programmes for coaches and other helping professionals, including IFS-based programmes that move from introductory to advanced practice. This course draws on that experience while addressing a different audience: people learning IFS for life rather than practitioner competence.': 'Гэтри — PhD, профессиональный сертифицированный коуч (PCC), практик IFS с подготовкой Level 3 и основатель Institute for Healing and Awakening. Он создал международные программы для коучей и других специалистов помогающих профессий, в том числе программы IFS от вводного до продвинутого уровня. Этот курс опирается на его опыт, но обращен к другой аудитории: к людям, которые знакомятся с IFS для собственной жизни, а не осваивают профессию практика.'
+    });
+    Object.assign(ruTextMap, {
+      'Solo practice': 'Самостоятельная практика',
+      'Source: curated quote bank and live transcripts': 'Источник: отобранные цитаты и расшифровки живых встреч',
+      '2. Three channels while walking · after live': '2. Три канала во время ходьбы · после живой встречи',
+      '1. Peripheral vision · after live, if introduced': '1. Периферическое зрение · после живой встречи, если практику представили на ней',
+      'for an extreme belief, emotion or role carried by a part but not understood as its essential nature. This course introduces the word so participants can follow IFS language; it does not teach an unburdening process.': 'сильное убеждение, эмоция или роль, которые несет часть, но которые не относятся к ее изначальной природе. Курс вводит этот термин, чтобы участники понимали язык IFS, но не обучает процессу освобождения от бремени.',
+      'IFS proposes that Self is present in every person and is not damaged by experience. Access may be obscured when parts carry fear, urgency or responsibility, but Self does not have to be manufactured through better performance.': 'IFS исходит из того, что Self присутствует в каждом человеке и не повреждается пережитым опытом. Доступ к Self может быть заслонен, когда части несут страх, срочность или чрезмерную ответственность, но Self не нужно создавать или заслуживать лучшими результатами.',
+      'Parts language does not remove responsibility. A repair can name both the protector and the impact: “A defensive part took over, and I spoke harshly. I understand that it hurt you. I want to return to this differently.”': 'Язык частей не снимает ответственности. При восстановлении контакта можно назвать и защитника, и последствия: «Защитная часть взяла верх, и я говорил резко. Я понимаю, что это причинило тебе боль. Я хочу вернуться к этому разговору по-другому».',
+      'IFS commonly describes managers, firefighters and exiles. Managers and firefighters are protectors. Exiles are vulnerable parts whose feelings, memories or needs have been kept out of ordinary awareness because the system expects them to overwhelm or endanger functioning.': 'В IFS обычно говорят о менеджерах, пожарных и изгнанниках. Менеджеры и пожарные — это защитники. Изгнанники — уязвимые части, чьи чувства, воспоминания или потребности были исключены из обычного осознавания, потому что система ожидает, что они могут захлестнуть человека или нарушить его способность действовать.',
+      "If you ask “Am I calm enough? Curious enough? Compassionate enough?” a monitoring part may take over and imitate the language of Self. Guthrie's teaching includes quieter markers because access can be modest: the breath becomes less held, the voice less pressed, the outcome less urgent, or the person becomes willing to say “I don't know.”": 'Если спрашивать себя: «Я достаточно спокоен? Достаточно любопытен? Достаточно сострадателен?», контролирующая часть может перехватить управление и начать имитировать язык Self. Поэтому Гэтри предлагает замечать более тихие признаки доступа: дыхание становится свободнее, голос — мягче, результат — менее срочным, или появляется готовность сказать: «Я не знаю».'
+    });
     const languageStorageKey = 'guthrie-course-language-v1';
     const requestedLanguage = new URLSearchParams(location.search).get('lang');
     let currentLanguage = requestedLanguage === 'ru' || requestedLanguage === 'en' ? requestedLanguage : (localStorage.getItem(languageStorageKey) === 'ru' ? 'ru' : 'en');
@@ -1610,13 +1743,35 @@
         .replaceAll('допрос', 'обсуждение опыта')
         .replaceAll('Банк Содержимого', 'Банк материалов')
         .replaceAll('язык деталей', 'язык частей')
+        .replaceAll('деталями', 'частями')
+        .replaceAll('деталях', 'частях')
+        .replaceAll('деталям', 'частям')
+        .replaceAll('деталей', 'частей')
+        .replaceAll('детали', 'части')
+        .replaceAll('деталью', 'частью')
         .replaceAll('деталь', 'часть')
         .replaceAll('эмигрантскую работу', 'работу с изгнанными частями')
         .replaceAll('изгнанная частьами', 'изгнанными частями')
         .replaceAll('изгнанная частьей', 'изгнанных частей')
-        .replaceAll('реляционный', 'отношенческий')
-        .replaceAll('Реляционный', 'Отношенческий')
+        .replaceAll('изгнанная частьи', 'изгнанники')
+        .replaceAll('Хоуп', 'Надежда')
+        .replaceAll('Восток:', 'Ориентация в настоящем:')
+        .replaceAll('Разгибание', 'Разотождествление')
+        .replaceAll('разгибание', 'разотождествление')
+        .replaceAll('несгибаемый', 'разотождествление')
+        .replaceAll('необременительный', 'освобождение от бремени')
+        .replaceAll('необременение', 'освобождение от бремени')
+        .replaceAll('сплетение', 'чрезмерная взаимозависимость')
+        .replaceAll('Вместимость', 'Устойчивость')
+        .replaceAll('вместимость', 'устойчивость')
+        .replaceAll('осведомленность', 'осознавание')
+        .replaceAll('Осведомленность', 'Осознавание')
+        .replaceAll('реляционный', 'связанный с отношениями')
+        .replaceAll('Реляционный', 'Связанный с отношениями')
         .replaceAll('ремонт', 'восстановление контакта')
+        .replaceAll('котировки', 'цитаты')
+        .replaceAll('стоп-приговор', 'фраза для остановки')
+        .replaceAll('перед вызовом', 'до встречи')
         .replaceAll('пресенсинга', 'практики присутствия');
     }
 
@@ -3322,6 +3477,19 @@
         </div>`;
     }
 
+    function sectionKind(section, index) {
+      if (section.kind) return section.kind;
+      if (index === 0 || /boundary|boundaries|support/.test(section.id)) return 'required';
+      if (section.id.includes('glossary') || section.id.includes('sources')) return 'reference';
+      return 'optional';
+    }
+
+    function sectionKindLabel(kind) {
+      if (kind === 'required') return 'Required · Core';
+      if (kind === 'reference') return 'Reference';
+      return 'Optional · Textbook';
+    }
+
     function renderCourse() {
       const i = state.section[1];
       const week = activeWeek();
@@ -3334,11 +3502,13 @@
         </button>`).join('');
       const nav = weekSections.map((item, j) => {
         const navTheme = sectionThemes[(state.week + j) % sectionThemes.length];
+        const kind = sectionKind(item, j);
         return `
         <button type="button" data-section="${j}" style="--nav-accent:${navTheme.accent};--nav-soft:${navTheme.soft};--nav-line:${navTheme.line}" ${j === i ? 'aria-current="step"' : ''}>
-          <span class="nav-colour" aria-hidden="true" style="--nav-accent:${navTheme.accent}"></span><span class="nav-index">${String(j + 1).padStart(2, '0')}</span><span>${item.nav}</span>
+          <span class="nav-colour" aria-hidden="true" style="--nav-accent:${navTheme.accent}"></span><span class="nav-index">${String(j + 1).padStart(2, '0')}</span><span class="nav-copy"><span class="nav-title">${item.nav}</span><span class="nav-kind" data-kind="${kind}">${sectionKindLabel(kind)}</span></span>
         </button>`;
       }).join('');
+      const currentKind = sectionKind(s, i);
       const previousWeek = state.week > 0 ? weeks[state.week - 1] : null;
       const nextWeek = state.week < weeks.length - 1 ? weeks[state.week + 1] : null;
       return `
@@ -3369,8 +3539,8 @@
           <div class="course-shell">
             <nav class="course-nav" aria-label="Week ${state.week + 1} lessons"><h2>Week ${state.week + 1}</h2>${nav}</nav>
             <main class="course-main"><article class="course-content">
-              <header><div class="meta-row"><span>Week ${state.week + 1} of 6</span><span>Lesson ${i + 1}</span><span>${s.duration || '4–6 minutes'}</span></div></header>
-              ${i === 0 ? `<div class="reading-path"><strong>Core path · about 10 minutes</strong><p>For participant delivery, the week overview and the final “Keep with you” page are the short required path. The remaining chapters form the optional textbook and reference layer.</p></div>` : ''}
+              <header><div class="meta-row"><span>Week ${state.week + 1} of 6</span><span>Lesson ${i + 1}</span><span>${s.duration || '4–6 minutes'}</span><span class="content-kind" data-kind="${currentKind}">${sectionKindLabel(currentKind)}</span></div></header>
+              ${i === 0 ? `<div class="reading-path"><strong>Choose the depth that fits this week</strong><div class="reading-path-key"><div><span class="content-kind" data-kind="required">Required · Core</span><p>The week overview and final “Keep with you” lesson. About 10 minutes in total.</p></div><div><span class="content-kind" data-kind="optional">Optional · Textbook</span><p>Theory, examples, live-session orientation and integration practice.</p></div><div><span class="content-kind" data-kind="reference">Reference</span><p>Glossary, books, sources and material to return to when useful.</p></div></div></div>` : ''}
               ${articleContent(s)}
               <footer class="course-footer">
                 <span class="quiet">${i === weekSections.length - 1 && nextWeek ? `Next week: ${nextWeek.shortTitle}` : `Lesson ${i + 1} of ${weekSections.length}`}</span>
