@@ -755,8 +755,9 @@
 
     @media (max-width: 720px) {
       .course-top { padding: 0 .8rem; }
-      .course-top-actions { gap: .35rem; }
-      .review-top-button { min-height: 40px; padding: .45rem .58rem; font-size: .76rem; }
+      .course-top > .product-mark { display: none; }
+      .course-top-actions { width: 100%; gap: .35rem; justify-content: flex-start; }
+      .review-top-button, .glossary-top-button { min-height: 40px; padding: .45rem .58rem; font-size: .76rem; }
       .review-desktop-label { display: none; }
       .review-mobile-label { display: inline; }
       body.review-access .course-state { display: none; }
