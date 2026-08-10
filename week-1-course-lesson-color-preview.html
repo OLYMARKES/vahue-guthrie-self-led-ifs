@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Centrality of Self · Six-week course plan</title>
+  <title>The Centrality of Self · Six-week course reader</title>
   <style>
     :root {
       --page: #f6f7f9;
@@ -158,6 +158,54 @@
     .reading-list li { padding: .9rem 0; margin: 0; border-bottom: 1px solid var(--line); }
     .reading-list a { font-weight: 650; }
     .reading-list span { display: block; margin-top: .2rem; color: var(--muted); font-size: .84rem; }
+    .lesson-copy h2 {
+      margin: 3rem 0 .75rem;
+      color: var(--ink);
+      font-size: 1.35rem;
+      line-height: 1.28;
+      letter-spacing: -.018em;
+    }
+    .lesson-copy h2:first-child { margin-top: 2.25rem; }
+    .lesson-copy .chapter-lead {
+      margin: 2rem 0 2.6rem;
+      color: #303b50;
+      font-size: 1.08rem;
+      line-height: 1.72;
+    }
+    .example {
+      margin: 2rem 0;
+      padding: 1.2rem 1.3rem;
+      border: 1px solid var(--section-line, var(--line));
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--section-soft, var(--surface-subtle)) 58%, white);
+    }
+    .example > strong { display: block; margin-bottom: .45rem; }
+    .example p:last-child, .example ul:last-child, .example ol:last-child { margin-bottom: 0; }
+    .checkpoint {
+      margin: 2.25rem 0;
+      padding: 1.15rem 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .checkpoint strong { display: block; margin-bottom: .45rem; }
+    .checkpoint p:last-child { margin-bottom: 0; }
+    .myth-list { list-style: none; padding: 0; margin: 1.5rem 0; }
+    .myth-list li { margin: 0; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+    .myth-list li:first-child { border-top: 1px solid var(--line); }
+    .myth-list strong { display: block; margin-bottom: .2rem; }
+    .inline-source { color: var(--muted); font-size: .78rem; white-space: nowrap; }
+    .glossary-list { margin: 1.5rem 0; }
+    .glossary-list > div { padding: 1.15rem 0; border-bottom: 1px solid var(--line); }
+    .glossary-list > div:first-child { border-top: 1px solid var(--line); }
+    .glossary-list dt { color: var(--ink); font-weight: 700; }
+    .glossary-list dd { margin: .3rem 0 0; color: var(--ink-soft); }
+    .glossary-list small { display: block; margin-top: .35rem; color: var(--muted); }
+    .glossary-group { margin-top: 3rem; scroll-margin-top: 9rem; }
+    .glossary-index { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1.5rem 0 2rem; }
+    .glossary-index a { min-width: 34px; padding: .35rem .55rem; border: 1px solid var(--line); border-radius: 7px; color: var(--ink-soft); font-size: .8rem; font-weight: 650; text-align: center; text-decoration: none; }
+    .glossary-index a:hover { color: var(--accent); border-color: var(--section-line, var(--line-strong)); background: var(--section-soft, var(--surface-subtle)); }
+    .glossary-top-button { display: inline-flex; align-items: center; min-height: 36px; padding: .45rem .7rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink-soft); font-size: .82rem; font-weight: 650; }
+    .glossary-top-button:hover { background: var(--surface-subtle); color: var(--ink); }
 
     /* Variant 1: continuous reader */
     .reader-top {
@@ -2125,6 +2173,729 @@
       }
     ];
 
+    const textbookExpansions = {
+      'start': `
+        <h2>What kind of course this is</h2>
+        <p class="chapter-lead">This is an introduction to a way of seeing human experience. You will learn a small set of ideas, test them in direct experience, and decide what is useful. You do not have to believe that parts are literal inner people, produce a special state, disclose personal history, or become skilled at therapy.</p>
+        <p>Internal Family Systems began as a psychotherapy model, and its vocabulary now also helps people describe ordinary inner conflict, choice, creativity and relationship. This course uses that wider educational language while keeping a clear boundary: learning about IFS and practising Self-led awareness are not the same as receiving psychotherapy or learning to facilitate IFS sessions.</p>
+        <h2>The learning arc</h2>
+        <ol>
+          <li><strong>Notice the field.</strong> Week 1 begins with attention, awareness and Guthrie's four building blocks of Presence.</li>
+          <li><strong>Recognise multiplicity.</strong> Week 2 introduces parts as meaningful inner positions rather than defects to eliminate.</li>
+          <li><strong>Change the relationship.</strong> Week 3 explores Self and the qualities that make curiosity, clarity and compassion possible.</li>
+          <li><strong>Respect protection.</strong> Week 4 looks at managers and firefighters as different attempts to keep the system safe.</li>
+          <li><strong>Stay within capacity.</strong> Week 5 gives a careful orientation to vulnerable parts without turning tenderness into an assignment.</li>
+          <li><strong>Bring it into life.</strong> Week 6 applies the language to decisions, boundaries, conflict, repair and continued practice.</li>
+        </ol>
+        <div class="example"><strong>How to use each week</strong><p>Read the theory before the live session. Mark what you recognise and what you question. Attend the live call as an observer of process, not as someone trying to memorise a script. Afterwards, choose one small practice and repeat it in ordinary, low-intensity moments.</p></div>
+        <h2>Three permissions</h2>
+        <p>You may interpret the language psychologically, spiritually, metaphorically or pragmatically. You may keep your eyes open, skip an exercise or stop without explaining. And you may remain uncertain. Curiosity is enough; agreement is not required.</p>
+        <div class="checkpoint"><strong>Orientation question</strong><p>What would make these six weeks useful without requiring you to become a different person?</p></div>
+      `,
+      'history': `
+        <h2>Where IFS came from</h2>
+        <p class="chapter-lead">IFS was developed by Richard C. Schwartz in the 1980s. Trained as a family therapist, he began hearing clients describe distinct inner voices and positions. Instead of treating those voices as noise, he listened for the relationships among them.</p>
+        <p>Family systems therapy looks beyond one isolated person or symptom. It asks how members of a system influence one another, how roles form, how conflict stabilises a family, and what happens when leadership changes. Schwartz applied the same systemic curiosity to inner life. A critic, a frightened childlike state, a controller and an avoidant impulse could be understood not as unrelated flaws but as members of an organised inner system.</p>
+        <p>This synthesis brought together two ideas with long histories: the mind is naturally multiple, and human behaviour makes more sense in relationship. IFS gave that synthesis a distinctive centre: every person also has Self, described in the model as an innate source of calm, curiosity, compassion, clarity and leadership. <a class="inline-source" href="https://ifs-institute.com/resources/articles/evolution-internal-family-systems-model-dr-richard-schwartz-ph-d" target="_blank" rel="noreferrer">IFS Institute · Evolution of the Model</a></p>
+        <h2>Why the name can be confusing</h2>
+        <p><em>Internal Family Systems</em> does not mean that the method is only about one's family of origin. “Family” points to the way parts form relationships and patterned sequences inside a person. External families, workplaces and cultures still matter: the model explicitly holds that inner and outer systems affect each other.</p>
+        <p>IFS is also different from ordinary family therapy, even though it grew from that tradition. It can be used with individuals, couples and families, but the phrase <em>internal family</em> refers to the ecology of parts within a person.</p>
+        <h2>Model, therapy and everyday language</h2>
+        <ul class="myth-list">
+          <li><strong>IFS as a model</strong>A conceptual map of multiplicity, parts, Self and systems.</li>
+          <li><strong>IFS as psychotherapy</strong>A clinical approach used by appropriately trained professionals for therapeutic goals.</li>
+          <li><strong>IFS as everyday language</strong>A way to say “a part of me” and relate to inner conflict with less shame and more responsibility.</li>
+        </ul>
+        <p>This course lives mainly in the first and third categories. It explains the model and develops a participant-safe language for ordinary life. It does not train participants to diagnose, treat or lead another person's process.</p>
+        <h2>What the evidence currently supports</h2>
+        <p>IFS has a growing research base, but it is important not to oversell it. The IFS Institute describes the evidence as emerging and still limited in scope. Small randomised and single-arm studies have reported promising findings, including work involving depression, post-traumatic stress symptoms and self-compassion. More well-designed, replicated trials are needed before broad condition-specific claims can be made. <a class="inline-source" href="https://ifs-institute.com/resources/research" target="_blank" rel="noreferrer">IFS Institute · Research</a></p>
+        <div class="summary"><strong>The useful historical shift</strong><p>IFS asks us to move from “Which part of me is the problem?” to “What system has formed here, and what is each member trying to accomplish?”</p></div>
+      `,
+      'ifs': `
+        <h2>Six ideas that organise the model</h2>
+        <p class="chapter-lead">A map is useful when it helps you recognise experience. These six propositions form Guthrie's concise orientation to IFS; they are invitations to observe, not statements you must accept on faith.</p>
+        <ol>
+          <li><strong>We have many parts.</strong> Thoughts, feelings, impulses, images and body patterns can organise into distinct inner positions.</li>
+          <li><strong>There are no inherently bad parts.</strong> A strategy may be harmful, but the model looks for a positive or protective intention beneath it.</li>
+          <li><strong>Parts live in relationship.</strong> They influence, oppose, recruit and protect one another in patterned ways.</li>
+          <li><strong>Everyone has Self.</strong> IFS describes Self as a different level of experience from parts and as a natural source of leadership.</li>
+          <li><strong>Self is the guiding orientation.</strong> The aim is not to remove parts but to increase their access to a trustworthy relationship with Self.</li>
+          <li><strong>Trust the system and its pace.</strong> Pressure usually produces more protection. Consent, patience and feedback matter.</li>
+        </ol>
+        <p>The official IFS model outline uses similar foundational assumptions: natural multiplicity, positive intentions, systemic relationships, an empowering understanding of Self, and the possibility that parts can return to less extreme roles. <a class="inline-source" href="https://ifs-institute.com/resources/articles/internal-family-systems-model-outline" target="_blank" rel="noreferrer">IFS Institute · Model Outline</a></p>
+        <h2>A complete everyday example</h2>
+        <div class="example"><strong>You receive an important email and do not answer.</strong><p>One part wants to respond perfectly so that nobody can criticise you. Another fears that any answer will create more work. A third becomes irritated with both and opens social media for relief. A fourth says you are lazy. The visible behaviour is avoidance; the system contains striving, fear, relief-seeking and criticism.</p><p>Monolithic language says, “I am avoidant.” Parts language says, “Several parts are trying to protect me in different ways.” That second sentence does not remove responsibility for answering. It gives you more information about what makes answering difficult.</p></div>
+        <h2>Positive intention is not positive impact</h2>
+        <p>IFS does not require us to call every behaviour acceptable. A protective strategy can hurt the person or others. The distinction is between the part and its current role: we can set a boundary around behaviour while remaining curious about why the strategy feels necessary.</p>
+        <p>This distinction supports accountability. If a defensive part spoke harshly, “a part did it” is not an excuse. It is a more precise starting point for repair: name the reaction, recognise its intention, take responsibility for its impact, and choose what happens next.</p>
+        <div class="checkpoint"><strong>Try the map</strong><p>Choose one ordinary contradiction — wanting to rest but continuing to work, wanting connection but avoiding a message. Write two sentences beginning “A part of me…” without deciding which part is right.</p></div>
+      `,
+      'guthrie': `
+        <h2>Why Guthrie begins with presence</h2>
+        <p class="chapter-lead">Guthrie Sayen teaches IFS through the quality of contact he brings to the room. Concepts matter, but the first lesson is relational: what changes when a person is met without force?</p>
+        <p>Guthrie is a PhD and Professional Certified Coach, a Level 3-trained IFS practitioner, and the founder of the Institute for Healing and Awakening. He has created international training programmes for coaches and other helping professionals, including IFS-based programmes that move from introductory to advanced practice. This course draws on that experience while addressing a different audience: people learning IFS for life rather than practitioner competence. <a class="inline-source" href="https://ifs-institute.com/profile/185862" target="_blank" rel="noreferrer">IFS Institute · Guthrie Sayen profile</a></p>
+        <h2>Classic and evolving IFS</h2>
+        <p>Guthrie distinguishes two complementary directions. Classic IFS often begins with a part and gradually releases constraints on access to Self. His evolving emphasis also explores direct access to awareness and presence before focusing on a part. In this course the two directions support each other: field awareness can make parts easier to meet, and relationship with parts can make awareness less obscured.</p>
+        <p>This is not a claim that one route replaces the other. It is a teaching sequence: first experience a wider field, then bring that wider relationship to ordinary parts.</p>
+        <h2>Operating system 1.0 and 2.0</h2>
+        <p>Guthrie uses the metaphor of an operating system to describe a shift in how experience is organised.</p>
+        <ul class="key-list">
+          <li><strong>OS 1.0</strong><span>Thought-led, focused, sequential and effortful. Excellent for solving defined problems, following steps and completing tasks.</span></li>
+          <li><strong>OS 2.0</strong><span>Awareness-led, panoramic and inclusive. Able to receive several signals at once and hold them in relationship.</span></li>
+        </ul>
+        <p>The aim is not to reject thought or concentration. It is <em>transcend and include</em>: keep the precision of focus and add the intelligence of the wider field. The metaphor is experiential rather than neuroscientific; the course does not claim that two literal operating systems exist in the brain.</p>
+        <h2>Love and force</h2>
+        <p>Across Guthrie's material, the central contrast is between trying to make experience change and offering a relationship in which change may become possible. Curiosity is not a softer form of control. Gratitude is not a technique for getting past a protector. A sincere “no” from the system is information.</p>
+        <blockquote class="quote"><p>“Self is love, and love is the way.”</p><cite>Guthrie Sayen · current course direction</cite></blockquote>
+        <p>The course tests this sentence in practical terms: slower pace, more consent, less attachment to outcome, clearer boundaries and a willingness to listen before acting.</p>
+      `,
+      'w1-before': `
+        <h2>Attention and awareness</h2>
+        <p class="chapter-lead">Attention selects. Awareness includes. You need both, and the practice is learning to move between them without turning either into an achievement.</p>
+        <p>Attention is the beam that reads this sentence, follows a voice or notices one sensation. It is naturally selective and often sequential. Awareness is the wider field in which the words, sounds, body and room are already appearing. The distinction can be tested without adopting a philosophical position about consciousness.</p>
+        <div class="example"><strong>A simple experiment</strong><p>Look at one word on the screen. Notice the precision of focus. Without losing the word completely, include the edges of the screen, the light in the room and sounds around you. Focus remains available, but it is no longer the whole field.</p></div>
+        <h2>The four building blocks</h2>
+        <ul class="key-list">
+          <li><strong>Ground</strong><span>Contact with feet, seat, gravity and support. The purpose is orientation and stability, not forced relaxation.</span></li>
+          <li><strong>Core</strong><span>Feeling the trunk of the body from within: belly, chest, back and throat. A place to receive information about feeling, need and direction.</span></li>
+          <li><strong>Field</strong><span>Opening awareness into the room and allowing sound, peripheral vision, body and space to coexist.</span></li>
+          <li><strong>Focus</strong><span>Letting attention touch one object, task or person while ground, core and field remain available in the background.</span></li>
+        </ul>
+        <p>These are training coordinates, not a rigid protocol. Some days ground is vivid and field is difficult; on other days the room is easy to sense but the body feels distant. The task is accurate noticing, not completing four perfect states.</p>
+        <h2>What if calm does not arrive?</h2>
+        <p>Calm is one possible quality of Self access, not proof that you succeeded. You may notice curiosity while anxiety remains, or a little more space while a protector is still urgent. Guthrie's language of access is deliberately continuous: ask how much access is available, not whether you are completely “in Self.”</p>
+        <p>If opening awareness increases disorientation, return to concrete orientation: eyes open, name objects in the room, press your feet into the floor and stop. Field awareness should support contact with the present, not make the present less clear.</p>
+      `,
+      'w1-live': `
+        <h2>How to learn from a live session</h2>
+        <p>The live call is not a lecture to transcribe. It is where the written distinctions become observable. Listen for Guthrie's pacing, how he responds to uncertainty, how often he checks the relationship rather than pursuing an outcome, and how he returns to ground, core and field while speaking.</p>
+        <h3>During teaching</h3>
+        <p>Mark one idea that clarifies experience and one that does not yet make sense. You do not need to retain every term. The purpose of theory is to give direct experience a usable frame.</p>
+        <h3>During demonstration</h3>
+        <p>Watch the sequence without converting it into a script. What signals suggest more or less access to Self? Where does pressure enter? What changes when the participant names “a part of me” rather than speaking as if the reaction is the whole self?</p>
+        <h3>During reflection</h3>
+        <p>Speak only from your own experience. It is enough to say what you noticed in attention, body or relationship. Do not interpret the volunteer's parts or tell another participant what their experience means.</p>
+        <div class="checkpoint"><strong>Observation prompt</strong><p>What did Guthrie do that made the room feel more spacious, precise or safe? Describe the observable action rather than guessing his intention.</p></div>
+      `,
+      'w1-after': `
+        <h2>Build recognition through repetition</h2>
+        <p>A new state becomes useful when it can be recognised in ordinary life. Short repetitions are more informative than one ambitious session. For the first week, practise while relatively steady: before opening email, during a walk, before a meeting or after closing a laptop.</p>
+        <h3>A minimum practice</h3>
+        <p>Feel one contact point with the ground. Notice one sensation in the torso. Include one sound or edge of peripheral vision. Then focus on the next task. This can take twenty seconds.</p>
+        <h3>A fuller practice</h3>
+        <p>Use the seven-minute sequence two or three times during the week. Afterwards, write only what you actually observed: “my jaw softened,” “thoughts remained fast,” “I heard more of the room,” or “opening the field felt uncomfortable.” Accurate data is more useful than a spiritual evaluation.</p>
+        <h3>Transfer to a part</h3>
+        <p>When a manageable reaction appears, try: “A part of me is rushing.” Notice whether the sentence creates one percent more relationship. If it does not, do not force it. Return to the room and continue your day.</p>
+        <div class="summary"><strong>Week 1 measure</strong><p>Success is recognising at least one doorway into wider awareness and one sign that you need to stop or simplify.</p></div>
+      `,
+      'support': `
+        <h2>Educational scope and informed choice</h2>
+        <p>The exercises in this course are designed for reflection, awareness and everyday Self-leadership. They cannot assess your mental health, determine whether a practice is suitable for you, provide crisis care or replace a relationship with a qualified professional.</p>
+        <p>People vary in how they respond to inward attention, body awareness, meditation and parts language. If you have a history of trauma, dissociation, panic, psychosis, mania or another condition that can affect orientation, consider discussing these practices with a clinician who knows you. The safest option may be to participate through reading and observation only.</p>
+        <h2>Stop signals</h2>
+        <ul>
+          <li>You cannot reliably feel the present room or the support beneath you.</li>
+          <li>Emotion or numbness rises quickly and does not settle after stopping.</li>
+          <li>You feel compelled to search for memories or continue despite fear.</li>
+          <li>You lose meaningful choice about whether to proceed.</li>
+        </ul>
+        <p>Stopping is not a failed practice. It is information and can be an act of Self-leadership. Open your eyes, orient to time and place, move, drink water, contact trusted support, or use appropriate local professional or emergency resources.</p>
+        <h2>Language boundary</h2>
+        <p>Use IFS terms as invitations, not verdicts. “I notice a part that wants distance” is different from “you are blended with a firefighter.” The first takes responsibility for one's experience; the second claims authority over another person's system.</p>
+      `,
+
+      'w2-start': `
+        <h2>From contradiction to multiplicity</h2>
+        <p class="chapter-lead">Most people already speak the grammar of multiplicity: part of me wants to go, another part wants to stay. IFS makes that grammar explicit and asks what becomes possible when neither side has to disappear.</p>
+        <p>The familiar alternative is the mono-mind story: there should be one consistent “me,” so contradiction means weakness, hypocrisy or lack of discipline. Parts language offers a less shaming explanation. Different inner positions may be responding to different risks, timescales and needs.</p>
+        <div class="example"><strong>One decision, four legitimate concerns</strong><p>You are invited to take a new role. An ambitious part sees growth. A cautious part remembers exhaustion. A loyal part worries about leaving colleagues. A playful part wants more freedom. A Self-led decision does not require voting one part off the committee. It listens for the information each carries, then makes a choice the system can increasingly trust.</p></div>
+        <h2>Why person-like language helps</h2>
+        <p>Guthrie describes parts as people because this language supports relationship. A “symptom” is easy to attack; an inner person invites questions about perspective, burden, fear, loyalty and gift. You can use this stance pragmatically even if you understand parts as neural patterns, states, schemas or metaphors.</p>
+        <p>The test is not metaphysical certainty. The test is whether the language gives you more curiosity, choice and accountability.</p>
+      `,
+      'w2-before': `
+        <h2>How parts may appear</h2>
+        <p>A part does not have to arrive as a clear voice or image. It may appear as a sentence that repeats, a tightening in the throat, an urge to leave, a sudden blankness, a posture, a fantasy, a memory, a plan or a quality of attention. Some people visualise vividly; others know a part through thought or sensation. No channel is more authentic.</p>
+        <h2>Part, emotion and behaviour</h2>
+        <p>An emotion is not always a whole part. Anger may belong to a boundary-setting part, a frightened protector, a humiliated younger part or several positions at once. Behaviour is also not identical with a part. Scrolling, overworking or withdrawing may be a strategy used by different parts in different contexts.</p>
+        <p>This prevents premature labelling. Instead of declaring “my procrastinator is here,” begin with observation: “I notice heaviness, an urge to open another tab, and the thought that the task will expose me.” A useful name can emerge later.</p>
+        <h2>All parts are good: a careful reading</h2>
+        <p>In IFS, “good” refers to the part's inherent worth and non-extreme intention, not to every action it takes. A critic may be trying to prevent rejection. An angry part may guard dignity. A perfectionist may protect belonging. Their methods can still be costly, outdated or harmful.</p>
+        <p>The model separates the person-like part from the burden or extreme role it carries. This allows two truths at once: the strategy needs limits, and the part deserves understanding.</p>
+        <div class="checkpoint"><strong>Notice before naming</strong><p>For one everyday reaction, list what you can directly observe: words, emotion, body, impulse, image and direction of attention. Only then try the sentence “a part of me…”</p></div>
+      `,
+      'w2-system': `
+        <h2>An inner ecology, not a collection</h2>
+        <p class="chapter-lead">Parts become easier to understand when we stop isolating them. A part's intensity often makes sense as a response to what another part is doing or might do.</p>
+        <p>Systems contain feedback. When one part pushes harder, another may resist more strongly; the increased resistance confirms the first part's belief that even more pressure is needed. IFS calls this kind of organised opposition a polarisation.</p>
+        <div class="example"><strong>The productivity loop</strong><p>A manager fears failure and creates a strict plan. A tired part experiences the plan as imprisonment and refuses to begin. The manager responds with criticism. Shame rises. A firefighter seeks immediate relief through video, food or distraction. The unfinished work then becomes evidence for the manager's next, stricter plan.</p><p>No member invented the whole loop. Each reacts to the others. Change may begin by understanding the sequence rather than defeating the most visible behaviour.</p></div>
+        <h2>Burdens and roles</h2>
+        <p>The official IFS glossary uses <em>burden</em> for extreme ideas or feelings carried by parts after exposure to people or events. A burden is not treated as the part's essence. A part may believe “I must never make a mistake” or carry shame that feels timeless; the model holds that the part is more than that belief or feeling. <a class="inline-source" href="https://ifs-institute.com/resources/research/ifs-glossary-terms" target="_blank" rel="noreferrer">IFS Institute · Glossary</a></p>
+        <p>In this introductory course, we learn the concept but do not attempt unburdening. We are developing recognition and relationship, not conducting a therapeutic process.</p>
+        <h2>External systems matter</h2>
+        <p>Inner work should not turn every problem into an individual psychology problem. Workload, discrimination, financial pressure, unsafe relationships and cultural expectations can constrain the system. A protector may be responding to a current reality, not merely an outdated fear. Self-leadership includes evaluating the environment and changing it when possible.</p>
+        <div class="checkpoint"><strong>Systems question</strong><p>If the part you dislike stopped tomorrow, which other part or external risk would become more worried? The answer often reveals what the visible strategy has been holding.</p></div>
+      `,
+      'w2-live': `
+        <h2>What unblending looks like in ordinary language</h2>
+        <p>Unblending is not pushing a part away. It is enough differentiation for relationship: the reaction is present, but it is not the only available perspective. The shift may be grammatical (“I am a failure” becomes “a part believes I failed”), bodily (a fraction more breath), attentional (the room returns) or relational (curiosity appears beside irritation).</p>
+        <p>During the demonstration, watch for three movements: recognition of the part, acknowledgement of any reaction toward it, and restoration of choice. Guthrie may ask how the person feels toward the part because annoyance, fear or urgency can signal that another part is speaking.</p>
+        <p>The aim is not perfect separation. Many moments contain Self and parts together. The practical question is whether there is enough access to listen without being completely governed by one position.</p>
+        <div class="summary"><strong>Do not rehearse the facilitator's lines</strong><p>Learn the quality of curiosity and pacing. Participants are not being trained to guide one another through the Six Fs or any other IFS protocol.</p></div>
+      `,
+      'w2-after': `
+        <h2>A seven-day noticing practice</h2>
+        <p>Choose one recurring, low-intensity situation. Keep the situation stable so that you can observe variation rather than collect every part in your system.</p>
+        <ol>
+          <li><strong>Trigger:</strong> What happened just before the reaction?</li>
+          <li><strong>Signal:</strong> What words, emotions, sensations or impulses appeared?</li>
+          <li><strong>Part-language:</strong> Complete “A part of me…” in the present tense.</li>
+          <li><strong>Possible intention:</strong> What might this part be trying to prevent, preserve or obtain? Mark this as a hypothesis.</li>
+          <li><strong>Relationship:</strong> How do you feel toward the part right now?</li>
+          <li><strong>System:</strong> Does another part oppose, judge or fear it?</li>
+          <li><strong>Choice:</strong> What is the smallest responsible next action?</li>
+        </ol>
+        <p>Do not turn the record into surveillance. Two or three entries are enough. If the practice increases self-criticism, name the monitoring part and reduce the task.</p>
+        <div class="example"><strong>Example entry</strong><p>Trigger: a colleague asks for a revision. Signal: heat in my face and “they think I am incompetent.” A part wants to defend every choice. It may be protecting credibility. Another part is embarrassed by the defensiveness. The responsible next action is to ask which changes matter most before replying.</p></div>
+      `,
+      'w2-glossary': `
+        <h2>Five distinctions worth retaining</h2>
+        <p><strong>Multiplicity</strong> describes the presence of many inner positions. <strong>Blending</strong> describes a part's feelings or beliefs merging with the sense of self. <strong>Unblending</strong> describes enough differentiation for relationship. <strong>Polarisation</strong> describes organised opposition in which each side fears the other taking over. <strong>Burden</strong> describes an extreme belief or feeling carried by a part but not considered its essence.</p>
+        <p>These terms are descriptive tools. They are not diagnoses, and they do not tell you the full history of a reaction. Use the simplest term that increases understanding.</p>
+        <h2>Reading without outrunning the course</h2>
+        <p><em>Introduction to Internal Family Systems</em> is the clearest broad orientation. <em>No Bad Parts</em> is accessible and practice-rich. <em>Many Minds, One Self</em> offers a deeper argument for the multiplicity paradigm. Some books include exercises that go beyond this course's scope; optional reading does not change the course boundary.</p>
+        <p>Russian readers can use the licensed editions <em>Внутренние семейные системы</em> and <em>Мои разные «я»</em>. Terminology varies across translations, so the course glossary remains the reference for shared discussion.</p>
+      `,
+      'w2-boundary': `
+        <h2>Parts language and responsibility</h2>
+        <p>“A part of me” should make responsibility more precise, not smaller. You remain responsible for what you say and do, even when a protector is strongly blended.</p>
+        <ul class="myth-list">
+          <li><strong>Useful:</strong> “A part of me became defensive, and I interrupted you. I want to hear what I missed.”</li>
+          <li><strong>Not useful:</strong> “My firefighter did it, so it was not really me.”</li>
+          <li><strong>Useful:</strong> “A part of me is afraid to agree. My answer is no.”</li>
+          <li><strong>Not useful:</strong> “Your manager is controlling and needs to step back.”</li>
+        </ul>
+        <h2>Do not map another person without consent</h2>
+        <p>IFS concepts can create an illusion of privileged insight. You may notice your own hypothesis about another person, but naming their parts as fact can feel invasive and can become a way to win an argument. Speak on behalf of your own parts; invite the other person to describe themselves.</p>
+        <p>Likewise, listening is not guiding. A course partner can reflect what they heard, ask what support is wanted and respect a stop. They should not lead imagery, search for origins or negotiate with another participant's protectors.</p>
+      `
+    };
+
+    Object.assign(textbookExpansions, {
+      'w3-start': `
+        <h2>Identification is only the first movement</h2>
+        <p class="chapter-lead">Naming a part can create space, but the deeper shift is relational. What does the part meet when it turns toward you?</p>
+        <p>A part may be correctly identified and still experience judgment, impatience or analysis. “I know this is my critic” can mean “I have finally found the enemy.” IFS asks a second question: how do you feel toward this part? The answer reveals the relationship currently available.</p>
+        <p>If you feel curious, compassionate, clear or calmly interested, some access to Self may be present. If you feel disgusted, afraid, urgent, superior or determined to fix, another part may be responding. That response is not a mistake. It becomes the next member of the system to notice.</p>
+        <div class="example"><strong>Two forms of curiosity</strong><p>Managerial curiosity asks questions to find the lever that will make the part change. Self-led curiosity is willing to learn something that alters its own understanding. The words may sound similar; the felt agenda is different.</p></div>
+        <h2>The loving gaze</h2>
+        <p>Guthrie uses the loving gaze to describe a quality of attention that does not reduce the part to its role. It sees effort, fear, loyalty, intelligence and cost. Love here does not mean approval, sentimentality or unlimited access. It means the part is not required to become different before it is worthy of relationship.</p>
+      `,
+      'w3-self': `
+        <h2>Self in the IFS model</h2>
+        <p class="chapter-lead">IFS uses <em>Self</em> as a technical term. It does not mean self-image, ego, personality, confidence as performance, or the collection of roles by which you recognise yourself.</p>
+        <p>The official model describes Self as the core of a person and associates it with qualities of leadership such as compassion, perspective, curiosity and confidence. It treats Self as a different level of experience from parts: parts are contents of consciousness, while Self is capable of noticing and relating to those contents. <a class="inline-source" href="https://ifs-institute.com/resources/articles/internal-family-systems-model-outline" target="_blank" rel="noreferrer">IFS Institute · Model Outline</a></p>
+        <p>Guthrie sharpens this through the phrase <em>awake awareness</em>. In his teaching, access to awareness is a direct doorway into access to Self. The field practice in Week 1 is therefore not separate from IFS; it prepares the relational ground from which parts can be met.</p>
+        <h2>Innate and undamaged</h2>
+        <p>A central IFS proposition is that Self is not created by achievement and is not damaged by what has happened. Access can be constrained or obscured when parts carry intense responsibilities, but the model does not describe Self as broken.</p>
+        <p>This can be psychologically empowering: it places dignity and capacity inside the person rather than in the expert. It is also a model-specific claim, not an experimentally settled fact about human consciousness. You are invited to test its practical consequences without being required to adopt its ontology.</p>
+        <h2>State, trait and relationship</h2>
+        <p>People sometimes turn Self into a perfect state they must maintain. That creates another performance system. In this course, access is a continuum and a relationship: a little curiosity beside fear counts; a moment of clearer choice counts; returning after blending counts.</p>
+        <p>Self-leadership does not mean that parts vanish. Guthrie's orchestra metaphor is helpful: parts are the musicians and Self is the conductor. Without the musicians there is no music; without enough coordination, the system can lose harmony. Leadership means listening, integrating information and making decisions — not silencing the orchestra.</p>
+        <h2>Spiritual parallels without forced equivalence</h2>
+        <p>Guthrie places Self in conversation with contemplative traditions that speak of Buddha nature, Atman, divine presence and other forms of awakened awareness. These parallels can be meaningful, but they are not identical doctrines and should not be presented as proof of one another. Participants may use secular, spiritual or undecided language.</p>
+      `,
+      'w3-before': `
+        <h2>The eight Cs in ordinary behaviour</h2>
+        <p class="chapter-lead">The eight Cs are most useful as relational capacities, not as adjectives for a perfected person.</p>
+        <dl class="glossary-list">
+          <div><dt>Calm</dt><dd>Enough steadiness to remain in contact. Calm may coexist with grief, anger or fear; it is not emotional flatness.</dd></div>
+          <div><dt>Curiosity</dt><dd>Interest that is willing to be changed by what it learns and does not hide an agenda to fix.</dd></div>
+          <div><dt>Clarity</dt><dd>The capacity to see more of the situation, distinguish observation from story and recognise several truths at once.</dd></div>
+          <div><dt>Compassion</dt><dd>A responsive recognition of suffering without pity, superiority or loss of boundaries.</dd></div>
+          <div><dt>Confidence</dt><dd>Grounded trust in the ability to meet what comes; not certainty, dominance or the absence of doubt.</dd></div>
+          <div><dt>Courage</dt><dd>Willingness to remain present, tell the truth, set a boundary or seek help when that matters.</dd></div>
+          <div><dt>Creativity</dt><dd>Access to options beyond the familiar defensive sequence.</dd></div>
+          <div><dt>Connectedness</dt><dd>Contact with body, parts, other people and the wider context without erasing difference.</dd></div>
+        </dl>
+        <h2>Why a checklist can backfire</h2>
+        <p>If you ask “Am I calm enough? Curious enough? Compassionate enough?” a monitoring part may take over and imitate the language of Self. Guthrie's teaching includes quieter markers because access can be modest: the breath becomes less held, the voice less pressed, the outcome less urgent, or the person becomes willing to say “I don't know.”</p>
+        <p>Use the qualities retrospectively and relationally. Which quality was available? Which was missing? What happened to the relationship with the part? The aim is recognition, not scoring.</p>
+        <div class="checkpoint"><strong>One-quality experiment</strong><p>Choose one manageable part and one quality — perhaps curiosity or clarity. Ask what one percent more of that quality would look like in behaviour. It might mean waiting ten seconds, asking one real question or admitting uncertainty.</p></div>
+      `,
+      'w3-markers': `
+        <h2>Markers across four channels</h2>
+        <p>Guthrie's Self material describes patterns across body, voice, attention and attitude. No single marker proves access to Self, and every marker is influenced by temperament, culture, disability, neurotype and current health. Look for a change in pattern rather than a universal appearance.</p>
+        <ul class="key-list">
+          <li><strong>Body</strong><span>Possibly less muscular holding, easier breathing, more contact with support and less compulsion to move toward or away.</span></li>
+          <li><strong>Voice</strong><span>Possibly more room in the throat, less speed or pressure, and greater capacity to pause. A naturally fast or high voice is not evidence of low Self access.</span></li>
+          <li><strong>Attention</strong><span>Focus remains available while other information — body, room, another person, another part — can enter the field.</span></li>
+          <li><strong>Attitude</strong><span>Less attachment to a predetermined outcome, less judgment of the part and more willingness to receive feedback.</span></li>
+        </ul>
+        <h2>Self-like parts</h2>
+        <p>A part can appear calm, articulate, spiritual or helpful while carrying a strong agenda. A capable analyst may understand every concept but remain distant from feeling. A compassionate caretaker may be unable to tolerate another person's disappointment. A serene part may be organised around never showing anger.</p>
+        <p>The point is not to become suspicious of competence or calm. Ask relational questions: Can this state receive a no? Can it admit not knowing? Can it remain connected when the outcome changes? Does it include the body and other parts, or does it manage them from above?</p>
+        <h2>Blended does not mean bad</h2>
+        <p>When a part blends, it has often concluded that leadership is unavailable or unsafe. Criticising the blend confirms its fear. The first movement is recognition: “This feels like the whole truth right now, and a part may be carrying it.” Even that sentence may restore a little field.</p>
+        <div class="example"><strong>Micro-marker</strong><p>You still disagree with someone, but you can accurately repeat their position before answering. The disagreement did not disappear; access widened enough to include another perspective.</p></div>
+      `,
+      'w3-live': `
+        <h2>Force can wear gentle language</h2>
+        <p>A question may sound compassionate while carrying pressure: “What do you need?” can secretly mean “Tell me so I can solve you.” During the live work, attend to pace, tone, willingness to pause and the person's freedom not to answer.</p>
+        <p>Notice whether Guthrie follows the part's response or a prepared sequence. Does he welcome uncertainty? Does he recognise another part when it appears? Does he accept that the most Self-led move may be to stop?</p>
+        <h2>Love is observable</h2>
+        <p>In this course, loving presence should become behaviourally concrete. It looks like respecting a no, not arguing with protection, distinguishing intention from impact, staying interested after the story changes, and releasing attachment to a dramatic result.</p>
+        <div class="checkpoint"><strong>Debrief lens</strong><p>Where did you see more choice become available? What specific word, pause or change of attention preceded it?</p></div>
+      `,
+      'w3-after': `
+        <h2>A five-minute relational practice</h2>
+        <ol>
+          <li>Orient to ground, core and field.</li>
+          <li>Name one ordinary part that is already present.</li>
+          <li>Notice how you feel toward it.</li>
+          <li>If another part judges or fears it, include that second part first.</li>
+          <li>Offer one sincere quality: curiosity, compassion, clarity or simple willingness.</li>
+          <li>Ask no more than one question: “What would you like me to understand?”</li>
+          <li>Receive what comes, including silence, then thank the part and return to the room.</li>
+        </ol>
+        <p>This is not a search for origin or a negotiation for change. It is a short experience of relationship. If the part becomes younger, more distressed or overwhelming, stop the inquiry and orient to present support.</p>
+        <div class="example"><strong>If nothing happens</strong><p>“Nothing” may mean the part does not communicate in words, another protector is cautious, the prompt does not fit, or attention is tired. Record that accurately. Do not invent an answer to complete the exercise.</p></div>
+        <h2>Integration question</h2>
+        <p>What was different when the part was met with interest rather than an instruction? The difference may be in you, the part, the body or nowhere obvious.</p>
+      `,
+      'w3-boundary': `
+        <h2>Do not weaponise Self</h2>
+        <p>“I am speaking from Self” can become a status claim that places one person above another. Access to Self does not make a statement automatically correct, and activation does not make a person's concern invalid.</p>
+        <p>Use first-person, revisable language: “I notice more clarity,” “I may have some access to curiosity,” or “a part of me is very certain.” In conflict, observable behaviour and consent matter more than spiritual authority.</p>
+        <h2>Compassion includes boundaries</h2>
+        <p>You can understand a protector's intention and still decline its behaviour. You can feel compassion for another person's fear and still end a conversation. You can love a part and seek professional support because the situation exceeds what self-guided practice can safely hold.</p>
+        <div class="summary"><strong>Keep with you</strong><p>Self is not a performance of serenity. Look for enough spaciousness, honesty and relationship to support the next responsible choice.</p></div>
+      `,
+
+      'w4-start': `
+        <h2>Protection is an intelligent response</h2>
+        <p class="chapter-lead">Protectors are the parts that organise around preventing pain, containing it or ending it quickly. Their strategies can conflict, but their shared orientation is safety.</p>
+        <p>The word <em>protector</em> does not mean the strategy is harmless or always effective. It names the function the part believes it is performing. This functional view opens a different line of inquiry: protection from what, for whom, and under what conditions?</p>
+        <p>Week 4 introduces two broad patterns used in IFS: managers act proactively to prevent activation, while firefighters react when pain or threat is already present. These are roles rather than fixed identities. The same part may manage in one context and react like a firefighter in another.</p>
+        <div class="example"><strong>One shared goal, opposite methods</strong><p>A perfectionistic manager prevents shame by controlling preparation. When exhaustion and shame break through, a firefighter abandons the task and seeks immediate relief. Each distrusts the other, yet both are trying to keep the system away from unbearable failure.</p></div>
+      `,
+      'w4-before': `
+        <h2>The three-group ecology</h2>
+        <p>IFS commonly describes managers, firefighters and exiles. Managers and firefighters are protectors. Exiles are vulnerable parts whose feelings, memories or needs have been kept out of ordinary awareness because the system expects them to overwhelm or endanger functioning.</p>
+        <p>This ecology is a map, not a biological classification. Real systems are more complex. A young part can protect; a competent part can be exiled by a culture that shames its gift; a single reaction can contain several roles.</p>
+        <h2>Plan A and Plan B</h2>
+        <ul class="key-list">
+          <li><strong>Managers · Plan A</strong><span>Prevent the feared pain through planning, control, inhibition, vigilance, achievement, caretaking or self-criticism.</span></li>
+          <li><strong>Firefighters · Plan B</strong><span>When pain breaks through, act now through distraction, numbing, escape, rage, intensity, pleasure, novelty or shutdown.</span></li>
+        </ul>
+        <p>The categories reduce moral hierarchy. Society often rewards overworking and perfectionism while condemning visible relief-seeking, but both can be costly protective roles. Conversely, both can carry gifts: managers bring organisation and foresight; firefighters bring spontaneity, rest, decisive action and the ability to shift gears.</p>
+        <h2>Use the map lightly</h2>
+        <p>Do not ask “Which type am I?” A person is not a manager or firefighter. Ask which protective role a particular part is using in a particular sequence.</p>
+      `,
+      'w4-managers': `
+        <h2>How managers try to keep life workable</h2>
+        <p class="chapter-lead">Managers think ahead. They anticipate what could go wrong and organise the person or environment to prevent it.</p>
+        <p>Common managerial strategies include perfectionism, criticism, pleasing, pessimism, overthinking, emotional inhibition, relentless competence, control, hyper-independence and staying busy. The visible style varies, but the logic often sounds like: “If I do everything correctly, the feared thing will not happen.”</p>
+        <h2>The sacrifice beneath competence</h2>
+        <p>A manager may be highly valued at work or in a family. It can carry calendars, standards, finances and responsibility. The difficulty is not competence; it is the belief that the part can never stop. Guthrie describes managers as often overburdened with responsibility beyond their capacity.</p>
+        <div class="example"><strong>The helpful critic</strong><p>An inner critic notices errors quickly. Its gift may be discernment. In an extreme role, it attacks before anyone else can, hoping humiliation will prevent external rejection. Simply demanding positive self-talk can make it more alarmed. Relationship begins by recognising what it believes criticism prevents.</p></div>
+        <h2>Manager questions</h2>
+        <ul>
+          <li>What future outcome are you trying to prevent?</li>
+          <li>What standard do you believe keeps us safe or acceptable?</li>
+          <li>What do you fear would happen if you rested?</li>
+          <li>What ability do you bring when you are not carrying the whole system?</li>
+        </ul>
+        <p>Ask only when genuine curiosity is available. A question used to prove the manager unnecessary will be heard as opposition.</p>
+      `,
+      'w4-firefighters': `
+        <h2>How firefighters respond to the present</h2>
+        <p class="chapter-lead">Firefighters are organised around immediacy. When distress, shame, fear, loneliness or constraint becomes intolerable, they seek to change the state now.</p>
+        <p>Everyday firefighter strategies can include changing the subject, making a joke, scrolling, binge-watching, eating for relief, impulsive spending, overexercising, sudden anger, sexual intensity, going blank, sleeping, dissociating or abandoning a task. Some strategies are relatively low-risk; others can be dangerous and require professional help.</p>
+        <p>Managers consider future consequences; firefighters prioritise present relief. This does not make firefighters irrational. They may be responding to pain the rest of the system underestimates.</p>
+        <div class="example"><strong>After the meeting</strong><p>A manager maintains composure while receiving criticism. In the car, shame rises. A firefighter reaches for immediate stimulation and stays online for hours. The next morning a manager attacks the firefighter, recreating the conditions for more relief-seeking.</p></div>
+        <h2>Gifts outside the emergency role</h2>
+        <p>When a firefighter does not have to extinguish an inner fire, the same energy may support play, novelty, humour, pleasure, adventure, rest and rapid response to real danger. The aim is not to eliminate intensity but to free it from compulsory crisis work.</p>
+        <h2>When self-guided curiosity is not enough</h2>
+        <p>If a strategy involves substance dependence, self-harm, suicidal thinking, dangerous dissociation, violence or another high-risk behaviour, use appropriate clinical or emergency support. Understanding protective intention does not make the risk safe to hold alone.</p>
+      `,
+      'w4-cycle': `
+        <h2>Map the sequence, not the villain</h2>
+        <p>A protection cycle often contains an external event, vulnerable activation, proactive control, reactive relief and internal backlash. Mapping the order helps locate choice points.</p>
+        <div class="example"><strong>Cycle: difficult feedback</strong><ol><li>A colleague questions your work.</li><li>A vulnerable part carries fear of being exposed as inadequate.</li><li>A manager argues, explains and searches for flaws in the feedback.</li><li>When shame breaks through, a firefighter numbs through distraction.</li><li>Another manager criticises the loss of time and creates a stricter plan.</li><li>The vulnerable part now carries both the original fear and fresh internal attack.</li></ol></div>
+        <h2>Possible intervention points</h2>
+        <p>Before the meeting, the manager can be thanked for preparing. During feedback, ground and field can preserve contact with the room. After activation, the firefighter can be recognised before the phone is opened. During repair, the critical backlash can be asked what it fears would happen without punishment.</p>
+        <p>None of these guarantees a different outcome. The purpose is to replace one global identity — “I always sabotage myself” — with a sequence containing several understandable movements and several places where support may enter.</p>
+        <div class="checkpoint"><strong>Draw one cycle</strong><p>Use arrows and verbs. Keep the example current and low-intensity. Include the external context; do not explain everything as childhood.</p></div>
+      `,
+      'w4-live': `
+        <h2>Protector-first pacing</h2>
+        <p>IFS gives protectors priority because they carry information about risk and capacity. During the live call, notice whether the work respects what is available rather than treating the protector as a door to something more important.</p>
+        <p>Validation means the strategy makes sense in context. Permission means the part can influence pace and say no. Hope means another future may be possible, not that change is promised today. These messages must be sincere; otherwise they become manipulation.</p>
+        <p>A useful demonstration may end with a protector still doing its job but feeling more accurately seen. That is not an incomplete result. Trust is itself an outcome.</p>
+        <div class="summary"><strong>What to observe</strong><p>How does Guthrie respond when the protector disagrees, becomes silent, questions the process or does not soften?</p></div>
+      `,
+      'w4-after': `
+        <h2>Three messages in everyday language</h2>
+        <p><strong>Validation:</strong> “I can see why you would not want this to happen again.” Validation recognises logic; it does not endorse every effect.</p>
+        <p><strong>Control:</strong> “I will not push past you. We can stop.” In this participant course, control means genuine choice about inward practice, not negotiating access to deeper material.</p>
+        <p><strong>Hope:</strong> “You may not always have to work this hard. We do not have to decide that now.” Hope is an opening, not a sales pitch.</p>
+        <h2>One-week protector practice</h2>
+        <ol>
+          <li>Choose one ordinary protector whose strategy is not high-risk.</li>
+          <li>Name what it does without insulting it.</li>
+          <li>Identify the situation in which it mobilises.</li>
+          <li>Offer one specific appreciation for effort, loyalty or information.</li>
+          <li>Ask what it wants you to understand.</li>
+          <li>Accept silence or a no, then return to present activity.</li>
+        </ol>
+        <div class="example"><strong>Specific gratitude</strong><p>“Thank you for noticing every possible problem before the presentation. You have helped me prepare for years.” This is more credible than “thank you for protecting me” when you do not yet understand how.</p></div>
+      `,
+      'w4-boundary': `
+        <h2>Respect is not permission for harm</h2>
+        <p>You can appreciate a part's protective intention and still interrupt behaviour, remove access to a means of harm, leave a situation, make restitution or seek professional support. Compassion and containment belong together.</p>
+        <p>When another person is affected, their safety and consent do not depend on your protector feeling understood first. Internal curiosity can happen alongside an external boundary.</p>
+        <h2>High-risk firefighters</h2>
+        <p>Strategies involving suicidal intent, self-harm, violence, severe substance use, dangerous impulsivity or loss of orientation require more than a course exercise. Contact an appropriate clinician, crisis line or emergency service in your location. If there is immediate danger, use immediate local emergency support.</p>
+        <h2>Do not use gratitude strategically</h2>
+        <p>If you thank a protector only so it will step aside, the system may experience the gesture as coercion. Honest language can be simpler: “I do not yet like what happens, but I am willing to understand why you believe it is necessary.”</p>
+        <div class="summary"><strong>Keep with you</strong><p>A protector's no is data. Accepting it can build more trust than completing an exercise.</p></div>
+      `
+    });
+
+    Object.assign(textbookExpansions, {
+      'w5-start': `
+        <h2>Why vulnerability needs more theory and less practice</h2>
+        <p class="chapter-lead">Vulnerable parts are essential to the IFS map, but learning that they exist is different from trying to access or heal them. This week builds recognition, capacity and support rather than depth.</p>
+        <p>Protectors often organise around feelings or needs the system expects to be overwhelming, dangerous or unacceptable. Understanding that ecology can reduce shame: intense control or avoidance may be related to what the system is trying not to feel.</p>
+        <p>At the same time, the explanatory power of the model can tempt people to search for a hidden wound behind every behaviour. That is not the task. A present difficulty may involve current conditions, ordinary fatigue, conflict, health, culture or practical constraints. IFS is one lens, not a total explanation.</p>
+        <div class="example"><strong>The Week 5 rule</strong><p>Recognise what is near. Maintain contact with the present. Respect protection. Choose support. Do not search for origins, memories or a cathartic experience.</p></div>
+        <h2>Learning through observation is participation</h2>
+        <p>You may read the chapter and observe the live session without turning inward. You may keep cameras off, eyes open and attention on the room. No disclosure is required. The educational result is a clearer map and a more reliable stop.</p>
+      `,
+      'w5-before': `
+        <h2>What IFS means by an exile</h2>
+        <p>The official glossary defines exiles as parts sequestered within a system for their own protection or for the protection of the system from them. They are often described as young and vulnerable, carrying pain, fear, shame, loneliness, beliefs or sensations connected with difficult experience. <a class="inline-source" href="https://ifs-institute.com/resources/research/ifs-glossary-terms" target="_blank" rel="noreferrer">IFS Institute · Glossary</a></p>
+        <p>The term can sound rejecting. It describes the part's position in the system, not its value. Guthrie emphasises that vulnerable parts are more than what they carry. Openness, sensitivity, imagination, play, trust and the capacity for intimacy may also be present.</p>
+        <h2>Why protectors keep vulnerability away</h2>
+        <p>A system may have learned that certain feelings threaten attachment, functioning, dignity or survival. Managers work to prevent activation; firefighters act when activation has already occurred. Their intensity may reflect the scale of the risk as they understand it.</p>
+        <div class="example"><strong>A present-day sequence</strong><p>A friend cancels plans. A vulnerable part carries loneliness and the belief “I do not matter.” A manager immediately explains that needing people is weak. A firefighter opens several apps and looks for stimulation. The loneliness remains outside awareness, but the system is busy protecting around it.</p></div>
+        <h2>Tenderness is not proof of a memory</h2>
+        <p>An emotion, image or body sensation does not verify a historical event. Memory is reconstructive, and inward practices can increase suggestibility. Do not use this course to establish what “must have happened.” If memories arise, treat them as experience requiring care rather than evidence to investigate alone.</p>
+        <h2>Why the course usually says vulnerable part</h2>
+        <p><em>Vulnerable part</em> is enough for participant learning and carries less implication that a formal therapeutic process should follow. <em>Exile</em> remains in the glossary because it appears in books and official IFS sources.</p>
+      `,
+      'w5-capacity': `
+        <h2>Capacity means retaining choice</h2>
+        <p class="chapter-lead">The relevant question is not “Can I tolerate more?” It is “Do I have enough orientation, support and choice to remain in relationship with what is here?”</p>
+        <p>Capacity is contextual. Sleep, illness, medication, conflict, isolation, environment and the presence of trustworthy support all matter. A practice that is manageable one day may be too much another day.</p>
+        <h2>Green, amber and red signals</h2>
+        <ul class="key-list">
+          <li><strong>Green · oriented</strong><span>You know where you are, feel support beneath you, can speak coherently, pause, choose and remain aware of the room.</span></li>
+          <li><strong>Amber · narrowing</strong><span>Attention tunnels, urgency rises, the body becomes rigid or distant, thinking loops, or a strong wish to please the exercise appears.</span></li>
+          <li><strong>Red · stop</strong><span>Flooding, severe numbness, disorientation, inability to choose, losing the present room, dangerous impulses or persistent distress after stopping.</span></li>
+        </ul>
+        <p>These colours are a practical course shorthand, not a clinical scale. When uncertain, choose the more conservative response.</p>
+        <h2>Orientation before interpretation</h2>
+        <p>If intensity rises, do not ask what the part means or where it came from. First restore contact with the present: open eyes, name the date and place, find edges and colours, press feet into the floor, stand, move, use temperature or sound, and contact another person.</p>
+        <div class="checkpoint"><strong>Capacity question</strong><p>Can I stop, look around and choose a different activity right now? If the answer is no or unclear, the exercise is over and support comes first.</p></div>
+      `,
+      'w5-support': `
+        <h2>Four layers of support</h2>
+        <p>A support plan should be specific enough to use when thinking is narrowed.</p>
+        <ol>
+          <li><strong>Immediate orientation.</strong> Concrete actions that bring you into present time: lights on, feet down, a familiar object, water, movement, a named room.</li>
+          <li><strong>Ordinary human contact.</strong> A person who can stay with you, help with practical needs or talk about everyday life without leading an inner process.</li>
+          <li><strong>Professional support.</strong> A therapist, physician or other qualified professional who understands your context and can assess what this course cannot.</li>
+          <li><strong>Crisis support.</strong> Local crisis and emergency routes identified in advance, including what you will do if you or someone else is in immediate danger.</li>
+        </ol>
+        <h2>Write operational sentences</h2>
+        <p>“I will get support” is too vague. Useful plans name people and actions: “I will stop the call, turn on the lights, message Sam, and if the urge remains unsafe, contact the local crisis service.” Keep the plan somewhere accessible.</p>
+        <h2>Consent can change</h2>
+        <p>Agreeing to an exercise does not commit you to finish it. Consent can be withdrawn at any moment, including after the first prompt. A facilitator's role is to make stopping usable, not merely technically permitted.</p>
+        <div class="summary"><strong>Prepare before the live call</strong><p>Know your stop sentence, one grounding action, one person you can contact and the appropriate professional or emergency route for your location.</p></div>
+      `,
+      'w5-live': `
+        <h2>What a contained orientation can teach</h2>
+        <p>The live session can clarify how vulnerability fits within the system, how protectors signal pace and how Self-led presence differs from pushing for disclosure. It does not need to produce a deep demonstration to be valuable.</p>
+        <p>If Guthrie works with a volunteer, observe the consent structure: what was agreed, how choice remains visible, how protectors are included, and where the work stops. A demonstration appropriate for a trained practitioner to facilitate is not automatically appropriate for participants to repeat.</p>
+        <h2>Witnessing as a concept</h2>
+        <p>In full IFS therapy, witnessing has a specific place in work with exiles and is followed by other steps. Here, the word is used only in its ordinary educational sense: recognising that vulnerable experience deserves respectful presence. The therapeutic process of witnessing, retrieval and unburdening is outside participant practice.</p>
+        <div class="example"><strong>A complete outcome</strong><p>A participant notices tenderness, a protector says “not here,” the participant feels the chair and room, thanks the protector and stops. Nothing deeper happens. The system's limit was recognised and respected — that is a successful demonstration of Self-leadership.</p></div>
+      `,
+      'w5-after': `
+        <h2>The recognise–orient–choose sequence</h2>
+        <p><strong>Recognise:</strong> “Something tender may be near, and a protector wants distance.” Use tentative language. You do not need to know which part is which.</p>
+        <p><strong>Orient:</strong> feel support, name the room, notice the date, include sound and peripheral vision. Let the present become at least as real as the inner material.</p>
+        <p><strong>Choose:</strong> stop, rest, move, write one sentence, contact someone or seek professional help. Do not automatically choose continued inward attention.</p>
+        <h2>Aftercare is ordinary</h2>
+        <p>Eat, hydrate, sleep, walk, reduce stimulation, do a familiar task or spend time with a safe person. Integration does not always require more meaning-making. The nervous system may benefit from predictable life.</p>
+        <div class="checkpoint"><strong>One-line record</strong><p>What did you recognise, what restored orientation, and what support did you choose? Do not record personal history unless you independently want to.</p></div>
+      `,
+      'w5-boundary': `
+        <h2>Clear exclusions</h2>
+        <p>This course does not ask participants to retrieve memories, locate young parts, witness traumatic scenes, rescue or retrieve an exile, release burdens, guide imagery for another person, or persuade protectors to allow access.</p>
+        <p>These exclusions are not statements that deeper IFS work is wrong. They distinguish an introductory educational course from psychotherapy and professional training.</p>
+        <h2>When to seek professional help</h2>
+        <p>Consider qualified individual support when reactions are intense, persistent, impair daily functioning, involve trauma symptoms, dangerous behaviour, severe dissociation, psychosis, mania, substance dependence, self-harm or suicidal thinking. In immediate danger, use local crisis or emergency services.</p>
+        <p>An IFS-informed professional is one option, not the only legitimate source of care. The right support depends on the person, condition, location and available clinical services.</p>
+        <div class="summary"><strong>Keep with you</strong><p>Knowing when not to continue is part of the skill. Protection, consent and support are not obstacles to the course's transformation; they are the conditions for it.</p></div>
+      `,
+
+      'w6-start': `
+        <h2>Integration is transfer</h2>
+        <p class="chapter-lead">The course matters when its distinctions become available outside the course: before sending a message, during a disagreement, while making a decision or after a reaction.</p>
+        <p>Integration does not mean remembering every term or using IFS language in every situation. It means that a few movements have become easier: noticing a part before acting, opening the field when attention narrows, appreciating protection without surrendering responsibility, and asking for support before capacity is lost.</p>
+        <h2>The six-week path in one sentence each</h2>
+        <ol>
+          <li>Attention can focus while awareness includes a wider field.</li>
+          <li>A reaction can be a part of you without being all of you.</li>
+          <li>The quality of relationship matters more than perfect identification.</li>
+          <li>Protection makes sense before it becomes convenient.</li>
+          <li>Vulnerability requires capacity, consent and support.</li>
+          <li>Self-leadership becomes visible through choices, boundaries and repair.</li>
+        </ol>
+        <div class="example"><strong>A realistic transformation</strong><p>You still become defensive, but notice it sooner. You can say “a part of me is preparing to argue.” You feel your feet, hear the other person and ask for a pause. Later you return and repair. The part did not disappear; leadership widened.</p></div>
+      `,
+      'w6-before': `
+        <h2>Four stages of familiarity</h2>
+        <p>Guthrie uses the four stages of competence as a compassionate map for learning. We adapt them here from technical mastery to everyday familiarity.</p>
+        <dl class="glossary-list">
+          <div><dt>Not yet noticing</dt><dd>The reaction feels like the whole self and becomes visible only through consequences.</dd></div>
+          <div><dt>Noticing afterwards</dt><dd>You can recognise the part and sequence in reflection, even though there was no choice in the moment.</dd></div>
+          <div><dt>Noticing during</dt><dd>Awareness returns while activation is happening. The skill feels deliberate and may require a pause.</dd></div>
+          <div><dt>Relationship becomes familiar</dt><dd>Parts can increasingly appear within a wider field, and Self-led responses require less conscious reconstruction.</dd></div>
+        </dl>
+        <p>Movement is not linear. Stress, sleep and context can return a familiar pattern to stage one. That does not erase learning. The relevant evidence is whether recognition and repair become more available over time.</p>
+        <h2>Review evidence, not ideals</h2>
+        <ul>
+          <li>Where did a sentence beginning “a part of me” create more space?</li>
+          <li>Which protector became easier to appreciate?</li>
+          <li>What sign tells you that access to Self is increasing?</li>
+          <li>Which situation still needs external change or professional support?</li>
+          <li>What did you stop doing because it was not helpful?</li>
+        </ul>
+        <div class="checkpoint"><strong>Choose one evidence statement</strong><p>“I now notice…” is more useful than “I understand…” Name something observable.</p></div>
+      `,
+      'w6-relational': `
+        <h2>Internal and external systems mirror one another</h2>
+        <p>The IFS model holds that the way we relate to our own parts can parallel the way we relate to similar qualities in other people. A person who attacks their own uncertainty may become impatient with a partner's uncertainty. A person whose need is exiled may experience another person's request as dangerous pressure.</p>
+        <p>This is a hypothesis to explore, not a rule. External relationships contain real differences in power, behaviour and safety. Not every reaction is a projection, and inner work should not be used to tolerate harm.</p>
+        <h2>Field awareness in dialogue</h2>
+        <p>In conflict, focus collapses around the threat: one sentence, facial expression or feared outcome. Field awareness reintroduces body, room, history, relationship and choice. You do not need equal attention on everything. Enough field can prevent one part's information from becoming the only information.</p>
+        <div class="practice"><div class="practice-head"><strong>A relational pause</strong><span>30–60 seconds</span></div><ol class="practice-steps"><li><time>0:00</time><b>Ground</b><p>Feel one contact point and let the chair or floor carry weight.</p></li><li><time>0:10</time><b>Part</b><p>Name the part that wants to speak or withdraw.</p></li><li><time>0:20</time><b>Field</b><p>Include the other person and the room without interpreting them.</p></li><li><time>0:35</time><b>Choice</b><p>Speak, ask for time, set a boundary or remain silent deliberately.</p></li></ol></div>
+        <h2>Self-led does not mean agreeable</h2>
+        <p>Clarity and courage may support a direct no. Compassion may recognise another person's pain without accepting their demand. Connectedness does not require continued contact. The marker is not niceness; it is less compulsion, more reality and more responsibility.</p>
+      `,
+      'w6-language': `
+        <h2>A four-part relational sentence</h2>
+        <ol>
+          <li><strong>Name your experience:</strong> “A part of me is afraid I will not be heard.”</li>
+          <li><strong>Name its impulse:</strong> “It wants to push harder and interrupt.”</li>
+          <li><strong>Take responsibility:</strong> “I interrupted you, and I understand that affected the conversation.”</li>
+          <li><strong>Make a request or boundary:</strong> “Can I have ten uninterrupted minutes?” or “I cannot continue this conversation tonight.”</li>
+        </ol>
+        <p>Not every conversation needs explicit IFS language. The structure can remain internal while the spoken sentence stays ordinary: “I became defensive. I want to try again.”</p>
+        <h2>Request, demand and boundary</h2>
+        <p>A request leaves the other person meaningful room to say no. A demand hides the consequence of refusal. A boundary states what you will do to protect your capacity or values; it does not diagnose or control the other person's inner system.</p>
+        <div class="example"><strong>Boundary with parts included</strong><p>“A part of me is afraid of disappointing you, and another part wants to agree immediately. I also know I do not have capacity, so my answer is no.”</p></div>
+        <h2>Repair after blending</h2>
+        <p>Repair includes impact, not only intention. Try: “A defensive part took over and I spoke harshly. That hurt you. I am sorry. I want to understand what you need now, and I will pause if I become defensive again.” The part explains the sequence; it does not erase accountability.</p>
+        <h2>Never name another person's part as fact</h2>
+        <p>“Your firefighter is acting out” converts a relational language into authority. Describe behaviour and impact, ask what the other person notices, and let them name their own experience.</p>
+      `,
+      'w6-live': `
+        <h2>The final session as integration lab</h2>
+        <p>The final live call brings together the course's recurring moves: arrive through ground and core, open to field, recognise a part, check the quality of relationship, speak on its behalf and choose a responsible action.</p>
+        <p>A relational demonstration should remain current and contained. The learning is not whether the conversation reaches harmony. It is whether parts can be named without blame, boundaries remain available, and both people retain the right to pause.</p>
+        <h2>Questions for the final debrief</h2>
+        <ul>
+          <li>Which course distinction changed what you could notice?</li>
+          <li>Where did field awareness alter the conversation?</li>
+          <li>What was the difference between explaining a part and speaking for it?</li>
+          <li>Where did responsibility remain visible?</li>
+          <li>What belongs in continued self-practice, community or professional support?</li>
+        </ul>
+        <div class="summary"><strong>No final performance</strong><p>The course ends with orientation and choice, not a test of whether you can remain Self-led under pressure.</p></div>
+      `,
+      'w6-after': `
+        <h2>A continuation plan with a minimum version</h2>
+        <p>Practices survive when they can become smaller. Design three versions.</p>
+        <ul class="key-list">
+          <li><strong>Full</strong><span>A weekly 15-minute reflection, one written map and deliberate relational experiment.</span></li>
+          <li><strong>Ordinary</strong><span>A five-minute ground–core–field practice and one “a part of me” check-in.</span></li>
+          <li><strong>Minimum</strong><span>Feel the floor, name one part, choose the next safe action. Under one minute.</span></li>
+        </ul>
+        <h2>Choose support by purpose</h2>
+        <p><strong>Solo practice</strong> supports awareness and everyday reflection. <strong>Community</strong> supports continuity, shared language and being witnessed without peer therapy. <strong>Coaching</strong> may support goals and Self-led action within appropriate scope. <strong>Psychotherapy</strong> may support distress, trauma, symptoms and deeper parts work. <strong>Formal training</strong> is a separate route for people who intend to facilitate IFS professionally.</p>
+        <h2>A thirty-day experiment</h2>
+        <ol>
+          <li>Choose one daily doorway into ground, core or field.</li>
+          <li>Choose one recurring part to recognise without trying to transform it.</li>
+          <li>Choose one relationship in which you will speak more clearly on behalf of a part.</li>
+          <li>Name the condition under which you will seek more support.</li>
+          <li>Review after thirty days using observable evidence.</li>
+        </ol>
+        <div class="checkpoint"><strong>Continuation sentence</strong><p>When the week is difficult, the smallest version I am willing to keep is…</p></div>
+      `,
+      'w6-boundary': `
+        <h2>What six weeks can and cannot do</h2>
+        <p>Six weeks can provide a coherent introduction, experiential reference points, a shared vocabulary and several participant-safe practices. It cannot establish therapeutic suitability, resolve all inner conflict, complete trauma work or confer competence to facilitate IFS.</p>
+        <p>Finishing the course does not authorise participants to guide parts work, advertise IFS services, interpret another person's system or use the material as a substitute for professional training and supervision.</p>
+        <h2>Research claims remain modest</h2>
+        <p>IFS has promising and growing research, but the evidence remains limited for broad condition-specific claims. Personal stories can illustrate possibility but do not guarantee results. Course communications should distinguish educational aims, participant reports and clinical evidence. <a class="inline-source" href="https://ifs-institute.com/resources/research" target="_blank" rel="noreferrer">IFS Institute · Research overview</a></p>
+        <h2>A mature ending</h2>
+        <p>You may leave with enthusiasm, scepticism, relief, unfinished questions or little dramatic change. A Self-led ending makes room for the actual result. Keep what has become useful, release what has not, and choose support that fits your life.</p>
+        <div class="summary"><strong>Final orientation</strong><p>Self-led does not mean part-free. It means that parts have increasing access to a relationship capable of listening, reality-testing, deciding, repairing and asking for help.</p></div>
+      `
+    });
+
+    weeks[5].sections.push(
+      {
+        id: 'w6-glossary', nav: 'Complete glossary', title: 'Complete course glossary',
+        intro: 'A shared reference for the terms used across the six weeks. Definitions follow official IFS language where possible and state the course-specific meaning where it differs.',
+        duration: 'Reference',
+        body: `
+          <p class="chapter-lead">Use these definitions to understand the course, not to diagnose yourself or other people. IFS terminology describes a model of experience and, in clinical settings, a therapeutic practice.</p>
+          <nav class="glossary-index" aria-label="Glossary groups"><a href="#glossary-a">A–C</a><a href="#glossary-d">D–F</a><a href="#glossary-g">G–P</a><a href="#glossary-r">R–S</a><a href="#glossary-t">T–W</a></nav>
+          <h2 class="glossary-group" id="glossary-a">A–C</h2>
+          <dl class="glossary-list">
+            <div><dt>Access to Self</dt><dd>The degree to which qualities associated with Self are available in a given moment. In this course, access is a continuum rather than an all-or-nothing state.</dd><small>Course wording based on Guthrie Sayen's current direction.</small></div>
+            <div><dt>Attention</dt><dd>Selective focus on one object, sensation, thought, person or task. Guthrie contrasts focused attention with the wider field of awareness.</dd></div>
+            <div><dt>Awareness</dt><dd>The wider field in which thoughts, sensations, sounds and perceptions appear. Guthrie teaches awareness as a practical doorway into access to Self.</dd></div>
+            <div><dt>Balance</dt><dd>A systems condition in which members have equitable access to the responsibilities, resources and influence they need.</dd><small>Official IFS Glossary.</small></div>
+            <div><dt>Befriending</dt><dd>Building a sincere relationship with a protector through curiosity, understanding, appreciation and respect for its pace. In this course it is self-use only, not a peer protocol.</dd></div>
+            <div><dt>Blending</dt><dd>When the feelings and beliefs of a part merge with the sense of self, so the part's perspective feels like the whole truth.</dd><small>Adapted from the official IFS Glossary.</small></div>
+            <div><dt>Burden</dt><dd>An extreme idea, emotion, belief or role carried by a part but not considered inherent to that part's nature.</dd><small>Official IFS Glossary and Model Outline.</small></div>
+            <div><dt>Capacity</dt><dd>The practical ability to remain oriented, retain choice and use support while relating to present experience. A course safety term, not a formal IFS diagnostic category.</dd></div>
+            <div><dt>Compassion</dt><dd>Recognition of suffering with care, respect and boundaries; one of the eight Cs associated with Self.</dd></div>
+            <div><dt>Connectedness</dt><dd>Contact with body, parts, people and context without erasing difference; one of the eight Cs.</dd></div>
+            <div><dt>Constraining environment</dt><dd>An external human system marked by imbalance, polarisation, enmeshment or problematic leadership that limits access to Self.</dd><small>Official IFS Glossary.</small></div>
+            <div><dt>Core</dt><dd>The felt interior of the trunk and central channel in Guthrie's four building blocks of Presence; a place to receive information about feeling, need and direction.</dd></div>
+            <div><dt>Courage</dt><dd>The capacity to remain present and act in alignment with reality or values despite fear; one of the eight Cs.</dd></div>
+            <div><dt>Creativity</dt><dd>Access to options beyond a familiar defensive sequence; one of the eight Cs.</dd></div>
+            <div><dt>Curiosity</dt><dd>Genuine interest without a hidden agenda to fix, prove or get past a part; one of the eight Cs.</dd></div>
+          </dl>
+          <h2 class="glossary-group" id="glossary-d">D–F</h2>
+          <dl class="glossary-list">
+            <div><dt>Direct access</dt><dd>In formal IFS, a way a practitioner speaks directly with a client's part. It is not participant practice in this course. Guthrie also uses “direct access to Self” in a different sense for awareness-based presencing; the context should always be specified.</dd></div>
+            <div><dt>Eight Cs</dt><dd>Calm, curiosity, clarity, compassion, confidence, courage, creativity and connectedness — qualities commonly associated with Self-leadership.</dd></div>
+            <div><dt>Enmeshment</dt><dd>A systemic condition of high interdependence in which reactivity constrains each member's access to Self.</dd><small>Official IFS Glossary.</small></div>
+            <div><dt>Exile</dt><dd>A part sequestered within the system because what it carries is expected to overwhelm or endanger the person or system. This course usually says <em>vulnerable part</em> and does not teach exile work.</dd></div>
+            <div><dt>External system</dt><dd>A family, relationship, team, organisation, culture or society that affects and is affected by people's internal systems.</dd></div>
+            <div><dt>Field</dt><dd>Panoramic awareness of the space, sound, body and wider context in Guthrie's presence practice.</dd></div>
+            <div><dt>Firefighter</dt><dd>A protector that reacts after vulnerable material has been activated and seeks immediate relief, distraction, soothing, numbing or escape.</dd></div>
+            <div><dt>Focus</dt><dd>The intentional placement of attention on one thing while ground, core and field remain available.</dd></div>
+            <div><dt>Four building blocks of Presence</dt><dd>Ground, core, field and focus — Guthrie's recurring sequence for embodied and field-aware presence.</dd></div>
+          </dl>
+          <h2 class="glossary-group" id="glossary-g">G–P</h2>
+          <dl class="glossary-list">
+            <div><dt>Ground</dt><dd>Contact with feet, seat, gravity and physical support; the first building block of Guthrie's Presence practice.</dd></div>
+            <div><dt>Harmony</dt><dd>A state in which members of a system relate collaboratively with communication, mutual care and connection.</dd><small>Official IFS Glossary.</small></div>
+            <div><dt>IFS</dt><dd>Internal Family Systems: a psychotherapy model developed by Richard C. Schwartz and also used as a non-pathologising language for Self-leadership and inner multiplicity.</dd></div>
+            <div><dt>Integration</dt><dd>The transfer of course learning into ordinary life. In formal IFS, the word can also refer to steps following unburdening; those clinical steps are outside this course.</dd></div>
+            <div><dt>Internal system</dt><dd>The relational ecology of parts and Self within a person.</dd></div>
+            <div><dt>Loving gaze</dt><dd>Guthrie's phrase for attention that sees a part as more than its role and approaches it without force, contempt or a hidden demand to change.</dd></div>
+            <div><dt>Manager</dt><dd>A proactive protector that attempts to prevent pain or vulnerable activation through control, anticipation, inhibition, achievement, pleasing, criticism or other forward-looking strategies.</dd></div>
+            <div><dt>Multiplicity</dt><dd>The view that the mind is naturally composed of many subpersonalities or parts rather than one uniform mind.</dd></div>
+            <div><dt>Operating system 1.0 / 2.0</dt><dd>Guthrie's teaching metaphor for moving from exclusively thought-led, attention-heavy functioning toward awareness-led, field-inclusive functioning while retaining the value of focus.</dd></div>
+            <div><dt>Part</dt><dd>A subpersonality or inner position with its own perspective, emotions, sensations, impulses, hopes, fears, strategies and potential gifts.</dd></div>
+            <div><dt>Parts language</dt><dd>Speech that distinguishes a reaction from the whole person, such as “a part of me is afraid,” while preserving responsibility for behaviour.</dd></div>
+            <div><dt>Polarisation</dt><dd>An escalating opposition between parts or system members in which each side fears the other gaining control.</dd></div>
+            <div><dt>Positive intention</dt><dd>The helpful or protective outcome a part is trying to produce, even when its strategy has costly effects.</dd></div>
+            <div><dt>Presence</dt><dd>Embodied, grounded and field-aware contact with the present. In Guthrie's teaching, presence supports access to Self.</dd></div>
+            <div><dt>Protector</dt><dd>A part organised around keeping the person or system safe. Managers and firefighters are the two broad protector categories used in IFS.</dd></div>
+          </dl>
+          <h2 class="glossary-group" id="glossary-r">R–S</h2>
+          <dl class="glossary-list">
+            <div><dt>Retrieval</dt><dd>A step in deeper IFS exile work. It is not taught or practised in this course.</dd></div>
+            <div><dt>Self</dt><dd>The core of a person in the IFS model, associated with innate leadership qualities including the eight Cs. Guthrie also describes Self as awake awareness.</dd></div>
+            <div><dt>Self-led</dt><dd>Guided by enough access to Self for parts to be heard, reality to be included and responsible choice to remain available.</dd></div>
+            <div><dt>Self-leadership</dt><dd>Leadership characterised by compassion, calm, clarity, curiosity, confidence, courage, creativity and connectedness.</dd><small>Official IFS Glossary.</small></div>
+            <div><dt>Self-like part</dt><dd>A part that may appear calm, wise, caring or spiritual while carrying an agenda, role or fear. Competence and calm are not themselves evidence that a part is present.</dd></div>
+            <div><dt>Six Fs</dt><dd>Find, Focus, Flesh out, Feel toward, Befriend and Fears — a sequence used in formal IFS work with protectors. This course may name it for orientation but does not train participants to use it with others.</dd></div>
+            <div><dt>Speak on behalf of a part</dt><dd>Describe a part's experience without letting it speak as the whole person: “A part of me wants…” rather than turning its position into the only truth.</dd></div>
+            <div><dt>Sustaining environment</dt><dd>An external system characterised by balance, harmony and effective leadership.</dd><small>Official IFS Glossary.</small></div>
+            <div><dt>System</dt><dd>A set of interdependent members whose actions affect one another through patterns and feedback.</dd></div>
+          </dl>
+          <h2 class="glossary-group" id="glossary-t">T–W</h2>
+          <dl class="glossary-list">
+            <div><dt>Three messages for protectors</dt><dd>Guthrie's teaching frame of validation, control and hope: acknowledge the protector's reason, respect its influence over pace, and offer the possibility of a less burdensome future.</dd></div>
+            <div><dt>Unblending</dt><dd>Enough differentiation between Self and a part for relationship and choice. It is not rejection, suppression or forced distance.</dd></div>
+            <div><dt>Unburdening</dt><dd>A formal IFS healing process in which a part releases burdens. It is outside participant practice in this course.</dd></div>
+            <div><dt>Vulnerable part</dt><dd>The participant-facing term used here for a part carrying tenderness, hurt, shame, fear, loneliness or unmet need. It does not automatically imply that deeper work should follow.</dd></div>
+            <div><dt>Witnessing</dt><dd>In formal IFS, a specific step in exile work. In ordinary language it can mean respectful presence, but the therapeutic procedure is outside this course.</dd></div>
+          </dl>
+          <p class="source-note"><strong>Primary terminology sources:</strong> <a href="https://ifs-institute.com/resources/research/ifs-glossary-terms" target="_blank" rel="noreferrer">IFS Institute Glossary of Terms</a>; <a href="https://ifs-institute.com/resources/articles/internal-family-systems-model-outline" target="_blank" rel="noreferrer">IFS Model Outline</a>; Guthrie Sayen's authored lessons and current course language rules.</p>
+        `
+      },
+      {
+        id: 'w6-library', nav: 'Sources & further reading', title: 'Sources and further reading',
+        intro: 'The primary sources behind the course, organised by purpose. Reading is optional unless a future participant edition says otherwise.',
+        duration: 'Reference',
+        body: `
+          <h2>Official IFS references</h2>
+          <ul class="reading-list">
+            <li><a href="https://ifs-institute.com/resources/articles/internal-family-systems-model-outline" target="_blank" rel="noreferrer">The Internal Family Systems Model Outline</a><span>Core assumptions, Self, parts, protectors, external systems and common clinical cautions.</span></li>
+            <li><a href="https://ifs-institute.com/resources/research/ifs-glossary-terms" target="_blank" rel="noreferrer">IFS Glossary of Terms</a><span>Standard definitions for blending, burdens, managers, firefighters, Self-leadership and systems terms.</span></li>
+            <li><a href="https://ifs-institute.com/resources/articles/evolution-internal-family-systems-model-dr-richard-schwartz-ph-d" target="_blank" rel="noreferrer">Evolution of the IFS Model · Richard C. Schwartz</a><span>Schwartz's account of how family systems thinking and multiplicity developed into IFS.</span></li>
+            <li><a href="https://ifs-institute.com/resources/research" target="_blank" rel="noreferrer">IFS Research</a><span>The Institute's current statement of an emerging but still limited evidence base.</span></li>
+            <li><a href="https://ifs-institute.com/resources/research/ifs-bibliography-apa-style" target="_blank" rel="noreferrer">IFS Bibliography</a><span>A broader catalogue of books, articles and empirical studies.</span></li>
+          </ul>
+          <h2>Books for participants · English</h2>
+          <ul class="reading-list">
+            <li><a href="https://ifs-institute.com/store/39" target="_blank" rel="noreferrer">Richard C. Schwartz · Introduction to Internal Family Systems, 2nd ed.</a><span>The clearest general introduction and the best first book after the course.</span></li>
+            <li><a href="https://ifs-institute.com/nobadparts" target="_blank" rel="noreferrer">Richard C. Schwartz · No Bad Parts</a><span>Accessible exploration of multiplicity, protectors, burdens and Self, with exercises that may go beyond this course's scope.</span></li>
+            <li><a href="https://ifs-institute.com/store/143" target="_blank" rel="noreferrer">Richard C. Schwartz & Robert R. Falconer · Many Minds, One Self</a><span>A deeper argument for the multiplicity paradigm and its historical precedents.</span></li>
+            <li><a href="https://ifs-institute.com/you-are-one-youve-been-waiting" target="_blank" rel="noreferrer">Richard C. Schwartz · You Are the One You've Been Waiting For</a><span>IFS applied to intimacy, relationship and Self-led responsibility.</span></li>
+            <li><a href="https://ifs-institute.com/store/125" target="_blank" rel="noreferrer">Richard C. Schwartz & Martha Sweezy · Internal Family Systems Therapy, 2nd ed.</a><span>Authoritative clinical reference; intended for practitioners rather than required participant reading.</span></li>
+          </ul>
+          <h2>Licensed Russian editions</h2>
+          <ul class="reading-list">
+            <li><a href="https://www.mann-ivanov-ferber.ru/books/introduction-to-internal-family-systems/" target="_blank" rel="noreferrer">Ричард Шварц · Внутренние семейные системы</a><span>Russian edition of <em>Introduction to Internal Family Systems</em>.</span></li>
+            <li><a href="https://www.mann-ivanov-ferber.ru/catalog/product/moi-raznye-ia/" target="_blank" rel="noreferrer">Ричард Шварц · Внутренние субличности</a><span>Current Russian edition of <em>No Bad Parts</em>, previously published as <em>Мои разные «я»</em>.</span></li>
+            <li><a href="https://www.mann-ivanov-ferber.ru/catalog/product/you-are-the-one-youve-been-waiting-for/" target="_blank" rel="noreferrer">Ричард Шварц · Подлинная форма близости</a><span>Russian edition of <em>You Are the One You've Been Waiting For</em>.</span></li>
+          </ul>
+          <h2>Guthrie Sayen course sources</h2>
+          <p>The participant text is newly written and adapted from Guthrie's teaching archive rather than reproducing it wholesale. The core internal sources are:</p>
+          <ul>
+            <li><em>Self — ORIGINAL</em></li>
+            <li><em>Parts Are People</em></li>
+            <li><em>BeFriending</em></li>
+            <li><em>Managers</em> and <em>Firefighters</em></li>
+            <li><em>Three Messages for Protectors</em></li>
+            <li><em>How to Handle Exiles</em> as author-only safety background</li>
+            <li><em>Four Stages of Competence</em></li>
+            <li>Flow 1 live transcripts, session timelines and presencing inductions</li>
+            <li>29 July 2026 alignment call and current written feedback</li>
+          </ul>
+          <p>These sources are private working materials. Direct quotations and substantial reproduction remain subject to Guthrie's review and permission.</p>
+          <h2>How claims are handled</h2>
+          <p>Course explanations distinguish among the official IFS model, Guthrie's evolving teaching, participant-safe adaptations and general educational examples. Personal stories illustrate possible applications but do not establish efficacy. Clinical claims should be supported by condition-specific research and should not exceed the IFS Institute's own current research statement.</p>
+          <div class="safety"><h3>Reading is not treatment</h3><p>Books and educational material cannot assess individual suitability or provide crisis care. Exercises in external sources may be deeper than the practices included in this course.</p></div>
+          <p class="source-note"><strong>Last source review:</strong> 10 August 2026. Official links should be checked again before final publication.</p>
+        `
+      }
+    );
+
+    function insertTextbookExpansion(section) {
+      const expansion = textbookExpansions[section.id];
+      if (expansion) {
+        const sourcePattern = /\s*(<p class="source-note">[\s\S]*?<\/p>)\s*$/;
+        const sourceMatch = section.body.match(sourcePattern);
+        section.body = sourceMatch
+          ? section.body.replace(sourcePattern, `${expansion}$1`)
+          : `${section.body}${expansion}`;
+      }
+      if (!/session|Reference/i.test(section.duration || '')) {
+        const plainText = `${section.title} ${section.intro} ${section.body}`.replace(/<[^>]+>/g, ' ').replace(/&[^;]+;/g, ' ').replace(/\s+/g, ' ').trim();
+        const words = plainText ? plainText.split(' ').length : 0;
+        section.duration = `${Math.max(4, Math.ceil(words / 190))} min read`;
+      }
+    }
+
+    weeks.forEach(week => week.sections.forEach(insertTextbookExpansion));
+
     const sectionThemes = [
       { accent: '#315fcb', deep: '#244b9a', soft: '#f1f5fd', line: '#d7e2f7' },
       { accent: '#315fcb', deep: '#244b9a', soft: '#f1f5fd', line: '#d7e2f7' },
@@ -2197,16 +2968,17 @@
           <header class="course-top">
             <div class="product-mark"><strong>The Centrality of Self</strong><span> · Week ${state.week + 1}</span></div>
             <div class="course-top-actions">
+              <button class="glossary-top-button" type="button" data-glossary-open>Glossary</button>
               <button class="review-top-button review-toggle-button" type="button" data-review-toggle aria-pressed="${reviewOn}">Review <span class="review-count" data-review-count>0</span></button>
               <button class="review-top-button" type="button" data-content-bank-open><span class="review-desktop-label">Content bank</span><span class="review-mobile-label">Sources</span></button>
               <div class="course-state"><span>Week ${state.week + 1} · ${i + 1} of ${weekSections.length}</span><i style="--progress:${((i + 1) / weekSections.length) * 100}%"></i></div>
             </div>
           </header>
-          <nav class="week-tabs" aria-label="Six-week course plan">${weekNav}</nav>
+          <nav class="week-tabs" aria-label="Six-week course reader">${weekNav}</nav>
           <aside class="review-guidance" aria-label="Note for Guthrie">
             <div class="review-guidance-inner">
-              <strong>Guthrie — this is the participant-facing six-week course plan, not final copy.</strong>
-              <p>All six weeks now contain the proposed participant theory, live-session intention, integration practice, boundaries and visible source notes. The Content bank preserves additional adapted material, books, official IFS references and author-only safety notes. You can comment on any passage, leave a general note after each lesson, or move a Content bank source to another lesson. Text is saved locally while you type; click <b>Save note</b> to submit it. Each saved submission remains a separate record, so later edits do not erase earlier feedback.</p>
+              <strong>Guthrie — this is the full participant-facing course reader draft.</strong>
+              <p>All six weeks now contain complete theory chapters, examples, live-session orientation, integration practices, boundaries, a full glossary and a source library. The Content bank preserves additional adapted material and author-only safety notes. You can comment on any passage, leave a general note after each lesson, or move a Content bank source to another lesson. Text is saved locally while you type; click <b>Save note</b> to submit it. Each saved submission remains a separate record, so later edits do not erase earlier feedback.</p>
               <div class="review-guidance-status"><span class="review-status-dot" aria-hidden="true"></span><span data-review-status-title>Saved on this device</span><span aria-hidden="true">·</span><span data-review-status-detail>Waiting for status.</span></div>
             </div>
           </aside>
@@ -2322,6 +3094,16 @@
       }));
       stage.querySelectorAll('[data-review-toggle]').forEach(button => button.addEventListener('click', () => setReviewMode(!reviewOn)));
       stage.querySelectorAll('[data-content-bank-open]').forEach(button => button.addEventListener('click', openContentBank));
+      stage.querySelectorAll('[data-glossary-open]').forEach(button => button.addEventListener('click', () => {
+        state.week = 5;
+        state.section[1] = activeSections().findIndex(section => section.id === 'w6-glossary');
+        const url = new URL(location);
+        url.searchParams.set('week', 6);
+        history.replaceState(null, '', url);
+        focusAfterMount = true;
+        mount(current);
+        window.scrollTo(0, 0);
+      }));
       if (current === 1) prepareVisibleReviewTargets(activeSections()[state.section[1]], state.week);
       syncFields();
       setReviewMode(reviewOn);
