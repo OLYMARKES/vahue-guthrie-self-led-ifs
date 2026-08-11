@@ -101,6 +101,20 @@
     .quote { margin: 1.6rem 0; padding: 0 0 0 1.2rem; border-left: 1px solid var(--line-strong); }
     .quote p { color: var(--ink); font-size: 1.04rem; margin-bottom: .35rem; }
     .quote cite { color: var(--muted); font-size: .83rem; font-style: normal; }
+    .quote.quote-candidate { padding-top: .75rem; padding-bottom: .75rem; border-left-color: #b98232; background: #fffaf4; }
+    .quote.quote-candidate cite { color: #76532d; font-weight: 650; }
+    .quote-review-status {
+      display: block;
+      width: fit-content;
+      margin: .45rem 0 1rem;
+      padding: .25rem .45rem;
+      border-radius: 5px;
+      background: #fff3df;
+      color: #76532d;
+      font-size: .72rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
 
     .practice {
       margin: 1.75rem 0;
@@ -881,7 +895,7 @@
   </nav>
 
   <div class="review-backdrop" id="contentBankBackdrop" aria-hidden="true">
-    <aside class="content-bank" id="contentBank" aria-labelledby="contentBankTitle">
+    <aside class="content-bank" id="contentBank" role="dialog" aria-modal="true" aria-labelledby="contentBankTitle">
       <header class="bank-head">
         <div>
           <div class="quiet" style="font-size:.76rem;margin-bottom:.2rem">Six-week course · internal review layer</div>
@@ -4733,7 +4747,24 @@
       "Glossary groups": "Группы глоссария",
       "Delete note": "Удалить заметку",
       "Guthrie": "Гэтри",
-      "Awakened IFS": "Awakened IFS"
+      "Awakened IFS": "Awakened IFS",
+      "Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use": "Гэтри Сэйен · КАНДИДАТ ДЛЯ РЕВЬЮ — подтвердите точную формулировку, место и публичное использование · перевод цитаты",
+      "REVIEW CANDIDATE · confirm exact wording and public use": "КАНДИДАТ ДЛЯ РЕВЬЮ · подтвердите точную формулировку и публичное использование",
+      "“Curiosity is a great doorway to Self.”": "«Любопытство может стать одним из путей к доступу к Self». (рабочий перевод цитаты)",
+      "This session focuses on the quality of relationship with a part. Direct experience comes first, explanation after.": "Эта встреча посвящена качеству отношений с частью. Сначала — непосредственный опыт, затем — объяснение.",
+      "Illustrative composite examples": "Составные иллюстративные примеры",
+      "The following are editorial composites drawn from recurring, anonymised themes rather than participant testimonials: noticing a protector before a conflict escalates; using parts language while speaking with a teenager; or naming a perfectionistic reaction in a business partnership instead of turning the other person into the problem. They illustrate possible applications, not promised outcomes.": "Ниже — редакционные составные примеры, собранные из повторяющихся анонимизированных тем, а не отзывы конкретных участников: заметить защитника до того, как конфликт обострится; использовать язык частей в разговоре с подростком; назвать собственную перфекционистскую реакцию в деловом партнёрстве, вместо того чтобы делать другого человека источником проблемы. Это возможные применения, а не обещанные результаты.",
+      "Editorial status:": "Редакционный статус:",
+      "composite examples based on anonymised Flow 1 feedback-circle and exit-interview themes. They are not direct quotations and still require Guthrie’s approval before participant publication.": "составные примеры основаны на анонимизированных темах круга обратной связи Flow 1 и итоговых интервью. Это не прямые цитаты; перед публикацией для участников их должен подтвердить Гэтри.",
+      "The official model outline describes Self as the core of a person and associates it with qualities of leadership such as compassion, perspective, curiosity and confidence.": "Официальное описание модели называет Self сердцевиной человека и связывает его с такими качествами лидерства, как сострадание, широта взгляда, любопытство и уверенность.",
+      "Guthrie’s course material makes a further teaching distinction: parts are contents of consciousness, while Self is the awareness that can notice those contents and relate to them.": "В материалах курса Гэтри вводится дополнительное учебное различие: части — это содержание сознания, а Self — осознавание, способное замечать это содержание и вступать с ним в отношения.",
+      "Guthrie Sayen · Self — ORIGINAL": "Гэтри Сэйен · Self — ORIGINAL",
+      "That proposition can be empowering because it locates dignity and capacity in the person rather than in the expert. You may work with it as the model’s organising premise without being required to adopt a particular spiritual interpretation.": "Это положение может придавать опору: достоинство и способность к изменениям оно помещает в самого человека, а не в эксперта. С ним можно работать как с организующим принципом модели, не принимая при этом какой-либо определённой духовной интерпретации.",
+      "The weekly overview, key language, one core practice or integration step, and the final safety boundary. Follow the Required labels.": "Обзор недели, ключевые понятия, одна основная практика или шаг интеграции и итоговая граница безопасности. Ориентируйтесь на метки «Обязательно».",
+      "Fuller theory, examples and live-session orientation.": "Более подробная теория, примеры и подготовка к живой встрече.",
+      "Name one relationship in which speaking on behalf of a part could help.": "Назовите одну ситуацию в отношениях, где могло бы помочь умение говорить от имени части.",
+      "Name one relationship where speaking on behalf of a part would help.": "Назовите одну ситуацию в отношениях, где помогло бы говорить от имени части.",
+      "Choose one relationship in which you will speak more clearly on behalf of a part.": "Выберите одну ситуацию в отношениях, где будете яснее говорить от имени части."
     };
     const languageStorageKey = 'guthrie-course-language-v1';
     const requestedLanguage = new URLSearchParams(location.search).get('lang');
@@ -4874,6 +4905,8 @@
     const contentBank = document.getElementById('contentBank');
     const globalReviewComment = document.getElementById('globalReviewComment');
     let currentReviewId = null;
+    let lastReviewTrigger = null;
+    let lastContentBankTrigger = null;
     let reviewOn = Boolean(reviewAccessKey);
 
     function emptyReviewState() {
@@ -5029,6 +5062,7 @@
 
     function openContentBank() {
       if (!reviewOn) setReviewMode(true);
+      lastContentBankTrigger = document.activeElement;
       contentBankBackdrop.classList.add('is-open');
       contentBankBackdrop.setAttribute('aria-hidden', 'false');
       document.body.classList.add('review-lock');
@@ -5039,6 +5073,8 @@
       contentBankBackdrop.classList.remove('is-open');
       contentBankBackdrop.setAttribute('aria-hidden', 'true');
       if (!reviewModal.classList.contains('is-open')) document.body.classList.remove('review-lock');
+      if (lastContentBankTrigger instanceof HTMLElement) lastContentBankTrigger.focus();
+      lastContentBankTrigger = null;
     }
 
     function targetTitle(target) {
@@ -5249,6 +5285,7 @@
     function openBlockReview(id) {
       const target = findReviewTarget(id);
       if (!target) return;
+      lastReviewTrigger = document.activeElement;
       currentReviewId = id;
       const note = reviewState.notes[id] || {};
       const draft = reviewState.drafts[id];
@@ -5272,6 +5309,8 @@
       reviewModal.classList.remove('is-open');
       if (!contentBankBackdrop.classList.contains('is-open')) document.body.classList.remove('review-lock');
       currentReviewId = null;
+      if (lastReviewTrigger instanceof HTMLElement) lastReviewTrigger.focus();
+      lastReviewTrigger = null;
     }
 
     function saveCurrentDraft() {
@@ -5334,7 +5373,7 @@
           <p>If time is short, do the seven-minute practice three times this week and leave everything else. <strong>Frequency matters more than volume.</strong></p>
           <h3>The larger journey</h3>
           <p>Most of us try to improve life with the equipment we already use: think harder, plan better, focus longer, get on top of it. That equipment is useful. It also has a ceiling. This course explores another capacity already present in the background: the wider awareness in which all focusing happens.</p>
-          <blockquote class="quote"><p>“What we're doing is bringing something that's already present, but in the background, into the foreground.”</p><cite>Guthrie Sayen</cite></blockquote>
+          <blockquote class="quote quote-candidate"><p>“What we're doing is bringing something that's already present, but in the background, into the foreground.”</p><cite>Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use</cite></blockquote>
           <p>Guthrie sometimes describes this as moving from a thought-based operating system toward an awareness-based one. Focus does not disappear. It becomes a precise tool held inside a wider field.</p>
         `
       },
@@ -5384,7 +5423,7 @@
             <li><strong>Access is a continuum</strong><span>A little curiosity or one second of pause can already be meaningful. There is no performance state to achieve.</span></li>
             <li><strong>Language can make space</strong><span>“A part of me is rushing” leaves more relationship than “I am rushing”.</span></li>
           </ul>
-          <blockquote class="quote"><p>“Parts are really cool, because by noticing a part we're taking the first step to recovering access to Self.”</p><cite>Guthrie Sayen</cite></blockquote>
+          <blockquote class="quote quote-candidate"><p>“Parts are really cool, because by noticing a part we're taking the first step to recovering access to Self.”</p><cite>Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use</cite></blockquote>
         `
       },
       {
@@ -5493,7 +5532,7 @@
               <h3>The larger journey</h3>
               <p>Most of us meet pressure by thinking harder, planning more carefully and concentrating for longer. Focused attention is a real capacity, and much of ordinary life depends on it. Beyond a certain point, though, more effort returns less and can become counterproductive. This course practises a second capacity alongside it: the wider knowing in which thought, body, feeling and other people can all be included at once.</p>
               <p>Guthrie describes this as moving from a thought-based operating system towards an awareness-based one: operating system 1.0 towards operating system 2.0. It is not an upgrade installed by willpower, and it is not a rejection of focus. The principle is transcend-and-include. Focus stays available and becomes a tool held inside a wider field, as we relax our exclusive reliance on thought.</p>
-              <blockquote class="quote"><p>“When you shift into awake awareness, or Self, everything changes. Overwhelm and fear drop away. A sense of calm, confidence, and joy arrives. We see things more clearly. We step into flow.”</p><cite>Guthrie Sayen · wording supplied in Review mode</cite></blockquote>
+              <blockquote class="quote quote-candidate"><p>“When you shift into awake awareness, or Self, everything changes. Overwhelm and fear drop away. A sense of calm, confidence, and joy arrives. We see things more clearly. We step into flow.”</p><cite>Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use</cite></blockquote>
               <p class="source-note"><strong>Sources:</strong> Guthrie–VAHUE alignment call, 29 July 2026; Guthrie voicebank and current approved course direction.</p>
 
 `
@@ -5736,7 +5775,7 @@ When I notice it, I feel…"></textarea><small>Keep the example current and low-
             id: 'w3-start', nav: 'Week overview', title: 'The loving gaze of Self',
             intro: 'Week 3 moves the emphasis from identifying a part towards the quality of relationship that meets it.',
             duration: '5 minutes',
-            body: `<div class="summary"><strong>By the end of this week</strong><p>You can recognise several possible markers of access to Self, and relate to one part that is present but not overwhelming with less force and more genuine interest.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Meet Self as the seat of awareness, then read the eight Cs and the quieter body markers as signals.</span></li><li><strong>Live session</strong><span>Feel the difference between force and a loving, interested gaze.</span></li><li><strong>After live</strong><span>Offer a few minutes of curiosity or compassion to one part that is present but not overwhelming, without requiring it to change.</span></li></ul><blockquote class="quote"><p>“Curiosity is a great doorway to Self.”</p><cite>Guthrie Sayen · wording supplied in Review mode</cite></blockquote><p>The central question changes from “How do I get rid of this?” to “What quality of relationship is available between me and this part?”</p><p class="source-note"><strong>Sources:</strong> Guthrie Sayen, <em>Self — ORIGINAL</em> and <em>BeFriending</em>; old Week 4 handout and live transcript.</p>`
+            body: `<div class="summary"><strong>By the end of this week</strong><p>You can recognise several possible markers of access to Self, and relate to one part that is present but not overwhelming with less force and more genuine interest.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Meet Self as the seat of awareness, then read the eight Cs and the quieter body markers as signals.</span></li><li><strong>Live session</strong><span>Feel the difference between force and a loving, interested gaze.</span></li><li><strong>After live</strong><span>Offer a few minutes of curiosity or compassion to one part that is present but not overwhelming, without requiring it to change.</span></li></ul><blockquote class="quote quote-candidate"><p>“Curiosity is a great doorway to Self.”</p><cite>Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use</cite></blockquote><p>The central question changes from “How do I get rid of this?” to “What quality of relationship is available between me and this part?”</p><p class="source-note"><strong>Sources:</strong> Guthrie Sayen, <em>Self — ORIGINAL</em> and <em>BeFriending</em>; old Week 4 handout and live transcript.</p>`
           },
           {
             id: 'w3-self', nav: 'What IFS means by Self', title: 'Self is not another part',
@@ -5758,7 +5797,7 @@ When I notice it, I feel…"></textarea><small>Keep the example current and low-
           },
           {
             id: 'w3-live', nav: 'Live session', title: 'Force and love feel different',
-            intro: 'In this session the relationship with a part is what does the work. Direct experience comes first, explanation after.',
+            intro: 'This session focuses on the quality of relationship with a part. Direct experience comes first, explanation after.',
             duration: '90-minute session',
             body: `<ol class="phase-plan"><li><strong>Arrive</strong><span>The four building blocks of Presence — ground, core, field, focus — as Guthrie shapes them for this group.</span></li><li><strong>Teach</strong><span>Self as awareness, the Self qualities, the loving gaze, and the difference between care and an agenda to change someone.</span></li><li><strong>Demonstrate</strong><span>Guthrie meets an available part with curiosity and compassion, without pushing for depth.</span></li><li><strong>Experience</strong><span>Participants try one small shift in how they look towards a part; there is nothing to get right.</span></li><li><strong>Debrief</strong><span>What softened, what resisted and what felt performed. Speaking is optional; listening is also taking part.</span></li></ol><div class="summary"><strong>What to watch</strong><p>Notice whether Guthrie values the relationship over the result, whether he includes the protectors that object, and whether “not now” is allowed to stand as a complete answer.</p></div><p class="source-note"><strong>Sources:</strong> old Week 4 Self timeline and transcript; <em>BeFriending</em>; Guthrie’s live teaching style.</p>`
           },
@@ -5786,7 +5825,7 @@ When I notice it, I feel…"></textarea><small>Keep the example current and low-
             id: 'w4-start', nav: 'Week overview', title: 'Meeting protectors with gratitude',
             intro: 'Week 4 treats protective strategies as intelligent responses: each has a history, and a good intention inside it.',
             duration: '5 minutes',
-            body: `<div class="summary"><strong>By the end of this week</strong><p>You can distinguish an everyday manager from a firefighter, recognise one protection cycle, and approach a single protector with gratitude, permission and respect for its pace.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Learn how proactive and reactive protectors organise around vulnerable material.</span></li><li><strong>Live session</strong><span>Watch Guthrie meet protection without arguing with it and without using appreciation as a tactic.</span></li><li><strong>After live</strong><span>Practise the three messages for protectors and one genuine question.</span></li></ul><blockquote class="quote"><p>“Force doesn't work. What works is love.”</p><cite>Guthrie Sayen · wording supplied in Review mode</cite></blockquote><p>Protectors are not obstacles standing between you and the “real work”. Relating well to protection is already part of the work of Self-leadership.</p><p class="source-note"><strong>Sources:</strong> Guthrie Sayen, <em>Managers</em>, <em>Firefighters</em>, <em>BeFriending</em>, and <em>Three Messages for Protectors</em>.</p>`
+            body: `<div class="summary"><strong>By the end of this week</strong><p>You can distinguish an everyday manager from a firefighter, recognise one protection cycle, and approach a single protector with gratitude, permission and respect for its pace.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Learn how proactive and reactive protectors organise around vulnerable material.</span></li><li><strong>Live session</strong><span>Watch Guthrie meet protection without arguing with it and without using appreciation as a tactic.</span></li><li><strong>After live</strong><span>Practise the three messages for protectors and one genuine question.</span></li></ul><blockquote class="quote quote-candidate"><p>“Force doesn't work. What works is love.”</p><cite>Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use</cite></blockquote><p>Protectors are not obstacles standing between you and the “real work”. Relating well to protection is already part of the work of Self-leadership.</p><p class="source-note"><strong>Sources:</strong> Guthrie Sayen, <em>Managers</em>, <em>Firefighters</em>, <em>BeFriending</em>, and <em>Three Messages for Protectors</em>.</p>`
           },
           {
             id: 'w4-before', nav: 'The protector map', title: 'Protection has an intention',
@@ -5899,7 +5938,7 @@ My stop sentence is…"></textarea><small>Keep this somewhere accessible during 
             id: 'w6-start', nav: 'Week overview', title: 'Self-led life and relationships',
             intro: 'Week 6 gathers the course into one working approach you can return to: at work, in conflict, in decisions and in contact with people.',
             duration: '5 minutes',
-            body: `<div class="summary"><strong>By the end of this week</strong><p>You will have a continuation plan you can realistically keep, one relationship in which you have tried speaking on behalf of a part, and a clearer sense of which next step fits: solo practice, community, therapy or formal study.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Look back at what you have already noticed, then at how internal and external systems influence each other.</span></li><li><strong>Live session</strong><span>Bring field awareness, parts language, boundaries and repair into a relational demonstration.</span></li><li><strong>After live</strong><span>Choose a practice you can sustain, one relational experiment and a support pathway that fits your situation.</span></li></ul><blockquote class="quote"><p>“Bring more Self to the world.”</p><cite>Guthrie Sayen · wording supplied in Review mode</cite></blockquote><p>Integration does not mean using every tool from the course. It means knowing which few movements have actually become available to you in ordinary life.</p><p class="source-note"><strong>Sources:</strong> official IFS model on internal and external systems; Guthrie’s presencing line; earlier participant feedback and circles methodology.</p>`
+            body: `<div class="summary"><strong>By the end of this week</strong><p>You will have a continuation plan you can realistically keep, one relationship in which you have tried speaking on behalf of a part, and a clearer sense of which next step fits: solo practice, community, therapy or formal study.</p></div><ul class="phase-plan"><li><strong>Before live</strong><span>Look back at what you have already noticed, then at how internal and external systems influence each other.</span></li><li><strong>Live session</strong><span>Bring field awareness, parts language, boundaries and repair into a relational demonstration.</span></li><li><strong>After live</strong><span>Choose a practice you can sustain, one relational experiment and a support pathway that fits your situation.</span></li></ul><blockquote class="quote quote-candidate"><p>“Bring more Self to the world.”</p><cite>Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use</cite></blockquote><p>Integration does not mean using every tool from the course. It means knowing which few movements have actually become available to you in ordinary life.</p><p class="source-note"><strong>Sources:</strong> official IFS model on internal and external systems; Guthrie’s presencing line; earlier participant feedback and circles methodology.</p>`
           },
           {
             id: 'w6-before', nav: 'Review your evidence', title: 'Review what has become usable',
@@ -5932,7 +5971,7 @@ My stop sentence is…"></textarea><small>Keep this somewhere accessible during 
             body: `<ul class="key-list"><li><strong>Daily</strong><span>One 60-second return to ground, core and field.</span></li><li><strong>Weekly</strong><span>One longer practice, or a written check-in with a recurring everyday part.</span></li><li><strong>Relational</strong><span>One experiment in speaking on behalf of a part, without blaming or diagnosing.</span></li><li><strong>Community</strong><span>An integration circle or learning community, for continuity rather than peer therapy.</span></li><li><strong>Support</strong><span>A clear choice of therapy, coaching or another professional route when it is needed.</span></li></ul><div class="prompt"><label>Your next month</label><textarea placeholder="The practice I will keep…
 The relationship where I will experiment…
 The minimum version for a hard week…
-The support I can use…"></textarea><small>Choose consistency over ambition.</small></div><h3>Examples from earlier participants</h3><p>People described noticing a protector before a conflict escalated; using parts language with a teenager; and reducing tension between business partners by naming a perfectionistic reaction instead of turning the other person into the problem. These are possibilities, not guaranteed outcomes.</p><p class="source-note"><strong>Sources:</strong> anonymised Flow 1 feedback circle and exit-interview themes; direct quotation remains permission-dependent.</p>`
+The support I can use…"></textarea><small>Choose consistency over ambition.</small></div><h3>Illustrative composite examples</h3><p>The following are editorial composites drawn from recurring, anonymised themes rather than participant testimonials: noticing a protector before a conflict escalates; using parts language while speaking with a teenager; or naming a perfectionistic reaction in a business partnership instead of turning the other person into the problem. They illustrate possible applications, not promised outcomes.</p><p class="source-note"><strong>Editorial status:</strong> composite examples based on anonymised Flow 1 feedback-circle and exit-interview themes. They are not direct quotations and still require Guthrie’s approval before participant publication.</p>`
           },
           {
             id: 'w6-boundary', nav: 'Next paths & boundaries', title: 'Completion is a beginning',
@@ -6137,7 +6176,7 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
         <p>The aim is not to reject thought or concentration. It is <em>transcend and include</em>: keep the precision of focus and add the intelligence of the wider field. The metaphor is experiential rather than neuroscientific; the course does not claim that two literal operating systems exist in the brain.</p>
         <h2>Love and force</h2>
         <p>Across Guthrie’s material, the central contrast is between trying to make an experience change and offering a relationship in which change may become possible. Curiosity is not a softer form of control. Gratitude is not a technique for getting past a protector. A sincere “no” from the system is information worth having.</p>
-        <blockquote class="quote"><p>“Self is love, and love is the way.”</p><cite>Guthrie Sayen · current course direction</cite></blockquote>
+        <blockquote class="quote quote-candidate"><p>“Self is love, and love is the way.”</p><cite>Guthrie Sayen · REVIEW CANDIDATE — please confirm exact wording, placement and public use</cite></blockquote>
         <p>The course tests that sentence in practical terms: a slower pace, more consent, less attachment to outcome, clearer boundaries, and a willingness to listen before acting.</p>
       `,
       'w1-before': `
@@ -6281,11 +6320,12 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
       'w3-self': `
         <h2>Self in the IFS model</h2>
         <p class="chapter-lead">IFS uses <em>Self</em> as a technical term. It does not mean self-image, ego, personality, confidence as performance, or the set of roles by which you usually recognise yourself.</p>
-        <p>The official model outline describes Self as the core of a person and associates it with qualities of leadership such as compassion, perspective, curiosity and confidence. It places Self at a different level of experience from parts: parts are the contents of consciousness, while Self is what can notice those contents and relate to them. <a class="inline-source" href="https://ifs-institute.com/resources/articles/internal-family-systems-model-outline" target="_blank" rel="noreferrer">IFS Institute · Model Outline</a></p>
+        <p>The official model outline describes Self as the core of a person and associates it with qualities of leadership such as compassion, perspective, curiosity and confidence. <a class="inline-source" href="https://ifs-institute.com/resources/articles/internal-family-systems-model-outline" target="_blank" rel="noreferrer">IFS Institute · Model Outline</a></p>
+        <p>Guthrie’s course material makes a further teaching distinction: parts are contents of consciousness, while Self is the awareness that can notice those contents and relate to them. <span class="inline-source">Guthrie Sayen · Self — ORIGINAL</span></p>
         <p>Guthrie sharpens this with the phrase <em>awake awareness</em>. In his teaching, access to awareness is a practical doorway into access to Self. The field practice from Week 1 is therefore not a separate discipline attached to IFS; it prepares the ground on which parts can be met.</p>
         <h2>Innate and undamaged</h2>
         <p>A central proposition of the model is that Self is not created by achievement and not damaged by history. Access can be constrained or obscured when parts are carrying intense responsibilities, but the model does not describe Self itself as broken.</p>
-        <p>That proposition can be genuinely empowering: it locates dignity and capacity in the person rather than in the expert. It is also a claim specific to this model rather than an experimentally settled fact about human consciousness. You are invited to test its practical consequences without being required to adopt its ontology.</p>
+        <p>That proposition can be empowering because it locates dignity and capacity in the person rather than in the expert. You may work with it as the model’s organising premise without being required to adopt a particular spiritual interpretation.</p>
         <h2>State, trait and relationship</h2>
         <p>People sometimes turn Self into a perfect state that has to be maintained, and that builds one more performance system. In this course, access is a continuum and a relationship: a little curiosity beside the fear counts; a moment of clearer choice counts; returning after blending counts.</p>
         <p>Self-leadership does not mean that the parts disappear. The orchestra is useful here: the parts are the players and Self is the conductor. Without the players there is no sound; without the conductor there is no harmony. Leadership means listening, integrating what you hear and making decisions, not silencing the orchestra.</p>
@@ -6416,7 +6456,7 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
       `,
       'w4-live': `
         <h2>Protector-first pacing</h2>
-        <p>IFS gives protectors priority because they carry the information about risk and capacity. During the live call, notice whether the work respects what is actually available, rather than treating the protector as a door to something more important behind it. Guthrie’s own phrase for this is “slow is fast”.</p>
+        <p>IFS gives protectors priority because they carry the information about risk and capacity. During the live call, notice whether the work respects what is actually available, rather than treating the protector as a door to something more important behind it. Guthrie’s own phrase for this is “slow is fast”.</p><span class="quote-review-status">REVIEW CANDIDATE · confirm exact wording and public use</span>
         <p>Validation means the strategy makes sense in its context. Permission means the part can influence the pace and can say no. Hope means another future may be possible, not that change is promised today. All three have to be sincere; without sincerity they become manipulation.</p>
         <p>A demonstration may end with the protector still doing its job and feeling more accurately seen. That is not an incomplete result. Trust is itself an outcome.</p>
         <div class="summary"><strong>What to observe</strong><p>How does Guthrie respond when the protector disagrees, becomes silent, questions the process, or does not soften?</p></div>
@@ -6424,7 +6464,7 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
       'w4-after': `
         <h2>Three messages in everyday language</h2>
         <p><strong>Validation:</strong> “I can see why you would not want this to happen again.” Validation recognises the logic; it does not endorse every effect.</p>
-        <p><strong>Control:</strong> “I will not push past you. We can stop.” In this participant course, control means genuine choice about your own inward practice, not negotiating access to deeper material. Guthrie states the principle plainly: “We will do nothing without your permission.”</p>
+        <p><strong>Control:</strong> “I will not push past you. We can stop.” In this participant course, control means genuine choice about your own inward practice, not negotiating access to deeper material. Guthrie states the principle plainly: “We will do nothing without your permission.”</p><span class="quote-review-status">REVIEW CANDIDATE · confirm exact wording and public use</span>
         <p><strong>Hope:</strong> “You may not always have to work this hard. We do not have to decide that now.” Hope is an opening, not a sales pitch.</p>
         <h2>One-week protector practice</h2>
         <ol>
@@ -6564,7 +6604,7 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
         <p>The IFS model holds that the way we relate to our own parts can parallel the way we relate to similar qualities in other people. A person who attacks their own uncertainty may become impatient with a partner’s uncertainty. A person whose need has been exiled may experience another person’s request as dangerous pressure.</p>
         <p>This is a hypothesis to explore in your own system, not a rule to apply to anyone else’s. External relationships contain real differences in power, behaviour and safety. Not every reaction is a projection, and inner work should never become a reason to tolerate harm.</p>
         <h2>Field awareness in dialogue</h2>
-        <p>In conflict, focus collapses around the threat: one sentence, one facial expression, one feared outcome. Field awareness lets the body, the room, the history, the relationship and the available choices back in. You do not need equal attention on all of it. Enough field can keep one part’s information from becoming the only information. Guthrie puts it simply: “Field awareness is the perfect way to be in relationship with other people.”</p>
+        <p>In conflict, focus collapses around the threat: one sentence, one facial expression, one feared outcome. Field awareness lets the body, the room, the history, the relationship and the available choices back in. You do not need equal attention on all of it. Enough field can keep one part’s information from becoming the only information. Guthrie puts it simply: “Field awareness is the perfect way to be in relationship with other people.”</p><span class="quote-review-status">REVIEW CANDIDATE · confirm exact wording and public use</span>
         <div class="practice"><div class="practice-head"><strong>A relational pause</strong><span>30–60 seconds</span></div><ol class="practice-steps"><li><time>0:00</time><b>Ground</b><p>Feel one contact point and let the chair or the floor take some weight.</p></li><li><time>0:10</time><b>Part</b><p>Name the part that wants to speak, or to withdraw.</p></li><li><time>0:20</time><b>Field</b><p>Include the other person and the room, without interpreting either.</p></li><li><time>0:35</time><b>Choice</b><p>Speak, ask for time, set a boundary, or stay deliberately silent.</p></li></ol></div>
         <h2>Self-led does not mean agreeable</h2>
         <p>Clarity and courage may support a direct no. Compassion may recognise another person’s pain without accepting their demand. Connectedness does not require continued contact. The marker is not niceness; it is less compulsion, more reality and more responsibility.</p>
@@ -6677,6 +6717,7 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
       'w5-start': 'Please review whether vulnerable parts belong in this six-week introductory course at all, and, if so, whether Week 5 is the right place.',
       'w5-capacity': 'This lesson names deeper IFS processes only to define the boundary. Please mark any terms that feel too clinical or practitioner-facing for participants.',
       'w5-live': 'The demonstration is intentionally bounded and optional. Please confirm whether it belongs in the live plan or should remain author-only.',
+      'w6-after': 'The examples below are editorial composites based on anonymised themes, not testimonials. Please confirm whether this form is useful, or whether the examples should be removed.',
       'w6-glossary': 'The glossary preserves formal terms participants may meet in books. Please mark any entries that should be removed from the participant edition.'
     };
 
@@ -6707,8 +6748,16 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
 
     function sectionKind(section, index) {
       if (section.kind) return section.kind;
-      if (index === 0 || /boundary|boundaries|support/.test(section.id)) return 'required';
-      if (section.id.includes('glossary') || section.id.includes('sources')) return 'reference';
+      const requiredByWeek = [
+        ['start', 'ifs', 'w1-before', 'w1-after', 'support'],
+        ['w2-start', 'w2-system', 'w2-after', 'w2-boundary'],
+        ['w3-start', 'w3-self', 'w3-after', 'w3-boundary'],
+        ['w4-start', 'w4-managers', 'w4-firefighters', 'w4-after', 'w4-boundary'],
+        ['w5-start', 'w5-capacity', 'w5-support', 'w5-after', 'w5-boundary'],
+        ['w6-start', 'w6-before', 'w6-language', 'w6-after', 'w6-boundary']
+      ];
+      if (requiredByWeek[state.week]?.includes(section.id)) return 'required';
+      if (section.id.includes('glossary') || section.id.includes('sources') || section.id.includes('library')) return 'reference';
       return 'optional';
     }
 
@@ -6757,10 +6806,10 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
           <nav class="week-tabs" aria-label="Six-week course reader">${weekNav}</nav>
           <aside class="review-guidance" aria-label="Note for Guthrie">
             <div class="review-guidance-inner">
-              <strong>Guthrie — this is an intentionally generous working draft, not a final participant pack.</strong>
-              <p>I have gathered as much relevant material as I could, so that we can see the whole field before we start cutting. A few passages still carry the language or the depth of the earlier practitioner course. At this stage that is deliberate: removing, simplifying or moving material is far easier than reconstructing something that was left out. I am still refining the reader and folding in your comments as they arrive.</p>
-              <p>You can comment on any passage, leave a general note at the end of each lesson, or move a Content bank source into a different lesson. Draft text is saved locally as you type; click <b>Save note</b> to submit it. Each submission is kept as a separate record, so a later edit never erases earlier feedback.</p>
-              <div class="review-guidance-legend"><span><strong>Amber Editorial decision notes</strong> mark the material where I most need your view: keep, simplify, move to a later week, or remove.</span></div>
+              <strong>Guthrie — this is a review draft, not participant-ready copy.</strong>
+              <p>Please review three things: the required weekly path, the accuracy of the wording, and the placement or depth of the material. Candidate quotations, composite examples and editorial decisions are marked in amber until you approve them.</p>
+              <p>You can comment on any passage, leave one general note at the end of a lesson, or propose moving a Content bank source into the course. Drafts save locally as you type; <b>Save note</b> submits a separate record and never overwrites earlier feedback. The review layer remains in English; participant text follows the selected language.</p>
+              <div class="review-guidance-legend"><span><strong>Status key:</strong> green = required core · grey = optional textbook · sand = reference · amber = needs editorial confirmation.</span></div>
               <div class="review-guidance-status"><span class="review-status-dot" aria-hidden="true"></span><span data-review-status-title>Saved on this device</span><span aria-hidden="true">·</span><span data-review-status-detail>Waiting for status.</span></div>
             </div>
           </aside>
@@ -6768,7 +6817,7 @@ The support I can use…"></textarea><small>Choose consistency over ambition.</s
             <nav class="course-nav" aria-label="Week ${state.week + 1} lessons"><h2>Week ${state.week + 1}</h2>${nav}</nav>
             <main class="course-main"><article class="course-content">
               <header><div class="meta-row"><span>Week ${state.week + 1} of 6</span><span>Lesson ${i + 1}</span><span>${s.duration || '4–6 minutes'}</span><span class="content-kind" data-kind="${currentKind}">${sectionKindLabel(currentKind)}</span></div></header>
-              ${i === 0 ? `<div class="reading-path"><strong>Choose the depth that fits this week</strong><div class="reading-path-key"><div><span class="content-kind" data-kind="required">Required · Core</span><p>The week overview and final “Keep with you” lesson. About 10 minutes in total.</p></div><div><span class="content-kind" data-kind="optional">Optional · Textbook</span><p>Theory, examples, live-session orientation and integration practice.</p></div><div><span class="content-kind" data-kind="reference">Reference</span><p>Glossary, books, sources and material to return to when useful.</p></div></div></div>` : ''}
+              ${i === 0 ? `<div class="reading-path"><strong>Choose the depth that fits this week</strong><div class="reading-path-key"><div><span class="content-kind" data-kind="required">Required · Core</span><p>The weekly overview, key language, one core practice or integration step, and the final safety boundary. Follow the Required labels.</p></div><div><span class="content-kind" data-kind="optional">Optional · Textbook</span><p>Fuller theory, examples and live-session orientation.</p></div><div><span class="content-kind" data-kind="reference">Reference</span><p>Glossary, books, sources and material to return to when useful.</p></div></div></div>` : ''}
               ${articleContent(s)}
               <footer class="course-footer">
                 <span class="quiet">${i === weekSections.length - 1 && nextWeek ? `Next week: ${nextWeek.shortTitle}` : `Lesson ${i + 1} of ${weekSections.length}`}</span>
