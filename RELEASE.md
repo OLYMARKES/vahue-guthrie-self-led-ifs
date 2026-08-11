@@ -6,6 +6,8 @@ Published: 11 August 2026
 
 Status: review draft, not final participant copy
 
+Published content commit: `90f941c`
+
 ## Public files
 
 - `week-1-course-hybrid-editorial-preview.html` — canonical public filename.
@@ -32,5 +34,8 @@ Do not edit the Pages copies independently. Publish both from the canonical priv
 - walking and peripheral-vision assignments conditional on live introduction;
 - Week 1 bowl-of-soup experience followed by debrief; fingers held back;
 - both public files byte-identical.
+- public desktop pass across Weeks 1–6 with no horizontal overflow;
+- English/Russian switching and Review mode controls verified;
+- one explicitly labelled post-deployment system comment saved and read back from the central archive.
 
 The private review key and central archive details intentionally do not belong in this public repository document.
