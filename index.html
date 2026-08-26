@@ -1,2244 +1,376 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Self-led Introduction to IFS — VAHUE × Guthrie Sayen</title>
-<meta name="description" content="A bilingual six-week course architecture for a Self-led introduction to IFS for life.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Шестинедельное Self-led знакомство с IFS вместе с Гэтри Сэйеном. 5 января — 9 февраля 2027 года.">
+  <meta name="theme-color" content="#fbf7ef">
+  <title>IFS через Self · VAHUE × Guthrie Sayen</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --text: #44506a;
+      --muted: #6f756f;
+      --line: rgba(23, 32, 51, .14);
+      --cream: #f5ecd9;
+      --paper: #fffdf9;
+      --sun: #f0cf80;
+      --terracotta: #b85c31;
+      --terracotta-dark: #914421;
+      --blue: #244f82;
+      --focus: rgba(36, 79, 130, .35);
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-:root{
-  --paper:#E8E9E3;
-  --card:#F4F5EF;
-  --ink:#191C1A;
-  --ink-soft:#4F5651;
-  --ink-faint:#7C837D;
-  --gold:#8C6320;
-  --gold-bright:#B0862F;
-  --slate:#465A68;
-  --rule:rgba(25,28,26,.14);
-  --rule-soft:rgba(25,28,26,.08);
-  --measure:44rem;
-  --wide:64rem;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:17px;
-  line-height:1.62;
-  font-weight:400;
-  overflow-x:hidden;
-}
-img,svg{max-width:100%}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #fbf7ef;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    body[data-lang="ru"] .en,
+    body[data-lang="en"] .ru { display: none !important; }
+    a { color: inherit; }
+    button { font: inherit; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--sun); color: var(--ink); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+    h1, h2, h3, p, blockquote { margin-top: 0; }
+    h1, h2, h3 { text-wrap: balance; }
+    h1, h2 { font-family: var(--serif); font-weight: 520; letter-spacing: -.035em; }
+    h1 { max-width: 15ch; margin-bottom: 0; font-size: clamp(2.65rem, 5.6vw, 4.65rem); line-height: .98; }
+    h2 { max-width: 19ch; margin-bottom: 24px; font-size: clamp(2.05rem, 3.4vw, 3.15rem); line-height: 1.04; }
+    h3 { margin-bottom: 10px; font-size: 1.05rem; line-height: 1.25; letter-spacing: -.015em; }
+    p { margin-bottom: 18px; }
 
-/* ---------- structure ---------- */
-.wrap{width:100%;max-width:var(--wide);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
-.col{max-width:var(--measure)}
-section{padding:clamp(52px,7vw,96px) 0;border-top:1px solid var(--rule-soft)}
-section:first-of-type{border-top:0}
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .reading { width: min(760px, calc(100% - 48px)); margin-inline: auto; }
+    .reading-wide { width: min(940px, calc(100% - 48px)); margin-inline: auto; }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 760; letter-spacing: -.025em; text-decoration: none; }
+    .nav-side { display: flex; align-items: center; gap: 16px; }
+    .nav-link { color: var(--text); font-size: .84rem; text-decoration: none; }
+    .nav-link:hover { color: var(--terracotta-dark); }
+    .languages { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.72); }
+    .language { min-width: 38px; min-height: 30px; padding: 0 9px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: .73rem; font-weight: 750; }
+    .language[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 4px rgba(23,32,51,.12); }
 
-/* ---------- type ---------- */
-h1,h2,h3,h4{font-family:"Newsreader",Georgia,serif;font-weight:400;letter-spacing:0;margin:0}
-h1{font-size:4rem;line-height:1.05;letter-spacing:0}
-h2{font-size:2.25rem;line-height:1.15;margin-bottom:.55em}
-h3{font-size:1.28rem;line-height:1.3}
-h4{font-size:1.02rem;font-family:"Inter",sans-serif;font-weight:600;letter-spacing:0}
-p{margin:0 0 1.05em}
-p:last-child{margin-bottom:0}
-strong{font-weight:600}
-em{font-style:italic}
-.eyebrow{
-  font-family:"IBM Plex Mono",ui-monospace,monospace;
-  font-size:.72rem;letter-spacing:0;text-transform:uppercase;
-  color:var(--ink-faint);margin:0 0 1.4em;
-}
-.lede{font-size:1.28rem;line-height:1.55;color:var(--ink-soft)}
-.small{font-size:.95rem}
-.muted{color:var(--ink-soft)}
+    .hero { padding: 18px 0 56px; }
+    .hero-frame { overflow: hidden; border-radius: 24px; background: var(--cream); box-shadow: 0 18px 60px rgba(42,33,21,.11); }
+    .hero-copy { padding: 56px 60px 48px; }
+    .hero-support { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(220px, .6fr); gap: 70px; align-items: end; margin-top: 34px; }
+    .lead { max-width: 690px; margin-bottom: 0; color: #35425b; font-size: clamp(1.02rem, 1.45vw, 1.17rem); line-height: 1.65; }
+    .hero-quote { margin: 0 0 2px; color: #884525; font-family: var(--serif); font-size: 1.17rem; font-style: italic; line-height: 1.45; }
+    .hero-quote cite { display: block; margin-top: 8px; color: var(--muted); font-family: var(--sans); font-size: .72rem; font-style: normal; font-weight: 720; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 28px; }
+    .button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: 0 18px; border-radius: 10px; background: var(--terracotta); color: #fff; font-size: .88rem; font-weight: 750; text-decoration: none; }
+    .button:hover { background: var(--terracotta-dark); }
+    .text-link { color: #39445c; font-size: .88rem; font-weight: 700; text-underline-offset: 5px; text-decoration-color: rgba(57,68,92,.3); }
+    .text-link:hover { color: var(--terracotta-dark); text-decoration-color: currentColor; }
+    .hero-image { height: 320px; background: url('assets/sunlit-course-atmosphere.png') center 84% / cover no-repeat; }
 
-@media (max-width:760px){
-  h1{font-size:2.5rem}
-  h2{font-size:1.75rem}
-  .lede{font-size:1.12rem}
-}
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,253,249,.72); }
+    .fact { padding: 22px 20px; border-left: 1px solid var(--line); }
+    .fact:first-child { border-left: 0; }
+    .fact small { display: block; margin-bottom: 4px; color: var(--muted); font-size: .72rem; }
+    .fact strong { font-size: .9rem; line-height: 1.45; }
 
-/* ---------- hero ---------- */
-.hero{padding-top:clamp(44px,8vw,88px);padding-bottom:clamp(44px,6vw,72px)}
-.hero h1{margin-bottom:.5em}
-.hero h1 .accent{color:var(--gold);font-style:italic}
-.hero .lede{max-width:38rem}
-.formulation{
-  margin:clamp(32px,5vw,48px) 0 0;
-  padding:26px 0 0;
-  border-top:1px solid var(--rule);
-  max-width:40rem;
-}
-.formulation p{
-  font-family:"Newsreader",Georgia,serif;
-  font-size:1.42rem;
-  line-height:1.4;
-}
+    .chapter { padding: 100px 0; }
+    .chapter + .chapter { border-top: 1px solid rgba(23,32,51,.1); }
+    .chapter.warm { background: var(--cream); }
+    .chapter-lead { max-width: 710px; margin-bottom: 0; color: #35425b; font-size: 1.08rem; line-height: 1.72; }
+    .chapter-copy { max-width: 710px; color: var(--text); line-height: 1.75; }
+    .chapter-copy:last-child { margin-bottom: 0; }
+    .quote { margin: 40px 0; padding: 28px 0; border-top: 1px solid rgba(184,92,49,.34); border-bottom: 1px solid rgba(184,92,49,.34); }
+    .quote p { margin: 0; color: #26334c; font-family: var(--serif); font-size: clamp(1.3rem, 2.2vw, 1.78rem); line-height: 1.48; }
+    .quote cite { display: block; margin-top: 15px; color: #8b4829; font-size: .76rem; font-style: normal; font-weight: 720; }
+    .soft-note { margin: 34px 0 0; padding: 22px 24px; border-radius: 12px; background: #fff8eb; color: #39445c; line-height: 1.65; }
 
-/* ---------- spine chain ---------- */
-.chain{list-style:none;margin:clamp(38px,6vw,56px) 0 0;padding:0;position:relative}
-.chain li{position:relative}
-.chain .dot{
-  display:block;width:9px;height:9px;border-radius:50%;
-  background:var(--gold);position:relative;z-index:2;
-}
-.chain .label{
-  display:block;font-family:"IBM Plex Mono",monospace;
-  font-size:.78rem;letter-spacing:0;color:var(--ink-soft);
-}
-@media (min-width:820px){
-  .chain{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
-  .chain::before{
-    content:"";position:absolute;top:4px;height:1px;background:var(--rule);
-    left:calc(100% / 14);right:calc(100% / 14);
-  }
-  .chain li{padding-right:14px}
-  .chain .label{margin-top:14px}
-}
-@media (max-width:819px){
-  .chain{padding-left:22px}
-  .chain::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:var(--rule)}
-  .chain li{display:flex;align-items:center;gap:12px;padding:5px 0}
-  .chain .dot{position:absolute;left:-22px}
-  .chain .label{font-size:.85rem}
-}
+    .os-grid, .boundary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; margin-top: 42px; }
+    .os-grid article, .boundary-grid article { padding-top: 22px; border-top: 1px solid var(--line); }
+    .os-grid h3, .boundary-grid h3 { font-family: var(--serif); font-size: 1.43rem; font-weight: 520; }
+    .clean-list { display: grid; gap: 9px; margin: 0; padding: 0; color: var(--text); list-style: none; }
+    .clean-list li { position: relative; padding-left: 17px; }
+    .clean-list li::before { content: ""; position: absolute; top: .72em; left: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--terracotta); }
 
-/* ---------- note / margin aside ---------- */
-.aside{
-  border-left:2px solid var(--gold);
-  padding:2px 0 2px 20px;
-  margin:2em 0;
-  color:var(--ink-soft);
-  font-size:.97rem;
-}
-.aside strong{color:var(--ink)}
+    .promise-list { margin-top: 44px; border-top: 1px solid var(--line); }
+    .promise-row { display: grid; grid-template-columns: minmax(180px, .42fr) 1fr; gap: 32px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .promise-row strong { font-size: .97rem; }
+    .promise-row span { color: var(--text); }
+    .movement-list { counter-reset: movement; margin-top: 44px; border-top: 1px solid var(--line); }
+    .movement { counter-increment: movement; display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .movement::before { content: counter(movement, decimal-leading-zero); color: var(--terracotta); font-size: .77rem; font-weight: 760; letter-spacing: .05em; }
+    .movement p { margin: 0; font-weight: 650; }
 
-.guthrie-frame{
-  display:grid;gap:18px;margin:2.1em 0 1.8em;
-  grid-template-columns:1fr;
-}
-@media (min-width:820px){.guthrie-frame{grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);align-items:stretch}}
-.guthrie-frame blockquote{
-  margin:0;background:var(--card);border:1px solid var(--rule-soft);border-radius:3px;
-  padding:clamp(22px,3vw,30px);
-}
-.guthrie-frame blockquote p{
-  margin:0;font-family:"Newsreader",Georgia,serif;font-size:clamp(1.35rem,2.4vw,2rem);
-  line-height:1.22;color:var(--ink);
-}
-.guthrie-frame cite{
-  display:block;margin-top:18px;font-style:normal;font-family:"IBM Plex Mono",monospace;
-  font-size:.68rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-faint);
-}
-.course-goal{
-  background:var(--paper-soft);border:1px solid var(--rule);border-radius:3px;
-  padding:clamp(22px,3vw,30px);
-}
-.course-goal span{
-  display:block;margin-bottom:14px;font-family:"IBM Plex Mono",monospace;font-size:.68rem;
-  letter-spacing:0;text-transform:uppercase;color:var(--gold);
-}
-.course-goal ul{list-style:none;margin:0;padding:0}
-.course-goal li{position:relative;padding-left:20px;margin-bottom:.8em;line-height:1.48;color:var(--ink-soft)}
-.course-goal li:last-child{margin-bottom:0}
-.course-goal li::before{content:"";position:absolute;left:0;top:.68em;width:8px;height:1px;background:var(--gold)}
+    .teacher-intro { max-width: 720px; }
+    .teacher-points { margin-top: 38px; border-top: 1px solid rgba(23,32,51,.18); }
+    .teacher-point { display: grid; grid-template-columns: 1fr 1.4fr; gap: 38px; padding: 17px 0; border-bottom: 1px solid rgba(23,32,51,.18); }
+    .teacher-point span { color: var(--text); }
+    .teacher-footer { margin: 28px 0 0; color: var(--text); }
 
-.quote-anchor{
-  margin:1.25em 0 1.45em;padding:12px 0 12px 18px;border-left:1px solid var(--gold);
-}
-.quote-anchor p{
-  margin:0;font-family:"Newsreader",Georgia,serif;font-size:1.14rem;line-height:1.35;color:var(--ink);
-}
-.quote-anchor span{
-  display:block;margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:.62rem;
-  letter-spacing:0;text-transform:uppercase;color:var(--ink-faint);
-}
+    .weeks { margin-top: 48px; border-top: 1px solid var(--line); }
+    .week { display: grid; grid-template-columns: 70px minmax(210px, .7fr) minmax(0, 1fr); gap: 26px; align-items: baseline; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .week-number { color: var(--terracotta); font-size: .77rem; font-weight: 760; letter-spacing: .06em; }
+    .week h3 { margin: 0; font-family: var(--serif); font-size: 1.34rem; font-weight: 520; }
+    .week-detail { display: grid; gap: 6px; color: var(--text); font-size: .91rem; line-height: 1.55; }
+    .week-detail p { margin: 0; }
+    .week-detail strong { color: var(--ink); }
 
-/* ---------- two-panel is / is not ---------- */
-.panels{display:grid;gap:clamp(18px,3vw,28px);margin-top:2em}
-@media (min-width:760px){.panels{grid-template-columns:1fr 1fr}}
-.panel{background:var(--card);border:1px solid var(--rule-soft);border-radius:3px;padding:clamp(22px,3vw,30px)}
-.panel h4{margin-bottom:1em;font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:0;text-transform:uppercase;font-weight:500}
-.panel--is h4{color:var(--gold)}
-.panel--isnot h4{color:var(--slate)}
-.panel ul{list-style:none;margin:0;padding:0}
-.panel li{position:relative;padding-left:20px;margin-bottom:.75em;font-size:.98rem;line-height:1.5}
-.panel li:last-child{margin-bottom:0}
-.panel--is li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--gold)}
-.panel--isnot li::before{content:"\00d7";position:absolute;left:0;top:.02em;color:var(--slate);font-size:.95em}
+    .join { padding: 84px 0; }
+    .join-panel { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; padding: 52px; border-radius: 22px; background: var(--blue); color: #fff; }
+    .join-panel h2 { margin-bottom: 20px; font-size: clamp(2.05rem, 4vw, 3.3rem); }
+    .join-panel p { color: rgba(255,255,255,.76); }
+    .join-panel strong { color: #fff; }
+    .join-side { align-self: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.26); }
+    .join-side p { margin-bottom: 14px; }
+    .coming-soon { display: inline-flex; min-height: 46px; align-items: center; padding: 0 17px; border-radius: 10px; background: var(--sun); color: var(--ink); font-size: .87rem; font-weight: 760; }
+    .join-note { margin-top: 12px; font-size: .74rem; }
 
-/* ---------- promise ---------- */
-.promise{margin-top:2em}
-.offerline{
-  font-family:"Newsreader",Georgia,serif;
-  font-size:1.45rem;line-height:1.35;
-}
-.offerline .mark{color:var(--gold);font-style:italic}
-.offer-grid{display:grid;gap:12px;margin-top:24px}
-@media (min-width:760px){.offer-grid{grid-template-columns:repeat(3,1fr)}}
-.offer-card{
-  background:var(--card);border:1px solid var(--rule-soft);border-radius:3px;
-  padding:18px 20px;min-height:128px;
-}
-.offer-card span{
-  display:block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--gold);
-  margin-bottom:12px;
-}
-.offer-card strong{
-  display:block;font-family:"Newsreader",Georgia,serif;font-size:1.12rem;line-height:1.28;
-  font-weight:400;margin-bottom:8px;
-}
-.offer-card p{font-size:.92rem;line-height:1.48;color:var(--ink-soft)}
-.notnote{
-  margin-top:24px;border-top:1px solid var(--rule);padding-top:16px;
-  color:var(--ink-faint);font-size:.9rem;line-height:1.45;
-}
-.notnote span{
-  display:block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:0;
-  text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;
-}
-.notnote p{margin:0}
+    .footer { padding: 28px 0 46px; border-top: 1px solid var(--line); color: var(--muted); font-size: .77rem; }
+    .footer .shell { display: flex; justify-content: space-between; gap: 20px; }
 
-/* ---------- numbered spine statements ---------- */
-.steps{list-style:none;margin:2em 0 0;padding:0;counter-reset:s}
-.steps li{
-  counter-increment:s;position:relative;padding:16px 0 16px 54px;
-  border-bottom:1px solid var(--rule-soft);
-  font-family:"Newsreader",Georgia,serif;font-size:1.16rem;
-}
-.steps li:last-child{border-bottom:0}
-.steps li::before{
-  content:counter(s);position:absolute;left:0;top:19px;
-  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--gold);
-  border:1px solid var(--rule);border-radius:50%;
-  width:26px;height:26px;display:grid;place-items:center;
-}
+    @media (max-width: 880px) {
+      .hero-copy { padding: 44px 38px 38px; }
+      .hero-support { grid-template-columns: 1fr; gap: 30px; }
+      .hero-quote { max-width: 460px; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .fact:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+      .fact:nth-child(4) { border-top: 1px solid var(--line); }
+      .os-grid, .boundary-grid { gap: 28px; }
+      .week { grid-template-columns: 54px 1fr; }
+      .week-detail { grid-column: 2; }
+      .join-panel { grid-template-columns: 1fr; gap: 24px; }
+    }
 
-/* ---------- table ---------- */
-.tablewrap{margin-top:2em}
-table{width:100%;border-collapse:collapse;font-size:.95rem}
-thead th{
-  text-align:left;font-family:"IBM Plex Mono",monospace;font-weight:500;
-  font-size:.68rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-faint);
-  padding:0 14px 10px 0;border-bottom:1px solid var(--rule);
-}
-tbody td{padding:16px 14px 16px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.45}
-tbody tr:last-child td{border-bottom:0}
-td.wk{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--gold);white-space:nowrap}
-td.focus{font-family:"Newsreader",Georgia,serif;font-size:1.08rem}
-td.q{font-style:italic;color:var(--ink-soft)}
-@media (max-width:760px){
-  table,thead,tbody,tr,td{display:block;width:100%}
-  thead{display:none}
-  tbody tr{border-bottom:1px solid var(--rule);padding:18px 0}
-  tbody tr:last-child{border-bottom:0}
-  tbody td{border:0;padding:0 0 8px}
-  tbody td:last-child{padding-bottom:0}
-  tbody td::before{
-    content:attr(data-label);display:block;
-    font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:0;
-    text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;
-  }
-  td.wk::before{display:none}
-}
+    @media (max-width: 620px) {
+      body { font-size: 15px; }
+      .shell, .reading, .reading-wide { width: min(100% - 32px, 100%); }
+      .nav { min-height: 62px; }
+      .nav-link { display: none; }
+      .brand { font-size: .88rem; }
+      .hero { padding-top: 8px; }
+      .hero-frame { border-radius: 17px; }
+      .hero-copy { padding: 34px 24px 30px; }
+      h1 { font-size: clamp(2.55rem, 13vw, 3.6rem); }
+      .hero-support { margin-top: 28px; }
+      .hero-image { height: 230px; background-position: 50% 84%; }
+      .actions { align-items: flex-start; flex-direction: column; }
+      .facts { grid-template-columns: 1fr; }
+      .fact, .fact:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+      .fact:first-child { border-top: 0; }
+      .chapter { padding: 72px 0; }
+      .os-grid, .boundary-grid { grid-template-columns: 1fr; gap: 30px; }
+      .promise-row, .teacher-point { grid-template-columns: 1fr; gap: 7px; }
+      .week { grid-template-columns: 42px 1fr; gap: 14px; }
+      .week-detail { grid-column: 1 / -1; padding-left: 56px; }
+      .join { padding: 60px 0; }
+      .join-panel { padding: 34px 24px; border-radius: 17px; }
+      .footer .shell { flex-direction: column; }
+    }
 
-/* ---------- week accordion ---------- */
-.weeks{margin-top:2.4em;border-top:1px solid var(--rule)}
-details{border-bottom:1px solid var(--rule-soft)}
-summary{
-  list-style:none;cursor:pointer;padding:20px 34px 20px 0;position:relative;
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;
-}
-summary::-webkit-details-marker{display:none}
-summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.sum-wk{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:0;color:var(--gold);min-width:64px}
-.sum-title{font-family:"Newsreader",Georgia,serif;font-size:1.22rem;line-height:1.2}
-.sum-q{font-style:italic;color:var(--ink-faint);font-size:.95rem;flex-basis:100%}
-@media (min-width:820px){.sum-q{flex-basis:auto;margin-left:auto;text-align:right;max-width:20rem}}
-summary::after{
-  content:"";position:absolute;right:6px;top:28px;
-  width:9px;height:9px;border-right:1px solid var(--ink-soft);border-bottom:1px solid var(--ink-soft);
-  transform:rotate(45deg);transition:transform .22s ease;
-}
-details[open] summary::after{transform:rotate(-135deg)}
-.detail{padding:0 0 30px;display:grid;gap:24px}
-@media (min-width:760px){.detail{grid-template-columns:1fr 1fr;gap:28px 40px}}
-.block h4{
-  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:0;
-  text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:.85em;
-}
-.block ul{list-style:none;margin:0;padding:0}
-.block li{position:relative;padding-left:16px;margin-bottom:.5em;font-size:.96rem;line-height:1.5}
-.block li::before{content:"";position:absolute;left:0;top:.66em;width:6px;height:1px;background:var(--rule)}
-.block li:last-child{margin-bottom:0}
-.output{
-  grid-column:1/-1;background:var(--card);border-radius:3px;padding:16px 20px;
-  font-size:.95rem;
-}
-.output span{
-  font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:0;
-  text-transform:uppercase;color:var(--gold);margin-right:10px;
-}
-
-/* ---------- boundaries ---------- */
-.swap{margin-top:2em;display:grid;gap:14px}
-@media (min-width:760px){.swap{grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}}
-.swap-box{padding:20px 22px;border-radius:3px;font-family:"Newsreader",Georgia,serif;font-size:1.1rem;line-height:1.35}
-.swap-old{background:transparent;border:1px dashed var(--rule);color:var(--ink-faint)}
-.swap-new{background:var(--card);border:1px solid var(--rule-soft)}
-.swap-arrow{font-family:"IBM Plex Mono",monospace;color:var(--gold);text-align:center;font-size:.9rem}
-.swap-box .tag{
-  display:block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:0;
-  text-transform:uppercase;margin-bottom:8px;color:var(--ink-faint);
-}
-.swap-new .tag{color:var(--gold)}
-
-/* ---------- questions ---------- */
-.questions{list-style:none;margin:2em 0 0;padding:0;counter-reset:q}
-.questions li{
-  counter-increment:q;position:relative;padding:18px 0 18px 46px;
-  border-bottom:1px solid var(--rule-soft);
-  font-family:"Newsreader",Georgia,serif;font-size:1.1rem;line-height:1.4;
-}
-.questions li:last-child{border-bottom:0}
-.questions li::before{
-  content:counter(q,decimal-leading-zero);position:absolute;left:0;top:23px;
-  font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--gold);
-}
-
-/* ---------- closing ---------- */
-.closing{background:var(--card);border-top:1px solid var(--rule)}
-.closing blockquote{
-  margin:2em 0 0;padding:0;border-left:2px solid var(--gold);padding-left:clamp(18px,3vw,28px);
-  font-family:"Newsreader",Georgia,serif;font-size:1.18rem;line-height:1.5;
-}
-.closing blockquote p{margin-bottom:1em}
-footer{padding:36px 0 56px;font-size:.82rem;color:var(--ink-faint);font-family:"IBM Plex Mono",monospace;letter-spacing:0}
-
-/* ---------- reveal ---------- */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  summary::after{transition:none}
-}
-
-
-.sitebar{position:sticky;top:0;z-index:50;background:rgba(232,233,227,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule-soft)}
-.sitebar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:12px;padding-bottom:12px}
-.sitebrand{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-soft)}
-.site-controls{display:flex;align-items:center;gap:10px;flex:0 0 auto}
-.review-toggle{display:flex;align-items:center;gap:8px;min-height:40px;padding:4px 12px 4px 9px;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink-soft);cursor:pointer;user-select:none;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;text-transform:uppercase}
-.review-toggle input{width:15px;height:15px;margin:0;accent-color:var(--gold)}
-body.review-on .review-toggle{color:var(--ink);border-color:rgba(140,99,32,.48);background:#fffaf0}
-.review-guidance{display:none;border-bottom:1px solid rgba(140,99,32,.24);background:#f3eee1}
-body.review-on .review-guidance{display:block}
-.review-guidance .wrap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 20px;align-items:start;padding-top:16px;padding-bottom:16px}
-.review-guidance-label{padding-top:2px;color:var(--gold);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;text-transform:uppercase;white-space:nowrap}
-.review-guidance p{max-width:48rem;margin:0;color:var(--ink-soft);font-size:.9rem;line-height:1.48}
-.review-guidance strong{color:var(--ink)}
-.lang-toggle{display:inline-flex;gap:4px;min-height:40px;padding:4px;border:1px solid var(--rule);border-radius:999px;background:var(--card)}
-.lang-toggle button{min-width:52px;border:0;border-radius:999px;background:transparent;color:var(--ink-soft);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:0;cursor:pointer}
-.lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.lang-toggle button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-[data-lang="en"] .lang-ru,[data-lang="ru"] .lang-en{display:none}
-[data-lang="en"] .lang-en,[data-lang="ru"] .lang-ru{display:block}
-.lang-pane > section:first-child{border-top:0}
-
-/* ---------- Guthrie review layer ---------- */
-.review-target{position:relative}
-body.review-on .review-target{outline:1px solid rgba(140,99,32,.12);outline-offset:5px}
-body.review-on .review-target:hover{outline-color:rgba(140,99,32,.42)}
-.review-action{position:relative;z-index:2;display:none;align-items:center;justify-content:center;width:100%;min-height:40px;margin-top:14px;padding:9px 12px;border:1px dashed rgba(140,99,32,.46);border-radius:3px;background:rgba(255,250,240,.5);color:var(--gold);cursor:pointer;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;text-transform:uppercase}
-body.review-on .review-action{display:inline-flex}
-.review-action.has-review,.review-target.has-review .review-action{border-style:solid;border-color:var(--gold);background:var(--gold);color:#fffaf0}
-.review-target-inline + .review-action{max-width:28rem}
-.section-review-wrap{display:none;margin-top:clamp(32px,5vw,56px)}
-body.review-on .section-review-wrap,.section-review-wrap.has-section-review{display:block}
-.section-add-target{width:100%}
-body.review-on .section-add-target,.section-add-target.has-review{outline:0}
-.section-add-target .review-action{min-height:84px;margin-top:0;font-size:.75rem;background:rgba(255,250,240,.28)}
-.section-add-target.has-review .review-action{min-height:46px}
-.review-note{margin-top:14px;padding:15px 17px;border:1px solid rgba(140,99,32,.28);border-left:3px solid var(--gold);border-radius:3px;background:#fffaf0}
-.review-note b,.review-note span{display:block;margin-bottom:7px;color:var(--gold);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.65rem;font-weight:500;text-transform:uppercase}
-.review-note p{margin:0 0 9px;color:#6d4815;font-size:.95rem;line-height:1.48;white-space:pre-wrap}
-.review-note small{display:block;color:var(--ink-soft);font-size:.87rem;line-height:1.45;white-space:pre-wrap}
-.review-workspace{display:none;padding:clamp(48px,7vw,84px) 0;border-top:1px solid rgba(140,99,32,.28);background:#ece8dc}
-body.review-on .review-workspace{display:block}
-.review-workspace-head{display:grid;gap:18px;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:end}
-.review-workspace-head h2{max-width:18ch;margin:0}
-.review-board{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(24px,4vw,44px);align-items:start;margin-top:30px}
-.review-field{display:grid;gap:9px}
-.review-field label{color:var(--gold);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.67rem;text-transform:uppercase}
-.review-field textarea,.review-modal textarea{width:100%;min-height:150px;resize:vertical;border:1px solid rgba(140,99,32,.26);border-radius:3px;background:#fffef8;color:var(--ink);padding:14px 15px;font:inherit;line-height:1.5}
-.review-field textarea:focus,.review-modal textarea:focus{outline:2px solid rgba(140,99,32,.3);outline-offset:2px}
-.review-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}
-.review-button{min-height:38px;padding:9px 13px;border:1px solid var(--rule);border-radius:3px;background:var(--card);color:var(--ink);cursor:pointer;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.67rem;text-transform:uppercase}
-.review-button.primary{border-color:var(--gold);background:var(--gold);color:#fffaf0}
-.review-button.danger{color:#7d3f2f;border-color:rgba(125,63,47,.35)}
-.review-save-status{display:grid;grid-template-columns:10px minmax(0,1fr);gap:3px 10px;align-items:center;margin-top:17px;padding:13px 14px;border:1px solid rgba(70,90,104,.2);border-radius:3px;background:rgba(244,245,239,.74)}
-.review-save-status .status-dot{grid-row:1 / span 2;width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.review-save-status.is-synced .status-dot{background:#52623d}
-.review-save-status strong{font-size:.9rem}.review-save-status small{color:var(--ink-faint);font-size:.78rem;line-height:1.4}
-.review-list{border:1px solid rgba(140,99,32,.18);border-radius:3px;background:rgba(244,245,239,.64);overflow:hidden}
-.review-list-item{padding:15px 16px;border-top:1px solid rgba(140,99,32,.14)}.review-list-item:first-child{border-top:0}
-.review-list-item b{display:block;margin-bottom:5px;font-size:.95rem}.review-list-item p{margin:0;color:var(--ink-soft);font-size:.88rem}.review-list-empty{padding:20px;color:var(--ink-faint);font-size:.92rem}
-.review-modal{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(25,28,26,.38)}
-.review-modal.is-open{display:flex}.review-dialog{width:min(720px,100%);max-height:88vh;overflow:auto;padding:clamp(22px,4vw,34px);border:1px solid rgba(140,99,32,.28);border-radius:4px;background:var(--card);box-shadow:0 28px 80px rgba(25,28,26,.24)}
-.review-dialog-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:17px}.review-dialog-head h3{font-size:clamp(1.7rem,4vw,2.35rem)}
-.review-close{width:36px;height:36px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:var(--ink-soft);cursor:pointer;font-size:1.2rem}
-.review-excerpt{margin:0 0 17px;padding:12px 14px;border-left:2px solid var(--gold);background:var(--paper);color:var(--ink-soft);font-size:.92rem;line-height:1.45}
-.review-modal .review-field + .review-field{margin-top:14px}.review-draft-status{min-height:1.4em;margin:11px 0 0;color:#52623d;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.65rem;text-transform:uppercase}
-.review-toast{position:fixed;right:18px;bottom:18px;z-index:80;display:none;max-width:min(360px,calc(100vw - 36px));padding:13px 15px;border:1px solid rgba(82,98,61,.25);border-radius:3px;background:var(--card);color:#52623d;box-shadow:0 18px 42px rgba(25,28,26,.16);font-size:.9rem}.review-toast.is-visible{display:block}
-body.lock-scroll{overflow:hidden}
-@media(max-width:760px){.review-workspace-head,.review-board{grid-template-columns:1fr}.review-workspace-head{align-items:start}.site-controls{gap:6px}.review-toggle{padding-right:9px}.review-toggle span{display:none}}
-@media(max-width:520px){.sitebar .wrap{align-items:center}.sitebrand{max-width:10rem;line-height:1.35}.lang-toggle button{min-width:42px}.review-dialog{padding:20px}.review-guidance .wrap{grid-template-columns:1fr;gap:5px;padding-top:13px;padding-bottom:14px}.review-guidance-label{white-space:normal}}
-
-</style>
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
 </head>
-<body data-lang="en">
-<header class="sitebar">
-  <div class="wrap">
-    <div class="sitebrand">VAHUE × Guthrie Sayen</div>
-    <div class="site-controls">
-      <label class="review-toggle">
-        <input type="checkbox" id="reviewModeToggle">
-        <span>Review</span>
-      </label>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+<body data-lang="ru">
+  <header class="shell nav">
+    <a class="brand" href="#top">VAHUE × Guthrie Sayen</a>
+    <div class="nav-side">
+      <a class="nav-link" href="#course"><span class="ru">О курсе</span><span class="en">About</span></a>
+      <a class="nav-link" href="#program"><span class="ru">Программа</span><span class="en">Program</span></a>
+      <a class="nav-link" href="#join"><span class="ru">Предрегистрация</span><span class="en">Pre-registration</span></a>
+      <div class="languages" aria-label="Language">
+        <button class="language" type="button" data-language="ru" aria-pressed="true">RU</button>
+        <button class="language" type="button" data-language="en" aria-pressed="false">EN</button>
       </div>
     </div>
-  </div>
-</header>
-<aside class="review-guidance" aria-label="Important review instruction">
-  <div class="wrap">
-    <span class="review-guidance-label">Before you start</span>
-    <p><strong>After every comment or suggested edit, please click “Save note.”</strong> Until you click it, your text is only a draft in this browser. Once saved, the note is sent to the shared review archive.</p>
-  </div>
-</aside>
-<main>
-  <div class="lang-pane lang-en"><!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Approved direction · VAHUE × Guthrie Sayen · after July 29 call</p>
-    <div class="col">
-      <h1>This course is about <span class="accent">Self</span>.</h1>
-      <p class="lede">Our mission is to give people a living, safe, and understandable entrance into IFS through the experience of Self. Not through protocol. Not through learning to conduct sessions. Not through deep trauma work.</p>
-    </div>
-    <div class="formulation">
-      <p>A six-week Self-led introduction to IFS for life. People learn to access Self as awake awareness, speak the language of parts, practice the loving gaze of Self, and begin the shift from a thought-based operating system to an awareness-based way of being.</p>
-    </div>
-    <ul class="chain">
-      <li><span class="dot"></span><span class="label">Accessing Self</span></li>
-      <li><span class="dot"></span><span class="label">Parts</span></li>
-      <li><span class="dot"></span><span class="label">Loving gaze</span></li>
-      <li><span class="dot"></span><span class="label">Protectors</span></li>
-      <li><span class="dot"></span><span class="label">Other people</span></li>
-      <li><span class="dot"></span><span class="label">Vulnerable parts</span></li>
-      <li><span class="dot"></span><span class="label">Life</span></li>
-    </ul>
-  </div>
-</section>
+  </header>
 
-<!-- ============ OPENING PROPOSITION ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Approved course direction</p>
-      <h2>How we now see this program</h2>
-      <div class="quote-anchor">
-        <p>“Add more Self to the world.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>After the July 29 alignment call, this is no longer only a proposal. Guthrie reviewed the frame, approved the direction, and gave us the central story that should now carry the course and the landing page.</p>
-      <p>We are building a six-week course as a standalone Self-led entrance into IFS for life. Not as protocol training, and not as practitioner preparation, but as a living introduction to the modality through the centrality of Self.</p>
-      <p>At the center is a person learning, perhaps for the first time, to recognize access to Self as a living state, speak the language of parts, and meet themselves, their parts, and other people with the loving gaze of Self. Structure, safety, and practice exist only to make that experience clear, gentle, and stable.</p>
-      <div class="aside">
-        <strong>Current working status:</strong> the frame is accepted. The next work is to develop the landing, Week 1 content, participant materials, practice design, dates, and Guthrie's exact live-call arc.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ JULY 29 STORY ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Central story from the call</p>
-      <h2>Operating system 1.0 → operating system 2.0</h2>
-      <p>Guthrie added the language that now gives the course its public story: we are helping people move from operating system 1.0 to operating system 2.0.</p>
-      <p>Operating system 1.0 is the familiar thought-based, parts-led way of interacting with the world: focused, sequential, task-driven, often tense. Operating system 2.0 is awareness-based and Self-led: panoramic, inclusive, relaxed, and able to hold many signals at once without losing clarity.</p>
-      <div class="guthrie-frame">
-        <blockquote>
-          <p>“When you shift into awareness, access to Self, things change. You enter the flow of your life. Rather than trying to tick every little box on your to-do list — by doing less, we become more efficient.”</p>
-          <cite>Guthrie Sayen · July 29 alignment call</cite>
-        </blockquote>
-        <div class="course-goal">
-          <span>Course goal</span>
-          <ul>
-            <li>Give people a direct taste of access to Self as awareness.</li>
-            <li>Help them return to this access more frequently and stay with it longer.</li>
-            <li>Teach parts language as a way to recover access to Self in ordinary life.</li>
-          </ul>
-        </div>
-      </div>
-      <p>So the aim is not only to explain a model. The aim is to give participants enough lived contact with OS 2.0 that they can recognize it, trust it, and begin using it in daily moments: when a part is activated, when attention becomes too narrow, when a relationship becomes charged, or when life feels like a list of tasks to push through.</p>
-      <div class="aside">
-        <strong>Landing thesis:</strong> we are not only teaching IFS concepts. We are inviting people to bring a capacity that is already present in the background into the foreground of everyday life.
-      </div>
-    </div>
-    <div class="panels">
-      <div class="panel panel--isnot">
-        <h4>Operating system 1.0</h4>
-        <ul>
-          <li>Thought-based and parts-led</li>
-          <li>Attention-heavy and sequential</li>
-          <li>Trying to level up by doing more</li>
-          <li>Useful, but with a ceiling</li>
-        </ul>
-      </div>
-      <div class="panel panel--is">
-        <h4>Operating system 2.0</h4>
-        <ul>
-          <li>Awareness-based and Self-led</li>
-          <li>Field-aware and panoramic</li>
-          <li>Focus held inside a wider field</li>
-          <li>Relaxed effectiveness in life</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ IS / IS NOT ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Definition</p>
-      <h2>What this course is</h2>
-      <div class="quote-anchor">
-        <p>“The goal of all inner work is to access Self.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>It is a Self-led course. It does not exist to teach people how to “do IFS.” It exists so a person can come into real contact with what IFS is from the inside.</p>
-    </div>
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>It is</h4>
-        <ul>
-          <li>A proper introduction to IFS as a modality</li>
-          <li>A first taste of access to Self as awake awareness</li>
-          <li>An understanding of why Self can heal parts</li>
-          <li>Learning to notice parts and speak parts language</li>
-          <li>Practice meeting oneself and others with access to Self</li>
-          <li>A clear sense of whether to go deeper — with a therapist, in community, or in training</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot">
-        <h4>It is not</h4>
-        <ul>
-          <li>A compressed practitioner training</li>
-          <li>A course in conducting IFS sessions</li>
-          <li>Deep trauma or exile work</li>
-          <li>A promise to heal trauma in six weeks</li>
-          <li>Peer therapy in pairs and triads</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROMISE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">The promise we make to participants</p>
-      <h2>What people can count on</h2>
-      <div class="quote-anchor">
-        <p>“Love yourself and you can love the whole world.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <div class="promise">
-        <p class="offerline"><span class="mark">In six weeks, a person gets to know IFS from the inside</span> — through the experience of Self, the language of parts, and the practice of loving presence.</p>
-        <div class="offer-grid">
-          <div class="offer-card">
-            <span>01</span>
-            <strong>Access Self</strong>
-            <p>Meet Self not only as an idea, but as awake awareness and a state of presence from which a person can be with themselves.</p>
-          </div>
-          <div class="offer-card">
-            <span>02</span>
-            <strong>Begin speaking parts language</strong>
-            <p>Notice inner voices, protections, and reactions without shame, fighting, or self-attack.</p>
-          </div>
-          <div class="offer-card">
-            <span>03</span>
-            <strong>Understand the next step</strong>
-            <p>Sense whether IFS resonates, and see where to go deeper: therapy, community, or training.</p>
+  <main>
+    <section class="hero" id="top">
+      <div class="shell hero-frame">
+        <div class="hero-copy">
+          <h1 class="ru">Этот курс про Self.</h1>
+          <h1 class="en">This course is about Self.</h1>
+          <div class="hero-support">
+            <div>
+              <p class="lead ru">Наша миссия — дать людям живой, безопасный и понятный вход в IFS через опыт Self. Не через протокол. Не через обучение ведению сессий. Не через глубокую работу с травмой.</p>
+              <p class="lead en">Our mission is to give people a living, safe, and understandable entrance into IFS through the experience of Self. Not through protocol. Not through learning to conduct sessions. Not through deep trauma work.</p>
+              <div class="actions">
+                <a class="button" href="#join"><span class="ru">Узнать о предрегистрации</span><span class="en">Pre-registration details</span></a>
+                <a class="text-link" href="#program"><span class="ru">Посмотреть шесть недель</span><span class="en">See the six weeks</span></a>
+              </div>
+            </div>
+            <blockquote class="hero-quote">“Add more Self to the world.”<cite>Guthrie Sayen</cite></blockquote>
           </div>
         </div>
-        <div class="notnote">
-          <span>What we are not promising</span>
-          <p>We are not promising trauma healing in six weeks, we are not teaching people to lead IFS sessions, and we are not positioning this course as practitioner preparation.</p>
+        <div class="hero-image" role="img" aria-label="Sunlit room with books"></div>
+      </div>
+    </section>
+
+    <div class="shell facts" aria-label="Course facts">
+      <div class="fact"><small class="ru">Даты</small><small class="en">Dates</small><strong class="ru">5 января — 9 февраля 2027</strong><strong class="en">January 5 — February 9, 2027</strong></div>
+      <div class="fact"><small class="ru">Время</small><small class="en">Time</small><strong>09:00 New York · 17:00 Moscow · 22:00 Bali</strong></div>
+      <div class="fact"><small class="ru">Формат</small><small class="en">Format</small><strong class="ru">6 живых встреч по 90 минут</strong><strong class="en">6 live 90-minute sessions</strong></div>
+      <div class="fact"><small class="ru">Для кого</small><small class="en">For whom</small><strong class="ru">Для людей без подготовки в IFS</strong><strong class="en">No prior IFS training required</strong></div>
+    </div>
+
+    <section class="chapter" id="course">
+      <div class="reading">
+        <h2 class="ru">Живое знакомство с IFS через центральность Self.</h2>
+        <h2 class="en">A living introduction to IFS through the centrality of Self.</h2>
+        <p class="chapter-lead ru">Мы собираем шестинедельный курс как самостоятельный Self-led вход в IFS для жизни. Не как обучение протоколу и не как подготовку практиков, а как живое знакомство с модальностью через центральность Self.</p>
+        <p class="chapter-lead en">We are building a six-week course as a standalone Self-led entrance into IFS for life. Not as protocol training, and not as practitioner preparation, but as a living introduction to the modality through the centrality of Self.</p>
+        <p class="chapter-copy ru">В центре курса — человек, который впервые учится узнавать доступ к Self как живое состояние, говорить на языке частей и встречать себя, свои части и других людей любящим взглядом Self. Структура, безопасность и практики нужны только для того, чтобы этот опыт был ясным, мягким и устойчивым.</p>
+        <p class="chapter-copy en">At the center is a person learning, perhaps for the first time, to recognize access to Self as a living state, speak the language of parts, and meet themselves, their parts, and other people with the loving gaze of Self. Structure, safety, and practice exist only to make that experience clear, gentle, and stable.</p>
+      </div>
+    </section>
+
+    <section class="chapter warm">
+      <div class="reading">
+        <h2>Operating system 1.0 → operating system 2.0</h2>
+        <p class="chapter-lead ru">Operating system 1.0 — это привычный thought-based, parts-led способ взаимодействовать с миром: фокус, последовательность, задачи, напряжение. Operating system 2.0 — это awareness-based и Self-led способ быть: панорамный, включающий, расслабленный и способный удерживать много сигналов одновременно без потери ясности.</p>
+        <p class="chapter-lead en">Operating system 1.0 is the familiar thought-based, parts-led way of interacting with the world: focused, sequential, task-driven, often tense. Operating system 2.0 is awareness-based and Self-led: panoramic, inclusive, relaxed, and able to hold many signals at once without losing clarity.</p>
+        <blockquote class="quote"><p>“When you shift into awareness, access to Self, things change. You enter the flow of your life. Rather than trying to tick every little box on your to-do list — by doing less, we become more efficient.”</p><cite>Guthrie Sayen</cite></blockquote>
+        <div class="os-grid">
+          <article>
+            <h3>Operating system 1.0</h3>
+            <ul class="clean-list ru"><li>Thought-based и parts-led</li><li>Много фокуса, последовательная обработка</li><li>Попытка level up через «делать больше»</li><li>Полезная система, но с потолком</li></ul>
+            <ul class="clean-list en"><li>Thought-based and parts-led</li><li>Attention-heavy and sequential</li><li>Trying to level up by doing more</li><li>Useful, but with a ceiling</li></ul>
+          </article>
+          <article>
+            <h3>Operating system 2.0</h3>
+            <ul class="clean-list ru"><li>Awareness-based и Self-led</li><li>Field awareness и панорамность</li><li>Фокус внутри более широкого поля</li><li>Расслабленная эффективность в жизни</li></ul>
+            <ul class="clean-list en"><li>Awareness-based and Self-led</li><li>Field-aware and panoramic</li><li>Focus held inside a wider field</li><li>Relaxed effectiveness in life</li></ul>
+          </article>
+        </div>
+        <p class="soft-note ru">Цель не только объяснить модель. Важно дать участникам достаточно живого контакта с OS 2.0, чтобы они могли узнавать его, доверять ему и начинать использовать в обычной жизни.</p>
+        <p class="soft-note en">The aim is not only to explain a model. It is to give participants enough lived contact with OS 2.0 that they can recognize it, trust it, and begin using it in ordinary life.</p>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <div class="reading">
+        <h2 class="ru">Не научиться «делать IFS», а узнать IFS изнутри.</h2>
+        <h2 class="en">Not learning to “do IFS,” but meeting IFS from the inside.</h2>
+        <p class="chapter-lead ru">Это Self-led курс. Он существует не для того, чтобы научить людей «делать IFS». Он нужен для того, чтобы человек вошёл в живой контакт с тем, что такое IFS изнутри.</p>
+        <p class="chapter-lead en">It is a Self-led course. It does not exist to teach people how to “do IFS.” It exists so a person can come into real contact with what IFS is from the inside.</p>
+        <div class="boundary-grid">
+          <article>
+            <h3 class="ru">Это</h3><h3 class="en">It is</h3>
+            <ul class="clean-list ru"><li>Хорошее знакомство с IFS как модальностью</li><li>Первый опыт доступа к Self как awake awareness</li><li>Понимание, почему Self может исцелять части</li><li>Умение замечать части и говорить на языке частей</li><li>Практика встречи с собой и другими из доступа к Self</li><li>Понимание, хочется ли идти глубже — с терапевтом, в сообщество или в обучение</li></ul>
+            <ul class="clean-list en"><li>A proper introduction to IFS as a modality</li><li>A first taste of access to Self as awake awareness</li><li>An understanding of why Self can heal parts</li><li>Learning to notice parts and speak parts language</li><li>Practice meeting oneself and others with access to Self</li><li>A clear sense of whether to go deeper — with a therapist, in community, or in training</li></ul>
+          </article>
+          <article>
+            <h3 class="ru">Это не</h3><h3 class="en">It is not</h3>
+            <ul class="clean-list ru"><li>Сжатое обучение практиков</li><li>Курс по ведению IFS-сессий</li><li>Глубокая работа с травмой или изгнанниками</li><li>Обещание исцелить травму за шесть недель</li><li>Терапия равных в парах и тройках</li></ul>
+            <ul class="clean-list en"><li>A compressed practitioner training</li><li>A course in conducting IFS sessions</li><li>Deep trauma or exile work</li><li>A promise to heal trauma in six weeks</li><li>Peer therapy in pairs and triads</li></ul>
+          </article>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ============ SPINE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">The spine</p>
-      <h2>Seven things a participant can say by the end</h2>
-      <div class="quote-anchor">
-        <p>“Awakening is persistent access.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p class="muted">The whole arc is written in the first person, because that is the only place it can be verified.</p>
-      <ol class="steps">
-        <li>I can access Self.</li>
-        <li>I can notice parts.</li>
-        <li>I can meet parts with access to Self.</li>
-        <li>I can understand protectors.</li>
-        <li>I can see parts in relationships.</li>
-        <li>I can respect vulnerable places without forcing depth.</li>
-        <li>I can continue this in life.</li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ============ GUTHRIE'S ROLE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Guthrie's role</p>
-      <h2>Transmission, not lecture</h2>
-      <div class="quote-anchor">
-        <p>“This is where we want to learn, relate, and create.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>Guthrie is not an “IFS lecturer” in this course. He is the person who can transmit what cannot be written into a syllabus:</p>
-    </div>
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>What only he can carry</h4>
-        <ul>
-          <li>How he understands Self</li>
-          <li>How he accesses Self</li>
-          <li>How Self feels, and how it looks from the outside</li>
-          <li>Why Self heals</li>
-          <li>Why parts should not be fixed by force</li>
-          <li>Why love, presence, and permission matter more than technique</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot" style="display:flex;align-items:center">
-        <p style="font-family:'Newsreader',Georgia,serif;font-size:1.2rem;line-height:1.4;margin:0">
-          The weekly calls should not only cover topics. They should carry the thing itself:<br><br>
-          <em style="color:var(--gold)">this is how Self-led presence sounds, feels, and acts.</em>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SIX WEEKS ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Proposed flow</p>
-      <h2>Six weeks</h2>
-      <div class="quote-anchor">
-        <p>“Ground, core, field, focus.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>This is not a final syllabus. It is a starting point for the conversation — the shape we believe in, offered so Guthrie can correct it.</p>
-    </div>
-
-    <div class="tablewrap">
-      <table>
-        <thead>
-          <tr><th>Week</th><th>Focus</th><th>Main question</th><th>What people leave with</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="wk" data-label="Week">01</td>
-            <td class="focus" data-label="Focus">Accessing Self through awareness</td>
-            <td class="q" data-label="Main question">What is Self, and do I have any access to it?</td>
-            <td data-label="What people leave with">A personal description: “how access to Self feels in me”</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Week">02</td>
-            <td class="focus" data-label="Focus">Language of parts</td>
-            <td class="q" data-label="Main question">Who is here in me?</td>
-            <td data-label="What people leave with">Parts map, first version</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Week">03</td>
-            <td class="focus" data-label="Focus">The loving gaze of Self</td>
-            <td class="q" data-label="Main question">What happens when Self looks at a part with love?</td>
-            <td data-label="What people leave with">A Self-anchor and a loving gaze reflection</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Week">04</td>
-            <td class="focus" data-label="Focus">Protectors are trying to help</td>
-            <td class="q" data-label="Main question">What is my protection trying to protect?</td>
-            <td data-label="What people leave with">A letter to — and from — a protector</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Week">05</td>
-            <td class="focus" data-label="Focus">Self with others</td>
-            <td class="q" data-label="Main question">Can I see parts in relationship without making the other person wrong?</td>
-            <td data-label="What people leave with">One relational parts map</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Week">06</td>
-            <td class="focus" data-label="Focus">Vulnerable parts and the next path</td>
-            <td class="q" data-label="Main question">How do I respect vulnerable places without forcing depth?</td>
-            <td data-label="What people leave with">A personal decision about going deeper</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="weeks">
-      <details>
-        <summary>
-          <span class="sum-wk">Week 01</span>
-          <span class="sum-title">Accessing Self through awareness</span>
-          <span class="sum-q">What is Self, and do I have any access to it?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Meaning</h4>
-            <ul>
-              <li>Self is not a theory</li>
-              <li>Self is not a “good part”</li>
-              <li>Self can be known as awake awareness</li>
-              <li>Attention is focus; awareness is the field</li>
-              <li>Attention processes sequentially; awareness processes in parallel</li>
-              <li>Accessing awareness is the way participants can begin to experience Self</li>
-              <li>The course begins by bringing awareness from background into foreground</li>
-              <li>Self and parts are both introduced in the first class</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Guthrie live</h4>
-            <ul>
-              <li>Opening meditation: ground, core, field, focus</li>
-              <li>Model of Conscious Experience</li>
-              <li>Attention and awareness: focus and field</li>
-              <li>Peripheral vision / fingers exercise</li>
-              <li>Bowl of soup exercise: field and focus in balance</li>
-              <li>Direct experience of accessing Self</li>
-              <li>Guthrie's own language for Self</li>
-              <li>Simple demo: noticing one part with access to Self</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Practice</h4>
-            <ul>
-              <li>A short daily Self practice</li>
-              <li>Walking practice: open seeing, open hearing, and body sensing</li>
-              <li>Noticing: “Do I have any access to Self right now?”</li>
-              <li>No pair work yet — gentle reflection only</li>
-            </ul>
-          </div>
-          <div class="output"><span>Output</span>A personal description: how access to Self feels in me.</div>
+    <section class="chapter warm">
+      <div class="reading">
+        <h2 class="ru">Что человек уносит с собой.</h2>
+        <h2 class="en">What a person takes with them.</h2>
+        <p class="chapter-lead ru">За шесть недель человек узнаёт IFS изнутри — через опыт Self, язык частей и практику любящего присутствия.</p>
+        <p class="chapter-lead en">In six weeks, a person gets to know IFS from the inside — through the experience of Self, the language of parts, and the practice of loving presence.</p>
+        <div class="promise-list">
+          <div class="promise-row"><strong class="ru">Получить доступ к Self</strong><strong class="en">Access Self</strong><span class="ru">Встретить Self не только как идею, но как awake awareness и состояние присутствия, из которого человек может быть рядом с собой.</span><span class="en">Meet Self not only as an idea, but as awake awareness and a state of presence from which a person can be with themselves.</span></div>
+          <div class="promise-row"><strong class="ru">Начать говорить на языке частей</strong><strong class="en">Begin speaking parts language</strong><span class="ru">Замечать внутренние голоса, защиты и реакции без стыда, борьбы и нападения на себя.</span><span class="en">Notice inner voices, protections, and reactions without shame, fighting, or self-attack.</span></div>
+          <div class="promise-row"><strong class="ru">Понять следующий шаг</strong><strong class="en">Understand the next step</strong><span class="ru">Почувствовать, откликается ли IFS, и увидеть, куда идти глубже: в терапию, сообщество или обучение.</span><span class="en">Sense whether IFS resonates, and see where to go deeper: therapy, community, or training.</span></div>
         </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Week 02</span>
-          <span class="sum-title">Language of parts</span>
-          <span class="sum-q">Who is here in me?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Meaning</h4>
-            <ul>
-              <li>Parts are not problems</li>
-              <li>Parts are people</li>
-              <li>A part can lead, protect, fear, want, avoid, push</li>
-              <li>Parts language reduces shame and self-attack</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Guthrie live</h4>
-            <ul>
-              <li>Parts language</li>
-              <li>Parts are people</li>
-              <li>The basic IFS map</li>
-              <li>Why we do not fight parts</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Practice</h4>
-            <ul>
-              <li>Drawing a parts map</li>
-              <li>Phrases: “a part of me…”</li>
-              <li>Listening to another person without fixing</li>
-            </ul>
-          </div>
-          <div class="output"><span>Output</span>Parts map, version 1.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Week 03</span>
-          <span class="sum-title">The loving gaze of Self</span>
-          <span class="sum-q">What happens when Self looks at a part with love?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Meaning</h4>
-            <ul>
-              <li>Healing does not begin with analysis</li>
-              <li>Self changes the relationship with a part</li>
-              <li>The loving gaze helps the system settle</li>
-              <li>People do not need to conquer themselves</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Guthrie live</h4>
-            <ul>
-              <li>The healing quality of Self</li>
-              <li>The 8 C's as qualities of living presence</li>
-              <li>Self-like parts</li>
-              <li>Demo: one ordinary everyday part met with compassion</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Practice</h4>
-            <ul>
-              <li>Loving gaze practice with a low-intensity everyday part</li>
-              <li>Dyad: one speaks, one listens from access to Self</li>
-              <li>No guiding, no interpreting, no deepening</li>
-            </ul>
-          </div>
-          <div class="output"><span>Output</span>A Self-anchor and a loving gaze reflection.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Week 04</span>
-          <span class="sum-title">Protectors are trying to help</span>
-          <span class="sum-q">What is my protection trying to protect?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Meaning</h4>
-            <ul>
-              <li>Protectors are not enemies</li>
-              <li>Managers and firefighters are trying to help</li>
-              <li>Force does not work</li>
-              <li>Gratitude is safer and more effective than pressure</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Guthrie live</h4>
-            <ul>
-              <li>Protectors</li>
-              <li>Managers and firefighters in ordinary life</li>
-              <li>Befriending</li>
-              <li>Why permission matters</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Practice</h4>
-            <ul>
-              <li>Choose one ordinary everyday protector</li>
-              <li>Thank it</li>
-              <li>Ask what it is afraid of</li>
-              <li>Stop before vulnerable material</li>
-            </ul>
-          </div>
-          <div class="output"><span>Output</span>A letter to a protector, and a letter back from it.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Week 05</span>
-          <span class="sum-title">Self with others</span>
-          <span class="sum-q">Can I see parts in relationship without making the other person wrong?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Meaning</h4>
-            <ul>
-              <li>Parts language changes conflict</li>
-              <li>Self can listen</li>
-              <li>I can say “a part of me…” instead of attacking</li>
-              <li>I can notice that the other person's reaction may also be a part</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Guthrie live</h4>
-            <ul>
-              <li>Self-led relating</li>
-              <li>Inner and relational polarizations</li>
-              <li>Examples from parenting, leadership, partnership</li>
-              <li>Demo: a conflict seen with access to Self</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Practice</h4>
-            <ul>
-              <li>Relational parts language</li>
-              <li>Mapping one conflict as parts</li>
-              <li>Listening without fixing or coaching</li>
-            </ul>
-          </div>
-          <div class="output"><span>Output</span>One relational parts map.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Week 06</span>
-          <span class="sum-title">Vulnerable parts and the next path</span>
-          <span class="sum-q">How do I respect vulnerable places without forcing depth?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Meaning</h4>
-            <ul>
-              <li>Exiles exist, but this course does not train exile work</li>
-              <li>Vulnerable parts need Self, time, respect, and safety</li>
-              <li>Therapy is an upgrade, not a failure</li>
-              <li>Community and continued practice help Self become stable</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Guthrie live</h4>
-            <ul>
-              <li>What vulnerable parts are</li>
-              <li>Witnessing versus doing deep work</li>
-              <li>Possible Guthrie-led demo with exile material, if he chooses</li>
-              <li>When to work with a therapist</li>
-              <li>Integration into life, and the next paths</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Practice</h4>
-            <ul>
-              <li>No peer exile work</li>
-              <li>No participant-to-participant exile guiding</li>
-              <li>Private reflection only</li>
-              <li>Parts map, version 2</li>
-              <li>A 30-day continuation plan</li>
-            </ul>
-          </div>
-          <div class="output"><span>Output</span>A personal decision about where to go deeper.</div>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ GROUP PRACTICE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Group practice</p>
-      <h2>What happens between people</h2>
-      <div class="quote-anchor">
-        <p>“Curiosity is a great doorway.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>The name of the thing changes what people do inside it. So we are changing the name.</p>
-    </div>
-
-    <div class="swap">
-      <div class="swap-box swap-old"><span class="tag">Stop saying</span>Group practice. Triads where people practice IFS.</div>
-      <div class="swap-arrow">→</div>
-      <div class="swap-box swap-new"><span class="tag">Say</span>Practice spaces for Self-led relating.</div>
-    </div>
-
-    <div class="col">
-      <p style="margin-top:2em">Groups are not practicing “leading sessions.” They practice accessing Self, speaking with access to Self, listening from access to Self, noticing a part, and relating to it with respect — without fixing the other person, without deepening, without interpreting.</p>
-    </div>
-
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>Allowed</h4>
-        <ul>
-          <li>Short presencing</li>
-          <li>“What part is here?”</li>
-          <li>“How do I feel toward this part?”</li>
-          <li>Speaking on behalf of a part</li>
-          <li>Speaking with access to Self</li>
-          <li>Listening from access to Self</li>
-          <li>Thanking a protector</li>
-          <li>Relational phrase practice</li>
-          <li>Integration circle</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot">
-        <h4>Not allowed</h4>
-        <ul>
-          <li>Peer therapy</li>
-          <li>Guiding another person</li>
-          <li>Exile work</li>
-          <li>Unburdening</li>
-          <li>Digging for memories</li>
-          <li>“Go deeper”</li>
-          <li>Advice dressed as IFS</li>
-          <li>Interpreting another person's system</li>
-          <li>Pressure to share vulnerability</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MATERIALS ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Materials and operating model</p>
-      <h2>What we should build before launch</h2>
-      <div class="quote-anchor">
-        <p>“Forces don’t work. What works is love.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>The working model is simple: VAHUE creates the participant materials, Guthrie reviews and edits them, and the whole six-week arc is visible to him before the course begins.</p>
-    </div>
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>Participant materials</h4>
-        <ul>
-          <li>One lean handout per week</li>
-          <li>Four to six main points, not a library of readings</li>
-          <li>One weekly frame, one simple practice, one integration prompt</li>
-          <li>Enough theory to orient experience, not enough to train protocol</li>
-          <li>Clear boundary language for every practice</li>
-          <li>Guthrie's OS 1.0 → OS 2.0 language woven into the opening guide</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot">
-        <h4>Guthrie involvement</h4>
-        <ul>
-          <li>Weekly live delivery</li>
-          <li>Reviewing and editing materials outside class</li>
-          <li>Two or three marketing / recording calls</li>
-          <li>Choosing live demo moments as they emerge</li>
-          <li>Helping define the next-step bridge after six weeks</li>
-        </ul>
-      </div>
-    </div>
-    <div class="aside">
-      <strong>Next package before the next call:</strong> selling landing page, expanded Week 1 content, lean handout structure, everyday parts examples, Guthrie review notes, and revised dates.
-    </div>
-  </div>
-</section>
-
-<!-- ============ QUESTIONS ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">What remains to confirm</p>
-      <h2>Questions for the next review with Guthrie</h2>
-      <p>After the July 29 call, we are not asking whether the frame is right. We are confirming the exact delivery choices and preparing the selling landing page.</p>
-      <div class="aside">
-        <strong>Guthrie — if this is a Self-led introduction to IFS for life, what should people experience with you each week?</strong>
-      </div>
-      <ol class="questions">
-        <li>What exact Week 1 sequence do you want: ground-core-field-focus, attention/awareness, Model of Conscious Experience, Self and parts?</li>
-        <li>Which OS 1.0 → OS 2.0 explanation belongs on the public landing page, and which belongs inside the course guide?</li>
-        <li>Which simple exercises help non-practitioners access awareness most reliably: peripheral vision, walking practice, bowl of soup, meditation?</li>
-        <li>Which everyday parts examples should anchor the course: critic, perfectionist, people pleaser, distractor, rebel?</li>
-        <li>Which life situations should we use for parts language: relationships, work, addiction patterns, career blocks, anxiety, shame?</li>
-        <li>Which live demos do you want to choose in advance, and which should emerge spontaneously?</li>
-        <li>Do you want Week 6 to include a Guthrie-led exile orientation or demo, while keeping participants out of peer exile work?</li>
-        <li>What revised launch dates give enough time for materials, landing, review, and marketing?</li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-</div>
-  <div class="lang-pane lang-ru" lang="ru"><!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Согласованное направление · VAHUE × Guthrie Sayen · после звонка 29 июля</p>
-    <div class="col">
-      <h1>Этот курс — про <span class="accent">Self</span>.</h1>
-      <p class="lede">Наша миссия — дать людям живой, безопасный и понятный вход в IFS через опыт Self. Не через протокол. Не через обучение ведению сессий. Не через глубокую работу с травмой.</p>
-    </div>
-    <div class="formulation">
-      <p>Шестинедельное Self-led введение в IFS для жизни. Люди учатся получать доступ к Self как awake awareness, говорить на языке частей, практиковать любящий взгляд Self и начинают переход от thought-based operating system к awareness-based способу быть.</p>
-    </div>
-    <ul class="chain">
-      <li><span class="dot"></span><span class="label">Доступ к Self</span></li>
-      <li><span class="dot"></span><span class="label">Части</span></li>
-      <li><span class="dot"></span><span class="label">Любящий взгляд</span></li>
-      <li><span class="dot"></span><span class="label">Защитники</span></li>
-      <li><span class="dot"></span><span class="label">Другие люди</span></li>
-      <li><span class="dot"></span><span class="label">Уязвимые части</span></li>
-      <li><span class="dot"></span><span class="label">Жизнь</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ OPENING PROPOSITION ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Согласованное направление курса</p>
-      <h2>Как мы теперь видим эту программу</h2>
-      <div class="quote-anchor">
-        <p>“Add more Self to the world.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>После звонка 29 июля это уже не только предложение. Guthrie посмотрел рамку, подтвердил направление и дал центральную историю, на которой теперь должны держаться курс и лендинг.</p>
-      <p>Мы собираем шестинедельный курс как самостоятельный Self-led вход в IFS для жизни. Не как обучение протоколу и не как подготовку практиков, а как живое знакомство с модальностью через центральность Self.</p>
-      <p>В центре курса — человек, который впервые учится узнавать доступ к Self как живое состояние, говорить на языке частей и встречать себя, свои части и других людей любящим взглядом Self. Структура, безопасность и практики нужны только для того, чтобы этот опыт был ясным, мягким и устойчивым.</p>
-      <div class="aside">
-        <strong>Текущий рабочий статус:</strong> рамка принята. Следующая работа — лендинг, содержание Week 1, материалы участника, дизайн практик, даты и точная дуга live-звонков Guthrie.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ JULY 29 STORY ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Центральная история из звонка</p>
-      <h2>Operating system 1.0 → operating system 2.0</h2>
-      <p>Guthrie дал язык, который теперь становится публичной историей курса: мы помогаем людям перейти от operating system 1.0 к operating system 2.0.</p>
-      <p>Operating system 1.0 — это привычный thought-based, parts-led способ взаимодействовать с миром: фокус, последовательность, задачи, напряжение. Operating system 2.0 — это awareness-based и Self-led способ быть: панорамный, включающий, расслабленный и способный удерживать много сигналов одновременно без потери ясности.</p>
-      <div class="guthrie-frame">
-        <blockquote>
-          <p>“When you shift into awareness, access to Self, things change. You enter the flow of your life. Rather than trying to tick every little box on your to-do list — by doing less, we become more efficient.”</p>
-          <cite>Guthrie Sayen · звонок 29 июля</cite>
-        </blockquote>
-        <div class="course-goal">
-          <span>Цель курса</span>
-          <ul>
-            <li>Дать людям прямой опыт доступа к Self как awareness.</li>
-            <li>Помочь им возвращаться к этому доступу чаще и оставаться с ним дольше.</li>
-            <li>Показать язык частей как способ снова находить доступ к Self в обычной жизни.</li>
-          </ul>
+        <blockquote class="quote"><p>“Awakening is persistent access.”</p><cite>Guthrie Sayen</cite></blockquote>
+        <div class="movement-list">
+          <div class="movement"><p class="ru">Я могу получить доступ к Self.</p><p class="en">I can access Self.</p></div>
+          <div class="movement"><p class="ru">Я могу замечать части.</p><p class="en">I can notice parts.</p></div>
+          <div class="movement"><p class="ru">Я могу встречать части из доступа к Self.</p><p class="en">I can meet parts with access to Self.</p></div>
+          <div class="movement"><p class="ru">Я могу понимать защитников.</p><p class="en">I can understand protectors.</p></div>
+          <div class="movement"><p class="ru">Я могу видеть части в отношениях.</p><p class="en">I can see parts in relationships.</p></div>
+          <div class="movement"><p class="ru">Я могу уважать уязвимые места, не форсируя глубину.</p><p class="en">I can respect vulnerable places without forcing depth.</p></div>
+          <div class="movement"><p class="ru">Я могу продолжать это в жизни.</p><p class="en">I can continue this in life.</p></div>
         </div>
       </div>
-      <p>То есть цель не только объяснить модель. Цель — дать участникам достаточно живого контакта с OS 2.0, чтобы они могли узнавать его, доверять ему и начинать использовать в повседневных моментах: когда активируется часть, когда внимание становится слишком узким, когда отношения заряжены или когда жизнь превращается в список задач, через который надо продавиться.</p>
-      <div class="aside">
-        <strong>Тезис для лендинга:</strong> мы не просто объясняем концепции IFS. Мы приглашаем людей вывести способность, которая уже есть в background, в foreground повседневной жизни.
-      </div>
-    </div>
-    <div class="panels">
-      <div class="panel panel--isnot">
-        <h4>Operating system 1.0</h4>
-        <ul>
-          <li>Thought-based и parts-led</li>
-          <li>Много фокуса, последовательная обработка</li>
-          <li>Попытка level up через “делать больше”</li>
-          <li>Полезная система, но с потолком</li>
-        </ul>
-      </div>
-      <div class="panel panel--is">
-        <h4>Operating system 2.0</h4>
-        <ul>
-          <li>Awareness-based и Self-led</li>
-          <li>Field awareness и панорамность</li>
-          <li>Фокус внутри более широкого поля</li>
-          <li>Расслабленная эффективность в жизни</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ============ IS / IS NOT ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Определение</p>
-      <h2>Что это за курс</h2>
-      <div class="quote-anchor">
-        <p>“The goal of all inner work is to access Self.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>Это Self-led курс. Он существует не для того, чтобы научить людей «делать IFS». Он нужен для того, чтобы человек вошёл в живой контакт с тем, что такое IFS изнутри.</p>
-    </div>
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>Это</h4>
-        <ul>
-          <li>Хорошее знакомство с IFS как модальностью</li>
-          <li>Первый опыт доступа к Self как awake awareness</li>
-          <li>Понимание, почему Self может исцелять части</li>
-          <li>Умение замечать части и говорить на языке частей</li>
-          <li>Практика встречи с собой и другими из доступа к Self</li>
-          <li>Понимание, хочется ли идти глубже — с терапевтом, в сообщество или в обучение</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot">
-        <h4>Это не</h4>
-        <ul>
-          <li>Сжатое обучение практиков</li>
-          <li>Курс по ведению IFS-сессий</li>
-          <li>Глубокая работа с травмой или изгнанниками</li>
-          <li>Обещание исцелить травму за шесть недель</li>
-          <li>Терапия равных в парах и тройках</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROMISE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Обещание участникам</p>
-      <h2>На что люди могут рассчитывать</h2>
-      <div class="quote-anchor">
-        <p>“Love yourself and you can love the whole world.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <div class="promise">
-        <p class="offerline"><span class="mark">За шесть недель человек узнаёт IFS изнутри</span> — через опыт Self, язык частей и практику любящего присутствия.</p>
-        <div class="offer-grid">
-          <div class="offer-card">
-            <span>01</span>
-            <strong>Получить доступ к Self</strong>
-            <p>Узнать Self не только как идею, а как awake awareness и состояние присутствия, из которого можно быть рядом с собой.</p>
-          </div>
-          <div class="offer-card">
-            <span>02</span>
-            <strong>Начать говорить на языке частей</strong>
-            <p>Замечать внутренние голоса, защиты и реакции без стыда, борьбы и самоатаки.</p>
-          </div>
-          <div class="offer-card">
-            <span>03</span>
-            <strong>Понять следующий шаг</strong>
-            <p>Почувствовать, откликается ли IFS, и увидеть, куда идти глубже: терапия, сообщество или обучение.</p>
-          </div>
+    <section class="chapter">
+      <div class="reading">
+        <h2 class="ru">Гэтри: передача живого опыта, а не лекция.</h2>
+        <h2 class="en">Guthrie: transmission, not lecture.</h2>
+        <p class="chapter-lead teacher-intro ru">Гэтри не выступает здесь как «лектор по IFS». Он передаёт то, что невозможно полностью записать в программу: как звучит, ощущается и действует Self-led присутствие.</p>
+        <p class="chapter-lead teacher-intro en">Guthrie is not an “IFS lecturer” in this course. He transmits what cannot be fully written into a syllabus: how Self-led presence sounds, feels, and acts.</p>
+        <blockquote class="quote"><p>“This is where we want to learn, relate, and create.”</p><cite>Guthrie Sayen</cite></blockquote>
+        <div class="teacher-points">
+          <div class="teacher-point"><strong class="ru">Self</strong><strong class="en">Self</strong><span class="ru">Как Гэтри понимает Self, получает к нему доступ и узнаёт это состояние.</span><span class="en">How Guthrie understands Self, accesses it, and recognizes the state.</span></div>
+          <div class="teacher-point"><strong class="ru">Исцеление</strong><strong class="en">Healing</strong><span class="ru">Почему Self может исцелять и почему части не нужно исправлять силой.</span><span class="en">Why Self heals and why parts should not be fixed by force.</span></div>
+          <div class="teacher-point"><strong class="ru">Любящий взгляд</strong><strong class="en">The loving gaze</strong><span class="ru">Почему любовь, присутствие и разрешение важнее техники.</span><span class="en">Why love, presence, and permission matter more than technique.</span></div>
         </div>
-        <div class="notnote">
-          <span>Чего мы не обещаем</span>
-          <p>Мы не обещаем исцеление травмы за шесть недель, не обучаем ведению IFS-сессий и не позиционируем курс как подготовку практиков.</p>
+        <p class="teacher-footer ru">Каждая живая встреча не только раскрывает тему недели, но и несёт сам опыт Self-led присутствия.</p>
+        <p class="teacher-footer en">Each live call does more than cover the weekly topic. It carries the experience of Self-led presence itself.</p>
+      </div>
+    </section>
+
+    <section class="chapter warm" id="program">
+      <div class="reading-wide">
+        <h2 class="ru">Шесть недель: от доступа к Self к жизни.</h2>
+        <h2 class="en">Six weeks: from access to Self into life.</h2>
+        <p class="chapter-lead">“Ground, core, field, focus.”</p>
+        <div class="weeks">
+          <article class="week"><span class="week-number">01</span><h3 class="ru">Доступ к Self через awareness</h3><h3 class="en">Accessing Self through awareness</h3><div class="week-detail"><p class="ru"><strong>Вопрос:</strong> Что такое Self, и есть ли у меня к нему доступ?</p><p class="en"><strong>Question:</strong> What is Self, and do I have any access to it?</p><p class="ru"><strong>Результат:</strong> Личное описание: «как доступ к Self ощущается во мне».</p><p class="en"><strong>Takeaway:</strong> A personal description: “how access to Self feels in me.”</p></div></article>
+          <article class="week"><span class="week-number">02</span><h3 class="ru">Язык частей</h3><h3 class="en">Language of parts</h3><div class="week-detail"><p class="ru"><strong>Вопрос:</strong> Кто сейчас есть во мне?</p><p class="en"><strong>Question:</strong> Who is here in me?</p><p class="ru"><strong>Результат:</strong> Карта частей, первая версия.</p><p class="en"><strong>Takeaway:</strong> Parts map, first version.</p></div></article>
+          <article class="week"><span class="week-number">03</span><h3 class="ru">Любящий взгляд Self</h3><h3 class="en">The loving gaze of Self</h3><div class="week-detail"><p class="ru"><strong>Вопрос:</strong> Что происходит, когда Self смотрит на часть с любовью?</p><p class="en"><strong>Question:</strong> What happens when Self looks at a part with love?</p><p class="ru"><strong>Результат:</strong> Self-якорь и заметка про любящий взгляд.</p><p class="en"><strong>Takeaway:</strong> A Self-anchor and a loving gaze reflection.</p></div></article>
+          <article class="week"><span class="week-number">04</span><h3 class="ru">Защитники пытаются помочь</h3><h3 class="en">Protectors are trying to help</h3><div class="week-detail"><p class="ru"><strong>Вопрос:</strong> Что моя защита пытается защитить?</p><p class="en"><strong>Question:</strong> What is my protection trying to protect?</p><p class="ru"><strong>Результат:</strong> Письмо защитнику — и письмо от него.</p><p class="en"><strong>Takeaway:</strong> A letter to — and from — a protector.</p></div></article>
+          <article class="week"><span class="week-number">05</span><h3 class="ru">Self рядом с другими</h3><h3 class="en">Self with others</h3><div class="week-detail"><p class="ru"><strong>Вопрос:</strong> Могу ли я видеть части в отношениях, не делая другого неправым?</p><p class="en"><strong>Question:</strong> Can I see parts in relationship without making the other person wrong?</p><p class="ru"><strong>Результат:</strong> Одна карта частей в отношениях.</p><p class="en"><strong>Takeaway:</strong> One relational parts map.</p></div></article>
+          <article class="week"><span class="week-number">06</span><h3 class="ru">Уязвимые части и следующий путь</h3><h3 class="en">Vulnerable parts and the next path</h3><div class="week-detail"><p class="ru"><strong>Вопрос:</strong> Как уважать уязвимые места, не форсируя глубину?</p><p class="en"><strong>Question:</strong> How do I respect vulnerable places without forcing depth?</p><p class="ru"><strong>Результат:</strong> Личное решение о том, куда идти глубже.</p><p class="en"><strong>Takeaway:</strong> A personal decision about going deeper.</p></div></article>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ============ SPINE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Ось курса</p>
-      <h2>Семь вещей, которые участник сможет сказать в конце</h2>
-      <div class="quote-anchor">
-        <p>“Awakening is persistent access.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p class="muted">Вся дуга сформулирована от первого лица, потому что только там этот опыт можно проверить.</p>
-      <ol class="steps">
-        <li>Я могу получить доступ к Self.</li>
-        <li>Я могу замечать части.</li>
-        <li>Я могу встречать части из доступа к Self.</li>
-        <li>Я могу понимать защитников.</li>
-        <li>Я могу видеть части в отношениях.</li>
-        <li>Я могу уважать уязвимые места, не форсируя глубину.</li>
-        <li>Я могу продолжать это в жизни.</li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ============ GUTHRIE'S ROLE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Роль Guthrie</p>
-      <h2>Передача состояния, а не лекция</h2>
-      <div class="quote-anchor">
-        <p>“This is where we want to learn, relate, and create.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>В этом курсе Guthrie — не просто «лектор по IFS». Он тот человек, который может передать то, что невозможно записать в программу:</p>
-    </div>
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>Что может принести только он</h4>
-        <ul>
-          <li>Как он понимает Self</li>
-          <li>Как он получает доступ к Self</li>
-          <li>Как Self ощущается и как оно выглядит со стороны</li>
-          <li>Почему Self исцеляет</li>
-          <li>Почему части не нужно чинить силой</li>
-          <li>Почему любовь, присутствие и разрешение важнее техники</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot" style="display:flex;align-items:center">
-        <p style="font-family:'Newsreader',Georgia,serif;font-size:1.2rem;line-height:1.4;margin:0">
-          Еженедельные звонки должны быть не только про темы. Они должны нести сам опыт:<br><br>
-          <em style="color:var(--gold)">вот как звучит, ощущается и действует Self-led присутствие.</em>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SIX WEEKS ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Предлагаемая дуга</p>
-      <h2>Шесть недель</h2>
-      <div class="quote-anchor">
-        <p>“Ground, core, field, focus.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>Это не финальная программа. Это отправная точка для разговора — форма, в которую мы верим и которую предлагаем Guthrie поправить.</p>
-    </div>
-
-    <div class="tablewrap">
-      <table>
-        <thead>
-          <tr><th>Неделя</th><th>Фокус</th><th>Главный вопрос</th><th>С чем человек выходит</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="wk" data-label="Неделя">01</td>
-            <td class="focus" data-label="Фокус">Доступ к Self через awareness</td>
-            <td class="q" data-label="Главный вопрос">Что такое Self, и есть ли у меня к нему доступ?</td>
-            <td data-label="С чем человек выходит">Личное описание: «как доступ к Self ощущается во мне»</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Неделя">02</td>
-            <td class="focus" data-label="Фокус">Язык частей</td>
-            <td class="q" data-label="Главный вопрос">Кто сейчас есть во мне?</td>
-            <td data-label="С чем человек выходит">Карта частей, первая версия</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Неделя">03</td>
-            <td class="focus" data-label="Фокус">Любящий взгляд Self</td>
-            <td class="q" data-label="Главный вопрос">Что происходит, когда Self смотрит на часть с любовью?</td>
-            <td data-label="С чем человек выходит">Self-якорь и заметка про любящий взгляд</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Неделя">04</td>
-            <td class="focus" data-label="Фокус">Защитники пытаются помочь</td>
-            <td class="q" data-label="Главный вопрос">Что моя защита пытается защитить?</td>
-            <td data-label="С чем человек выходит">Письмо защитнику — и письмо от него</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Неделя">05</td>
-            <td class="focus" data-label="Фокус">Self рядом с другими</td>
-            <td class="q" data-label="Главный вопрос">Могу ли я видеть части в отношениях, не делая другого неправым?</td>
-            <td data-label="С чем человек выходит">Одна карта частей в отношениях</td>
-          </tr>
-          <tr>
-            <td class="wk" data-label="Неделя">06</td>
-            <td class="focus" data-label="Фокус">Уязвимые части и следующий путь</td>
-            <td class="q" data-label="Главный вопрос">Как уважать уязвимые места, не форсируя глубину?</td>
-            <td data-label="С чем человек выходит">Личное решение о том, куда идти глубже</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="weeks">
-      <details>
-        <summary>
-          <span class="sum-wk">Неделя 01</span>
-          <span class="sum-title">Доступ к Self через awareness</span>
-          <span class="sum-q">Что такое Self, и есть ли у меня к нему доступ?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Смысл</h4>
-            <ul>
-              <li>Self — не теория</li>
-              <li>Self — не «хорошая часть»</li>
-              <li>Self можно узнавать как awake awareness</li>
-              <li>Attention — это focus; awareness — это field</li>
-              <li>Attention обрабатывает последовательно; awareness обрабатывает параллельно</li>
-              <li>Доступ к awareness помогает участникам начать переживать Self</li>
-              <li>Курс начинается с того, что awareness выходит из background в foreground</li>
-              <li>Self и части вводятся уже на первой встрече</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Звонок с Guthrie</h4>
-            <ul>
-              <li>Открывающая медитация: ground, core, field, focus</li>
-              <li>Model of Conscious Experience</li>
-              <li>Attention и awareness: focus и field</li>
-              <li>Упражнение с периферическим зрением / пальцами</li>
-              <li>Упражнение bowl of soup: баланс field и focus</li>
-              <li>Прямой опыт доступа к Self</li>
-              <li>Собственный язык Guthrie для описания Self</li>
-              <li>Простая демонстрация: заметить одну часть с доступом к Self</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Практика</h4>
-            <ul>
-              <li>Короткая ежедневная Self-практика</li>
-              <li>Walking practice: open seeing, open hearing и ощущение тела</li>
-              <li>Наблюдение: «есть ли у меня сейчас доступ к Self?»</li>
-              <li>Пока без работы в парах — только мягкая рефлексия</li>
-            </ul>
-          </div>
-          <div class="output"><span>Результат</span>Личное описание: как доступ к Self ощущается во мне.</div>
+    <section class="join" id="join">
+      <div class="shell join-panel">
+        <div>
+          <h2 class="ru">Предрегистрация без оплаты.</h2>
+          <h2 class="en">No-payment pre-registration.</h2>
+          <p class="ru">Предрегистрация зафиксирует ваш интерес. До принятия решения вы увидите цену, правила и финальные условия участия.</p>
+          <p class="en">Pre-registration will record your interest. You will be able to review the price, policies and final participation details before making a decision.</p>
+          <p><strong class="ru">5 января — 9 февраля 2027</strong><strong class="en">January 5 — February 9, 2027</strong><br>09:00 New York · 17:00 Moscow · 22:00 Bali</p>
         </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Неделя 02</span>
-          <span class="sum-title">Язык частей</span>
-          <span class="sum-q">Кто сейчас есть во мне?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Смысл</h4>
-            <ul>
-              <li>Части — не проблемы</li>
-              <li>Части — это живые внутренние фигуры</li>
-              <li>Часть может вести, защищать, бояться, хотеть, избегать, давить</li>
-              <li>Язык частей снижает стыд и самоатаку</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Звонок с Guthrie</h4>
-            <ul>
-              <li>Язык частей</li>
-              <li>Части — это живые внутренние фигуры</li>
-              <li>Базовая карта IFS</li>
-              <li>Почему мы не боремся с частями</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Практика</h4>
-            <ul>
-              <li>Нарисовать карту частей</li>
-              <li>Фразы: «часть меня…»</li>
-              <li>Слушать другого человека, не исправляя его</li>
-            </ul>
-          </div>
-          <div class="output"><span>Результат</span>Карта частей, версия 1.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Неделя 03</span>
-          <span class="sum-title">Любящий взгляд Self</span>
-          <span class="sum-q">Что происходит, когда Self смотрит на часть с любовью?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Смысл</h4>
-            <ul>
-              <li>Исцеление начинается не с анализа</li>
-              <li>Self меняет отношения с частью</li>
-              <li>Любящий взгляд помогает системе успокоиться</li>
-              <li>Человеку не нужно побеждать себя</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Звонок с Guthrie</h4>
-            <ul>
-              <li>Целительное качество Self</li>
-              <li>8C как качества живого присутствия</li>
-              <li>Self-like части</li>
-              <li>Демонстрация: одна обычная повседневная часть, встреченная с состраданием</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Практика</h4>
-            <ul>
-              <li>Практика любящего взгляда с низкоинтенсивной повседневной частью</li>
-              <li>Диада: один говорит, другой слушает из доступа к Self</li>
-              <li>Без ведения, без интерпретации, без углубления</li>
-            </ul>
-          </div>
-          <div class="output"><span>Результат</span>Self-якорь и заметка про любящий взгляд.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Неделя 04</span>
-          <span class="sum-title">Защитники пытаются помочь</span>
-          <span class="sum-q">Что моя защита пытается защитить?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Смысл</h4>
-            <ul>
-              <li>Защитники — не враги</li>
-              <li>Менеджеры и пожарные пытаются помочь</li>
-              <li>Сила не работает</li>
-              <li>Благодарность безопаснее и эффективнее давления</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Звонок с Guthrie</h4>
-            <ul>
-              <li>Защитники</li>
-              <li>Менеджеры и пожарные в обычной жизни</li>
-              <li>Выстраивание дружеского контакта</li>
-              <li>Почему разрешение важно</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Практика</h4>
-            <ul>
-              <li>Выбрать одного обычного повседневного защитника</li>
-              <li>Поблагодарить его</li>
-              <li>Спросить, чего он боится</li>
-              <li>Остановиться до уязвимого материала</li>
-            </ul>
-          </div>
-          <div class="output"><span>Результат</span>Письмо защитнику и письмо от него.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Неделя 05</span>
-          <span class="sum-title">Self рядом с другими</span>
-          <span class="sum-q">Могу ли я видеть части в отношениях, не делая другого неправым?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Смысл</h4>
-            <ul>
-              <li>Язык частей меняет конфликт</li>
-              <li>Self умеет слушать</li>
-              <li>Я могу сказать «часть меня…» вместо атаки</li>
-              <li>Я могу заметить, что реакция другого человека тоже может быть частью</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Звонок с Guthrie</h4>
-            <ul>
-              <li>Контакт из доступа к Self</li>
-              <li>Внутренние и relational polarizations</li>
-              <li>Примеры из родительства, лидерства, партнёрства</li>
-              <li>Демонстрация: конфликт, увиденный с доступом к Self</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Практика</h4>
-            <ul>
-              <li>Язык частей в отношениях</li>
-              <li>Разложить один конфликт как карту частей</li>
-              <li>Слушать без исправления и коучинга</li>
-            </ul>
-          </div>
-          <div class="output"><span>Результат</span>Одна карта частей в отношениях.</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="sum-wk">Неделя 06</span>
-          <span class="sum-title">Уязвимые части и следующий путь</span>
-          <span class="sum-q">Как уважать уязвимые места, не форсируя глубину?</span>
-        </summary>
-        <div class="detail">
-          <div class="block">
-            <h4>Смысл</h4>
-            <ul>
-              <li>Изгнанники существуют, но этот курс не обучает работе с изгнанниками</li>
-              <li>Уязвимым частям нужны Self, время, уважение и безопасность</li>
-              <li>Терапия — это следующий уровень, а не провал</li>
-              <li>Сообщество и продолжение практики помогают Self становиться устойчивее</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Звонок с Guthrie</h4>
-            <ul>
-              <li>Что такое уязвимые части</li>
-              <li>Свидетельствование вместо глубокой работы</li>
-              <li>Возможная демонстрация Guthrie с материалом изгнанника, если он выберет это</li>
-              <li>Когда идти работать с терапевтом</li>
-              <li>Интеграция в жизнь и следующие пути</li>
-            </ul>
-          </div>
-          <div class="block">
-            <h4>Практика</h4>
-            <ul>
-              <li>Без работы с изгнанниками в формате равных</li>
-              <li>Без ведения другого человека к изгнаннику</li>
-              <li>Только личная рефлексия</li>
-              <li>Карта частей, версия 2</li>
-              <li>План продолжения на 30 дней</li>
-            </ul>
-          </div>
-          <div class="output"><span>Результат</span>Личное решение о том, куда идти глубже.</div>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ GROUP PRACTICE ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Групповая практика</p>
-      <h2>Что происходит между людьми</h2>
-      <div class="quote-anchor">
-        <p>“Curiosity is a great doorway.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>Название меняет то, как люди действуют внутри формата. Поэтому мы меняем название.</p>
-    </div>
-
-    <div class="swap">
-      <div class="swap-box swap-old"><span class="tag">Не называть</span>Групповая практика. Тройки, где люди практикуют IFS.</div>
-      <div class="swap-arrow">→</div>
-      <div class="swap-box swap-new"><span class="tag">Называть</span>Пространства практики Self-led контакта.</div>
-    </div>
-
-    <div class="col">
-      <p style="margin-top:2em">Группы не практикуют «ведение сессий». Они практикуют доступ к Self, речь с доступом к Self, слушание из доступа к Self, замечание части и уважительный контакт с ней — без исправления другого человека, без углубления, без интерпретации.</p>
-    </div>
-
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>Можно</h4>
-        <ul>
-          <li>Короткий presencing</li>
-          <li>«Какая часть сейчас здесь?»</li>
-          <li>«Как я отношусь к этой части?»</li>
-          <li>Говорить от имени части</li>
-          <li>Говорить с доступом к Self</li>
-          <li>Слушать из доступа к Self</li>
-          <li>Благодарить защитника</li>
-          <li>Практика фраз для отношений</li>
-          <li>Круг интеграции</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot">
-        <h4>Нельзя</h4>
-        <ul>
-          <li>Терапия равных</li>
-          <li>Вести другого человека</li>
-          <li>Работа с изгнанниками</li>
-          <li>Unburdening</li>
-          <li>Копаться в воспоминаниях</li>
-          <li>«Иди глубже»</li>
-          <li>Советы, замаскированные под IFS</li>
-          <li>Интерпретировать систему другого человека</li>
-          <li>Давление делиться уязвимостью</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MATERIALS ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Материалы и рабочая модель</p>
-      <h2>Что нужно собрать до запуска</h2>
-      <div class="quote-anchor">
-        <p>“Forces don’t work. What works is love.”</p>
-        <span>Guthrie anchor</span>
-      </div>
-      <p>Рабочая модель простая: VAHUE создаёт материалы для участников, Guthrie смотрит и редактирует их, а вся шестинедельная дуга видна ему до начала курса.</p>
-    </div>
-    <div class="panels">
-      <div class="panel panel--is">
-        <h4>Материалы для участников</h4>
-        <ul>
-          <li>Один лёгкий handout на неделю</li>
-          <li>Четыре-шесть главных пунктов, а не библиотека чтения</li>
-          <li>Одна рамка недели, одна простая практика, один вопрос для интеграции</li>
-          <li>Теории ровно столько, чтобы поддержать опыт, а не обучать протоколу</li>
-          <li>Ясная граница практики на каждой неделе</li>
-          <li>Язык Guthrie про OS 1.0 → OS 2.0 встроен в opening guide</li>
-        </ul>
-      </div>
-      <div class="panel panel--isnot">
-        <h4>Участие Guthrie</h4>
-        <ul>
-          <li>Еженедельные live-звонки</li>
-          <li>Просмотр и редактирование материалов вне класса</li>
-          <li>Два-три маркетинговых / recording звонка</li>
-          <li>Выбор демонстраций по мере того, как они естественно возникают</li>
-          <li>Помощь в определении мостика к следующему шагу после шести недель</li>
-        </ul>
-      </div>
-    </div>
-    <div class="aside">
-      <strong>Следующий пакет перед новым звонком:</strong> продающий лендинг, расширенная Week 1, лёгкая структура handouts, примеры everyday parts, заметки Guthrie review и обновлённые даты.
-    </div>
-  </div>
-</section>
-
-<!-- ============ QUESTIONS ============ -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="col">
-      <p class="eyebrow">Что осталось подтвердить</p>
-      <h2>Вопросы для следующего ревью с Guthrie</h2>
-      <p>После звонка 29 июля мы уже не спрашиваем, верна ли рамка. Мы уточняем конкретные решения по проведению и готовим продающий лендинг.</p>
-      <div class="aside">
-        <strong>Guthrie — если это Self-led введение в IFS для жизни, какой опыт люди должны получать с тобой каждую неделю?</strong>
-      </div>
-      <ol class="questions">
-        <li>Какую точную последовательность Week 1 ты хочешь: ground-core-field-focus, attention/awareness, Model of Conscious Experience, Self и части?</li>
-        <li>Какое объяснение OS 1.0 → OS 2.0 должно быть на публичном лендинге, а какое внутри course guide?</li>
-        <li>Какие простые упражнения надёжнее всего помогают непрактикам получить доступ к awareness: peripheral vision, walking practice, bowl of soup, meditation?</li>
-        <li>Какие everyday parts должны стать опорными примерами курса: critic, perfectionist, people pleaser, distractor, rebel?</li>
-        <li>Какие жизненные ситуации берём для языка частей: отношения, работа, addiction patterns, career blocks, anxiety, shame?</li>
-        <li>Какие live-демонстрации стоит выбрать заранее, а какие должны возникать спонтанно?</li>
-        <li>Хочешь ли ты на Week 6 Guthrie-led exile orientation или demo, при том что участники не делают peer exile work?</li>
-        <li>Какие новые даты запуска дают достаточно времени на материалы, лендинг, review и маркетинг?</li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-</div>
-</main>
-
-<section class="review-workspace" id="review-workspace" aria-label="Guthrie review workspace">
-  <div class="wrap">
-    <div class="review-workspace-head">
-      <div>
-        <p class="eyebrow">Guthrie review layer</p>
-        <h2>Comments, edits, and missing ideas.</h2>
-      </div>
-      <p class="lede">Use the review controls below each meaningful block. Drafts stay on this device while you type; submitted notes are also sent to the shared review archive and remain in version history.</p>
-    </div>
-    <div class="review-board">
-      <div>
-        <div class="review-field">
-          <label for="globalReviewComment">General comment for the whole introduction</label>
-          <textarea id="globalReviewComment" placeholder="Add an overall note, missing idea, sequence change, or anything that should guide the next revision."></textarea>
-        </div>
-        <div class="review-actions">
-          <button type="button" class="review-button primary" id="saveGlobalReview">Save general comment</button>
-          <button type="button" class="review-button" id="copyReviewMarkdown">Copy review packet</button>
-          <button type="button" class="review-button" id="downloadReviewMarkdown">Download Markdown</button>
-          <button type="button" class="review-button" id="downloadReviewJson">Download JSON</button>
-          <button type="button" class="review-button danger" id="clearReviewNotes">Clear local notes</button>
-        </div>
-        <div class="review-save-status" id="reviewSaveStatus" role="status" aria-live="polite">
-          <span class="status-dot" aria-hidden="true"></span>
-          <strong id="reviewSaveStatusTitle">Saved on this device</strong>
-          <small id="reviewSaveStatusDetail">Checking the shared archive.</small>
+        <div class="join-side">
+          <p class="ru">Сейчас мы подключаем форму, через которую можно будет оставить контакт для получения полных условий.</p>
+          <p class="en">We are connecting the form where you will be able to leave your contact details and receive the complete enrollment information.</p>
+          <span class="coming-soon ru">Форма скоро откроется здесь</span>
+          <span class="coming-soon en">The form will open here soon</span>
+          <p class="join-note ru">Это не оплата и не обязательство участвовать.</p>
+          <p class="join-note en">This is not a payment or a commitment to join.</p>
         </div>
       </div>
-      <div>
-        <h3 style="margin-bottom:14px">Notes already added</h3>
-        <div class="review-list" id="reviewList" aria-live="polite"></div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
+  </main>
 
-<div class="review-modal" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
-  <div class="review-dialog">
-    <div class="review-dialog-head">
-      <div>
-        <p class="eyebrow" id="reviewModalKicker">Block review</p>
-        <h3 id="reviewModalTitle">Comment on this block</h3>
-      </div>
-      <button type="button" class="review-close" id="closeReviewModal" aria-label="Close review dialog">×</button>
-    </div>
-    <p class="review-excerpt" id="reviewExcerpt"></p>
-    <div class="review-field">
-      <label for="blockReviewComment" id="blockReviewCommentLabel">Comment</label>
-      <textarea id="blockReviewComment" placeholder="What should we know about this block?"></textarea>
-    </div>
-    <div class="review-field">
-      <label for="blockReviewSuggestion" id="blockReviewSuggestionLabel">Suggested edit / replacement text</label>
-      <textarea id="blockReviewSuggestion" placeholder="Write the exact wording or direction you would prefer."></textarea>
-    </div>
-    <div class="review-actions">
-      <button type="button" class="review-button primary" id="saveBlockReview">Save note</button>
-      <button type="button" class="review-button danger" id="deleteBlockReview">Delete note</button>
-      <button type="button" class="review-button" id="cancelBlockReview">Cancel</button>
-    </div>
-    <p class="review-draft-status" id="reviewDraftStatus">Drafts are saved on this device as you type.</p>
-  </div>
-</div>
+  <footer class="footer">
+    <div class="shell"><strong>VAHUE × Guthrie Sayen</strong><span class="ru">Образовательный курс · не психотерапия и не профессиональная сертификация</span><span class="en">Educational course · not psychotherapy or professional certification</span></div>
+  </footer>
 
-<div class="review-toast" id="reviewToast" role="status" aria-live="polite"></div>
-
-<script>
-(function(){
-  var titles = {
-    en: 'A Self-led Introduction to IFS — VAHUE × Guthrie Sayen',
-    ru: 'Self-led введение в IFS — VAHUE × Guthrie Sayen'
-  };
-  function setLang(lang){
-    document.body.setAttribute('data-lang', lang);
-    document.documentElement.lang = lang;
-    document.title = titles[lang] || titles.en;
-    document.querySelectorAll('[data-set-lang]').forEach(function(button){
-      button.setAttribute('aria-pressed', button.getAttribute('data-set-lang') === lang ? 'true' : 'false');
-    });
-  }
-  document.querySelectorAll('[data-set-lang]').forEach(function(button){
-    button.addEventListener('click', function(){ setLang(button.getAttribute('data-set-lang')); });
-  });
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) {
-    els.forEach(function(el){ el.classList.add('in'); });
-    return;
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-  els.forEach(function(el){ io.observe(el); });
-})();
-</script>
-<script>
-(function(){
-  var root = document.body;
-  var reviewStorageKey = "guthrie-course-intro-review-v2";
-  var reviewModeKey = "guthrie-course-intro-review-mode";
-  var reviewDocumentId = "guthrie-course-intro-260804";
-  var reviewFormAction = "https://docs.google.com/forms/d/e/1FAIpQLScfkG1bdk0D-OOnZjFGC_VtyJDiIRk7a41FOo3jlegPu_faHw/formResponse";
-  var reviewFormEventField = "entry.1292771604";
-  var reviewFormPayloadField = "entry.863961216";
-  var reviewAccessKey = new URLSearchParams(location.hash.slice(1)).get("reviewKey") || "";
-  var reviewModeToggle = document.getElementById("reviewModeToggle");
-  var reviewModal = document.getElementById("reviewModal");
-  var reviewModalKicker = document.getElementById("reviewModalKicker");
-  var reviewModalTitle = document.getElementById("reviewModalTitle");
-  var reviewExcerpt = document.getElementById("reviewExcerpt");
-  var blockReviewComment = document.getElementById("blockReviewComment");
-  var blockReviewSuggestion = document.getElementById("blockReviewSuggestion");
-  var blockReviewCommentLabel = document.getElementById("blockReviewCommentLabel");
-  var blockReviewSuggestionLabel = document.getElementById("blockReviewSuggestionLabel");
-  var globalReviewComment = document.getElementById("globalReviewComment");
-  var reviewList = document.getElementById("reviewList");
-  var reviewToast = document.getElementById("reviewToast");
-  var reviewDraftStatus = document.getElementById("reviewDraftStatus");
-  var reviewSaveStatus = document.getElementById("reviewSaveStatus");
-  var reviewSaveStatusTitle = document.getElementById("reviewSaveStatusTitle");
-  var reviewSaveStatusDetail = document.getElementById("reviewSaveStatusDetail");
-  var currentReviewId = null;
-
-  function emptyReviewState(){
-    return {globalComment:"",notes:{},drafts:{},history:[],outbox:[],localSavedAt:"",syncedAt:""};
-  }
-
-  function normalizeReviewState(value){
-    var base = emptyReviewState();
-    if(!value || typeof value !== "object") return base;
-    return Object.assign({}, base, value, {
-      notes:value.notes && typeof value.notes === "object" ? value.notes : {},
-      drafts:value.drafts && typeof value.drafts === "object" ? value.drafts : {},
-      history:Array.isArray(value.history) ? value.history : [],
-      outbox:Array.isArray(value.outbox) ? value.outbox : []
-    });
-  }
-
-  function readReviewState(){
-    try{return normalizeReviewState(JSON.parse(localStorage.getItem(reviewStorageKey)));}
-    catch(error){return emptyReviewState();}
-  }
-
-  var reviewState = readReviewState();
-
-  function writeReviewState(){
-    reviewState.localSavedAt = new Date().toISOString();
-    try{localStorage.setItem(reviewStorageKey, JSON.stringify(reviewState));}catch(error){}
-    renderReviewSaveStatus();
-  }
-
-  function makeEventId(){
-    if(globalThis.crypto && crypto.randomUUID) return crypto.randomUUID();
-    return Date.now() + "-" + Math.random().toString(16).slice(2);
-  }
-
-  function queueReviewEvent(kind, payload){
-    var event = Object.assign({
-      eventId:makeEventId(),
-      documentId:reviewDocumentId,
-      reviewer:"Guthrie",
-      kind:kind,
-      createdAt:new Date().toISOString(),
-      pageUrl:location.href.split("#")[0]
-    }, payload || {});
-    reviewState.history.unshift(event);
-    reviewState.history = reviewState.history.slice(0,500);
-    reviewState.outbox.push(event);
-    reviewState.outbox = reviewState.outbox.slice(-500);
-  }
-
-  function renderReviewSaveStatus(){
-    var draftCount = Object.keys(reviewState.drafts || {}).length;
-    var pendingCount = (reviewState.outbox || []).length;
-    var synced = Boolean(reviewFormAction) && pendingCount === 0;
-    reviewSaveStatus.classList.toggle("is-synced", synced);
-    if(synced){
-      reviewSaveStatusTitle.textContent = "Saved and synced";
-      reviewSaveStatusDetail.textContent = reviewState.syncedAt ? "Shared archive updated " + new Date(reviewState.syncedAt).toLocaleString() + "." : "Shared archive is ready.";
-    }else{
-      reviewSaveStatusTitle.textContent = "Saved on this device";
-      reviewSaveStatusDetail.textContent = pendingCount + " submitted " + (pendingCount === 1 ? "change is" : "changes are") + " waiting to sync" + (draftCount ? "; " + draftCount + " open draft" + (draftCount === 1 ? "" : "s") + "." : ".");
-    }
-  }
-
-  async function flushReviewOutbox(){
-    if(!reviewFormAction || !reviewState.outbox.length || !navigator.onLine) return;
-    var batch = reviewState.outbox.slice();
-    for(var i = 0; i < batch.length; i += 1){
-      var event = batch[i];
-      try{
-        var note = event.note || event.previousNote || {};
-        var payload = [
-          "Document: " + event.documentId,
-          "Reviewer: " + event.reviewer,
-          "Action: " + event.kind,
-          "Block: " + (note.title || event.targetId || "General comment"),
-          "Original text: " + (note.excerpt || ""),
-          "Comment: " + (note.comment || event.globalComment || ""),
-          "Suggested text: " + (note.suggestion || ""),
-          "Saved at: " + event.createdAt,
-          "Page: " + event.pageUrl,
-          "Review key: " + (reviewAccessKey || "direct-page-access"),
-          "",
-          "JSON: " + JSON.stringify(event)
-        ].join("\n");
-        var fields = new URLSearchParams();
-        fields.set(reviewFormEventField, event.eventId);
-        fields.set(reviewFormPayloadField, payload);
-        await fetch(reviewFormAction, {
-          method:"POST",
-          mode:"no-cors",
-          keepalive:true,
-          headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-          body:fields.toString()
-        });
-        reviewState.outbox = reviewState.outbox.filter(function(item){return item.eventId !== event.eventId;});
-        reviewState.syncedAt = new Date().toISOString();
-        writeReviewState();
-      }catch(error){
-        renderReviewSaveStatus();
-        break;
-      }
-    }
-  }
-
-  function cleanText(text){return (text || "").replace(/\s+/g," ").trim();}
-  function escapeHtml(text){
-    return (text || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  }
-  function slug(text){
-    return cleanText(text).toLowerCase().replace(/[^a-z0-9а-яё]+/gi,"-").replace(/^-|-$/g,"").slice(0,42) || "block";
-  }
-  function titleForTarget(target){
-    if(target.dataset.reviewLabel) return target.dataset.reviewLabel;
-    var titleNode = target.querySelector("h1,h2,h3,h4,.eyebrow,b,strong");
-    return cleanText(titleNode ? titleNode.textContent : target.textContent).slice(0,90) || "Untitled block";
-  }
-  function excerptForTarget(target){
-    if(target.dataset.reviewExcerpt) return target.dataset.reviewExcerpt;
-    var clone = target.cloneNode(true);
-    clone.querySelectorAll(".review-action,.review-note").forEach(function(node){node.remove();});
-    return cleanText(clone.textContent).slice(0,320);
-  }
-  function getReviewTargets(){
-    return Array.from(document.querySelectorAll([
-      ".lang-pane .hero .col",
-      ".lang-pane .hero .formulation",
-      ".lang-pane .hero .chain",
-      ".lang-pane section:not(.hero) .col > h2",
-      ".lang-pane .quote-anchor",
-      ".lang-pane .guthrie-frame",
-      ".lang-pane .aside",
-      ".lang-pane .panels",
-      ".lang-pane .promise",
-      ".lang-pane .steps",
-      ".lang-pane .tablewrap",
-      ".lang-pane .weeks",
-      ".lang-pane .swap",
-      ".lang-pane .questions",
-      ".lang-pane .closing blockquote",
-      ".lang-pane .section-add-target"
-    ].join(",")));
-  }
-  function isInlineReviewTarget(target){
-    return ["H1","H2","H3","H4","P","SPAN","B","LI"].indexOf(target.tagName) !== -1;
-  }
-  function findTargetById(id){return document.querySelector('[data-review-id="' + id + '"]');}
-  function reviewControlFor(id){return document.querySelector('[data-review-control-for="' + id + '"]');}
-  function hasReviewContent(note){return Boolean(cleanText(note && note.comment) || cleanText(note && note.suggestion));}
-
-  function prepareSectionReviewSlots(){
-    document.querySelectorAll(".lang-pane > section").forEach(function(section, index){
-      var pane = section.closest(".lang-pane");
-      var lang = pane && pane.classList.contains("lang-ru") ? "ru" : "en";
-      var heading = section.querySelector("h1,h2");
-      var sectionTitle = cleanText(heading && heading.textContent) || "Section " + (index + 1);
-      var wrap = document.createElement("div");
-      wrap.className = "section-review-wrap";
-      var target = document.createElement("div");
-      target.className = "section-add-target";
-      target.dataset.reviewLabel = sectionTitle + " — new text / general comment";
-      target.dataset.reviewExcerpt = "Add a passage after this section, or leave a general comment on the section as a whole.";
-      target.dataset.reviewKind = "section-addition";
-      target.dataset.reviewLang = lang;
-      wrap.appendChild(target);
-      var sectionInner = section.querySelector(":scope > .wrap");
-      (sectionInner || section).appendChild(wrap);
-    });
-  }
-
-  function prepareReviewTargets(){
-    getReviewTargets().forEach(function(target, index){
-      if(target.dataset.reviewId) return;
-      var pane = target.closest(".lang-pane");
-      var lang = pane && pane.classList.contains("lang-ru") ? "ru" : "en";
-      var title = titleForTarget(target);
-      target.dataset.reviewId = lang + "-" + String(index + 1).padStart(3,"0") + "-" + slug(title);
-      target.dataset.reviewTitle = title;
-      target.dataset.reviewLang = lang;
-      target.classList.add("review-target");
-      if(isInlineReviewTarget(target)) target.classList.add("review-target-inline");
-      var button = document.createElement("button");
-      button.type = "button";
-      button.className = "review-action";
-      button.dataset.reviewControlFor = target.dataset.reviewId;
-      if(target.dataset.reviewKind === "section-addition"){
-        button.textContent = "+ Add new text / general comment";
-      }else{
-        button.textContent = "+ Add comment / edit";
-      }
-      button.addEventListener("click", function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        openBlockReview(target.dataset.reviewId);
-      });
-      if(isInlineReviewTarget(target)) target.insertAdjacentElement("afterend",button);
-      else target.appendChild(button);
-    });
-  }
-
-  function renderReviewList(){
-    var notes = Object.entries(reviewState.notes).filter(function(entry){return hasReviewContent(entry[1]);});
-    if(!notes.length){
-      reviewList.innerHTML = '<div class="review-list-empty">No notes yet. Use “+ Add comment / edit” under a block, or add a general note at the end of a section.</div>';
-      return;
-    }
-    reviewList.innerHTML = notes.map(function(entry){
-      var id = entry[0], note = entry[1], body = note.comment || note.suggestion || "";
-      return '<div class="review-list-item"><b>' + escapeHtml(note.title || id) + '</b><p>' + escapeHtml(body.slice(0,180)) + (body.length > 180 ? "…" : "") + '</p></div>';
-    }).join("");
-  }
-
-  function updateReviewMarkers(){
-    getReviewTargets().forEach(function(target){
-      var id = target.dataset.reviewId;
-      var note = reviewState.notes[id];
-      target.classList.toggle("has-review",hasReviewContent(note));
-      if(target.dataset.reviewKind === "section-addition"){
-        var sectionWrap = target.closest(".section-review-wrap");
-        if(sectionWrap) sectionWrap.classList.toggle("has-section-review",hasReviewContent(note));
-      }
-      var action = reviewControlFor(id);
-      if(action) action.classList.toggle("has-review",hasReviewContent(note));
-      document.querySelectorAll('[data-review-note-for="' + id + '"]').forEach(function(node){node.remove();});
-      if(!hasReviewContent(note)) return;
-      var noteNode = document.createElement("div");
-      noteNode.className = "review-note";
-      noteNode.dataset.reviewNoteFor = id;
-      noteNode.innerHTML = (note.suggestion ? '<span>Guthrie suggested edit</span><p>' + escapeHtml(note.suggestion) + '</p>' : "") + (note.comment ? '<b>Comment</b><small>' + escapeHtml(note.comment) + '</small>' : "");
-      if(isInlineReviewTarget(target)){
-        var control = reviewControlFor(id);
-        (control || target).insertAdjacentElement("afterend",noteNode);
-      }else target.appendChild(noteNode);
-    });
-    renderReviewList();
-  }
-
-  function setReviewMode(on){
-    root.classList.toggle("review-on",on);
-    reviewModeToggle.checked = on;
-    try{localStorage.setItem(reviewModeKey,on ? "1" : "0");}catch(error){}
-  }
-
-  function openBlockReview(id){
-    var target = findTargetById(id);
-    if(!target) return;
-    currentReviewId = id;
-    var note = reviewState.notes[id] || {};
-    var draft = reviewState.drafts[id];
-    var isSectionAddition = target.dataset.reviewKind === "section-addition";
-    reviewModalKicker.textContent = isSectionAddition ? "Section note" : "Block review";
-    reviewModalTitle.textContent = target.dataset.reviewTitle || titleForTarget(target);
-    reviewExcerpt.textContent = excerptForTarget(target);
-    blockReviewCommentLabel.textContent = isSectionAddition ? "General comment on this section" : "Comment";
-    blockReviewSuggestionLabel.textContent = isSectionAddition ? "New text to add" : "Suggested edit / replacement text";
-    blockReviewComment.placeholder = isSectionAddition ? "What should we rethink, expand, or remember about this section?" : "What should we know about this block?";
-    blockReviewSuggestion.placeholder = isSectionAddition ? "Write the new paragraph, example, practice, or direction to add here." : "Write the exact wording or direction you would prefer.";
-    blockReviewComment.value = draft ? draft.comment || "" : note.comment || "";
-    blockReviewSuggestion.value = draft ? draft.suggestion || "" : note.suggestion || "";
-    reviewDraftStatus.textContent = draft ? "Recovered local draft · saved as you type" : "Drafts are saved on this device as you type.";
-    reviewModal.classList.add("is-open");
-    root.classList.add("lock-scroll");
-    setTimeout(function(){blockReviewComment.focus();},30);
-  }
-
-  function closeBlockReview(){
-    reviewModal.classList.remove("is-open");
-    root.classList.remove("lock-scroll");
-    currentReviewId = null;
-  }
-
-  function saveBlockReview(){
-    if(!currentReviewId) return;
-    var target = findTargetById(currentReviewId);
-    var note = {
-      id:currentReviewId,
-      lang:target ? target.dataset.reviewLang : "",
-      title:target ? target.dataset.reviewTitle : currentReviewId,
-      excerpt:target ? excerptForTarget(target) : "",
-      comment:blockReviewComment.value.trim(),
-      suggestion:blockReviewSuggestion.value.trim(),
-      updatedAt:new Date().toISOString()
+  <script>
+    const controls = [...document.querySelectorAll('[data-language]')];
+    const setLanguage = language => {
+      document.body.dataset.lang = language;
+      document.documentElement.lang = language;
+      document.title = language === 'ru' ? 'IFS через Self · VAHUE × Guthrie Sayen' : 'IFS through Self · VAHUE × Guthrie Sayen';
+      controls.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
+      const url = new URL(location.href);
+      url.searchParams.set('lang', language);
+      history.replaceState(null, '', url);
     };
-    if(hasReviewContent(note)) reviewState.notes[currentReviewId] = note;
-    else delete reviewState.notes[currentReviewId];
-    delete reviewState.drafts[currentReviewId];
-    queueReviewEvent("block-note-submitted",{targetId:currentReviewId,note:note});
-    writeReviewState();
-    updateReviewMarkers();
-    closeBlockReview();
-    void flushReviewOutbox();
-    showReviewToast("Saved locally and sent to the shared review archive.");
-  }
-
-  function deleteBlockReview(){
-    if(!currentReviewId) return;
-    var removedNote = reviewState.notes[currentReviewId] || null;
-    delete reviewState.notes[currentReviewId];
-    delete reviewState.drafts[currentReviewId];
-    queueReviewEvent("block-note-deleted",{targetId:currentReviewId,previousNote:removedNote});
-    writeReviewState();
-    updateReviewMarkers();
-    closeBlockReview();
-    void flushReviewOutbox();
-    showReviewToast("Note removed; its earlier version remains in submission history.");
-  }
-
-  function buildReviewMarkdown(){
-    var notes = Object.values(reviewState.notes).filter(hasReviewContent);
-    var lines = ["# Guthrie review notes","","Document: A Self-led Introduction to IFS","Exported: " + new Date().toLocaleString(),"","## General comment","",reviewState.globalComment.trim() || "_No general comment._","","## Block comments and suggested edits",""];
-    if(!notes.length) lines.push("_No block notes._");
-    notes.forEach(function(note,index){
-      lines.push("### " + (index + 1) + ". " + (note.title || note.id),"","Language: " + (note.lang || "unknown"),"","Original block excerpt:","","> " + cleanText(note.excerpt || ""),"");
-      if(note.comment) lines.push("Comment:","",note.comment.trim(),"");
-      if(note.suggestion) lines.push("Suggested edit:","",note.suggestion.trim(),"");
-    });
-    lines.push("## Submission history","");
-    if(!reviewState.history.length) lines.push("_No submitted changes yet._");
-    reviewState.history.forEach(function(event,index){
-      lines.push("### " + (index + 1) + ". " + event.kind,"","Submitted: " + (event.createdAt || "unknown"),"");
-      if(event.note && event.note.title) lines.push("Block: " + event.note.title,"");
-      if(event.note && event.note.comment) lines.push("Comment:","",event.note.comment,"");
-      if(event.note && event.note.suggestion) lines.push("Suggested text:","",event.note.suggestion,"");
-      if(event.globalComment) lines.push(event.globalComment,"");
-    });
-    return lines.join("\n");
-  }
-
-  function downloadText(filename,text,type){
-    var blob = new Blob([text],{type:type});
-    var url = URL.createObjectURL(blob);
-    var link = document.createElement("a");
-    link.href = url; link.download = filename; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
-  }
-
-  async function copyReviewMarkdown(){
-    var text = buildReviewMarkdown();
-    try{await navigator.clipboard.writeText(text);showReviewToast("Review packet copied.");}
-    catch(error){downloadText("guthrie-intro-review-notes.md",text,"text/markdown;charset=utf-8");showReviewToast("Markdown review packet downloaded.");}
-  }
-
-  function showReviewToast(message){
-    reviewToast.textContent = message;
-    reviewToast.classList.add("is-visible");
-    clearTimeout(showReviewToast.timer);
-    showReviewToast.timer = setTimeout(function(){reviewToast.classList.remove("is-visible");},2800);
-  }
-
-  prepareSectionReviewSlots();
-  prepareReviewTargets();
-  globalReviewComment.value = reviewState.globalComment || "";
-  globalReviewComment.addEventListener("input",function(){reviewState.globalComment = globalReviewComment.value;writeReviewState();});
-  function saveCurrentDraft(){
-    if(!currentReviewId) return;
-    var comment = blockReviewComment.value, suggestion = blockReviewSuggestion.value;
-    if(comment || suggestion) reviewState.drafts[currentReviewId] = {comment:comment,suggestion:suggestion,updatedAt:new Date().toISOString()};
-    else delete reviewState.drafts[currentReviewId];
-    writeReviewState();
-    reviewDraftStatus.textContent = "Draft saved on this device";
-  }
-  blockReviewComment.addEventListener("input",saveCurrentDraft);
-  blockReviewSuggestion.addEventListener("input",saveCurrentDraft);
-  reviewModeToggle.addEventListener("change",function(){setReviewMode(reviewModeToggle.checked);});
-  document.getElementById("closeReviewModal").addEventListener("click",closeBlockReview);
-  document.getElementById("cancelBlockReview").addEventListener("click",closeBlockReview);
-  document.getElementById("saveBlockReview").addEventListener("click",saveBlockReview);
-  document.getElementById("deleteBlockReview").addEventListener("click",deleteBlockReview);
-  document.getElementById("saveGlobalReview").addEventListener("click",function(){
-    reviewState.globalComment = globalReviewComment.value.trim();
-    queueReviewEvent("general-comment-submitted",{globalComment:reviewState.globalComment});
-    writeReviewState(); void flushReviewOutbox(); showReviewToast("General comment sent to the shared review archive.");
-  });
-  document.getElementById("copyReviewMarkdown").addEventListener("click",copyReviewMarkdown);
-  document.getElementById("downloadReviewMarkdown").addEventListener("click",function(){downloadText("guthrie-intro-review-notes.md",buildReviewMarkdown(),"text/markdown;charset=utf-8");});
-  document.getElementById("downloadReviewJson").addEventListener("click",function(){downloadText("guthrie-intro-review-notes.json",JSON.stringify(reviewState,null,2),"application/json;charset=utf-8");});
-  document.getElementById("clearReviewNotes").addEventListener("click",function(){
-    if(!confirm("Download a JSON backup, then clear all locally saved drafts and notes in this browser?")) return;
-    var stamp = new Date().toISOString().slice(0,19).replace(/:/g,"-");
-    downloadText("guthrie-intro-review-backup-" + stamp + ".json",JSON.stringify(reviewState,null,2),"application/json;charset=utf-8");
-    reviewState = emptyReviewState(); globalReviewComment.value = ""; writeReviewState(); updateReviewMarkers(); showReviewToast("Backup downloaded. Local notes cleared.");
-  });
-  reviewModal.addEventListener("click",function(event){if(event.target === reviewModal) closeBlockReview();});
-  document.addEventListener("keydown",function(event){if(event.key === "Escape" && reviewModal.classList.contains("is-open")) closeBlockReview();});
-  window.addEventListener("online",flushReviewOutbox);
-  updateReviewMarkers();
-  renderReviewSaveStatus();
-  void flushReviewOutbox();
-  var rememberedReviewMode = false;
-  try{rememberedReviewMode = localStorage.getItem(reviewModeKey) === "1";}catch(error){}
-  setReviewMode(Boolean(reviewAccessKey) || rememberedReviewMode);
-})();
-</script>
+    controls.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.language)));
+    const requested = new URLSearchParams(location.search).get('lang');
+    setLanguage(requested === 'en' ? 'en' : 'ru');
+  </script>
 </body>
 </html>
